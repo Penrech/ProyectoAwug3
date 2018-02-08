@@ -1,6 +1,3 @@
-<style>
-    li {list-style-type: none;}
-</style>
 <h1>Proyecto Awug 3</h1><br>
 <b>Integrantes Grupo</b>
 <ul>
