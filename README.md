@@ -1,4 +1,5 @@
 <h1>Proyecto Awug 3</h1><br>
+<h2>Grupo 7</h2><br>
 <b>Integrantes Grupo</b>
 <ul>
 <li>Alexandra Barron </li>
