@@ -1,5 +1,5 @@
 <h1>Proyecto Awug 3</h1><br>
-<h2>Grupo 7</h2><br>
+<h2>Grupo 7</h2>
 <b>Integrantes Grupo</b>
 <ul>
 <li>Alexandra Barron </li>
@@ -8,12 +8,11 @@
 <li>Pau Enrech</li>
 </ul>
 
-<h1>Apis</h1><br>
+<h1>Apis</h1>
 <ul>
 <li>Tablas de Barcelona Open Data</li>
 <li>API: https://cloud.google.com/vision/?hl=es</li>
 </ul>
-<br>
 <h1>Descripción (Provisional)</h1>
 <p>Típicamente si algo se pierde en metro, ferrocariles, autobús, tramvia en Barcelona y es llevado al encargado de la estación, este hace un informe que puede tardar hasta 24h en entrar en su sistema. Además, si algo es encontrado en la calle se suele llevar a una comisaría, donde también tardará en comenzar a constar en sus archivos.</p>
 <p>Debido a esto puede que la persona que pierda algo llame a objetos perdidos del ayuntamiento de Barcelona y no sepa hasta mucho más tarde si se ha encontrado o no el objeto.
