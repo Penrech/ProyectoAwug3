@@ -1,7 +1,8 @@
 const HomeUserTemplate = {props: [], 
                           data: () => ({
         username: "Nombre del usuario",
-        activeNavigation: false
+        activeNavigation: false,
+        showNavigation:false
     }),
         methods: {
               completeProfile () {
@@ -24,7 +25,7 @@ const HomeUserTemplate = {props: [],
 
         <div class="md-toolbar-section-end">
 
-          <md-button class="md-icon-button" v-on:click=" activeNavigation = true">
+          <md-button class="md-icon-button" @click="showNavigation = true">
             <md-icon>menu</md-icon>
           </md-button>
         </div>
@@ -73,57 +74,7 @@ const HomeUserTemplate = {props: [],
         
         
         
-        <md-drawer class="md-right" :md-active.sync= activeNavigation ref="sidebar"> <!-- inicio panel lateral-->
-              <md-toolbar class="md-transparent" md-elevation="0">
-                <div class="md-toolbar-section-end">
-                  <md-button class="md-icon-button" v-on:click=" activeNavigation = false">
-                    <md-icon style="color: #0aabf4">menu</md-icon>
-                  </md-button>
-                </div>
-              </md-toolbar>
-
-            <md-divider></md-divider>
-              <md-list >
-                <md-list-item @click="goToInbox()" style="padding: 15px 0 15px 0;">
-                  <md-icon style="color: #0aabf4">home</md-icon>
-                  <span class="md-list-item-text"  style="color: #0aabf4;font-weight: 600;font-size: 16px">Home</span>
-                </md-list-item>
-                  
-                  <md-divider></md-divider>
-                  
-                <md-list-item @click="goToSettings()" style="padding: 15px 0 15px 0">
-                  <md-icon style="color: #0aabf4">note_add</md-icon>
-                  <span class="md-list-item-text" style="color: #0aabf4;font-weight: 600;font-size: 16px">Nuevo objeto perdido</span>
-                </md-list-item>
-                  
-                  <md-divider></md-divider>
-
-                <md-list-item @click="goToSimpleList()" style="padding: 15px 0 15px 0">
-                  <md-icon style="color: #0aabf4">view_list</md-icon>
-                  <span class="md-list-item-text" style="color: #0aabf4;font-weight: 600;font-size: 16px">Lista de objetos</span>
-                </md-list-item>
-                  
-                  <md-divider></md-divider>
-
-                <md-list-item style="padding: 15px 0 15px 0">
-                  <md-icon style="color: #0aabf4">account_circle</md-icon>
-                  <span class="md-list-item-text" style="color: #0aabf4;font-weight: 600;font-size: 16px">Mi perfil</span>
-                </md-list-item>
-             <md-divider></md-divider>
-            
-            <md-list-item style="padding: 15px 0 15px 0">
-                  <md-icon style="color: #0aabf4">info</md-icon>
-                  <span class="md-list-item-text" style="color: #0aabf4;font-weight: 600;font-size: 16px">Ayuda</span>
-                </md-list-item>
-             <md-divider></md-divider>
-            
-            <md-list-item style="padding: 15px 0 15px 0">
-                  <md-icon style="color: #0aabf4">exit_to_app</md-icon>
-                  <span class="md-list-item-text" style="color: #0aabf4;font-weight: 600;font-size: 16px">Salir de la sesión</span>
-                </md-list-item>
-              </md-list>
-             <md-divider></md-divider>
-        </md-drawer> <!-- fin panel lateral-->
+       
 
 </div>
 
