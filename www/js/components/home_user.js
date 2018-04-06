@@ -52,21 +52,23 @@ const HomeUserTemplate = {props: [],
         
         <!--Inicio de botones-->
         
-    <div  style="margin-top: 1em;margin-left: 6.25%; ">
-     <div class="md-layout md-gutter md-alignment-center-center" style="display: inline-flex;">
-        <div class="md-layout-item">
-            <md-button  class="md-raised" style="width: 160px;height: 400px; background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
-                <md-icon class="md-size-4x" style="margin-bottom: 10px;">menu</md-icon>
+    <div  style="margin-top: 1em;margin-left: 6.25%;margin-right: 10.25% ">
+     <div class="md-layout md-gutter md-alignment-top-center">
+        <div  style="width: 100%">
+            <md-button  class="md-raised" style="width: inherit;height: 200px; background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
+                <md-icon class="md-size-4x" style="margin-bottom: 10px;" md-src="icon/MyObjects.svg" />
                 <br>
                 <md-title style="font-size: 12px;font-weight: 700;">Mis objetos<br>perdidos</md-title></md-button>
           </div>
-        <div class="md-layout-item">
-           <md-button class="md-raised "  style="width: 160px; height: 400px ;background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
-            <md-icon class="md-size-4x" style="margin-bottom: 10px;">menu</md-icon>
+         
+        <div  style="width: 100%">
+           <md-button class="md-raised "  style="width: inherit; height: 200px ;background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
+            <md-icon class="md-size-4x" style="margin-bottom: 10px;" md-src="icon/FindObjects.svg" />
                 <br>
                 <md-title style="font-size: 12px;font-weight: 700;">Encontrar objeto<br>perdido</md-title></md-button>
-            </md-button>
+            
           </div>
+        
       </div>
         
     </div>

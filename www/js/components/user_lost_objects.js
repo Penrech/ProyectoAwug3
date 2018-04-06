@@ -1,12 +1,14 @@
-const userLostObjectsTemplate = {props: ["goToHome"],
+const userLostObjectsTemplate = {props: [],
                           data: () => ({
         objectsArray : [
-            {id: "1", img: "img/bolso.png",state:"1"},
-            {id: "2", img: "img/bolso.png",state:"1"},
-            {id: "3", img: "img/bolso.png",state:"2"}
+            {id: "1", img: "img/bolso.png",state:"1",updates: 0, tags:["#bolso","#negro"]},
+            {id: "2", img: "img/bolso.png",state:"1",updates: 0,tags:["#bolso","#negro"]},
+            {id: "3", img: "null",state:"2",updates: 0,tags:["#cartera","#roja","#billabong"]},
+            {id: "4", img: "null",state:"2",updates:3,tags:["#movil","#gris","#htc","#pantalla","#rota"]}
                        ],
        /* activeNavigation: false,*/
-        showNavigation:false
+        showNavigation:false,
+
     }),
         methods: {
               completeProfile () {
@@ -14,7 +16,15 @@ const userLostObjectsTemplate = {props: ["goToHome"],
               },
               goToLostObjetcts () {
                 
-              }
+              },
+            HaveUpdates(id){
+                if (id >0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
            
         },
         template:`
@@ -30,7 +40,7 @@ const userLostObjectsTemplate = {props: ["goToHome"],
           </md-button>
         
           
-        <h3 class="md-title " style="flex: 1 ; margin-left: 0;color: white ">Mis objetos perdidos</h3>
+        <h3 class="md-title " style="flex: 1 ; margin-left: 0;color: white;">Mis objetos perdidos</h3>
 
 
           <md-button class="md-icon-button" v-on:click="showNavigation = true" >
@@ -40,65 +50,43 @@ const userLostObjectsTemplate = {props: ["goToHome"],
       </div>
  
         <div class="md-toolbar-row" style="justify-content: center;">
-        <h5 class="md-title" style="font-weight: 600;font-size: 14px; margin-left: 0;color: white">Haz click para ver o editar los detalles de los objetos</h5>
+        <span class="md-title" style="font-weight: 600;font-size: 14px; margin-left: 0;color: white;  white-space: normal; text-align:center">Haz click para ver o editar los detalles de los objetos</span>
       </div>
     </md-toolbar><!-- fin toolbar de la app-->
         
         
         <!--Inicio de botones-->
         
-    <div class="md-layout md-gutter" style="margin-left: 6.25%; ">
-        <div class="md-layout-item">
-           <md-card  style="border-radius: 10px;width: 150px;margin-bottom: 12px">
-      <md-card-media-cover >
+    <ul class="md-layout md-gutter md-alignment-top-center" style="padding-left:0;margin-top:0">
+
+        <li style="list-style:none;padding: 0 12px 24px 12px;"  v-for="item in objectsArray" :key="item.id">
+           <md-card  style="border-radius: 10px;width: 150px;">
+      <md-card-media-cover style="    overflow: hidden;" >
         <md-card-media md-ratio="1:1">
-          <img src="img/bolso.png" alt="bolso">
+          <img :src="item.img" alt="">
         </md-card-media>
 
-        <md-card-area style="margin-bottom: 70%;">
+        <md-card-area v-if="item.state == 2" style="top:0;bottom:unset;">
+            <md-card-header style="padding-top: 10px;">
+            
+        
+             <md-avatar v-if="HaveUpdates(item.updates)" class="md-avatar-icon" style="margin-right: 0;font-size: 14px; width: 30px; min-width: 20px;height: 30px;background-color: limegreen;
+    font-weight: 500;">{{item.updates}}</md-avatar>
 
-          <md-card-actions>
+            <md-icon style="font-size: 22px!important;color:#00c9fa">favorite</md-icon>
+         
+            <span class="md-title" style="font-size:14px;font-weight:600;line-height: 1.4; text-align:center; color:#00c9fa;margin-bottom:10px">Objecto no encontrado</span>
+            <span class="md-subhead" style="font-size:12px;font-weight:200; line-height: 1.2; text-align:center;color:#d9d9d9" ><span v-for="tag in item.tags">{{tag}} </span></span>
+          </md-card-header>
 
-            <md-button class="md-icon-button" style="background-color: #ffae34; width: 30px;
-    min-width: 30px;
-    height: 30px;" disabled>
-              <md-icon style="font-size: 14px!important">done</md-icon>
-            </md-button>
-              
-          </md-card-actions>
         </md-card-area>
       </md-card-media-cover>
     </md-card>
-        </div>
+        </li>
         
-        <div class="md-layout-item">
-             <md-card  style="border-radius: 10px;width: 150px;margin-bottom: 12px">
-      <md-card-media-cover >
-        <md-card-media md-ratio="1:1">
-          <img src="img/bolso.png" alt="bolso">
-        </md-card-media>
-
-        <md-card-area style="   margin-bottom: 70%;">
-
-          <md-card-actions>
-
-            <md-button class="md-icon-button" style="background-color: #ffae34;max-width: 20px;width: 30px;
-    min-width: 30px;
-    height: 30px;" disabled>
-              <md-icon style="font-size: 14px!important">done</md-icon>
-            </md-button>
-              
-          </md-card-actions>
-        </md-card-area>
-      </md-card-media-cover>
-    </md-card>
-        </div>
+    
         
-        
-        
-       
-        
-    </div>
+    </ul>
         <!--Fin de botones-->
         
         
