@@ -8,23 +8,29 @@ const userLostObjectsTemplate = {props: [],
                        ],
        /* activeNavigation: false,*/
         showNavigation:false,
+        heartStyle1:{
+            fontSize: "22px!important",
+            color:"#00c9fa",
+            marginTop: "0px"
+        },
+         heartStyle2:{
+            fontSize: "22px!important",
+            color:"#00c9fa",
+            marginTop: "30px"
+        }
+                              
 
     }),
+       /* created: function(){
+            $.getJSON('')
+        },*/
         methods: {
               completeProfile () {
                 
               },
               goToLostObjetcts () {
                 
-              },
-            HaveUpdates(id){
-                if (id >0){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
+              }
            
         },
         template:`
@@ -63,17 +69,18 @@ const userLostObjectsTemplate = {props: [],
            <md-card  style="border-radius: 10px;width: 150px;">
       <md-card-media-cover style="    overflow: hidden;" >
         <md-card-media md-ratio="1:1">
-          <img :src="item.img" alt="">
+          <img v-if="item.state != 2" :src="item.img" alt="">
         </md-card-media>
 
         <md-card-area v-if="item.state == 2" style="top:0;bottom:unset;">
             <md-card-header style="padding-top: 10px;">
             
         
-             <md-avatar v-if="HaveUpdates(item.updates)" class="md-avatar-icon" style="margin-right: 0;font-size: 14px; width: 30px; min-width: 20px;height: 30px;background-color: limegreen;
+             <md-avatar v-if="item.updates > 0" class="md-avatar-icon" style="margin-right: 0;font-size: 14px; width: 30px; min-width: 20px;height: 30px;background-color: limegreen;
     font-weight: 500;">{{item.updates}}</md-avatar>
 
-            <md-icon style="font-size: 22px!important;color:#00c9fa">favorite</md-icon>
+            <md-icon v-if="item.updates > 0" :style="heartStyle1">favorite</md-icon>
+            <md-icon v-else :style="heartStyle2">favorite</md-icon>
          
             <span class="md-title" style="font-size:14px;font-weight:600;line-height: 1.4; text-align:center; color:#00c9fa;margin-bottom:10px">Objecto no encontrado</span>
             <span class="md-subhead" style="font-size:12px;font-weight:200; line-height: 1.2; text-align:center;color:#d9d9d9" ><span v-for="tag in item.tags">{{tag}} </span></span>
