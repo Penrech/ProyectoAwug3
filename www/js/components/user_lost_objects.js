@@ -1,13 +1,14 @@
 const userLostObjectsTemplate = {props: [],
                           data: () => ({
-        objectsArray : [
+        objectsArray : []/* [
             {id: "1", img: "img/bolso.png",state:"1",updates: 0, tags:["#bolso","#negro"]},
             {id: "2", img: "img/bolso.png",state:"1",updates: 0,tags:["#bolso","#negro"]},
             {id: "3", img: "null",state:"2",updates: 0,tags:["#cartera","#roja","#billabong"]},
             {id: "4", img: "null",state:"2",updates:3,tags:["#movil","#gris","#htc","#pantalla","#rota"]}
-                       ],
+                       ]*/,
        /* activeNavigation: false,*/
         showNavigation:false,
+        loading:true,                      
         heartStyle1:{
             fontSize: "22px!important",
             color:"#00c9fa",
@@ -21,10 +22,16 @@ const userLostObjectsTemplate = {props: [],
                               
 
     }),
-       /* created: function(){
-            $.getJSON('')
-        },*/
+        created: function () {
+            this.getList();
+        },
         methods: {
+            getList: function(){
+            this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/UserLostList.json').then(function (response){
+                this.objectsArray = response.data.userLostList;
+                this.loading = false;
+                //console.log(response.data.userLostList);
+            }); },
               completeProfile () {
                 
               },
@@ -64,6 +71,10 @@ const userLostObjectsTemplate = {props: [],
         <!--Inicio de botones-->
         
     <ul class="md-layout md-gutter md-alignment-top-center" style="padding-left:0;margin-top:0">
+
+        <div v-if="loading" style="margin-top:25%;--md-theme-default-primary: white;">
+             <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+        </div>
 
         <li style="list-style:none;padding: 0 12px 24px 12px;"  v-for="item in objectsArray" :key="item.id">
            <md-card  style="border-radius: 10px;width: 150px;">
