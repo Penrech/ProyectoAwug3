@@ -60,6 +60,12 @@ function init(){
                     //this.$refs.sidebar.toggle();
                     router.push({ name: 'settings'})
                 },
+             goToUserProfile: function(){
+                  document.body.style = this.bodyStyle;
+                this.showNavigation = false;
+                    //this.$refs.sidebar.toggle();
+                    router.push({ name: 'userProfile'})
+                },
             goToSimpleList: function(){
                 this.showNavigation = false;
                     //this.$refs.sidebar.toggle();

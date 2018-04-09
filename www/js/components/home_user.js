@@ -1,6 +1,6 @@
 const HomeUserTemplate = {props: [], 
                           data: () => ({
-        username: "Nombre del usuario",
+        username: "John Doe",
         activeNavigation: false,
         showNavigation:false,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
@@ -53,7 +53,7 @@ const HomeUserTemplate = {props: [],
       </div>
     
         <div class="md-toolbar-row" style="justify-content: center; min-height: 1em;padding-bottom: 3.5em;">
-        <h5 v-on:click="goToProfile()" class="md-title" style="font-weight: 400;font-size: 14px; margin-left: 0;">Completa tu perfil</h5>
+        <h5 v-on:click="goToProfile()" class="md-title" style="font-weight: 400;font-size: 14px; margin-left: 0;">Tu perfil</h5>
       </div>
     </md-toolbar><!-- fin toolbar de la app-->
         
