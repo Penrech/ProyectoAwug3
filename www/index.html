@@ -5,11 +5,13 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data: content:;font-src 'self' 'unsafe-inline' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
+    <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 		
     <link rel="stylesheet" href="libs/roboto.css">
     <link rel="stylesheet" href="libs/vuematerial.css">
     <link rel="stylesheet" href="libs/vuethemedefault.css">
+     <link rel="stylesheet" href="css/main.css">
       
     
       
@@ -24,22 +26,7 @@
     <div  class="app-viewport" id="app">
         
         
-        
-        
-      <!--EVA: esta clase main es la que hace funcionar al router, si quieres ir probando aqui los diseños la has de comentar -->
-      <main class="main-content" > <!-- aqui el router inyecta las paginas-->
-                      <div>
-                          <router-view goToHome=goToHome></router-view>
-                        </div>
-                      
-        </main>
-        <!--EVA: una vez hallas acabado un diseño, lo copias y creas una constante, mira como ejemplo las dos que he hecho yo, user_lost_objects y home_user.
-        una vez la crees, has de importarla abajo con los demas .js sino, no funcionara-->
-        
-        <!--Inicio lateral. EVA: Esto de aqui es el menu lateral, actualmente no funciona porque me peta el router y se le ha de preguntar al profe, bueno, no funciona el boton. Si quieres probarlo
-has de hacer swipe hacia la izquierda y alli esta, los botones que van ahora son home y mis objetos perdidos. Todo esto solo funciona si la clase main anterior esta descomentada-->
-    
-         <md-drawer class="md-right" :md-active.sync=showNavigation ref="sidebar"> <!-- inicio panel lateral-->
+         <md-drawer class="md-right" :md-active.sync=toggleSidebar() ref="sidebar"> <!-- inicio panel lateral-->
               <md-toolbar class="md-transparent" md-elevation="0">
                 <div class="md-toolbar-section-end">
                   <md-button class="md-icon-button" @click="showNavigation = false">
@@ -90,6 +77,24 @@ has de hacer swipe hacia la izquierda y alli esta, los botones que van ahora son
               </md-list>
              <md-divider></md-divider>
         </md-drawer> <!-- fin panel lateral-->
+        
+        
+        
+        
+      <!--EVA: esta clase main es la que hace funcionar al router, si quieres ir probando aqui los diseños la has de comentar -->
+      <main class="main-content" > <!-- aqui el router inyecta las paginas-->
+                      <div>
+                          <router-view></router-view>
+                        </div>
+                      
+        </main>
+        <!--EVA: una vez hallas acabado un diseño, lo copias y creas una constante, mira como ejemplo las dos que he hecho yo, user_lost_objects y home_user.
+        una vez la crees, has de importarla abajo con los demas .js sino, no funcionara-->
+        
+        <!--Inicio lateral. EVA: Esto de aqui es el menu lateral, actualmente no funciona porque me peta el router y se le ha de preguntar al profe, bueno, no funciona el boton. Si quieres probarlo
+has de hacer swipe hacia la izquierda y alli esta, los botones que van ahora son home y mis objetos perdidos. Todo esto solo funciona si la clase main anterior esta descomentada-->
+    
+        
 
     </div>
    
@@ -106,6 +111,7 @@ has de hacer swipe hacia la izquierda y alli esta, los botones que van ahora son
 		<script src="js/components/settings.js"></script>
         <script src="js/components/home_user.js"></script>
        <script src="js/components/user_lost_objects.js"></script>
+      <script src="js/components/user_profile.js"></script>
 		
   </body>
 </html>

@@ -2,19 +2,27 @@ const HomeUserTemplate = {props: [],
                           data: () => ({
         username: "Nombre del usuario",
         activeNavigation: false,
-        showNavigation:false
+        showNavigation:false,
+        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
         methods: {
+            toggleSideBar(){
+                console.log(this.$refs.sidebar);
+            },
               completeProfile () {
                 
-              }/*,
+              },
+                goToProfile(){
+                    document.body.style = this.bodyStyle;
+                    this.$router.push('userProfile');
+                },
               goToUserLostObjects () {
-                  vm.
-                  router.push('userLostObjects');
+                  document.body.style = this.bodyStyle;
+                  this.$router.push('userLostObjects');
               },
             goToFindObject () {
                 
-              }*/
+              }
         },
         template:`
 
@@ -25,7 +33,7 @@ const HomeUserTemplate = {props: [],
 
         <div class="md-toolbar-section-end">
 
-          <md-button class="md-icon-button" @click="showNavigation = true">
+          <md-button class="md-icon-button" v-on:click="toggleSideBar()">
             <md-icon>menu</md-icon>
           </md-button>
         </div>
@@ -45,7 +53,7 @@ const HomeUserTemplate = {props: [],
       </div>
     
         <div class="md-toolbar-row" style="justify-content: center; min-height: 1em;padding-bottom: 3.5em;">
-        <h5 class="md-title" style="font-weight: 400;font-size: 14px; margin-left: 0;">Completa tu perfil</h5>
+        <h5 v-on:click="goToProfile()" class="md-title" style="font-weight: 400;font-size: 14px; margin-left: 0;">Completa tu perfil</h5>
       </div>
     </md-toolbar><!-- fin toolbar de la app-->
         
@@ -55,15 +63,15 @@ const HomeUserTemplate = {props: [],
     <div  style="margin-top: 1em;margin-left: 6.25%;margin-right: 10.25% ">
      <div class="md-layout md-gutter md-alignment-top-center">
         <div  style="width: 100%">
-            <md-button  class="md-raised" style="width: inherit;height: 200px; background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
-                <md-icon class="md-size-4x" style="margin-bottom: 10px;" md-src="icon/MyObjects.svg" />
+            <md-button v-on:click="goToUserLostObjects()" class="md-raised" style="width: inherit;height: 200px; background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
+                <img class="md-icon md-size-4x" style="margin-bottom: 10px;" src="icon/MyObjects.svg" />
                 <br>
                 <md-title style="font-size: 12px;font-weight: 700;">Mis objetos<br>perdidos</md-title></md-button>
           </div>
          
         <div  style="width: 100%">
            <md-button class="md-raised "  style="width: inherit; height: 200px ;background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
-            <md-icon class="md-size-4x" style="margin-bottom: 10px;" md-src="icon/FindObjects.svg" />
+            <img class="md-icon md-size-4x" style="margin-bottom: 10px;" src="icon/FindObjects.svg" />
                 <br>
                 <md-title style="font-size: 12px;font-weight: 700;">Encontrar objeto<br>perdido</md-title></md-button>
             

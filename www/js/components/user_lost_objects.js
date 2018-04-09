@@ -12,12 +12,14 @@ const userLostObjectsTemplate = {props: [],
         heartStyle1:{
             fontSize: "22px!important",
             color:"#00c9fa",
-            marginTop: "0px"
+            marginTop: "0px",
+            marginRight: "auto"
         },
          heartStyle2:{
             fontSize: "22px!important",
             color:"#00c9fa",
-            marginTop: "30px"
+            marginTop: "30px",
+            marginRight: "auto"
         }
                               
 
@@ -35,8 +37,9 @@ const userLostObjectsTemplate = {props: [],
               completeProfile () {
                 
               },
-              goToLostObjetcts () {
-                
+              goBackHome () {
+                document.body.style = "";
+                  this.$router.push('homeUser');
               }
            
         },
@@ -48,7 +51,7 @@ const userLostObjectsTemplate = {props: [],
       <div class="md-toolbar-row " style="text-align: center">
   
 
-          <md-button class="md-icon-button" @click="goToHome()">
+          <md-button class="md-icon-button" v-on:click="goBackHome ()">
             <md-icon style="color:white">keyboard_backspace</md-icon>
           </md-button>
         
@@ -90,10 +93,10 @@ const userLostObjectsTemplate = {props: [],
              <md-avatar v-if="item.updates > 0" class="md-avatar-icon" style="margin-right: 0;font-size: 14px; width: 30px; min-width: 20px;height: 30px;background-color: limegreen;
     font-weight: 500;">{{item.updates}}</md-avatar>
 
-            <md-icon v-if="item.updates > 0" :style="heartStyle1">favorite</md-icon>
-            <md-icon v-else :style="heartStyle2">favorite</md-icon>
+            <img class="md-icon" v-if="item.updates > 0" :style="heartStyle1" src="icon/heartBreak.svg"></img>
+            <img class="md-icon" v-else :style="heartStyle2" src="icon/heartBreak.svg"></img>
          
-            <span class="md-title" style="font-size:14px;font-weight:600;line-height: 1.4; text-align:center; color:#00c9fa;margin-bottom:10px">Objecto no encontrado</span>
+            <span class="md-title" style="font-size:14px;font-weight:600;line-height: 1.4; text-align:center; color:#00c9fa;margin-bottom:10px">Objeto no encontrado</span>
             <span class="md-subhead" style="font-size:12px;font-weight:200; line-height: 1.2; text-align:center;color:#d9d9d9" ><span v-for="tag in item.tags">{{tag}} </span></span>
           </md-card-header>
 

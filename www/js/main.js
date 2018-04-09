@@ -23,7 +23,8 @@ function init(){
             {path: '/settings', name: 'settings',  component: SettingsTemplate}
             ,{path: '/simplelist', name: 'simplelist', component: SimpleListTemplate},
             {path: '/homeuser', name: 'homeUser',  component: HomeUserTemplate},
-            {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate}
+            {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
+            {path: '/userprofile', name: 'userProfile',  component: userProfileTemplate}
             ];
 
         const router = new VueRouter({
@@ -38,6 +39,16 @@ function init(){
                 bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
               message: 'Hola!'},
         methods: {
+            toggleSidebar(){
+                if(this.showNavigation == true){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+                this.showNavigation = !this.showNavigation;
+                
+            },
             goToHome: function(){
                 document.body.style = "";
                 this.showNavigation = false;
