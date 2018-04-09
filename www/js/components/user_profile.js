@@ -1,24 +1,6 @@
 const userProfileTemplate = {props: [], 
                           data: () => ({
-        userProfileData:{email: "JohnDoe@prueba.es",password: "prueba",name: "John Doe", phone: "666999666"},
-        form:{
-            email: null,
-            password: null,
-            name: null,
-            phone:null,
-        },
-        errors:{
-            emptyEmail:false,
-            invalidEmail:false,
-            emptyName:false,
-            tooShortName:false,
-            emptyPhone:false,
-            invalidPhone:false,
-            emptyPass:false,
-            wrongActualPass:false,
-            wrongNewPass:false
-            
-        },
+        userProfileData:{email: "JohnDoe@prueba.es",password: "prueba",name: "John Doe", phone: "666777888"},
         activeNavigation: false,
         showNavigation:false,
         editionMode:false,
@@ -188,7 +170,7 @@ const userProfileTemplate = {props: [],
                         <md-list-item>
                             <md-field>
                                 <label  v-if="passEditMode == true">Contraseña actual</label>
-                                <label v-else>Contraseña</label>
+                                <label v-else>Cambiar Contraseña</label>
                                 <md-input id="profile_pass_handler" v-if="passEditMode == false" v-on:focus="passFocusManager(true)"></md-input>
                                 <md-icon v-if="passEditMode == false">lock</md-icon>
                                 <md-input id="profile_actual_pass" v-else  type="password"></md-input>

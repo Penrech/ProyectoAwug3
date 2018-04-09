@@ -1,31 +1,14 @@
-<!doctype html>
-<html>
-  <head>
-   
-    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data: content:;font-src 'self' 'unsafe-inline' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta charset="utf-8">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-		
-    <link rel="stylesheet" href="libs/roboto.css">
-    <link rel="stylesheet" href="libs/vuematerial.css">
-    <link rel="stylesheet" href="libs/vuethemedefault.css">
-     <link rel="stylesheet" href="css/main.css">
-      
+Vue.component('side-bar', {
     
-      
-      
-      <!--<script src="js/components/mail_list.js"></script>-->
-    <!--<script src="js/components/mail_item.js"></script>-->
+    props:['activeSideBar'],
+    data: function () {
+        return {
+            showNavigation: JSON.parse(this.activeSideBar);
+        }
+    },
     
-      
-  </head>
-
-  <body id="bodyContainer" onload="init()">
-    <div  class="app-viewport" id="app">
-        
-       <!--Inicio lateral. EVA: Esto de aqui es el menu lateral, actualmente no funciona porque me peta el router y se le ha de preguntar al profe, bueno, no funciona el boton. Si quieres probarlo
+    template: `
+         <!--Inicio lateral. EVA: Esto de aqui es el menu lateral, actualmente no funciona porque me peta el router y se le ha de preguntar al profe, bueno, no funciona el boton. Si quieres probarlo
 has de hacer swipe hacia la izquierda y alli esta, los botones que van ahora son home y mis objetos perdidos. Todo esto solo funciona si la clase main anterior esta descomentada-->
          <md-drawer class="md-right" :md-active.sync=showNavigation ref="sidebar"> <!-- inicio panel lateral-->
               <md-toolbar class="md-transparent" md-elevation="0">
@@ -78,46 +61,5 @@ has de hacer swipe hacia la izquierda y alli esta, los botones que van ahora son
               </md-list>
              <md-divider></md-divider>
         </md-drawer> <!-- fin panel lateral-->
-        
-        
-      <!--EVA: esta clase main es la que hace funcionar al router, si quieres ir probando aqui los diseños la has de comentar -->
-      <main class="main-content" > <!-- aqui el router inyecta las paginas-->
-                      <div>
-                          <router-view>
-              
-                          </router-view>
-                        </div>
-                      
-        </main>
-        <!--EVA: una vez hallas acabado un diseño, lo copias y creas una constante, mira como ejemplo las dos que he hecho yo, user_lost_objects y home_user.
-        una vez la crees, has de importarla abajo con los demas .js sino, no funcionara-->
-        
-        
-    
-        
-
-    </div>
-   
-      
-		<script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-		
-		<script src="libs/vue.js"></script>
-		<script src="js/vue-router.js"></script>
-      <script src="js/vue-resource.min.js"></script>
-		<script src="libs/vuematerial.js"></script>
-      <script src="js/main.js"></script>
-		<script src="js/components/simple_list.js"></script>
-		<script src="js/components/settings.js"></script>
-        <script src="js/components/home_user.js"></script>
-       <script src="js/components/user_lost_objects.js"></script>
-      <script src="js/components/user_profile.js"></script>
-      <script src="js/components/sideBar.js"></script>
-		
-  </body>
-</html>
-
-
-
-
-
+    `
+});

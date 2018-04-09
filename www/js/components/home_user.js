@@ -27,13 +27,13 @@ const HomeUserTemplate = {props: [],
         template:`
 
 <div>
-
+    
       <md-toolbar md-elevation="0" class="md-large md-primary" style=" background: linear-gradient(to right, #03a9f4, #81d4fa);"><!--inicio toolbar-->
       <div class="md-toolbar-row">
 
         <div class="md-toolbar-section-end">
 
-          <md-button class="md-icon-button" v-on:click="toggleSideBar()">
+          <md-button class="md-icon-button" v-on:click="showNavigation = true">
             <md-icon>menu</md-icon>
           </md-button>
         </div>
