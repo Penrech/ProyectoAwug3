@@ -17,8 +17,12 @@ const userProfileTemplate = {props: [],
             height: "3.2em",
             marginTop: "1.5em",
             marginBottom:"2.5em"
-        }
+        },
+        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
+        created: function(){
+            document.body.style = this.bodyStyle;
+        },
         methods: {
             checkForm: function(e){
                  for (var key in this.errors){
@@ -67,7 +71,6 @@ const userProfileTemplate = {props: [],
                 this.editionMode = false;  
             },
              goBackHome () {
-                document.body.style = "";
                   this.$router.push('homeUser');
               }
         },

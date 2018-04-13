@@ -4,6 +4,9 @@ const registrationTypeTemplate = {props: [],
         showNavigation:false,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
+        create: function(){
+           document.body.style = this.bodyStyle; 
+        },                     
         methods: {
             toggleSideBar(){
                 console.log(this.$refs.sidebar);
@@ -36,7 +39,7 @@ const registrationTypeTemplate = {props: [],
     <div  style="margin-top: 1em;margin-left: 6.25%;margin-right: 10.25% ">
      <div class="md-layout md-gutter md-alignment-top-center">
         <div  style="width: 100%">
-            <md-button v-on:click="goToUserLostObjects()" class="md-raised" style="width: inherit;height: 200px; background: linear-gradient(to bottom right, #ededed, #fbfbfb); border-radius: 10px;">
+            <md-button class="md-raised" style="width: inherit;height: 200px; background: linear-gradient(to bottom right, #ededed, #fbfbfb); border-radius: 10px;">
                 <img class="md-icon md-size-5x" style="margin-bottom: 10px;" src="icon/iconAdmin.svg" />
                 <br>
                 <md-title style="font-size: 12px;font-weight: 700;">Registrarse como<br>Administrador</md-title></md-button>

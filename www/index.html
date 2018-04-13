@@ -18,19 +18,28 @@
       
       <!--<script src="js/components/mail_list.js"></script>-->
     <!--<script src="js/components/mail_item.js"></script>-->
-    
+    <style>
+        .md-steppers-navigation{
+            box-shadow: none;
+            background: none;
+        }
+      
+    </style>
       
   </head>
 
-  <body id="bodyContainer" onload="init()">
+  <body id="bodyContainer" onload="init()" style=" background: linear-gradient(to right, #03a9f4, #81d4fa);">
     <div  class="app-viewport" id="app">
+       
+
+        
         
       
         
         
       <!--EVA: esta clase main es la que hace funcionar al router, si quieres ir probando aqui los diseños la has de comentar -->
-      <main class="main-content" > <!-- aqui el router inyecta las paginas-->
-                      <div>
+    <main class="main-content" > <!-- aqui el router inyecta las paginas-->
+               <div>
                           <router-view>
               
                           </router-view>
@@ -45,7 +54,7 @@
         
 
     </div>
-   
+        
       
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -58,6 +67,7 @@
 		<script src="js/components/simple_list.js"></script>
 		<script src="js/components/settings.js"></script>
         <script src="js/components/registration_type.js"></script>
+      <script src="js/components/UploadObject.js"></script>
         <script src="js/components/home_user.js"></script>
        <script src="js/components/user_lost_objects.js"></script>
       <script src="js/components/user_profile.js"></script>

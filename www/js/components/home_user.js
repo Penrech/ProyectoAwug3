@@ -5,6 +5,9 @@ const HomeUserTemplate = {props: [],
         showNavigation:false,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
+        created: function(){
+            document.body.style = "";
+        },
         methods: {
             toggleSideBar(){
                 console.log(this.$refs.sidebar);
@@ -13,11 +16,9 @@ const HomeUserTemplate = {props: [],
                 
               },
                 goToProfile(){
-                    document.body.style = this.bodyStyle;
                     this.$router.push('userProfile');
                 },
               goToUserLostObjects () {
-                  document.body.style = this.bodyStyle;
                   this.$router.push('userLostObjects');
               },
             goToFindObject () {
@@ -66,7 +67,7 @@ const HomeUserTemplate = {props: [],
             <md-button v-on:click="goToUserLostObjects()" class="md-raised" style="width: inherit;height: 200px; background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
                 <img class="md-icon md-size-4x" style="margin-bottom: 10px;" src="icon/MyObjects.svg" />
                 <br>
-                <md-title style="font-size: 12px;font-weight: 700;">Mis objetos<br>perdidos</md-title></md-button>
+                <md-title style="font-size: 12px;font-weight: 700; ">Mis objetos<br>perdidos</md-title></md-button>
           </div>
          
         <div  style="width: 100%">

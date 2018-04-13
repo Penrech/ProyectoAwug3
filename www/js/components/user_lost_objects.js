@@ -8,24 +8,29 @@ const userLostObjectsTemplate = {props: [],
                        ]*/,
        /* activeNavigation: false,*/
         showNavigation:false,
+        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
         loading:true,                      
         heartStyle1:{
             fontSize: "22px!important",
             color:"#00c9fa",
             marginTop: "0px",
-            marginRight: "auto"
+            marginRight: "auto",
+            marginBottom: "10px"
+            
         },
          heartStyle2:{
             fontSize: "22px!important",
             color:"#00c9fa",
-            marginTop: "30px",
-            marginRight: "auto"
+            marginTop: "20px",
+            marginRight: "auto",
+            marginBottom: "10px"
         }
                               
 
     }),
         created: function () {
             this.getList();
+            document.body.style = this.bodyStyle;
         },
         methods: {
             getList: function(){
@@ -38,7 +43,6 @@ const userLostObjectsTemplate = {props: [],
                 
               },
               goBackHome () {
-                document.body.style = "";
                   this.$router.push('homeUser');
               }
            
@@ -91,7 +95,7 @@ const userLostObjectsTemplate = {props: [],
             
         
              <md-avatar v-if="item.updates > 0" class="md-avatar-icon" style="margin-right: 0;font-size: 14px; width: 30px; min-width: 20px;height: 30px;background-color: limegreen;
-    font-weight: 500;">{{item.updates}}</md-avatar>
+    font-weight: 500;float:right;margin-bottom:-10px;">{{item.updates}}</md-avatar>
 
             <img class="md-icon" v-if="item.updates > 0" :style="heartStyle1" src="icon/heartBreak.svg"></img>
             <img class="md-icon" v-else :style="heartStyle2" src="icon/heartBreak.svg"></img>
