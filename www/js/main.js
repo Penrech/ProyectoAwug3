@@ -17,6 +17,7 @@
 
 function init(){
     
+    const showNativation = true;
     
     const routes = [
                 //{path: '/inbox', name: 'inbox', component: MailListTemplate},
