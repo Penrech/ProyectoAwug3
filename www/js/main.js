@@ -21,8 +21,9 @@ function init(){
     
     const routes = [
                 //{path: '/inbox', name: 'inbox', component: MailListTemplate},
-            {path: '/settings', name: 'settings',  component: SettingsTemplate}
-            ,{path: '/simplelist', name: 'simplelist', component: SimpleListTemplate},
+            {path: '/settings', name: 'settings',  component: SettingsTemplate},
+            {path: '/simplelist', name: 'simplelist', component: SimpleListTemplate},
+            {path: '/registrationtype', name: 'registrationType',  component: registrationTypeTemplate},
             {path: '/homeuser', name: 'homeUser',  component: HomeUserTemplate},
             {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
             {path: '/userprofile', name: 'userProfile',  component: userProfileTemplate}
@@ -50,6 +51,12 @@ function init(){
                 this.showNavigation = !this.showNavigation;
                 
             },
+            goToRegistrationType: function(){
+                document.body.style = "";
+                this.showNavigation = false;
+                    //this.$refs.sidebar.toggle();
+                    router.push('registrationType');
+                },
             goToHome: function(){
                 document.body.style = "";
                 this.showNavigation = false;
