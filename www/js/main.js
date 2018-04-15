@@ -24,6 +24,8 @@ function init(){
             {path: '/settings', name: 'settings',  component: SettingsTemplate},
             {path: '/simplelist', name: 'simplelist', component: SimpleListTemplate},
             {path: '/uploadobject', name: 'uploadObject',  component: uploadObjectTemplate},
+            {path: '/login', name: 'login',  component: loginTemplate},
+            {path: '/register', name: 'register',  component: registerTemplate},    
             {path: '/registrationtype', name: 'registrationType',  component: registrationTypeTemplate},
             {path: '/homeuser', name: 'homeUser',  component: HomeUserTemplate},
             {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
@@ -52,6 +54,16 @@ function init(){
                 this.showNavigation = !this.showNavigation;
                 
             },
+            goToLogin: function(){
+                this.showNavigation = false;
+                    //this.$refs.sidebar.toggle();
+                    router.push('login');
+                },
+            goToRegister: function(){
+                this.showNavigation = false;
+                    //this.$refs.sidebar.toggle();
+                    router.push('register');
+                },
             goToRegistrationType: function(){
                 this.showNavigation = false;
                     //this.$refs.sidebar.toggle();
