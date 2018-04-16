@@ -4,7 +4,27 @@ const uploadObjectTemplate = {props: [],
         showNavigation:false,
         loading:false,
         imageHandler: null,
+        stepperLen:3,
+        stepLibrary:{
+            step1: {
+                step: "1",
+                text:"Sube una fotografía para crear tags automáticamente"
+            },
+            step2: {
+                step: 2,
+                text:"Añade o borra tags para describir bien el objeto"
+            },
+            step3:{
+                step:3,
+                text:"Revisa que la información del objeto sea correcta"
+            } 
+        },
+        actualStep:{
+            step: "",
+            text: ""
+        },
         btnShow:true,
+        btnChange:false,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 50%; background-color: white;",
         heartStyle1:{
             fontSize: "22px!important",
@@ -47,6 +67,21 @@ const uploadObjectTemplate = {props: [],
             marginBottom:"2.5em",
             boxShadow: "0px 5px 35px -15px rgba(51,51,51,0.5)"
     },
+    buttonStyle3:{ 
+            borderRadius:"28px",
+            border:"1px solid white",
+            color:"white !important",
+            fontSize:"14px",
+            fontWeight:"100",
+            textTransform: "none",
+            minWidth: "40%",
+            width: "60%",
+            height: "3.2em",
+            marginTop: "1em",
+            marginLeft: "0",
+            marginRight: "0",
+            padding: "0.5em"
+        },
     imgStyleLandscape:{
         position: "absolute",
         left: "50%",
@@ -74,7 +109,13 @@ const uploadObjectTemplate = {props: [],
     }),
         created: function () {
             document.body.style = this.bodyStyle;
-            
+            toolBarData.iconoPaginaAnterior = "clear";
+            toolBarData.iconoPaginaSiguiente = "done";
+            toolBarData.paginaActual = "uploadObject";
+            toolBarData.paginaSiguiente = "";
+            toolBarData.paginaAnterior = "homeUser";
+            toolBarData.toolBarTitle = "Nuevo objeto perdido";
+            this.actualStep = this.stepLibrary.step1;
         },
         methods: {
            
@@ -128,6 +169,8 @@ const uploadObjectTemplate = {props: [],
                 },
                 AdjustImage(w,h){
                     this.loading = false;
+                    this.btnChange = true;
+                    toolBarData.paginaSiguiente = "NewObjectStep2";
                     console.log("altura real : "+h);
                     console.log("ancho real : "+w);
                      if (h >= w){
@@ -140,6 +183,24 @@ const uploadObjectTemplate = {props: [],
                      }
                     console.log("Height valor: "+this.imgStyle.height+" width valor: "+this.imgStlye.width);
                 },
+                changeStep(toStep){
+                    if (toStep == 1){
+                        this.actualStep = this.stepLibrary.step1;
+                    }
+                    else if (toStep == 2){
+                       this.actualStep = this.stepLibrary.step2;
+                    }
+                    else if (toStep == 3){
+                        this.actualStep = this.stepLibrary.step3;
+                    }
+                },
+                changePhoto(){
+                    this.imageHandler = null;
+                    this.btnShow = true;
+                    this.btnChange = false;
+                    toolBarData.paginaSiguiente = "";
+                    
+                },
               goBackHome () {
                   this.$router.push('homeUser');
               }
@@ -149,57 +210,10 @@ const uploadObjectTemplate = {props: [],
 
 <div>
 
-      <md-toolbar md-elevation="0" class="md-large md-transparent" ><!--inicio toolbar-->
-     <div class="md-toolbar-row " style="text-align: center">
-  
 
-          <md-button class="md-icon-button" v-on:click="goBackHome ()">
-            <md-icon style="color:white">clear</md-icon>
-          </md-button>
-        
-          
-        <h3 class="md-title " style="flex: 1 ; margin-left: 0;color: white;">Nuevo objeto perdido</h3>
-
-
-          <md-button class="md-icon-button" :disabled="imageHandler == null" >
-            <md-icon style="color:white">done</md-icon>
-          </md-button>
-
-      </div>
-          
-         <div class="md-toolbar-row" style="justify-content: center;margin-left: 14%;margin-right: 14%">
-        
-         <div class="md-toolbar-section-start">
-             <md-avatar class="md-avatar-icon" style="margin: 0; padding: 0;font-size: 14px; width: 45px; min-width: 45px;height: 45px;background:white;
-            font-weight: 200; border: 1px solid white; color: #03a9f4">1</md-avatar>
-             <hr style="  width: 100%;
-                color: white;
-                background: white;
-                background-color: white;
-                border-style: solid;
-                border-color: white;">
-        </div>
-            
-          <md-avatar class="md-avatar-icon" style="margin: 0; padding: 0; font-size: 14px; width: 35px; min-width: 35px;height: 35px;background:none;
-          font-weight: 200; border: 1px solid white">2</md-avatar>
-             
-           <div class="md-toolbar-section-end">
-               <hr style="  width: 100%;
-                color: white;
-                background: white;
-                background-color: white;
-                border-style: solid;
-                border-color: white;">
-             <md-avatar class="md-avatar-icon" style="margin: 0; padding: 0; font-size: 14px; width: 35px; min-width: 35px;height: 35px;background:none;
-          font-weight: 200; border: 1px solid white">3</md-avatar>
-        </div>
-         
-        
-      </div>
-          <div class="md-toolbar-row" style="justify-content:center">
-          <span class="md-title" style="font-weight: 400;font-size: 12px; margin-left: 0;color: white;  white-space: normal; text-align:center">Sube una fotografía para crear tags automáticamente</span>
-          </div>
-    </md-toolbar><!-- fin toolbar de la app-->
+        <!--inicio subnav-->
+          <stepper-tool :step="actualStep.step" :length="stepperLen" :text="actualStep.text"></stepper-tool>
+        <!-- fin toolbar de la app-->
         
         
         <!--Inicio de body-->
@@ -220,6 +234,14 @@ const uploadObjectTemplate = {props: [],
                  
                 <md-button v-on:click="takePhotoFromGallery" :style="buttonStyle">Buscar en galería</md-button>
                 <md-button v-on:click="takePhotoFromCamera" :style="buttonStyle">Hacer fotografía</md-button>
+            </div>
+
+        </md-card-area>
+
+        <md-card-area v-if="btnChange == true">
+ <div class="md-layout md-gutter md-alignment-top-center" style="padding-left:0;margin-bottom:40%;">
+                 
+                <md-button v-on:click="changePhoto" :style="buttonStyle3">Cambiar fotografía</md-button>
             </div>
 
         </md-card-area>

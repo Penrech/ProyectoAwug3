@@ -13,11 +13,13 @@
 //        });
 
 //Vue.material.setCurrentTheme('about');
-
+var UserType = 1;
+var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",paginaSiguiente:"",iconoPaginaSiguiente:"",toolBarTitle:""};
+var sideBarData = {showNavigation: false, userType: UserType};
 
 function init(){
     
-    const showNativation = true;
+
     
     const routes = [
                 //{path: '/inbox', name: 'inbox', component: MailListTemplate},
@@ -42,46 +44,7 @@ function init(){
                 bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
               message: 'Hola!'},
         methods: {
-            toggleSidebar(){
-                if(this.showNavigation == true){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-                this.showNavigation = !this.showNavigation;
-                
-            },
-            goToRegistrationType: function(){
-                this.showNavigation = false;
-                    //this.$refs.sidebar.toggle();
-                    router.push('registrationType');
-                },
-            goToHome: function(){
-                this.showNavigation = false;
-                    //this.$refs.sidebar.toggle();
-                    router.push('homeUser');
-                },
-            goToSettings: function(){
-                this.showNavigation = false;
-                    //this.$refs.sidebar.toggle();
-                    router.push({ name: 'settings'})
-                },
-             goToUserProfile: function(){
-                this.showNavigation = false;
-                    //this.$refs.sidebar.toggle();
-                    router.push({ name: 'userProfile'})
-                },
-            goToSimpleList: function(){
-                this.showNavigation = false;
-                    //this.$refs.sidebar.toggle();
-                    router.push('simplelist');
-                },
-             goToUserLostObjects: function(){
-                    this.showNavigation = false;
-                    //this.$refs.sidebar.toggle();
-                    router.push('userLostObjects');
-                }
+
         }
             
       }).$mount('#app');

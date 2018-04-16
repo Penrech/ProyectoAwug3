@@ -26,14 +26,15 @@
     <div  class="app-viewport" id="app">
        
 
-        
-        
+    
       
         
         
       <!--EVA: esta clase main es la que hace funcionar al router, si quieres ir probando aqui los diseños la has de comentar -->
     <main class="main-content" > <!-- aqui el router inyecta las paginas-->
                <div>
+                   <tool-bar></tool-bar>
+                    <side-bar></side-bar>
                           <router-view>
               
                           </router-view>
@@ -66,6 +67,8 @@
        <script src="js/components/user_lost_objects.js"></script>
       <script src="js/components/user_profile.js"></script>
       <script src="js/components/sideBar.js"></script>
+      <script src="js/components/toolbar.js"></script>
+      <script src="js/components/Stepper.js"></script>
 		
   </body>
 </html>

@@ -31,6 +31,12 @@ const userLostObjectsTemplate = {props: [],
         created: function () {
             this.getList();
             document.body.style = this.bodyStyle;
+            toolBarData.iconoPaginaAnterior = "keyboard_backspace";
+            toolBarData.iconoPaginaSiguiente = "menu";
+            toolBarData.paginaActual = "userLostObjects";
+            toolBarData.paginaSiguiente = "activarMenu";
+            toolBarData.paginaAnterior = "homeUser";
+            toolBarData.toolBarTitle = "Mis objetos perdidos";
         },
         methods: {
             getList: function(){
@@ -51,28 +57,14 @@ const userLostObjectsTemplate = {props: [],
 
 <div >
 
-      <md-toolbar md-elevation="0" class="md-large md-transparent" ><!--inicio toolbar-->
-      <div class="md-toolbar-row " style="text-align: center">
-  
-
-          <md-button class="md-icon-button" v-on:click="goBackHome ()">
-            <md-icon style="color:white">keyboard_backspace</md-icon>
-          </md-button>
-        
-          
-        <h3 class="md-title " style="flex: 1 ; margin-left: 0;color: white;">Mis objetos perdidos</h3>
-
-
-          <md-button class="md-icon-button" v-on:click="showNavigation = true" >
-            <md-icon style="color:white">menu</md-icon>
-          </md-button>
-
-      </div>
- 
+      
+<!--inicio subnav-->
+  <md-toolbar md-elevation="0" class="md-transparent" >
         <div class="md-toolbar-row" style="justify-content: center;">
         <span class="md-title" style="font-weight: 600;font-size: 14px; margin-left: 0;color: white;  white-space: normal; text-align:center">Haz click para ver o editar los detalles de los objetos</span>
       </div>
-    </md-toolbar><!-- fin toolbar de la app-->
+    </md-toolbar>
+<!-- fin subnav-->
         
         
         <!--Inicio de botones-->

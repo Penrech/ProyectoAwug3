@@ -31,6 +31,12 @@ const userLostObjectsTemplate = {props: [],
         created: function () {
             this.getList();
             document.body.style = this.bodyStyle;
+            toolBarData.iconoPaginaAnterior = "keyboard_backspace";
+            toolBarData.iconoPaginaSiguiente = "menu";
+            toolBarData.paginaActual = "userLostObjects";
+            toolBarData.paginaSiguiente = "activarMenu";
+            toolBarData.paginaAnterior = "homeUser";
+            toolBarData.toolBarTitle = "Mis objetos perdidos";
         },
         methods: {
             getList: function(){

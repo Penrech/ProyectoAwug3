@@ -4,34 +4,31 @@ const registrationTypeTemplate = {props: [],
         showNavigation:false,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
-        create: function(){
+        created: function(){
            document.body.style = this.bodyStyle; 
+            toolBarData.iconoPaginaAnterior = "keyboard_backspace";
+            toolBarData.iconoPaginaSiguiente = "";
+            toolBarData.paginaActual = "registrationType";
+            toolBarData.paginaSiguiente = "";
+            toolBarData.paginaAnterior = "inicio";
+            toolBarData.toolBarTitle = "";
         },                     
         methods: {
-            toggleSideBar(){
-                console.log(this.$refs.sidebar);
-            }
+
         },
         template:`
 
 <div>
     
-      <md-toolbar md-elevation="0" class="md-large md-primary" style=" background: linear-gradient(to right, #03a9f4, #81d4fa);"><!--inicio toolbar-->
-      <div class="md-toolbar-row">
-
-        <div class="md-toolbar-section-start">
-
-          <md-button class="md-icon-button" v-on:click="showNavigation = true">
-            <md-icon>arrow_back</md-icon>
-          </md-button>
-        </div>
-      </div>
+     
+<!--inicio subnav-->
+<md-toolbar md-elevation="0" class=" md-transparent">
     <div class="md-toolbar-row" style="margin-bottom: 10px;">
         
-        <img class="md-icon md-size-3x" src="icon/logoWhite.svg" stlye="color:blue;"/>
+        <img class="md-icon md-size-4x" src="icon/logoWhite.svg" stlye="color:blue;"/>
      
         </div>
-    </md-toolbar><!-- fin toolbar de la app-->
+    </md-toolbar><!-- fin subnav-->
         
         
         <!--Inicio de botones-->

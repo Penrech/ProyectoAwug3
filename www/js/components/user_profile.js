@@ -22,6 +22,12 @@ const userProfileTemplate = {props: [],
     }),
         created: function(){
             document.body.style = this.bodyStyle;
+            toolBarData.iconoPaginaAnterior = "keyboard_backspace";
+            toolBarData.iconoPaginaSiguiente = "menu";
+            toolBarData.paginaActual = "userProfile";
+            toolBarData.paginaSiguiente = "activarMenu";
+            toolBarData.paginaAnterior ="homeUser"
+            toolBarData.toolBarTitle = "Mi perfil";
         },
         methods: {
             checkForm: function(e){
@@ -78,41 +84,22 @@ const userProfileTemplate = {props: [],
 
 <div>
 
-        <md-toolbar md-elevation="0" class="md-large md-primary" style=" background: linear-gradient(to right, #03a9f4, #81d4fa);"><!--inicio toolbar-->
-        <div class="md-toolbar-row " style="text-align: center">
-  
-        <div v-if="editionMode == false">
-          <md-button class="md-icon-button" v-on:click="goBackHome()">
-            <md-icon style="color:white">keyboard_backspace</md-icon>
-          </md-button>
-        </div>
-
-        <div v-else>
-          <md-button class="md-icon-button" v-on:click="editionMode = false, passEditMode = false">
-            <md-icon style="color:white">keyboard_backspace</md-icon>
-          </md-button>
-        </div>
-          
-        <h3 class="md-title " style="flex: 1 ; margin-left: 0;color: white;">Mi perfil</h3>
-
-
-          <md-button class="md-icon-button" v-on:click="showNavigation = true" >
-            <md-icon style="color:white">menu</md-icon>
-          </md-button>
-
-      </div>
+        
+<!--inicio subnav-->
+<md-toolbar md-elevation="0" class=" md-transparent" >
     <div class="md-toolbar-row" >
         <md-avatar class="md-avatar-icon md-large md-elevation-4" style="
+            background-color: var(--md-theme-default-icon-disabled, rgba(255,255,255,1));
             min-width: 80px;
             min-height: 80px;
             border-radius: 80px;
             font-size: 40px;
             color: aqua">
-        <md-icon stlye="color:blue;">account_circle</md-icon>
+        <md-icon style="color: #0aabf4">account_circle</md-icon>
       </md-avatar>
         </div>
       
-    </md-toolbar><!-- fin toolbar de la app-->
+    </md-toolbar><!-- fin subnav-->
         
         
         <!--Inicio datos-->
