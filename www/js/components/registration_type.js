@@ -14,7 +14,14 @@ const registrationTypeTemplate = {props: [],
             toolBarData.toolBarTitle = "";
         },                     
         methods: {
-
+            registerAs(type){
+                if (type == "admin"){
+                    this.$router.push({name: 'register', params: {registerType:2}});
+                }
+                else{
+                     this.$router.push({name: 'register', params: {registerType:1}});
+                }
+            }
         },
         template:`
 
@@ -36,17 +43,17 @@ const registrationTypeTemplate = {props: [],
     <div  style="margin-top: 1em;margin-left: 6.25%;margin-right: 10.25% ">
      <div class="md-layout md-gutter md-alignment-top-center">
         <div  style="width: 100%">
-            <md-button class="md-raised" style="width: inherit;height: 200px; background: linear-gradient(to bottom right, #ededed, #fbfbfb); border-radius: 10px;">
+            <md-button class="md-raised" v-on:click="registerAs('admin')" style="width: inherit;height: 200px; background: linear-gradient(to bottom right, #ededed, #fbfbfb); border-radius: 10px;">
                 <img class="md-icon md-size-5x" style="margin-bottom: 10px;" src="icon/iconAdmin.svg" />
                 <br>
-                <md-title style="font-size: 12px;font-weight: 700;">Registrarse como<br>Administrador</md-title></md-button>
+                <span style="font-size: 12px;font-weight: 700;">Registrarse como<br>Administrador</span></md-button>
           </div>
          
         <div  style="width: 100%">
-           <md-button class="md-raised "  style="width: inherit; height: 200px ;background: linear-gradient(to bottom right, #ededed, #fbfbfb); border-radius: 10px;">
+           <md-button class="md-raised " v-on:click="registerAs('user')" style="width: inherit; height: 200px ;background: linear-gradient(to bottom right, #ededed, #fbfbfb); border-radius: 10px;">
             <img class="md-icon md-size-5x" style="margin-bottom: 10px;" src="icon/iconUser.svg" />
                 <br>
-                <md-title style="font-size: 12px;font-weight: 700;">Registrarse como<br>Usuario</md-title></md-button>
+                <span style="font-size: 12px;font-weight: 700;">Registrarse como<br>Usuario</span></md-button>
             
           </div>
         

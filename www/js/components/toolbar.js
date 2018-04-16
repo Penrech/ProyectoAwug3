@@ -16,8 +16,10 @@ Vue.component('tool-bar', {
             
         },
         leftBtnAction(){
-            if (this.paginaAnterior == "homeUser")
-                this.$router.push('homeUser');
+            if (this.paginaAnterior != "" && this.paginaAnterior != "inicio" ){
+                this.$router.push(this.paginaAnterior);
+            }
+                
                 
         },
         

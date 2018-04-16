@@ -13,7 +13,7 @@
 //        });
 
 //Vue.material.setCurrentTheme('about');
-var UserType = 1;
+var UserType = 2;
 var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",paginaSiguiente:"",iconoPaginaSiguiente:"",toolBarTitle:""};
 var sideBarData = {showNavigation: false, userType: UserType};
 
@@ -26,6 +26,8 @@ function init(){
             {path: '/settings', name: 'settings',  component: SettingsTemplate},
             {path: '/simplelist', name: 'simplelist', component: SimpleListTemplate},
             {path: '/uploadobject', name: 'uploadObject',  component: uploadObjectTemplate},
+            {path: '/login', name: 'login',  component: loginTemplate},
+            {path: '/register', name: 'register',  component: registerTemplate, props: true},    
             {path: '/registrationtype', name: 'registrationType',  component: registrationTypeTemplate},
             {path: '/homeuser', name: 'homeUser',  component: HomeUserTemplate},
             {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
