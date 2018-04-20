@@ -46,7 +46,7 @@ function init(){
                 bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
               message: 'Hola!'},
         methods: {
-
+           
         }
             
       }).$mount('#app');

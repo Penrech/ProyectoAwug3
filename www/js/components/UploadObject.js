@@ -115,7 +115,7 @@ const uploadObjectTemplate = {props: [],
             toolBarData.paginaSiguiente = "";
             toolBarData.paginaAnterior = "homeUser";
             toolBarData.toolBarTitle = "Nuevo objeto perdido";
-            this.actualStep = this.stepLibrary.step1;
+            this.actualStep = this.stepLibrary.step2;
         },
         methods: {
            
