@@ -13,6 +13,20 @@ Vue.component('tool-bar', {
     },
     methods:{
         rightBtnAction(){
+            var str = this.toolBarData.paginaSiguiente;
+            var res = str.slice(0, 2);
+            console.log("Resultado slice: "+res);
+            if (res == "UO"){
+                console.log("Entro en UO");
+                 switch(this.toolBarData.paginaSiguiente){
+                    case "UO_step2":
+                         console.log("Entro en UO2");
+                        this.$root.$emit("generateTags","prueba");
+                        break;
+                    case "UO_step3":
+                        
+                }
+            }
             if (this.toolBarData.paginaSiguiente == "activarMenu"){
                 this.sideBarData.showNavigation = true;
                 
@@ -23,8 +37,27 @@ Vue.component('tool-bar', {
             
         },
         leftBtnAction(){
-            if (this.toolBarData.paginaAnterior != "" && this.toolBarData.paginaAnterior != "inicio" ){
-                this.$router.push(this.toolBarData.paginaAnterior);
+            var str = this.toolBarData.paginaAnterior;
+            var res = str.slice(0, 2);
+            if (res == "UO"){
+                console.log("Entro en Uo atrás");
+                switch(this.toolBarData.paginaAnterior){
+                    case "UO_step1":
+                        console.log("Entro en step1 atras");
+                        var prevObj = {
+                            imgUrl: null,
+                            nextStep: 1
+                        };
+                        this.$root.$emit("goToPreviousState", prevObj);
+                        break;
+                    case "UO_step2":
+                        
+                }
+            }
+            else{
+                if (this.toolBarData.paginaAnterior != "" && this.toolBarData.paginaAnterior != "inicio" ){
+                    this.$router.push(this.toolBarData.paginaAnterior);
+                }
             }
                 
      

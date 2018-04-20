@@ -79,21 +79,21 @@ const HomeUserTemplate = {props: [],
             <md-button v-on:click="goToUserLostObjects()" class="md-raised" style="width: inherit;height: 200px; border-radius:10px;background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
                 <img class="md-icon md-size-4x" style="margin-bottom: 10px;" src="icon/MyObjects.svg" />
                 <br>
-                <md-title style="font-size: 12px;font-weight: 700; ">Mis objetos<br>perdidos</md-title></md-button>
+                <span style="font-size: 12px;font-weight: 700; ">Mis objetos<br>perdidos</span></md-button>
           </div>
 
         <div v-else style="width: 100%">
             <md-button v-on:click="goToNewObject()" class="md-raised" style="width: inherit;height: 200px; border-radius:10px;background: linear-gradient(to bottom right, #ededed, #fbfbfb);">
                 <img class="md-icon md-size-4x" style="margin-bottom: 10px;" src="icon/newObject.svg" />
                 <br>
-                <md-title style="font-size: 12px;font-weight: 700; ">Nuevo objeto<br>perdido</md-title></md-button>
+                <span style="font-size: 12px;font-weight: 700; ">Nuevo objeto<br>perdido</span></md-button>
           </div>
          
         <div v-if="UserType == 1" style="width: 100%">
            <md-button class="md-raised "  style="width: inherit; height: 200px ;border-radius:10px;background: linear-gradient(to bottom right, #ededed, #fbfbfb);margin-bottom:3em">
             <img class="md-icon md-size-4x" style="margin-bottom: 10px;" src="icon/FindObjects.svg" />
                 <br>
-                <md-title style="font-size: 12px;font-weight: 700;">Encontrar objeto<br>perdido</md-title></md-button>
+                <span style="font-size: 12px;font-weight: 700;">Encontrar objeto<br>perdido</span></md-button>
             
           </div>
 
@@ -101,7 +101,7 @@ const HomeUserTemplate = {props: [],
            <md-button class="md-raised "  style="width: inherit; height: 200px ;border-radius:10px;background: linear-gradient(to bottom right, #ededed, #fbfbfb);margin-bottom:3em">
             <img class="md-icon md-size-4x" style="margin-bottom: 10px;" src="icon/objectList.svg" />
                 <br>
-                <md-title style="font-size: 12px;font-weight: 700;">Lista de objetos<br>perdidos</md-title></md-button>
+                <span style="font-size: 12px;font-weight: 700;">Lista de objetos<br>perdidos</span></md-button>
             
           </div>
         

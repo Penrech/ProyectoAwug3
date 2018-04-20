@@ -1,0 +1,53 @@
+{
+  "_from": "git+https://github.com/obeza/cordova-plugin-crop-with-ratio.git",
+  "_id": "cordova-plugin-crop@0.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-miroQ8cNN2/s2hiiIh4+ORsgvg8=",
+  "_location": "/cordova-plugin-crop",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/obeza/cordova-plugin-crop-with-ratio",
+    "rawSpec": "https://github.com/obeza/cordova-plugin-crop-with-ratio",
+    "saveSpec": "git+https://github.com/obeza/cordova-plugin-crop-with-ratio.git",
+    "fetchSpec": "https://github.com/obeza/cordova-plugin-crop-with-ratio.git",
+    "gitCommittish": "master"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/obeza/cordova-plugin-crop-with-ratio.git#993a6682a1d039fc60a3b2ccc785ff5f08896beb",
+  "_spec": "https://github.com/obeza/cordova-plugin-crop-with-ratio",
+  "_where": "F:\\Uni\\2nd_semestre\\Awug3\\ProyectoAwug3",
+  "bugs": {
+    "url": "https://github.com/obeza/cordova-plugin-crop-with-ratio/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-crop",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Crop an image in a Cordova app with ratio",
+  "homepage": "https://github.com/obeza/cordova-plugin-crop-with-ratio#readme",
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "image",
+    "image manipulation",
+    "crop"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-crop",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obeza/cordova-plugin-crop-with-ratio.git"
+  },
+  "version": "0.0.3"
+}

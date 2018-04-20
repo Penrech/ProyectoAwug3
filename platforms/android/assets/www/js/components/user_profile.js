@@ -5,6 +5,7 @@ const userProfileTemplate = {props: [],
         showNavigation:false,
         editionMode:false,
         passEditMode:false,
+        UserType,
         buttonStyle:{ 
             borderRadius:"28px",
             border:"1px solid white",
@@ -123,6 +124,10 @@ const userProfileTemplate = {props: [],
                             <span class="md-list-item-text" style="font-size:16px;font-weight:500">{{userProfileData.phone}}</span>
                             <md-icon>phone</md-icon>
                         </md-list-item>
+                        <md-list-item v-if="UserType == 2">
+                            <span class="md-list-item-text" style="font-size:16px;font-weight:500">Centro de atención</span>
+                            <md-icon>location_on</md-icon>
+                        </md-list-item>
                     </md-list>
                 </md-card-header-text>
               </md-card-header>
@@ -153,6 +158,15 @@ const userProfileTemplate = {props: [],
                                 <label>Teléfono</label>
                                 <md-input id="profile_phone" :placeholder="userProfileData.phone"></md-input>
                                 <md-icon>phone</md-icon>
+                                <span class="md-error">Este teléfono no es válido</span>
+                                <span class="md-error">Se requiere un teléfono</span>
+                            </md-field>
+                        </md-list-item>
+                        <md-list-item v-if="UserType ==2">
+                            <md-field>
+                                <label>Centro de Atención</label>
+                                <md-input id="profile_atention_office" placeholder="Centro de atención"></md-input>
+                                <md-icon>location_on</md-icon>
                                 <span class="md-error">Este teléfono no es válido</span>
                                 <span class="md-error">Se requiere un teléfono</span>
                             </md-field>

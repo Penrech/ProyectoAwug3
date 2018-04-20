@@ -1,9 +1,20 @@
 Vue.component('side-bar', {
      data: () => (sideBarData),
     created: function(){
-        
+        console.log("Valor de shownavigation solo cargar : "+this.showNavigation);
+    },
+    created: function(){
+
     },
     methods:{
+            blockScroll: function(){
+                console.log("Entro aqui");
+                if (document.body.style.position == "fixed"){
+                    document.body.style.position = "unset";
+                }
+                else
+                    document.body.style.position = "fixed";
+            },
             goToHome: function(){
                 this.showNavigation = false;
                    this.$router.push('homeUser');
@@ -28,7 +39,7 @@ Vue.component('side-bar', {
          <!--Inicio lateral. EVA: Esto de aqui es el menu lateral, actualmente no funciona porque me peta el router y se le ha de preguntar al profe, bueno, no funciona el boton. Si quieres probarlo
 has de hacer swipe hacia la izquierda y alli esta, los botones que van ahora son home y mis objetos perdidos. Todo esto solo funciona si la clase main anterior esta descomentada-->
          <md-drawer class="md-right" :md-active.sync=showNavigation ref="sidebar"> <!-- inicio panel lateral-->
-              <md-toolbar class="md-transparent" md-elevation="0">
+              <md-toolbar class="md-transparent" md-elevation="0" >
                 <div class="md-toolbar-section-end">
                   <md-button class="md-icon-button" @click="showNavigation = false">
                     <md-icon style="color: #0aabf4">menu</md-icon>

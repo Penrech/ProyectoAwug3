@@ -1,5 +1,6 @@
     Vue.use(VueMaterial.default);
     Vue.use(VueRouter);
+   
 
 //    Vue.material.registerTheme('about', {
 //          primary: {
@@ -26,6 +27,8 @@ function init(){
             {path: '/settings', name: 'settings',  component: SettingsTemplate},
             {path: '/simplelist', name: 'simplelist', component: SimpleListTemplate},
             {path: '/uploadobject', name: 'uploadObject',  component: uploadObjectTemplate},
+            {path: '/login', name: 'login',  component: loginTemplate},
+            {path: '/register', name: 'register',  component: registerTemplate, props: true},    
             {path: '/registrationtype', name: 'registrationType',  component: registrationTypeTemplate},
             {path: '/homeuser', name: 'homeUser',  component: HomeUserTemplate},
             {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
@@ -44,7 +47,7 @@ function init(){
                 bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
               message: 'Hola!'},
         methods: {
-
+           
         }
             
       }).$mount('#app');

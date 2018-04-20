@@ -12,6 +12,9 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.lape.proyectoawug3"
+    },
+    "cordova-plugin-crop": {
+      "PACKAGE_NAME": "com.lape.proyectoawug3"
     }
   },
   "dependent_plugins": {}
