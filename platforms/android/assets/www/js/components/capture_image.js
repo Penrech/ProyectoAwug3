@@ -54,9 +54,12 @@ Vue.component('capture-img', {
             padding: "0.5em"
         },
         imageHandler: null,
-    imgStyle: null
+        imgStyle: null,
+        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 50%; background-color: white;"
  }),
     created: function(){
+        window.scrollTo(0,0);
+        document.body.style= this.bodyStyle;
         this.$root.$on("generateTags",this.passToNextStep);
     },
     destroyed: function(){

@@ -24,7 +24,7 @@ Vue.component('tool-bar', {
                         this.$root.$emit("generateTags","prueba");
                         break;
                     case "UO_step3":
-                        
+                        this.$root.$emit("saveTags","prueba");
                 }
             }
             if (this.toolBarData.paginaSiguiente == "activarMenu"){
@@ -51,7 +51,11 @@ Vue.component('tool-bar', {
                         this.$root.$emit("goToPreviousState", prevObj);
                         break;
                     case "UO_step2":
-                        
+                         var prevObj = {
+                            imgUrl: "unChanged",
+                            nextStep: 2
+                        };
+                        this.$root.$emit("goToPreviousState", prevObj);
                 }
             }
             else{

@@ -3,7 +3,12 @@ const uploadObjectTemplate = {props: [],
 
         showNavigation:false,
         imageData: null,
+        userTestData:{
+            location: "C/ Guadalajara Nº 1-3 08006,Barcelona",
+            phone: "+34 628 826 123"
+        },
         stepperLen:3,
+        tags: [],
         stepLibrary:{
             step1: {
                 step: "1",
@@ -47,10 +52,13 @@ const uploadObjectTemplate = {props: [],
                     if (toStep == 1){
                         this.actualStep = this.stepLibrary.step1;
                         toolBarData.paginaAnterior = "homeUser";
+                        toolBarData.paginaSiguiente = "";
+                        this.tags = [];
                     }
                     else if (toStep == 2){
                        this.actualStep = this.stepLibrary.step2;
-                       toolBarData.paginaAnterior = "UO_step1";    
+                       toolBarData.paginaAnterior = "UO_step1";
+                       toolBarData.paginaSiguiente = "UO_step3";
                     }
                     else if (toStep == 3){
                         this.actualStep = this.stepLibrary.step3;
@@ -58,8 +66,12 @@ const uploadObjectTemplate = {props: [],
                     }
                 },
                 UpdateState(updateData){
-                    this.imageData = updateData.imgUrl;
+                    if (updateData.imgUrl != "unChanged"){
+                        this.imageData = updateData.imgUrl;}
                     this.changeStep(updateData.nextStep);
+                    if (updateData.tags){
+                        this.tags = updateData.tags;
+                    }
                     console.log("path imagen: "+this.imageData);
                     console.log("paso a step: "+updateData.nextStep);
                 },
@@ -80,6 +92,8 @@ const uploadObjectTemplate = {props: [],
         
         <!--Inicio de body-->
         <capture-img v-if="actualStep.step == 1" v-on:reciveDataStep1="UpdateState($event)"></capture-img>
+        <generate-tags v-if="actualStep.step == 2" :imgSrc="imageData" :prevTags="tags" v-on:backtoStep1="UpdateState($event)" v-on:reciveDataStep2="UpdateState($event)"></generate-tags>
+        <save-object v-if="actualStep.step == 3" :imgSrc="imageData" :prevTags="tags" :location="userTestData.location" :phone="userTestData.phone"></save-object>
         <!--Fin de body-->
 
         
