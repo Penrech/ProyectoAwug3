@@ -1,7 +1,7 @@
 Vue.component('generate-tags', {
     props: ["imgSrc","prevTags"], 
     data: () => ({
-    tagsArray:["Bolso","Negro","Cuadrado","Bolsa"],
+    tagsArray:[],
     toBeDeleted:{
         index: null,
         name: null
@@ -72,7 +72,7 @@ Vue.component('generate-tags', {
             padding: "0.5em"
         },
         imgStyle: null,
-        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 50%; background-color: white;"
+        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 20%; background-color: white;"
  }),
     created: function(){
         window.scrollTo(0,0);
@@ -80,12 +80,19 @@ Vue.component('generate-tags', {
         if (this.prevTags.length > 0){
             this.tagsArray = this.prevTags;
         }
+        else{
+            this.loading = true;
+            this.getDataUri(this.imgSrc,this.sendFileToCloudVision);
+           
+        }
         this.$root.$on("saveTags",this.passToNextStep);
     },
     destroyed: function(){
          this.$root.$off("saveTags",this.passToNextStep);
     },
+    
     methods: {
+                
                 deleteTag(index,value,state){
                     if(state == 0){
                         this.toBeDeleted.index = index;
@@ -109,7 +116,7 @@ Vue.component('generate-tags', {
                 },
                 createTag(state){
                     if (state == 1){
-                        if (!this.tagsArray.includes(this.toBeAdded) && this.toBeAdded.length >= 3){
+                        if (!this.tagsArray.includes(this.toBeAdded) && this.toBeAdded.length >= 2){
                             this.tagsArray.push(this.toBeAdded);
 
                         }
@@ -135,7 +142,73 @@ Vue.component('generate-tags', {
                        nextStep: 3
                    }
                 this.$emit('reciveDataStep2',emitObj);
-               }
+               },
+                getDataUri(url,callback){
+                var image = new Image();
+
+                image.onload = function () {
+                    var canvas = document.createElement('canvas');
+                    canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+                    canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+                    canvas.getContext('2d').drawImage(this, 0, 0);
+
+                    // Get raw image data
+                    callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+
+                    // ... or get as Data URI
+                    //callback(canvas.toDataURL('image/png'));
+                };
+
+                 image.src = url;
+                },
+                sendFileToCloudVision(base64){
+                    var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + window.apiKey;
+
+                    var request = {
+                        requests: [{
+                        image: {
+                        content:  base64
+                        },
+                        features: [
+                            {
+                        type: 'LABEL_DETECTION',
+                        maxResults: 10
+                        },{
+                        type:'LOGO_DETECTION',
+                        maxResults: 2
+                        }
+                        ]
+                        }]
+                        };
+                    
+                    $.post({
+                    url: CV_URL,
+                    data: JSON.stringify(request),
+                    contentType: 'application/json'
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log('ERRORS: ' + textStatus + ' ' + errorThrown);
+                    }).done(this.processCloudVisionData);
+                    },
+                 processCloudVisionData(data){
+                     console.log(data);
+                     var tempArray=[];
+                     var tempObj =  data.responses[0].labelAnnotations;
+                     for(i= 0; i<tempObj.length;i++){
+                        if(tempObj[i].description.length <15 && !tempArray.includes(tempObj[i].description))
+                            tempArray.push(tempObj[i].description);
+                     }
+                     if(data.responses[0].logoAnnotations){
+                         tempObj =  data.responses[0].logoAnnotations;
+                         for(i= 0; i<tempObj.length;i++){
+                            if(tempObj[i].description.length <15 && !tempArray.includes(tempObj[i].description))
+                                tempArray.push(tempObj[i].description);
+                     }}
+                     this.tagsArray = tempArray;
+                     this.loading = false;
+                     toolBarData.paginaSiguiente = "UO_step3";
+                 }
+            
  },
     
     template:`
@@ -146,8 +219,8 @@ Vue.component('generate-tags', {
         <!--Inicio de body-->
 <div>
 
-<div class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:0">
-<md-card class="md-elevation-0" style="border-radius: 10px;width: 60%;box-shadow: 0px 5px 35px -15px rgba(51,51,51,0.5);
+<div class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:0;background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 75%; background-color: white;">
+<md-card ref="photoHolderStep2" class="md-elevation-0" style="border-radius: 10px;width: 60%;box-shadow: 0px 5px 35px -15px rgba(51,51,51,0.5);
 }">
  <md-card-media-cover style="  overflow: hidden;" >
         <md-card-media md-ratio="1:1" style="overflow: hidden; position: relative">
@@ -170,10 +243,11 @@ Vue.component('generate-tags', {
 </div>
 
          <div class="md-layout md-alignment-top-center" style="padding-left:0;text-align:center;margin-top:3%;margin-bottom:5%">
-            <div v-if="loading" class="md-layout-item  md-size-100" style="margin-top:3%;--md-theme-default-primary: #03a9f4;">
+            <div v-if="loading" class="md-layout-item  md-size-100" style="margin-top:15%;margin-bottom:7%;--md-theme-default-primary: #03a9f4;">
                   <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
             </div>
-            <div class="md-layout-item md-layout md-gutter" style="margin-left:7%;margin-right:7%;">
+            <div v-if="!loading">
+            <div  class="md-layout-item md-layout md-gutter" style="margin-left:7%;margin-right:7%;">
                 <div class="md-layout-item" v-for="(value, index) in tagsArray" >
                  <md-button :style="buttonStyle" v-on:click="deleteTag(index,value,0)">{{value}}</md-button>
                 </div>
@@ -184,7 +258,7 @@ Vue.component('generate-tags', {
                  <md-button :style="buttonStyle4" v-on:click="activeInsertTagDialog = true">+</md-button>
                   </div>
             </div>
-             <div class="md-layout-item md-size-100" style="margin-top:3%;">
+             <div  class="md-layout-item md-size-100" style="margin-top:3%;">
                  <md-button v-on:click="passToNextStep" :style="buttonStyle2">Guardar</md-button>
             </div>
         </div>
@@ -205,7 +279,7 @@ Vue.component('generate-tags', {
       :md-active.sync="activeInsertTagDialog"
       v-model="toBeAdded"
       md-title="Nuevo tag"
-      md-content="<strong>Mínimo 3 carácteres<strong>"
+      md-content="<strong>Mínimo 2 carácteres<strong>"
       ref ="inputDialog"
       md-input-maxlength="15"
       md-input-placeholder="Máximo 15 carácteres..."

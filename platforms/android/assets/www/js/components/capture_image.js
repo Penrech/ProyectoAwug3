@@ -140,6 +140,7 @@ Vue.component('capture-img', {
                    }
                 this.$emit('reciveDataStep1',emitObj);
                }
+
  },
     
     template:`

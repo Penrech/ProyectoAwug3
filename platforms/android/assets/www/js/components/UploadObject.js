@@ -33,7 +33,7 @@ const uploadObjectTemplate = {props: [],
 
     }),
         created: function () {
-            document.body.style = this.bodyStyle;
+            //document.body.style = this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "clear";
             toolBarData.iconoPaginaSiguiente = "done";
             toolBarData.paginaActual = "uploadObject";
@@ -58,7 +58,7 @@ const uploadObjectTemplate = {props: [],
                     else if (toStep == 2){
                        this.actualStep = this.stepLibrary.step2;
                        toolBarData.paginaAnterior = "UO_step1";
-                       toolBarData.paginaSiguiente = "UO_step3";
+                       toolBarData.paginaSiguiente = "";
                     }
                     else if (toStep == 3){
                         this.actualStep = this.stepLibrary.step3;
