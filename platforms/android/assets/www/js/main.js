@@ -19,9 +19,7 @@ var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",pag
 var sideBarData = {showNavigation: false, userType: UserType};
 
 function init(){
-    
-
-    
+  
     const routes = [
                 //{path: '/inbox', name: 'inbox', component: MailListTemplate},
             {path: '/settings', name: 'settings',  component: SettingsTemplate},

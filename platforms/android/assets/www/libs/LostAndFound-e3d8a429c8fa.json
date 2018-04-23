@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "lostandfound-201917",
+  "private_key_id": "e3d8a429c8fade958ebd441ec5ba7ff15c27786d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDsncFrgypNhVCA\nRUdQOnzXZDnr4liOvQbXL4UVhfMpyLb7V9OErxQSxQ9HLKpag3ZlTD0qilGP4ukJ\nXzFrSw/VoGyUch8OLPuSuDaXhoLt9OYUtp0Fg84yKEpdBNuDhc8CcbuVpe6MrSvQ\nvMPe0qMW55lxF7UAT/pIw2EIYNhxoVoIvhYtJ3bJdvJYZy6EBXFi3EpEz7zB4eqF\noeuK7teX5gDWKUpgDSp1Hy9w8TKbi3v43uizh/UsOTv4C2EKx943c7LQuiyYeDQa\n8WpvfX8i+hAodZGAFTycqu2230IAWD1i1NQO0dGRi2m4GMYtn1167+FxPvtk/j6Q\nD0REYck3AgMBAAECggEAUBlZVFVrOSHjrgCF0yVxhJLDvtP5SZy415iZEz+soNz3\nAJ/rFTQVdgMqmFwI8SompsUHwcJgOPbGD6ufdaRL4HP1vcziMXDN2w2sQWBCK16n\nkqR9BFRptXYJMnMGAoCGItwwdcjdt9aZigiUv/YLSqItQekWF1x7rC0jyGvMaa5g\nMN76ECKj6jGbvEXHICfvKJVgodqdMKPUmo4mZYe9fV2HhNj4m7FnLOV7ojh0XOOY\nKpb/aLktz9MWlamQDSMCnmNzqA88irxbZotAp/skPma+2sHx1Tk398OCaiCcrq3x\nU2KbQOIA+npOq9UeyeoznRB1Io+HYV6gCaSKpUy+5QKBgQD9g6G2xXP+7rX17V56\nsM6HrW2c4v1WCJBQwG9RvIXg/DX5Z9luWLnzLikGDg+S/79nn5rTZ78gsaBCO/ke\nvDPsrdjQLvZ8Vzg20yHeM1++iA0gXmY03EdvUDZxdgPyA7dnGEk8Lpe1+QwfHpoD\ncwG4IdFbTPkvGCNdHIEDRTLgMwKBgQDu77TxaFnExp4vW9NKDY4q8Fmz2NsnNERt\nDseE0IyGyCW9iroeFQWVJOEM857hau4CbShMEEyxOhzVYL/bJrFBbHTeiomZgv62\nF2Qa75AG5RlKNxVcdAsJnozLztDWUMaGC3NQP0tdtvrrVNiLdNhN7kulLQF+Qz4u\nYpG6xrTe7QKBgQCbKOheA+WlvxZRKXGs5+/P7J5s6iShdmZVdiHrxdWuyM6EEkJq\nnhVZOARVt19i2fKdCntpLlM1QGHUh/5GCGxDTHepm0Sy/3LhY0GUTJ8p7v0RtZUa\nf0OdZlub/94UTp/+kkeodN/XuVDo7wLWX5pKxy/qkGbmowBp6ZswlDa6LwKBgGUp\nId+vgYo5WVHNu9g3gwCVADWP08F2dJ4Dyt9leIm8BZaJPKFt3w41Lf9QyezAXAK0\n+oGxyPakFv8UVkZPzG5Zn+V0nCtddb/ciWqKEN2Kc7mjNq0NCHtLIGtNpceHLXYl\nNO49zgfgZ73pD0GD9+yOvoIxWtd9Wr9CxlZguMVFAoGAXUNaQO7tZvc+0HOfQCeM\nuzM3BX2xaR+S2Pl1Vfrc0jQ8NRazrK7nryTQF+qugplsCdS4lcdLf5MfNNoWaF72\nxJ8S75b5hoS+36dkR/2oxQS2xuu+NEJpD1u6SiBTqJAYCWk0v0gp7BpZItU/9vtv\n3J5mAC6C7NTzGu8Tu6p+zc4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "lostandfoundtagtranslation@lostandfound-201917.iam.gserviceaccount.com",
+  "client_id": "109676210860303513955",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/lostandfoundtagtranslation%40lostandfound-201917.iam.gserviceaccount.com"
+}
