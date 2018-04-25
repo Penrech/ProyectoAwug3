@@ -33,9 +33,12 @@ Vue.component('save-object', {
          this.getCurrentDate();
          this.toStringTags();
         this.$root.$on("saveObject",this.passToNextStep);
+        this.$root.$on("backToUoStep2",this.changeData);
     },
     destroyed: function(){
          this.$root.$off("saveObject",this.passToNextStep);
+         this.$root.$off("backToUoStep2",this.changeData);
+
     },
     methods: {
                 toStringTags(){
@@ -56,8 +59,9 @@ Vue.component('save-object', {
                     this.registerDate = date + '/' + month + '/' + year;
                 },
                 changeData(){
+                    console.log("Entro en changeData");
                      var emitObj = {
-                       imgUrl : null,
+                       imgUrl : "unChanged",
                        nextStep: 2
                    }
                 this.$emit('backtoStep2',emitObj);

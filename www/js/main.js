@@ -19,7 +19,7 @@ var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",pag
 var sideBarData = {showNavigation: false, userType: UserType};
 
 function init(){
-  
+    
     const routes = [
                 //{path: '/inbox', name: 'inbox', component: MailListTemplate},
             {path: '/settings', name: 'settings',  component: SettingsTemplate},
@@ -44,8 +44,21 @@ function init(){
                 showSidepanel: false,
                 bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
               message: 'Hola!'},
+        created: function(){
+            document.addEventListener("backbutton",this.HandlerBackButton,false);
+        },
         methods: {
-           
+           HandlerBackButton(){
+            if (toolBarData.paginaActual == "UO_step2")
+                this.$root.$emit("backToUoStep1");
+            else if (toolBarData.paginaActual == "UO_step3")
+                this.$root.$emit("backToUoStep2");
+            else if (toolBarData.paginaActual == "edit_profile")
+                this.$root.$emit ("backToProfile");
+            else
+                window.history.back();
+    
+}
         }
             
       }).$mount('#app');
@@ -53,6 +66,7 @@ function init(){
     //router.push('settings');
     router.push({ name: 'homeUser'})
 }
+
 
         
 

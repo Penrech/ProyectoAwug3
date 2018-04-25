@@ -42,6 +42,7 @@ const uploadObjectTemplate = {props: [],
             toolBarData.toolBarTitle = "Nuevo objeto perdido";
             this.actualStep = this.stepLibrary.step1;
             this.$root.$on("goToPreviousState",this.UpdateState);
+           
         },
         destroyed:function(){
             this.$root.$off("goToPreviousState",this.UpdateState);
@@ -52,16 +53,22 @@ const uploadObjectTemplate = {props: [],
                     if (toStep == 1){
                         this.actualStep = this.stepLibrary.step1;
                         toolBarData.paginaAnterior = "homeUser";
+                        toolBarData.paginaActual = "UO_step1"
                         toolBarData.paginaSiguiente = "";
                         this.tags = [];
                     }
                     else if (toStep == 2){
                        this.actualStep = this.stepLibrary.step2;
+                       toolBarData.paginaActual = "UO_step2"
                        toolBarData.paginaAnterior = "UO_step1";
-                       toolBarData.paginaSiguiente = "";
+                       if (this.tags.length >0)
+                           toolBarData.paginaSiguiente = "UO_step3";
+                       else
+                            toolBarData.paginaSiguiente = "";
                     }
                     else if (toStep == 3){
                         this.actualStep = this.stepLibrary.step3;
+                        toolBarData.paginaActual = "UO_step3"
                         toolBarData.paginaAnterior = "UO_step2"; 
                     }
                 },
@@ -77,7 +84,8 @@ const uploadObjectTemplate = {props: [],
                 },
               goBackHome () {
                   this.$router.push('homeUser');
-              }
+              },
+             
            
         },
         template:`
@@ -93,7 +101,7 @@ const uploadObjectTemplate = {props: [],
         <!--Inicio de body-->
         <capture-img v-if="actualStep.step == 1" v-on:reciveDataStep1="UpdateState($event)"></capture-img>
         <generate-tags v-if="actualStep.step == 2" :imgSrc="imageData" :prevTags="tags" v-on:backtoStep1="UpdateState($event)" v-on:reciveDataStep2="UpdateState($event)"></generate-tags>
-        <save-object v-if="actualStep.step == 3" :imgSrc="imageData" :prevTags="tags" :location="userTestData.location" :phone="userTestData.phone"></save-object>
+        <save-object v-if="actualStep.step == 3" :imgSrc="imageData" :prevTags="tags" :location="userTestData.location" :phone="userTestData.phone" v-on:backtoStep2="UpdateState($event)"></save-object>
         <!--Fin de body-->
 
         

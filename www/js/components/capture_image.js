@@ -61,9 +61,11 @@ Vue.component('capture-img', {
         window.scrollTo(0,0);
         document.body.style= this.bodyStyle;
         this.$root.$on("generateTags",this.passToNextStep);
+         
     },
     destroyed: function(){
          this.$root.$off("generateTags",this.passToNextStep);
+
     },
     methods: {
            
@@ -139,7 +141,8 @@ Vue.component('capture-img', {
                        nextStep: 2
                    }
                 this.$emit('reciveDataStep1',emitObj);
-               }
+               },
+
 
  },
     

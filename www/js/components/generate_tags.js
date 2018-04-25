@@ -93,9 +93,11 @@ Vue.component('generate-tags', {
 
         }
         this.$root.$on("saveTags",this.passToNextStep);
+        this.$root.$on("backToUoStep1",this.changePhoto);
     },
     destroyed: function(){
          this.$root.$off("saveTags",this.passToNextStep);
+         this.$root.$off("backToUoStep1",this.changePhoto);
     },
     
     methods: {

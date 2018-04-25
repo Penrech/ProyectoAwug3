@@ -29,6 +29,10 @@ const userProfileTemplate = {props: [],
             toolBarData.paginaSiguiente = "activarMenu";
             toolBarData.paginaAnterior ="homeUser"
             toolBarData.toolBarTitle = "Mi perfil";
+            this.$root.$on("backToProfile",this.backToProfileWithoutSave);
+        },
+        destroyed: function(){
+            this.$root.$off("backToProfile",this.backToProfileWithoutSave);
         },
         methods: {
             checkForm: function(e){
@@ -69,13 +73,22 @@ const userProfileTemplate = {props: [],
                 
             },
             goToEditMode(){
-                
-                this.editionMode = true
+                toolBarData.paginaActual = "edit_profile";
+                toolBarData.paginaAnterior ="userProfile"
+                this.editionMode = true;
             },
             submitForm(){
                 document.getElementById("userForm").submit;
                 this.passEditMode = false;
-                this.editionMode = false;  
+                this.editionMode = false; 
+                toolBarData.paginaActual= toolBarData.paginaAnterior;
+                toolBarData.paginaAnterior = "homeUser";
+            },
+            backToProfileWithoutSave(){
+                this.passEditMode = false;
+                this.editionMode = false;
+                toolBarData.paginaActual= toolBarData.paginaAnterior;
+                toolBarData.paginaAnterior = "homeUser";
             },
              goBackHome () {
                   this.$router.push('homeUser');
