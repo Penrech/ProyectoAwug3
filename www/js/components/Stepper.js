@@ -30,6 +30,9 @@ Vue.component('stepper-tool', {
              border: "1px solid white",
              color: "#03a9f4"
          },
+         backgroundStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa);"
+             
+         
         
          
      }),
@@ -49,7 +52,8 @@ Vue.component('stepper-tool', {
     },
     
     template: `
-  <md-toolbar md-elevation="0" class="md-large md-transparent" style="background: linear-gradient(to right, #03a9f4, #81d4fa);">
+
+  <md-toolbar md-elevation="0" class="md-large md-transparent"  :style="backgroundStyle">
          <div class="md-toolbar-row" :style="mainStyle">
         
          <div class="md-toolbar-section-start">

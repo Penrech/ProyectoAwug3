@@ -31,7 +31,7 @@ const HomeUserTemplate = {props: [],
                   this.$router.push('userLostObjects');
               },
             goToFindObject () {
-                
+                this.$router.push("searchobject");
               },
             goToNewObject(){
                 this.$router.push('uploadobject');
@@ -90,7 +90,7 @@ const HomeUserTemplate = {props: [],
           </div>
          
         <div v-if="UserType == 1" style="width: 100%">
-           <md-button class="md-raised "  style="width: inherit; height: 200px ;border-radius:10px;background: linear-gradient(to bottom right, #ededed, #fbfbfb);margin-bottom:3em">
+           <md-button v-on:click="goToFindObject()" class="md-raised "  style="width: inherit; height: 200px ;border-radius:10px;background: linear-gradient(to bottom right, #ededed, #fbfbfb);margin-bottom:3em">
             <img class="md-icon md-size-4x" style="margin-bottom: 10px;" src="icon/FindObjects.svg" />
                 <br>
                 <span style="font-size: 12px;font-weight: 700;">Encontrar objeto<br>perdido</span></md-button>
