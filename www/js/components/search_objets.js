@@ -17,7 +17,7 @@ Vue.component('search-objects', {
          heartStyle2:{
             fontSize: "22px!important",
             color:"#00c9fa",
-            marginTop: "20px",
+            marginTop: "30px",
             marginRight: "auto",
             marginBottom: "10px"
         }
@@ -42,11 +42,42 @@ Vue.component('search-objects', {
     },
         methods: {
             getList: function(){
-            this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/UserLostList.json').then(function (response){
-                this.objectsArray = response.data.userLostList;
-                //this.loading = false;
-                //console.log(response.data.userLostList);
+            this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/PruebasBuscarPorTags.json').then(function (response){
+                var tempObjectsArray;
+                tempObjectsArray = response.data.searchedObjects;
+                this.compareWithTags(tempObjectsArray);
+                
             }); },
+            /*    if (!this.tagsArray.includes(this.toBeAdded) && this.toBeAdded.length >= 2){
+                            this.tagsArray.push(this.toBeAdded);*/
+             compareWithTags(tempArray){
+                 for (i = 0; i < tempArray.length;i++){
+                      var cont = 0;
+                      for(j = 0; j < this.prevTags.length;j++){
+                          if(tempArray[i].tags.includes(this.prevTags[j])){
+                              cont++;
+                          }
+                      }
+                      if (cont >= 2){
+                          var array = tempArray[i];
+                          array.coincidencias = cont;
+                          if (this.objectsArray.length > 0){
+                              if (this.objectsArray[this.objectsArray.length-1].coincidencias > cont){
+                                  this.objectsArray.push(array);
+                              }
+                              else{
+                                  this.objectsArray.unshift(array);
+                              }
+                          }
+                          else{
+                              this.objectsArray.push(array);
+                          }
+                          
+                      }
+                 }
+                 console.log(this.objectsArray);
+                 this.loading = false;
+             },
              getCurrentDate(){
                     var myDate = new Date();
                     var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
