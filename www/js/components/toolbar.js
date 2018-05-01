@@ -63,7 +63,7 @@ Vue.component('tool-bar', {
                         this.$root.$emit("goToPreviousState", prevObj);
                 }
             }
-            if (res == "SO"){
+            else if (res == "SO"){
                 if (this.toolBarData.paginaAnterior == "SO_step1"){
                     var prevObj = {
                             nextStep: 1
@@ -71,7 +71,7 @@ Vue.component('tool-bar', {
                         this.$root.$emit("goToPreviousState", prevObj);   
                 }
             }
-            if (this.toolBarData.paginaAnterior == "userProfile"){
+            else if (this.toolBarData.paginaAnterior == "userProfile"){
                  this.$root.$emit("backToProfile");   
             }
             else{

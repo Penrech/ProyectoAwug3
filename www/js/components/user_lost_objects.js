@@ -29,6 +29,7 @@ const userLostObjectsTemplate = {props: [],
 
     }),
         created: function () {
+            window.scrollTo(0,0);
             this.getList();
             document.body.style = this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "keyboard_backspace";

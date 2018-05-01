@@ -79,7 +79,7 @@ const searchObjectTemplate = {props: [],
         
         <!--Inicio de body-->
         <generate-tags-search v-if="actualStep.step == 1" :prevTags="tags" v-on:reciveDataStep1="UpdateState($event)"></generate-tags-search>
-        <searched-tags v-if="actualStep.step == 2" :prevTags="tags" v-on:backToStep1="UpdateState($event)"></searched-tags>
+        <search-objects v-if="actualStep.step == 2" :prevTags="tags" v-on:backToStep1="UpdateState($event)"></search-objects>
         <!--Fin de body-->
 
         
