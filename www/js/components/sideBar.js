@@ -31,7 +31,10 @@ Vue.component('side-bar', {
                     this.showNavigation = false;
                     this.$router.push('searchobject');
             },
-            goToAllLostObjects(){},
+            goToAllLostObjects(){
+                    this.showNavigation = false;
+                    this.$router.push('allLosObjects');
+            },
             goToUserProfile: function(){
                     this.showNavigation = false;
                     this.$router.push('userProfile');

@@ -37,7 +37,7 @@ const HomeUserTemplate = {props: [],
                 this.$router.push('uploadobject');
             },
             goToObjectList(){
-                
+                this.$router.push('allLostObjects');
             }
         },
         template:`
@@ -98,7 +98,7 @@ const HomeUserTemplate = {props: [],
           </div>
 
         <div v-else style="width: 100%">
-           <md-button class="md-raised "  style="width: inherit; height: 200px ;border-radius:10px;background: linear-gradient(to bottom right, #ededed, #fbfbfb);margin-bottom:3em">
+           <md-button class="md-raised " v-on:click="goToObjectList" style="width: inherit; height: 200px ;border-radius:10px;background: linear-gradient(to bottom right, #ededed, #fbfbfb);margin-bottom:3em">
             <img class="md-icon md-size-4x" style="margin-bottom: 10px;" src="icon/objectList.svg" />
                 <br>
                 <span style="font-size: 12px;font-weight: 700;">Lista de objetos<br>perdidos</span></md-button>

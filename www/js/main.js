@@ -14,7 +14,7 @@
 //        });
 
 //Vue.material.setCurrentTheme('about');
-var UserType = 1;
+var UserType = 2;
 var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",paginaSiguiente:"",iconoPaginaSiguiente:"",toolBarTitle:""};
 var sideBarData = {showNavigation: false, userType: UserType};
 
@@ -31,7 +31,8 @@ function init(){
             {path: '/homeuser', name: 'homeUser',  component: HomeUserTemplate},
             {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
             {path: '/userprofile', name: 'userProfile',  component: userProfileTemplate},
-            {path: '/searchObject', name: 'searchObject',  component: searchObjectTemplate}
+            {path: '/searchObject', name: 'searchObject',  component: searchObjectTemplate},
+            {path: '/allLostObjects', name: 'allLostObjects',  component: allLostObjectsTemplate}
             ];
 
         const router = new VueRouter({
