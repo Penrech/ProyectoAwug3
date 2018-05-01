@@ -18,7 +18,8 @@ const allLostObjectsTemplate = {props: [],
             marginTop: "20px",
             marginRight: "auto",
             marginBottom: "10px"
-        }
+        },
+        ordenSeleccion: 'fechaRegistro'
                               
 
     }),
@@ -32,6 +33,10 @@ const allLostObjectsTemplate = {props: [],
             toolBarData.paginaSiguiente = "activarMenu";
             toolBarData.paginaAnterior = "homeUser";
             toolBarData.toolBarTitle = "Lista de objetos perdidos";
+
+        },
+        deleted: function(){
+
         },
         methods: {
             getList: function(){
@@ -40,7 +45,7 @@ const allLostObjectsTemplate = {props: [],
                 this.loading = false;
                 //console.log(response.data.userLostList);
             }); },
-              completeProfile () {
+              changeOrder () {
                 
               },
               goBackHome () {
@@ -55,6 +60,17 @@ const allLostObjectsTemplate = {props: [],
       
 <!--inicio subnav-->
   <md-toolbar md-elevation="0" class="md-transparent" >
+         <div class="md-toolbar-row" style="justify-content: center; margin-top:-20px">
+            <span class="md-title" style="font-weight: 600;font-size: 14px; margin-left: 0;color: white;  white-space: normal; text-align:center">Ordenar por:</span>
+        </div>
+        <div class="md-toolbar-row" style="justify-content: center;">
+        <md-field style="width:85%;">
+          <md-select v-model="ordenSeleccion" name="orden" id="ordenSelect" style="font-weight: 300;color:white">
+            <md-option value="fechaRegistro">Fecha de registro</md-option>
+            <md-option value="reclamado">Objetos reclamados</md-option>
+          </md-select>
+        </md-field>
+        </div>
         <div class="md-toolbar-row" style="justify-content: center;">
         <span class="md-title" style="font-weight: 600;font-size: 14px; margin-left: 0;color: white;  white-space: normal; text-align:center">Haz click para ver o editar los detalles de los objetos</span>
       </div>
@@ -64,7 +80,7 @@ const allLostObjectsTemplate = {props: [],
         
         <!--Inicio de botones-->
         
-    <ul class="md-layout md-gutter md-alignment-top-center" style="padding-left:0;margin-top:0">
+    <ul class="md-layout md-gutter md-alignment-top-center" style="padding-left:0;margin-top:2%">
 
         <div v-if="loading" style="margin-top:25%;--md-theme-default-primary: white;">
              <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
@@ -77,7 +93,7 @@ const allLostObjectsTemplate = {props: [],
           <img  :src="item.img" alt="">
         </md-card-media>
 
-        <md-card-area  style="top:0;bottom:unset;">
+        <md-card-area v-if="item.reclamado" style="top:0;bottom:unset;">
             <md-card-header style="padding-top: 10px;">
             
         

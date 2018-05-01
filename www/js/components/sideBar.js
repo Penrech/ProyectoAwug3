@@ -33,7 +33,7 @@ Vue.component('side-bar', {
             },
             goToAllLostObjects(){
                     this.showNavigation = false;
-                    this.$router.push('allLosObjects');
+                    this.$router.push('allLostObjects');
             },
             goToUserProfile: function(){
                     this.showNavigation = false;
