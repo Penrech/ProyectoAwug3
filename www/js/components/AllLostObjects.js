@@ -4,7 +4,8 @@ const allLostObjectsTemplate = {props: [],
         showNavigation:false,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
         loading:true,
-        currentDate: null,
+        currentDateString: null,
+        currentDateObject: null,
         heartStyle1:{
             fontSize: "22px!important",
             color:"#00c9fa",
@@ -45,11 +46,63 @@ const allLostObjectsTemplate = {props: [],
             getList: function(){
             this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/PruebasBuscarPorTags.json').then(function (response){
                 this.objectsArray = response.data.searchedObjects;
-                this.loading = false;
+                this.changeOrder(this.ordenSeleccion);
+                
                 //console.log(response.data.userLostList);
             }); },
-              changeOrder () {
+              changeOrder (type) {
+                    console.log("entro change");
+                    this.objectsArray.sort(function(a, b) {
+                        var aTemp = [a.registro.substr(6,9),a.registro.substr(3,2),a.registro.substr(0,2)
+                        ];
+                        var bTemp = [b.registro.substr(6,9),b.registro.substr(3,2),b.registro.substr(0,2)
+                        ];
+                        aTemp = aTemp.toString();
+                        bTemp = bTemp.toString();
+                        a = new Date(aTemp);
+                        b = new Date(bTemp);
+                        return a>b ? -1 : a<b ? 1 : 0;
+                    });
                 
+                if (type == "reclamado"){
+                     this.objectsArray.sort(function(a, b) {;
+                        a = a.reclamado;
+                        b = b.reclamado;
+                        return a>b ? -1 : a<b ? 1 : 0;
+                    });   
+                }
+                this.changeVisualization(this.visualizar);
+              },
+              changeVisualization(type){
+                  console.log("entro visualizar");
+                  var actualDate = this.currentDate;
+                  var dayDiff = 0;
+                  var dayValue;
+                  var CountIndex=0;
+                  if (type== "semana")
+                      dayValue=7;
+                  else if (type=="mes")
+                      dayValue=30;
+                  else if (type=="year")
+                      dayValue=365;
+                    var indexToDelete = [];
+                    for (i= 0; i <  this.objectsArray.length;i++){
+                            var data = this.objectsArray[i];
+                            var tempArray = [data.registro.substr(6,9),data.registro.substr(3,2),data.registro.substr(0,2)
+                            ];
+                            var tempDate= new Date(tempArray.toString());
+                            var timeDiff = Math.abs(actualDate.getTime()- tempDate.getTime());
+                            var diffDays = Math.ceil(timeDiff/(1000*3600*24));
+                            if (diffDays > dayValue)
+                               indexToDelete.push(i);
+                                console.log(indexToDelete);
+                        }
+                  for (i=0; i < indexToDelete.length;i++){
+                      console.log(indexToDelete[i]);
+                      this.objectsArray.splice(indexToDelete[i]-CountIndex,1);
+                      CountIndex++;
+                  }
+                 this.loading = false;
               },
               goBackHome () {
                   this.$router.push('homeUser');
@@ -59,18 +112,18 @@ const allLostObjectsTemplate = {props: [],
                     var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
                     var date = ('0' + myDate.getDate()).slice(-2);
                     var year = myDate.getFullYear();
-                    this.registerDate = date + '/' + month + '/' + year;
+                    this.currentDate = myDate;
+                    this.currentDateString = date + '/' + month + '/' + year;
                 }
            
         },
         watch:{
             ordenSeleccion: function(val){
-                if (val == "fechaRegistro"){
-                    
-                }
-                else{
-                    
-                }
+                    this.getList();
+            },
+            visualizar: function(val){
+                 console.log("Detecto cambio, de valor a : "+val);
+                 this.getList();
             }
         },
         template:`
@@ -86,8 +139,8 @@ const allLostObjectsTemplate = {props: [],
           <md-select v-model="visualizar" name="orden" id="mostrarSelect" style="font-weight: 300;color:white;margin-top:15px">
             <md-option value="todos">Todos</md-option>
             <md-option value="semana">Última semana</md-option>
-            <md-option value="semana">Último mes</md-option>
-            <md-option value="semana">Último año</md-option>
+            <md-option value="mes">Último mes</md-option>
+            <md-option value="year">Último año</md-option>
           </md-select>
         </md-field>
         <md-field id="selectALO_ordenar" style="width:45%;margin-left:7px">
