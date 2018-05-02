@@ -20,6 +20,19 @@
 	position:relative;
 	top:1px;
 }*/
-.md-input .md-input .md-select-value {
--webkit-text-fill-color: rgba(255,255,255);
+input.md-input.md-select-value {
+    -webkit-text-fill-color: rgba(255,255,255,1) !important;
+    font-size: 14px !important;
+}
+.md-toolbar.md-theme-default.md-transparent .md-icon svg{
+     fill: var(--md-theme-default-text-primary-on-background, rgba(255,255,255,1)) !important;
+}
+div#selectALO_ordenar.md-field.md-theme-default:after{
+        background-color: rgba(255,255,255,1);
+}
+div#selectALO_Mostrar.md-field.md-theme-default:after{
+        background-color: rgba(255,255,255,1);
+}
+/*.md-toolbar.md-theme-default.md-transparent .md-icon {
+    color: var(--md-theme-default-text-primary-on-background, rgba(255,255,255,1));
 }

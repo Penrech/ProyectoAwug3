@@ -337,7 +337,7 @@ const userProfileTemplate = {props: [],
                         <md-list-item v-if="UserType ==2">
                             <md-field>
                                 <label>Centro de Atención</label>
-                                <md-input id="profile_atention_office" placeholder="Centro de atención"></md-input>
+                                <md-input id="profile_atention_office" v-model="formData.location"></md-input>
                                 <md-icon>location_on</md-icon>
                                 <span class="md-error">Este teléfono no es válido</span>
                                 <span class="md-error">Se requiere un teléfono</span>

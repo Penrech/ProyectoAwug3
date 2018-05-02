@@ -3,7 +3,8 @@ const allLostObjectsTemplate = {props: [],
         objectsArray : [],
         showNavigation:false,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
-        loading:true,                      
+        loading:true,
+        currentDate: null,
         heartStyle1:{
             fontSize: "22px!important",
             color:"#00c9fa",
@@ -19,13 +20,15 @@ const allLostObjectsTemplate = {props: [],
             marginRight: "auto",
             marginBottom: "10px"
         },
-        ordenSeleccion: 'fechaRegistro'
+        ordenSeleccion: 'fechaRegistro',
+        visualizar: 'todos'
                               
 
     }),
         created: function () {
             window.scrollTo(0,0);
             this.getList();
+            this.getCurrentDate();
             document.body.style = this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "menu";
@@ -50,8 +53,25 @@ const allLostObjectsTemplate = {props: [],
               },
               goBackHome () {
                   this.$router.push('homeUser');
-              }
+              },
+              getCurrentDate(){
+                    var myDate = new Date();
+                    var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
+                    var date = ('0' + myDate.getDate()).slice(-2);
+                    var year = myDate.getFullYear();
+                    this.registerDate = date + '/' + month + '/' + year;
+                }
            
+        },
+        watch:{
+            ordenSeleccion: function(val){
+                if (val == "fechaRegistro"){
+                    
+                }
+                else{
+                    
+                }
+            }
         },
         template:`
 
@@ -60,13 +80,20 @@ const allLostObjectsTemplate = {props: [],
       
 <!--inicio subnav-->
   <md-toolbar md-elevation="0" class="md-transparent" >
-         <div class="md-toolbar-row" style="justify-content: center; margin-top:-20px">
-            <span class="md-title" style="font-weight: 600;font-size: 14px; margin-left: 0;color: white;  white-space: normal; text-align:center">Ordenar por:</span>
-        </div>
         <div class="md-toolbar-row" style="justify-content: center;">
-        <md-field style="width:85%;">
-          <md-select v-model="ordenSeleccion" name="orden" id="ordenSelect" style="font-weight: 300;color:white">
-            <md-option value="fechaRegistro">Fecha de registro</md-option>
+        <md-field id="selectALO_Mostrar" style="width:45%;margin-right:7px;">
+          <label style="font-weight: 600;font-size: 14px;color: white;">Visualizar:</label>
+          <md-select v-model="visualizar" name="orden" id="mostrarSelect" style="font-weight: 300;color:white;margin-top:15px">
+            <md-option value="todos">Todos</md-option>
+            <md-option value="semana">Última semana</md-option>
+            <md-option value="semana">Último mes</md-option>
+            <md-option value="semana">Último año</md-option>
+          </md-select>
+        </md-field>
+        <md-field id="selectALO_ordenar" style="width:45%;margin-left:7px">
+          <label style="font-weight: 600;font-size: 14px;color: white">Orden de:</label>
+          <md-select v-model="ordenSeleccion" name="orden" id="ordenSelect" style="font-weight: 300;color:white;margin-top:15px">
+            <md-option value="fechaRegistro" style="color:white">Fecha de registro</md-option>
             <md-option value="reclamado">Objetos reclamados</md-option>
           </md-select>
         </md-field>
