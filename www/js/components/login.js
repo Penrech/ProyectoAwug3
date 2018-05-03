@@ -2,7 +2,7 @@ const loginTemplate = {props: [],
                           data: () => ({
         activeNavigation: false,
         showNavigation:false,
-         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 50%; background-color: white;",
+         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 390px; background-color: white;",
         buttonStyle:{ 
             borderRadius:"28px",
             border:"1px solid white",

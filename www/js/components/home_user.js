@@ -4,7 +4,7 @@ const HomeUserTemplate = {props: [],
         activeNavigation: false,
         showNavigation:false,
         UserType,
-       bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 34%; background-color: white;",
+       bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 250px; background-color: white;",
     }),
         created: function(){
             
