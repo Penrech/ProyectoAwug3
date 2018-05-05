@@ -2,6 +2,7 @@ Vue.component('search-objects', {
         props: ["prevTags"],
         data: () => ({
         objectsArray : [],
+        objectSelect: null,
         uploading: false,
         registerDate: null,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
@@ -20,7 +21,11 @@ Vue.component('search-objects', {
             marginTop: "30px",
             marginRight: "auto",
             marginBottom: "10px"
-        }
+        },
+        cardStyle1:" border-radius: 10px; width: 150px;"
+        ,
+        cardStyle2:" border-radius: 10px; width: 150px; border: 6px orange solid"
+        
                               
 
     }),
@@ -41,6 +46,46 @@ Vue.component('search-objects', {
 
     },
         methods: {
+            /*
+             
+                deleteTag(index,value,state){
+                    if(state == 0){
+                        this.toBeDeleted.index = index;
+                        this.toBeDeleted.name = value;
+                        this.dialogText ="Vas a borrar el tag <strong>"+this.toBeDeleted.name+"</strong>, ¿Continuar?"
+                        this.activeDeleteDialog = true;
+                        
+                    }
+                    else if(state == 1){
+                        this.tagsArray.splice(index, 1);
+                        this.dialogText = null;
+                        this.toBeDeleted.index = null;
+                        this.toBeDeleted.name = null;
+                    }
+                    else if(state == 2){
+                        this.dialogText = null;
+                        this.toBeDeleted.index = null;
+                        this.toBeDeleted.name = null;
+                    }
+                    
+                },
+            */
+            selectObject(clave,indice){
+                console.log("Entro aqui");
+                clave = "found-object-"+clave;
+                if (this.objectSelect != null){
+                    if (this.objectSelect != clave){
+                        document.getElementById(this.objectSelect).style= this.cardStyle1;
+                        document.getElementById(clave).style = this.cardStyle2;
+                        this.objectSelect = clave;
+                    }           
+                }
+                else{
+                    document.getElementById(clave).style = this.cardStyle2;
+                    this.objectSelect = clave;
+                }
+            this.DetallesDeObjeto(indice);
+            },
             getList: function(){
             this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/PruebasBuscarPorTags.json').then(function (response){
                 var tempObjectsArray;
@@ -91,7 +136,20 @@ Vue.component('search-objects', {
                    }
                 this.$emit('backtoStep1',emitObj);
                 },
-               MarcarComoEncontrado(){
+               DetallesDeObjeto(indice){
+                   var emitObj;
+                   if (this.objectSelect != "found-object-none"){
+                       emitObj = {
+                           nextStep:3,
+                       }
+                   }
+                   else{
+                       emitObj = {
+                           nextStep:3,
+                           objArray = this.objectsArray[indice]
+                       }
+                   }
+                   
 
                }
            
@@ -108,7 +166,7 @@ Vue.component('search-objects', {
         </div>
 
             <li v-if="!loading" style="list-style:none;padding: 0 12px 24px 12px;">
-            <md-card  style="border-radius: 10px;width: 150px;">
+            <md-card  id="found-object-none" @click.native="selectObject('none',null)" style="border-radius: 10px;width: 150px;">
             <md-card-media-cover style="    overflow: hidden;" >
 
             <md-card-media md-ratio="1:1">
@@ -128,8 +186,8 @@ Vue.component('search-objects', {
         </md-card>
             </li>
 
-            <li v-if="!loading" style="list-style:none;padding: 0 12px 24px 12px;"  v-for="item in objectsArray" :key="item.id">
-        <md-card  style="border-radius: 10px;width: 150px;">
+            <li v-if="!loading" style="list-style:none;padding: 0 12px 24px 12px;"  v-for="(item,index) in objectsArray" :key="item.id" >
+        <md-card :id="'found-object-'+item.id" @click.native="selectObject(item.id,index)" :style="cardStyle1">
           <md-card-media-cover style="    overflow: hidden;" >
             <md-card-media md-ratio="1:1">
               <img :src="item.img" alt="">
