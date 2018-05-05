@@ -1,5 +1,5 @@
-Vue.component('save-object', {
-    props: ["imgSrc","prevTags","location","phone"], 
+Vue.component('searched-tags', {
+    props: ["prevTags"], 
     data: () => ({
      uploading: false,
      tagsString: "",
@@ -19,13 +19,11 @@ Vue.component('save-object', {
         },
         labelStyle:{
              fontSize:"16px",
-            fontWeight:"500",
-            marginBottom:"12px"
+            fontWeight:"500"
         },
         inputStyle:{
             fontSize:"14px",
-            fontWeight:"200",
-            marginTop:"12px"
+            fontWeight:"200"
         },
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
  }),
@@ -33,26 +31,28 @@ Vue.component('save-object', {
         window.scrollTo(0,0);
          document.body.style= this.bodyStyle;
          this.getCurrentDate();
+         toolBarData.paginaActual ="SO_step2";
+         toolBarData.paginaSiguiente ="";
+         toolBarData.paginaAnterior = "SO_step1";
          this.toStringTags();
         this.$root.$on("saveObject",this.passToNextStep);
-        this.$root.$on("backToUoStep2",this.changeData);
+        this.$root.$on("backToSoStep1",this.changeData);
     },
     destroyed: function(){
          this.$root.$off("saveObject",this.passToNextStep);
-         this.$root.$off("backToUoStep2",this.changeData);
+         this.$root.$off("backToSoStep1",this.changeData);
 
     },
     methods: {
                 toStringTags(){
-                   /* for(i=0; i < this.prevTags.length;i++ ){
+                    for(i=0; i < this.prevTags.length;i++ ){
                         if (i == (this.prevTags.length-1)){
                              this.tagsString += this.prevTags[i];
                         }
                         else{
                             this.tagsString += this.prevTags[i] + ", ";
                         }
-                    }*/
-                    this.tagsString = this.prevTags.toString();
+                    }
                 },
                 getCurrentDate(){
                     var myDate = new Date();
@@ -62,14 +62,12 @@ Vue.component('save-object', {
                     this.registerDate = date + '/' + month + '/' + year;
                 },
                 changeData(){
-                    console.log("Entro en changeData");
                      var emitObj = {
-                       imgUrl : "unChanged",
-                       nextStep: 2
+                       nextStep: 1
                    }
-                this.$emit('backtoStep2',emitObj);
+                this.$emit('backtoStep1',emitObj);
                 },
-               uploadObject(){
+               MarcarComoEncontrado(){
 
                }
  },
@@ -84,46 +82,28 @@ Vue.component('save-object', {
 
     <!--Inicio datos-->
         
-    <div  style="margin-left: 5.25%;margin-right: 5.25% ">
+    <div  style="margin-left: 10.25%;margin-right: 10.25% ">
         <div  style="width: 100%">
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
                 <md-card-header>
                  <md-card-header-text >
                     <md-list style="font-size:14px;">
-                        <md-list-item style="justify-content:center">
-                      <img :src="imgSrc" alt="" style="width:100%;border-radius:7px">
-                        </md-list-item>
                         <md-list-item style="margin-top:1.5em">
                             <md-field>
                                 <label :style="labelStyle">Tags generados:</label>
-                                <md-textarea v-model="tagsString" md-autogrow :style="inputStyle" disabled></md-textarea>
-                            </md-field>
-                        </md-list-item>
-                        <md-list-item>
-                            <md-field>
-                                <label :style="labelStyle">Localización:</label>
-                                <md-textarea v-model="location" md-autogrow :style="inputStyle" disabled></md-textarea>
-                            </md-field>
-                        </md-list-item>
-                        <md-list-item>
-                            <md-field>
-                                <label :style="labelStyle">Número de ayuda:</label>
-                                <md-textarea v-model="phone" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                <md-input v-model="tagsString" type="text" :style="inputStyle" readonly></md-input>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
                             <md-field>
                                 <label :style="labelStyle">Fecha de registro:</label>
-                                <md-textarea v-model="registerDate" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                <md-input v-model="registerDate"  :style="inputStyle" readonly></md-input>
                             </md-field>
                         </md-list-item>
                     </md-list>
                 </md-card-header-text>
               </md-card-header>
             </md-card>
-            <div style="text-align: center;">
-              <md-button v-on:click="uploadObject()" :style="buttonStyle">Registrar Objeto</md-button>
-            </div>
           </div>        
     </div>
         <!--Fin datos-->

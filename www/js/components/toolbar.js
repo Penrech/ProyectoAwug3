@@ -28,8 +28,12 @@ Vue.component('tool-bar', {
                 }
             }
             if (res == "SO"){
+                console.log(this.toolBarData.paginaSiguiente);
                 if (this.toolBarData.paginaSiguiente == "SO_step2"){
                     this.$root.$emit("searchTags");
+                }
+                else if (this.toolBarData.paginaSiguiente == "SO_step3"){
+                    this.$root.$emit("detailsFoundObject");
                 }
             }
             if (this.toolBarData.paginaSiguiente == "activarMenu"){
@@ -67,6 +71,12 @@ Vue.component('tool-bar', {
                 if (this.toolBarData.paginaAnterior == "SO_step1"){
                     var prevObj = {
                             nextStep: 1
+                        };
+                        this.$root.$emit("goToPreviousState", prevObj);   
+                }
+                else if (this.toolBarData.paginaAnterior == "SO_step2"){
+                    var prevObj = {
+                            nextStep: 2
                         };
                         this.$root.$emit("goToPreviousState", prevObj);   
                 }

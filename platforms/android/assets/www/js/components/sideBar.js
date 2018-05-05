@@ -27,8 +27,14 @@ Vue.component('side-bar', {
                     this.showNavigation = false;
                     this.$router.push('uploadObject');
                 },
-            goToFindObject: function(){},
-            goToAllLostObjects(){},
+            goToFindObject: function(){
+                    this.showNavigation = false;
+                    this.$router.push('searchobject');
+            },
+            goToAllLostObjects(){
+                    this.showNavigation = false;
+                    this.$router.push('allLostObjects');
+            },
             goToUserProfile: function(){
                     this.showNavigation = false;
                     this.$router.push('userProfile');

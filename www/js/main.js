@@ -59,6 +59,8 @@ function init(){
                 this.$root.$emit ("backToProfile");
             else if (toolBarData.paginaActual == "SO_step2")
                 this.$root.$emit ("backToSoStep1");
+            else if (toolBarData.paginaActual == "SO_step3")
+                this.$root.$emit ("backToSoStep2");
             else
                 window.history.back();
     

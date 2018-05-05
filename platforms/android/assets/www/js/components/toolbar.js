@@ -27,6 +27,15 @@ Vue.component('tool-bar', {
                         this.$root.$emit("saveTags","prueba");
                 }
             }
+            if (res == "SO"){
+                console.log(this.toolBarData.paginaSiguiente);
+                if (this.toolBarData.paginaSiguiente == "SO_step2"){
+                    this.$root.$emit("searchTags");
+                }
+                else if (this.toolBarData.paginaSiguiente == "SO_step3"){
+                    this.$root.$emit("detailsFoundObject");
+                }
+            }
             if (this.toolBarData.paginaSiguiente == "activarMenu"){
                 this.sideBarData.showNavigation = true;
                 
@@ -57,6 +66,23 @@ Vue.component('tool-bar', {
                         };
                         this.$root.$emit("goToPreviousState", prevObj);
                 }
+            }
+            else if (res == "SO"){
+                if (this.toolBarData.paginaAnterior == "SO_step1"){
+                    var prevObj = {
+                            nextStep: 1
+                        };
+                        this.$root.$emit("goToPreviousState", prevObj);   
+                }
+                else if (this.toolBarData.paginaAnterior == "SO_step2"){
+                    var prevObj = {
+                            nextStep: 2
+                        };
+                        this.$root.$emit("goToPreviousState", prevObj);   
+                }
+            }
+            else if (this.toolBarData.paginaAnterior == "userProfile"){
+                 this.$root.$emit("backToProfile");   
             }
             else{
                 if (this.toolBarData.paginaAnterior != "" && this.toolBarData.paginaAnterior != "inicio" ){

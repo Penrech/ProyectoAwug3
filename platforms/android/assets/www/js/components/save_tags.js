@@ -19,11 +19,13 @@ Vue.component('save-object', {
         },
         labelStyle:{
              fontSize:"16px",
-            fontWeight:"500"
+            fontWeight:"500",
+            marginBottom:"12px"
         },
         inputStyle:{
             fontSize:"14px",
-            fontWeight:"200"
+            fontWeight:"200",
+            marginTop:"12px"
         },
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
  }),
@@ -42,14 +44,15 @@ Vue.component('save-object', {
     },
     methods: {
                 toStringTags(){
-                    for(i=0; i < this.prevTags.length;i++ ){
+                   /* for(i=0; i < this.prevTags.length;i++ ){
                         if (i == (this.prevTags.length-1)){
                              this.tagsString += this.prevTags[i];
                         }
                         else{
                             this.tagsString += this.prevTags[i] + ", ";
                         }
-                    }
+                    }*/
+                    this.tagsString = this.prevTags.toString();
                 },
                 getCurrentDate(){
                     var myDate = new Date();
@@ -81,7 +84,7 @@ Vue.component('save-object', {
 
     <!--Inicio datos-->
         
-    <div  style="margin-left: 10.25%;margin-right: 10.25% ">
+    <div  style="margin-left: 5.25%;margin-right: 5.25% ">
         <div  style="width: 100%">
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
                 <md-card-header>
@@ -93,25 +96,25 @@ Vue.component('save-object', {
                         <md-list-item style="margin-top:1.5em">
                             <md-field>
                                 <label :style="labelStyle">Tags generados:</label>
-                                <md-input v-model="tagsString" type="text" :style="inputStyle" readonly></md-input>
+                                <md-textarea v-model="tagsString" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
                             <md-field>
                                 <label :style="labelStyle">Localización:</label>
-                                <md-input v-model="location"  :style="inputStyle" readonly></md-input>
+                                <md-textarea v-model="location" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
                             <md-field>
                                 <label :style="labelStyle">Número de ayuda:</label>
-                                <md-input v-model="phone"  :style="inputStyle" readonly></md-input>
+                                <md-textarea v-model="phone" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
                             <md-field>
                                 <label :style="labelStyle">Fecha de registro:</label>
-                                <md-input v-model="registerDate"  :style="inputStyle" readonly></md-input>
+                                <md-textarea v-model="registerDate" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                     </md-list>

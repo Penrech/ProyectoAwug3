@@ -14,7 +14,7 @@
 //        });
 
 //Vue.material.setCurrentTheme('about');
-var UserType = 2;
+var UserType = 1;
 var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",paginaSiguiente:"",iconoPaginaSiguiente:"",toolBarTitle:""};
 var sideBarData = {showNavigation: false, userType: UserType};
 
@@ -30,7 +30,9 @@ function init(){
             {path: '/registrationtype', name: 'registrationType',  component: registrationTypeTemplate},
             {path: '/homeuser', name: 'homeUser',  component: HomeUserTemplate},
             {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
-            {path: '/userprofile', name: 'userProfile',  component: userProfileTemplate}
+            {path: '/userprofile', name: 'userProfile',  component: userProfileTemplate},
+            {path: '/searchObject', name: 'searchObject',  component: searchObjectTemplate},
+            {path: '/allLostObjects', name: 'allLostObjects',  component: allLostObjectsTemplate}
             ];
 
         const router = new VueRouter({
@@ -55,6 +57,10 @@ function init(){
                 this.$root.$emit("backToUoStep2");
             else if (toolBarData.paginaActual == "edit_profile")
                 this.$root.$emit ("backToProfile");
+            else if (toolBarData.paginaActual == "SO_step2")
+                this.$root.$emit ("backToSoStep1");
+            else if (toolBarData.paginaActual == "SO_step3")
+                this.$root.$emit ("backToSoStep2");
             else
                 window.history.back();
     
