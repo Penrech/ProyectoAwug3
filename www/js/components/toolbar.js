@@ -81,6 +81,13 @@ Vue.component('tool-bar', {
                         this.$root.$emit("goToPreviousState", prevObj);   
                 }
             }
+            else if (res == "UL"){
+                if (this.toolBarData.paginaAnterior == "ULO_step1"){
+                 var prevObj = {
+                     nextStep: 1
+                 }
+                 this.$root.$emit("goToPreviousState", prevObj);  }
+            }
             else if (this.toolBarData.paginaAnterior == "userProfile"){
                  this.$root.$emit("backToProfile");   
             }

@@ -14,7 +14,7 @@
 //        });
 
 //Vue.material.setCurrentTheme('about');
-var UserType = 2;
+var UserType = 1;
 var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",paginaSiguiente:"",iconoPaginaSiguiente:"",toolBarTitle:""};
 var sideBarData = {showNavigation: false, userType: UserType};
 
@@ -61,6 +61,10 @@ function init(){
                 this.$root.$emit ("backToSoStep1");
             else if (toolBarData.paginaActual == "SO_step3")
                 this.$root.$emit ("backToSoStep2");
+            else if (toolBarData.paginaActual == "ULO_step2")
+                this.$root.$emit ("backToULOStep1");
+            else if (toolBarData.paginaAnterior == "homeUser")
+                this.$router.push("homeUser");
             else
                 window.history.back();
     

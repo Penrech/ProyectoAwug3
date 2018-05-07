@@ -51,7 +51,7 @@ const HomeUserTemplate = {props: [],
 
 <md-toolbar md-elevation="0" class="md-large md-primary md-transparent">
     <div class="md-toolbar-row" >
-        <md-avatar class="md-avatar-icon md-large md-elevation-4" style="
+        <md-avatar @click.native="goToProfile()" class="md-avatar-icon md-large md-elevation-4" style="
             background-color: var(--md-theme-default-icon-disabled, rgba(255,255,255,1));
             min-width: 80px;
             min-height: 80px;
@@ -61,7 +61,7 @@ const HomeUserTemplate = {props: [],
       </md-avatar>
         </div>
       <div class="md-toolbar-row" style="justify-content: center;min-height: 1em;padding-top: 0.75em;padding-bottom: 0.25em;">
-        <h5 class="md-title" style="font-weight: 200;font-size: 16px; margin-left: 0; color:white;"> {{username}}</h5>
+        <h5 v-on:click="goToProfile()" class="md-title" style="font-weight: 200;font-size: 16px; margin-left: 0; color:white;"> {{username}}</h5>
       </div>
     
         <div class="md-toolbar-row" style="justify-content: center; min-height: 1em;padding-bottom: 3.5em;">

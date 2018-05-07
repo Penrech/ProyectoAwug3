@@ -1,111 +1,71 @@
 const userLostObjectsTemplate = {props: [],
                           data: () => ({
-        objectsArray : []/* [
-            {id: "1", img: "img/bolso.png",state:"1",updates: 0, tags:["#bolso","#negro"]},
-            {id: "2", img: "img/bolso.png",state:"1",updates: 0,tags:["#bolso","#negro"]},
-            {id: "3", img: "null",state:"2",updates: 0,tags:["#cartera","#roja","#billabong"]},
-            {id: "4", img: "null",state:"2",updates:3,tags:["#movil","#gris","#htc","#pantalla","#rota"]}
-                       ]*/,
-       /* activeNavigation: false,*/
+        objectsArray : [],
         showNavigation:false,
-        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
-        loading:true,                      
-        heartStyle1:{
-            fontSize: "22px!important",
-            color:"#00c9fa",
-            marginTop: "0px",
-            marginRight: "auto",
-            marginBottom: "10px"
-            
+        objectSelect: [],
+          stepLibrary:{
+            step1: {
+                step: "1",
+                text:"Haz click para ver o editar los detalles de los objetos"
+            },
+            step2: {
+                step: 2,
+                text:""
+            }
         },
-         heartStyle2:{
-            fontSize: "22px!important",
-            color:"#00c9fa",
-            marginTop: "20px",
-            marginRight: "auto",
-            marginBottom: "10px"
-        }
-                              
+        actualStep:{
+            step: "",
+            text: ""
+        },
+        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
+                 
 
     }),
         created: function () {
             window.scrollTo(0,0);
-            this.getList();
             document.body.style = this.bodyStyle;
-            toolBarData.iconoPaginaAnterior = "keyboard_backspace";
-            toolBarData.iconoPaginaSiguiente = "menu";
-            toolBarData.paginaActual = "userLostObjects";
-            toolBarData.paginaSiguiente = "activarMenu";
-            toolBarData.paginaAnterior = "homeUser";
-            toolBarData.toolBarTitle = "Mis objetos perdidos";
+            this.actualStep = this.stepLibrary.step1;
+            this.$root.$on("goToPreviousState",this.UpdateState);
         },
+       destroyed: function(){
+           this.$root.$off("goToPreviousState",this.UpdateState);
+       },
+                                 
         methods: {
-            getList: function(){
-            this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/UserLostList.json').then(function (response){
-                this.objectsArray = response.data.userLostList;
-                this.loading = false;
-                //console.log(response.data.userLostList);
-            }); },
-              completeProfile () {
-                
-              },
-              goBackHome () {
-                  this.$router.push('homeUser');
-              }
-           
+            chargeArray(update){
+                console.log(update.objArray);
+                this.objectsArray = update.objArray;
+            },
+            changeStep(toStep){
+                    if (toStep == 1){
+                        this.actualStep = this.stepLibrary.step1;
+                        this.objectSelect = null;
+                        
+                    }
+                    else if (toStep == 2){
+                       this.actualStep = this.stepLibrary.step2;
+                    }
+                },
+                UpdateState(updateData){
+                    if (updateData.objArray){
+                        var tempArray = updateData.objArray;
+                        tempArray.indice = updateData.indice;
+                        this.objectSelect = tempArray;
+                    }
+                    this.changeStep(updateData.nextStep);
+                },
+                deleteObj(){
+                    this.objectsArray.splice(this.objectSelect.indice,1);
+                    this.changeStep(1);
+                }
+
         },
         template:`
 
 <div >
 
-      
-<!--inicio subnav-->
-  <md-toolbar md-elevation="0" class="md-transparent" >
-        <div class="md-toolbar-row" style="justify-content: center;">
-        <span class="md-title" style="font-weight: 600;font-size: 14px; margin-left: 0;color: white;  white-space: normal; text-align:center">Haz click para ver o editar los detalles de los objetos</span>
-      </div>
-    </md-toolbar>
-<!-- fin subnav-->
-        
-        
-        <!--Inicio de botones-->
-        
-    <ul class="md-layout md-gutter md-alignment-top-center" style="padding-left:0;margin-top:0">
-
-        <div v-if="loading" style="margin-top:25%;--md-theme-default-primary: white;">
-             <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
-        </div>
-
-        <li style="list-style:none;padding: 0 12px 24px 12px;"  v-for="item in objectsArray" :key="item.id">
-           <md-card  style="border-radius: 10px;width: 150px;">
-      <md-card-media-cover style="    overflow: hidden;" >
-        <md-card-media md-ratio="1:1">
-          <img v-if="item.state != 2" :src="item.img" alt="">
-        </md-card-media>
-
-        <md-card-area v-if="item.state == 2" style="top:0;bottom:unset;">
-            <md-card-header style="padding-top: 10px;">
-            
-        
-             <md-avatar v-if="item.updates > 0" class="md-avatar-icon" style="margin-right: 0;font-size: 14px; width: 30px; min-width: 20px;height: 30px;background-color: limegreen;
-    font-weight: 500;float:right;margin-bottom:-10px;">{{item.updates}}</md-avatar>
-
-            <img class="md-icon" v-if="item.updates > 0" :style="heartStyle1" src="icon/heartBreak.svg"></img>
-            <img class="md-icon" v-else :style="heartStyle2" src="icon/heartBreak.svg"></img>
-         
-            <span class="md-title" style="font-size:14px;font-weight:600;line-height: 1.4; text-align:center; color:#00c9fa;margin-bottom:10px">Objeto no encontrado</span>
-            <span class="md-subhead" style="font-size:12px;font-weight:200; line-height: 1.2; text-align:center;color:#d9d9d9" ><span v-for="tag in item.tags">{{tag}} </span></span>
-          </md-card-header>
-
-        </md-card-area>
-      </md-card-media-cover>
-    </md-card>
-        </li>
-        
-    
-        
-    </ul>
-        <!--Fin de botones-->
+<ULO-step1 v-on:PassArray="chargeArray($event)" v-on:recieveDataStep1="UpdateState($event)" v-if="actualStep.step == 1" :subNavText="actualStep.text" :objectsArray = "objectsArray"></ULO-step1>
+<ULO-step2 v-on:backToStep1="UpdateState($event)" v-on:borrarObjeto="deleteObj" v-if="actualStep.step == 2" :objSelect = "objectSelect"></ULO-step2>
         
         
         

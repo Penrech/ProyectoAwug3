@@ -74,13 +74,13 @@ Vue.component('found-object-details', {
                     this.tagsString = this.objSelect.tags.toString();
                 },
            
-            getList: function(){
+           /* getList: function(){
             this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/PruebasBuscarPorTags.json').then(function (response){
                 var tempObjectsArray;
                 tempObjectsArray = response.data.searchedObjects;
                 this.compareWithTags(tempObjectsArray);
                 
-            }); },
+            }); },*/
 
                 changeData(){
                      var emitObj = {
