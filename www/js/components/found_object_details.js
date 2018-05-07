@@ -176,7 +176,7 @@ Vue.component('found-object-details', {
 
 
             <div style="text-align: center;">
-              <md-button  v-on:click="guardarObjeto" :style="buttonStyle">Guardar objeto</md-button>
+              <md-button  v-on:click="guardarObjeto" :style="buttonStyle">Guardar busqueda</md-button>
             </div>
           </div>        
     </div>

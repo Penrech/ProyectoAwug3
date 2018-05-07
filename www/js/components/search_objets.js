@@ -49,30 +49,7 @@ Vue.component('search-objects', {
 
     },
         methods: {
-            /*
-             
-                deleteTag(index,value,state){
-                    if(state == 0){
-                        this.toBeDeleted.index = index;
-                        this.toBeDeleted.name = value;
-                        this.dialogText ="Vas a borrar el tag <strong>"+this.toBeDeleted.name+"</strong>, ¿Continuar?"
-                        this.activeDeleteDialog = true;
-                        
-                    }
-                    else if(state == 1){
-                        this.tagsArray.splice(index, 1);
-                        this.dialogText = null;
-                        this.toBeDeleted.index = null;
-                        this.toBeDeleted.name = null;
-                    }
-                    else if(state == 2){
-                        this.dialogText = null;
-                        this.toBeDeleted.index = null;
-                        this.toBeDeleted.name = null;
-                    }
-                    
-                },
-            */
+
             selectObject(clave,indice){
                 console.log("Entro aqui");
                 clave = "found-object-"+clave;
