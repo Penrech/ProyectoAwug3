@@ -94,7 +94,7 @@ const userLostObjectsTemplate = {props: [],
             <img class="md-icon" v-else :style="heartStyle2" src="icon/heartBreak.svg"></img>
          
             <span class="md-title" style="font-size:14px;font-weight:600;line-height: 1.4; text-align:center; color:#00c9fa;margin-bottom:10px">Objeto no encontrado</span>
-            <span class="md-subhead" style="font-size:12px;font-weight:200; line-height: 1.2; text-align:center;color:#d9d9d9" ><span v-for="tag in item.tags">{{tag}} </span></span>
+            <span class="md-subhead" style="font-size:12px;font-weight:200; line-height: 1.2; text-align:center;color:#d9d9d9" ><span v-for="tag in item.tags">{{tag}}, </span></span>
           </md-card-header>
 
         </md-card-area>

@@ -14,7 +14,7 @@
 //        });
 
 //Vue.material.setCurrentTheme('about');
-var UserType = 1;
+var UserType = 2;
 var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",paginaSiguiente:"",iconoPaginaSiguiente:"",toolBarTitle:""};
 var sideBarData = {showNavigation: false, userType: UserType};
 
