@@ -1,6 +1,6 @@
 const HomeUserTemplate = {props: [], 
                           data: () => ({
-        username: "John Doe",
+        username: "",
         activeNavigation: false,
         showNavigation:false,
         UserType,
@@ -15,9 +15,14 @@ const HomeUserTemplate = {props: [],
             toolBarData.paginaSiguiente = "activarMenu";
             toolBarData.paginaAnterior = "";
             toolBarData.toolBarTitle = "";
+            var userNameRef = userRef.child('nomAp');
+            userNameRef.on("value",this.chargeData);
 
         },
         methods: {
+            chargeData(snapshot){
+                this.username = snapshot.val();
+            },
             toggleSideBar(){
                 console.log(this.$refs.sidebar);
             },

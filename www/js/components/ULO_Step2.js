@@ -61,6 +61,7 @@ Vue.component('ULO-step2', {
         toolBarData.paginaSiguiente = "";
         toolBarData.paginaAnterior = "ULO_step1";
         toolBarData.toolBarTitle = "Detalles del objeto";
+        this.getFormatDate();
         this.$root.$on("backToULOStep1",this.changeData);
          console.log(this.objSelect);
          //this.toStringTags();
@@ -69,11 +70,14 @@ Vue.component('ULO-step2', {
          this.$root.$off("backToULOStep1",this.changeData);
     },
         methods: {
-             /*toStringTags(){
-                 console.log(this.objSelect);
-                    this.tagsString = this.objSelect.tags.toString();
-                },*/
-           
+             getFormatDate(){
+                    var myDate = new Date(this.objSelect.registro);
+                    var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
+                    var date = ('0' + myDate.getDate()).slice(-2);
+                    var year = myDate.getFullYear();
+                    this.registerDate = date + '/' + month + '/' + year;
+                },
+  
                 changeData(){
                      var emitObj = {
                        nextStep: 1
@@ -108,7 +112,7 @@ Vue.component('ULO-step2', {
                 <md-card-header>
                  <md-card-header-text >
                     <md-list id="details_obj_list" style="font-size:14px;">
-                       <md-list-item v-if="!objSelect.reclamado" style="justify-content:center;">
+                       <md-list-item v-if="objSelect.img" style="justify-content:center;">
                       <img :src="objSelect.img" alt="" style="width:100%;border-radius:7px">
                         </md-list-item>
                         <md-list-item style="margin-top:1.5em">
@@ -117,13 +121,13 @@ Vue.component('ULO-step2', {
                                  <md-textarea v-model="objSelect.tags" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
-                        <md-list-item v-if="!objSelect.reclamado">
+                        <md-list-item v-if="objSelect.img">
                             <md-field>
                                 <label :style="labelStyle">Localización:</label>
                                 <md-textarea v-model="objSelect.location" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
-                        <md-list-item v-if="!objSelect.reclamado">
+                        <md-list-item v-if="objSelect.img">
                             <md-field>
                                 <label :style="labelStyle">Número de ayuda:</label>
                                 <md-textarea v-model="objSelect.phone" md-autogrow :style="inputStyle" disabled></md-textarea>
@@ -131,9 +135,9 @@ Vue.component('ULO-step2', {
                         </md-list-item>
                         <md-list-item>
                             <md-field>
-                                <label v-if="!objSelect.reclamado" :style="labelStyle">Fecha de registro:</label>
+                                <label v-if="objSelect.img" :style="labelStyle">Fecha de registro:</label>
                                 <label v-else :style="labelStyle">Fecha de busqueda:</label>
-                                <md-textarea v-model="objSelect.registro" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                <md-textarea v-model="this.registerDate" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item v-if="objSelect.updates > 0">

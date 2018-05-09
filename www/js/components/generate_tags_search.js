@@ -129,8 +129,11 @@ Vue.component('generate-tags-search', {
                 },
                passToNextStep(){
                 if(this.tagsArray.length > 2){
+                   var sorted = this.tagsArray.map(function(value) {
+                        return value.toLowerCase();
+                    }).sort();
                    var emitObj = {
-                       tags : this.tagsArray,
+                       tags : sorted,
                        nextStep: 2
                    }
                 this.$emit('reciveDataStep1',emitObj);

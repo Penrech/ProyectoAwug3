@@ -2,6 +2,8 @@ Vue.component('search-objects', {
         props: ["prevTags"],
         data: () => ({
         objectsArray : [],
+        qLen: 0,
+        objIDTemp:[],
         objectSelect: {
             id: null,
             index:null
@@ -34,14 +36,16 @@ Vue.component('search-objects', {
     }),
         created: function(){
          window.scrollTo(0,0);
-         this.getList();
+         //this.getList();
          document.body.style= this.bodyStyle;
-         this.getCurrentDate();
+         this.compareTags();
+         //this.getCurrentDate();
          /*toolBarData.paginaActual ="SO_step2";
          toolBarData.paginaSiguiente ="";
          toolBarData.paginaAnterior = "SO_step1";*/
          this.$root.$on("detailsFoundObject",this.DetallesDeObjeto);
          this.$root.$on("backToSoStep1",this.changeData);
+            
     },
     destroyed: function(){
          this.$root.$off("detailsFoundObject",this.DetallesDeObjeto);
@@ -53,6 +57,7 @@ Vue.component('search-objects', {
             selectObject(clave,indice){
                 console.log("Entro aqui");
                 clave = "found-object-"+clave;
+                console.log(clave);
                 if (this.objectSelect.id != null){
                     if (this.objectSelect != clave){
                         document.getElementById(this.objectSelect.id).style= this.cardStyle1;
@@ -69,56 +74,62 @@ Vue.component('search-objects', {
                 }
             
             },
-            getList: function(){
-            this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/PruebasBuscarPorTags.json').then(function (response){
-                var tempObjectsArray;
-                tempObjectsArray = response.data.searchedObjects;
-                this.compareWithTags(tempObjectsArray);
-                
-            }); },
-            /*    if (!this.tagsArray.includes(this.toBeAdded) && this.toBeAdded.length >= 2){
-                            this.tagsArray.push(this.toBeAdded);*/
-             compareWithTags(tempArray){
-                 var tempArrayCaseInsensitive = tempArray;
-                 for (i = 0; i < tempArray.length;i++){
-                      var cont = 0;
-                      for(j = 0; j < this.prevTags.length;j++){
-                           for(k=0; k< tempArrayCaseInsensitive[i].tags.length;k++){
-                             /* if(tempArray[i].tags.includes(this.prevTags[j])){
-                                  cont++;
-                              }*/
-                               if (tempArrayCaseInsensitive[i].tags[k].toUpperCase() == this.prevTags[j].toUpperCase()){
-                                   cont++;
-                               }
-                           }
-                      }
-                      if (cont >= 2){
-                          var array = tempArray[i];
-                          array.coincidencias = cont;
-                          if (this.objectsArray.length > 0){
-                              if (this.objectsArray[this.objectsArray.length-1].coincidencias > cont){
-                                  this.objectsArray.push(array);
-                              }
-                              else{
-                                  this.objectsArray.unshift(array);
-                              }
-                          }
-                          else{
-                              this.objectsArray.push(array);
-                          }
-                          
-                      }
-                 }
-                 console.log(this.objectsArray);
-                 this.loading = false;
-             },
-             getCurrentDate(){
-                    var myDate = new Date();
-                    var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
-                    var date = ('0' + myDate.getDate()).slice(-2);
-                    var year = myDate.getFullYear();
-                    this.registerDate = date + '/' + month + '/' + year;
-                },
+            
+            compareTags(){
+                var dbPromises=[];
+                for (var i = 0; i < this.prevTags.length; i++) {
+                  dbPromises.push(
+                      ref.ref('/tags-obj/' + this.prevTags[i]).once('value')
+                  );
+                }
+                Promise.all(dbPromises).then(this.getDataRaw);
+            },
+            
+            getDataRaw(querySnapshot){
+                console.log(dbPromises);
+               this.qLen = querySnapshot.length;
+               querySnapshot.forEach(this.getDataObjRaw);
+            },
+            
+            getDataObjRaw(doc){
+                console.log(doc.val());
+                let _this = this;
+            if (doc.val() != null){
+              if(this.objIDTemp.indexOf(doc.val()) == -1)
+                  this.objIDTemp = this.objIDTemp.concat(doc.val().filter(function(item){
+                      return _this.objIDTemp.indexOf(item)<0;
+                  }));
+                }
+              this.qLen--;
+              if (this.qLen == 0){
+                    if (this.objIDTemp.length == 0)
+                        this.loading = false;
+                    var dbPromises2 = [];
+                    for (var i = 0; i < this.objIDTemp.length; i++) {
+                          dbPromises2.push(
+                              ref.ref('/objetos/' + this.objIDTemp[i]).once('value')
+                            )
+                    }
+
+                    Promise.all(dbPromises2)
+                  .then(this.getDataObjSpecific);
+              }
+             
+
+            },
+            getDataObjSpecific(newQuery){
+                        let _this = this;
+                        var len = newQuery.length;
+                        newQuery.forEach(function(doc2){
+                            _this.objectsArray.push(doc2.val());
+                            len--;
+                            if (len == 0 )
+                                console.log(_this.objectsArray);
+                                _this.loading = false;
+
+                        })
+            },
+            
                 changeData(){
                      var emitObj = {
                        nextStep: 1
@@ -178,7 +189,7 @@ Vue.component('search-objects', {
             </li>
 
             <li v-if="!loading" style="list-style:none;padding: 0 12px 24px 12px;"  v-for="(item,index) in objectsArray" :key="item.id" >
-        <md-card :id="'found-object-'+item.id" @click.native="selectObject(item.id,index)" :style="cardStyle1">
+        <md-card :id="'found-object-'+item.name" @click.native="selectObject(item.name,index)" :style="cardStyle1">
           <md-card-media-cover style="    overflow: hidden;" >
             <md-card-media md-ratio="1:1">
               <img :src="item.img" alt="">

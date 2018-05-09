@@ -3,6 +3,7 @@ Vue.component('found-object-details', {
         data: () => ({
         uploading: false,
         tagsString: null,
+        registerDate :null,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
         loading:true,                      
         heartStyle1:{
@@ -58,6 +59,7 @@ Vue.component('found-object-details', {
         created: function(){
          window.scrollTo(0,0);
          document.body.style= this.bodyStyle;
+         this.getFormatDate();
          this.$root.$on("backToSoStep2",this.changeData);
          console.log(this.objSelect);
          this.toStringTags();
@@ -81,7 +83,18 @@ Vue.component('found-object-details', {
                 this.compareWithTags(tempObjectsArray);
                 
             }); },*/
-
+                getFormatDate(){
+                    if (this.objSelect){
+                    var myDate = new Date(this.objSelect.registro);
+                    var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
+                    var date = ('0' + myDate.getDate()).slice(-2);
+                    var year = myDate.getFullYear();
+                    this.registerDate = date + '/' + month + '/' + year;
+                    }
+                    else{
+                    this.registerDate = new Date().getTime();
+                    }
+                },
                 changeData(){
                      var emitObj = {
                        nextStep: 2
@@ -134,7 +147,7 @@ Vue.component('found-object-details', {
                         <md-list-item>
                             <md-field>
                                 <label :style="labelStyle">Fecha de registro:</label>
-                                <md-textarea v-model="objSelect.registro" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                <md-textarea v-model="registerDate" md-autogrow :style="inputStyle" disabled></md-textarea>
 
                             </md-field>
                         </md-list-item>

@@ -1,6 +1,6 @@
 const userProfileTemplate = {props: [], 
                           data: () => ({
-        userProfileData:{email: "JohnDoe@prueba.es",password: "prueba",name: "John Doe", phone: "666777888",location:"centro de atención"},
+        userProfileData:"",
         formData: null,
         erroresForm:{
             email:{
@@ -67,6 +67,7 @@ const userProfileTemplate = {props: [],
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
         created: function(){
+            this.chargeData();
             document.body.style = this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "menu";
@@ -75,11 +76,22 @@ const userProfileTemplate = {props: [],
             toolBarData.paginaAnterior ="homeUser"
             toolBarData.toolBarTitle = "Mi perfil";
             this.$root.$on("backToProfile",this.backToProfileWithoutSave);
+            userRef.on("value",this.changeData);
+            
         },
         destroyed: function(){
             this.$root.$off("backToProfile",this.backToProfileWithoutSave);
+            userRef.off();
         },
         methods: {
+            chargeData(){
+                this.userProfileData = user;
+            },
+            changeData(snapshot){
+                console.log("entro a cambiar valor");
+                this.userProfileData = snapshot.val();
+                user = this.userProfileData;
+            },
             checkForm(){
 
                  this.erroresForm = JSON.parse(JSON.stringify(this.erroresFormInitial));
@@ -152,10 +164,10 @@ const userProfileTemplate = {props: [],
                     "tooShortName": false,
                     "NoSurname":false
                 }
-                var words = this.formData.name.trim().split(/\s+/);
+                var words = this.formData.nomAp.trim().split(/\s+/);
                 console.log(words.length);
-                if (this.formData.name != ""){
-                    if (this.formData.name.length < 3){
+                if (this.formData.nomAp != ""){
+                    if (this.formData.nomAp.length < 3){
                         errors.tooShortName = true;
                         return errors;
                     }
@@ -175,8 +187,10 @@ const userProfileTemplate = {props: [],
                 console.log(errors);
             },
             phoneValidation(){
+                console.log(this.formData.phone);
+                console.log(this.formData.length);
                 if (this.formData.phone != ""){
-                    if (this.formData.phone.length != 9){
+                    if (this.formData.phone.toString().length != 9){
                         return false;
                     }
                     else{
@@ -200,7 +214,7 @@ const userProfileTemplate = {props: [],
                 var newPassRep = document.getElementById("profile_new_pass_repeat");
                 if(newPass != null || newPassRep != null){
                     if (newPass.value != "" || newPassRep.value != ""){
-                            if (actualPassInput.value != this.userProfileData.password){
+                            if (actualPassInput.value != this.userProfileData.pass){
                                 errors.wrongPass = true;
                                 return errors;
                             }
@@ -213,7 +227,7 @@ const userProfileTemplate = {props: [],
                                 return errors;
                             }
                             else{
-                                this.formData.password = newPass.value;
+                                this.formData.pass = newPass.value;
                                 errors.NoError = true;
                                 return errors; 
                             }
@@ -233,15 +247,18 @@ const userProfileTemplate = {props: [],
                 toolBarData.paginaAnterior ="userProfile"
                 this.editionMode = true;
                 this.formData = JSON.parse(JSON.stringify(this.userProfileData));
-                console.log(this.FormData)
+                console.log(this.FormData);
+                console.log("entro aqui en go to edit mode");
             },
             submitForm(){
-                console.log(this.formData.password);
-                this.userProfileData = JSON.parse(JSON.stringify(this.formData));
+                console.log(this.formData.pass);
+                firebase.database().ref('usuarios/user1').set(this.formData);
                 this.passEditMode = false;
                 this.editionMode = false; 
                 toolBarData.paginaActual= toolBarData.paginaAnterior;
                 toolBarData.paginaAnterior = "homeUser";
+                console.log("envio el formulario");
+                console.log(toolBarData.paginaActual);
 
             },
             backToProfileWithoutSave(){
@@ -291,7 +308,7 @@ const userProfileTemplate = {props: [],
                             <md-icon>email</md-icon>
                         </md-list-item>
                         <md-list-item>
-                            <span class="md-list-item-text" style="font-size:16px;font-weight:500">{{userProfileData.name}}</span>
+                            <span class="md-list-item-text" style="font-size:16px;font-weight:500">{{userProfileData.nomAp}}</span>
                             <md-icon>person</md-icon>
                         </md-list-item>
                         <md-list-item>
@@ -320,7 +337,7 @@ const userProfileTemplate = {props: [],
                         <md-list-item>
                             <md-field v-bind:class="{ 'md-invalid': erroresForm.nombre.errorNombre }">
                                 <label>Nombre y Apellidos</label>
-                                <md-input id="profile_name"  v-model="formData.name" ></md-input>
+                                <md-input id="profile_name"  v-model="formData.nomAp" ></md-input>
                                 <md-icon>person</md-icon>
                                 <span v-if="erroresForm.nombre.nombreNoValido" class="md-error">Nombre demasiado corto</span>
                                 <span v-else-if="erroresForm.nombre.faltaApellido" class="md-error">Es necesario también un apellido</span>

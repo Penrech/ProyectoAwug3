@@ -2,8 +2,10 @@ const allLostObjectsTemplate = {props: [],
                           data: () => ({
         objectsArray : [],
         showNavigation:false,
+        objectsRef: null,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
         loading:true,
+        qLen: 0,
         currentDateString: null,
         currentDateObject: null,
         heartStyle1:{
@@ -21,15 +23,15 @@ const allLostObjectsTemplate = {props: [],
             marginRight: "auto",
             marginBottom: "10px"
         },
-        ordenSeleccion: 'fechaRegistro',
+        ordenSeleccion: 'registro',
         visualizar: 'todos'
                               
 
     }),
         created: function () {
             window.scrollTo(0,0);
-            this.getList();
-            this.getCurrentDate();
+            /*this.getList();*/
+            this.orderData();
             document.body.style = this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "menu";
@@ -37,13 +39,51 @@ const allLostObjectsTemplate = {props: [],
             toolBarData.paginaSiguiente = "activarMenu";
             toolBarData.paginaAnterior = "homeUser";
             toolBarData.toolBarTitle = "Lista de objetos perdidos";
+            
+        
 
         },
         deleted: function(){
 
         },
         methods: {
-            getList: function(){
+            
+            chargeData(querySnapshot){
+                this.objectsArray=[];
+                this.qLen = querySnapshot.length;
+                querySnapshot.forEach(this.chargeDataSpecific);
+                this.loading = false;
+            },
+            chargeDataSpecific(doc){
+                this.objectsArray.unshift(doc.val());
+                if (this.ordenSeleccion == "reclamado"){
+                this.objectsArray.sort(function(a, b) {
+                        a = a.reclamado;
+                        b = b.reclamado;
+                        return a>b ? -1 : a<b ? 1 : 0;
+                    }); }
+                this.qLen--;
+                if(this.qLen == 0){
+                     this.loading = true;
+                }
+            },
+            orderData(){
+            var restDate = new Date(); 
+            if (this.visualizar == "todos")
+                restDate = new Date(0);
+            else if(this.visualizar == "semana")
+                restDate.setDate(restDate.getDate()-7);
+            else if(this.visualizar == "mes")
+                restDate.setDate(restDate.getDate()-30);
+            else if(this.visualizar == "year")
+                restDate.setDate(restDate.getDate() -365);
+            restDate = restDate.getTime();
+            console.log(restDate);
+             this.objectsRef = firebase.database().ref('/objetos').orderByChild("registro").startAt(restDate).once("value");
+             this.objectsRef.then(this.chargeData);
+                 
+            },
+            /*getList: function(){
             this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/PruebasBuscarPorTags.json').then(function (response){
                 this.objectsArray = response.data.searchedObjects;
                 this.changeOrder(this.ordenSeleccion);
@@ -106,24 +146,16 @@ const allLostObjectsTemplate = {props: [],
               },
               goBackHome () {
                   this.$router.push('homeUser');
-              },
-              getCurrentDate(){
-                    var myDate = new Date();
-                    var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
-                    var date = ('0' + myDate.getDate()).slice(-2);
-                    var year = myDate.getFullYear();
-                    this.currentDate = myDate;
-                    this.currentDateString = date + '/' + month + '/' + year;
-                }
+              },*/
+
            
         },
         watch:{
             ordenSeleccion: function(val){
-                    this.getList();
+                    this.orderData();
             },
             visualizar: function(val){
-                 console.log("Detecto cambio, de valor a : "+val);
-                 this.getList();
+                 this.orderData();
             }
         },
         template:`
@@ -146,7 +178,7 @@ const allLostObjectsTemplate = {props: [],
         <md-field id="selectALO_ordenar" style="width:45%;margin-left:7px">
           <label style="font-weight: 600;font-size: 14px;color: white">Orden de:</label>
           <md-select v-model="ordenSeleccion" name="orden" id="ordenSelect" style="font-weight: 300;color:white;margin-top:15px">
-            <md-option value="fechaRegistro" style="color:white">Fecha de registro</md-option>
+            <md-option value="registro" style="color:white">Fecha de registro</md-option>
             <md-option value="reclamado">Objetos reclamados</md-option>
           </md-select>
         </md-field>
@@ -166,7 +198,7 @@ const allLostObjectsTemplate = {props: [],
              <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
         </div>
 
-        <li style="list-style:none;padding: 0 12px 24px 12px;"  v-for="item in objectsArray" :key="item.id">
+        <li v-else style="list-style:none;padding: 0 12px 24px 12px;"  v-for="item in objectsArray" :key="item.id">
            <md-card  style="border-radius: 10px;width: 150px;">
       <md-card-media-cover style="    overflow: hidden;" >
         <md-card-media md-ratio="1:1">
