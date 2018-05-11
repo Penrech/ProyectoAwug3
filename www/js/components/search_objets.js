@@ -161,7 +161,7 @@ Vue.component('search-objects', {
 <div >        
         <!--Inicio de botones-->
         
-    <ul class="md-layout md-gutter md-alignment-top-center" style="padding-left:0;margin-top:0">
+    <ul class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:0">
 
         <div v-if="loading" style="margin-top:25%;--md-theme-default-primary: white;">
              <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>

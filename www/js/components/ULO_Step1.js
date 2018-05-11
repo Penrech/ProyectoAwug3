@@ -9,6 +9,7 @@ Vue.component('ULO-step1', {props: ["subNavText"],
         objectsId:[],
         searchId:[],
         noData: false,
+        qLen:0,
         lastQueryLen: 0,
         loading:true,
         objectSelect: {
@@ -35,8 +36,8 @@ Vue.component('ULO-step1', {props: ["subNavText"],
     }),
         created: function () {
             window.scrollTo(0,0);
-            this.userObjRef=  firebase.database().ref('/usuarios/user1/objetos').once("value");
-            this.userSearchRef=  firebase.database().ref('/usuarios/user1/busquedas').once("value");
+            /*this.userObjRef=  firebase.database().ref('/usuarios/user1/objetos').once("value");
+            this.userSearchRef=  firebase.database().ref('/usuarios/user1/busquedas').once("value");*/
             toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "menu";
             toolBarData.paginaActual = "ULO_step1";
@@ -45,26 +46,72 @@ Vue.component('ULO-step1', {props: ["subNavText"],
             toolBarData.toolBarTitle = "Mis objetos perdidos";
             this.initialQuery.push(this.userObjRef);
             this.initialQuery.push(this.userSearchRef);
+            var data = new getUserLosts("user1");
+            let _this = this;
+            data.then(function(result){
+                if (result == null)
+                    _this.noData = true;
+                else
+                    _this.objectsArrayTemp = result;
+                _this.loading = false;
+            })
 
-            console.log(this.initialQuery);
+            /*console.log(this.initialQuery);
             Promise.all(this.initialQuery)
-            .then(this.getInitialDataRaw); 
+            .then(this.getInitialDataRaw); */
             
         
         },
         methods: {
+            
+            /*getData(){
+                //array busquedas
+                var Queries=[];
+                //busquedas
+                var sQuery_promises;
+                var sQuery_result;
+                var sQuery = firebase.database().ref("busquedas").orderByChild("idUsuario").equalTo("user1")
+                .then(function sQfun(snapshot){
+                    if (snapshot.val() == null)
+                        sQuery_result= null;
+                    else{
+                        sQuery_result = snapshot.val();
+                        snapshot.forEach(function(snapshot){
+                            //cada busqueda
+                            sQuery_result.push(
+                                firebase.database().("tags-busqueda").orderByChild("idBusqueda").equalTo(snapshot.val().idBusqueda)
+                            )
+                        })
+                    }
+                })
+                //objetos
+                var oQuery = firebase.database().ref("obj-usuario").orderByChild("idUsuario").equalTo("user1")
+                .then(oQfun);
+                var oQuery_result = function oQfun(snapshot){
+                    
+                }
+                
+                Promise.all(sQuery_promises)
+                    .then(function(data){
+                     data.forEach(function(data){
+                         console.log(data);
+                     })
+                })
+                
+                
+            }
            
-           getInitialDataRaw(querySnapshot) {
+          /* getInitialDataRaw(querySnapshot) {
+            this.qLen = querySnapshot.length;
             querySnapshot.forEach(this.getInitialDataSpecific); 
            },
             
             getInitialDataSpecific(doc){
-                var empty;
+                
                 if (doc.key == "busquedas"){
                     if (doc.val()){
                     empty = false;
                     this.searchId = doc.val();
-                    console.log(doc.val());
                     for (var i = 0; i < this.searchId.length; i++) {
                     this.nextQuerySearch.push(
                     firebase.database().ref('/busquedas/' + this.searchId[i]).once('value')
@@ -73,11 +120,10 @@ Vue.component('ULO-step1', {props: ["subNavText"],
                         .then(this.getNextDataRaw);
             
                 }
-                    else
-                        empty = true;
                 }
                 else if(doc.key == "objetos"){
                     if (doc.val()){
+                    console.log("entro en objetos");
                     empty = false;
                     this.objectsId = doc.val();
                     for (var i = 0; i < this.objectsId.length; i++) {
@@ -87,17 +133,14 @@ Vue.component('ULO-step1', {props: ["subNavText"],
                      Promise.all(this.nextQueryObj)
                     .then(this.getNextDataRaw);
                 } 
-                    else
-                        empty = true;
                 }
-                if (empty == true){
-                    console.log("no hay datos");
-                    if (!this.noData){
-                        console.log("Entro una vez");
-                        this.loading = false;
-                        this.noData = !this.noData;
-                    }
+                this.qLen--;
+                if (this.qLen == 0){
+                    if(this.nextQueryObj.length ==0 && this.nextQuerySearch.length==0)
+                        this.noData = true;
+                    this.loading = false;
                 }
+           
             },
             
             getNextDataRaw(querySnapshot) {
@@ -120,7 +163,7 @@ Vue.component('ULO-step1', {props: ["subNavText"],
                     };
                     this.$emit("PassArray",emitObj);
                 }
-            },
+            },*/
 
               selectObject(clave,indice){
                 console.log("Entro aqui");

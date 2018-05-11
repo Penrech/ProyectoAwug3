@@ -62,6 +62,7 @@ Vue.component('ULO-step2', {
         toolBarData.paginaAnterior = "ULO_step1";
         toolBarData.toolBarTitle = "Detalles del objeto";
         this.getFormatDate();
+        this.showTags();
         this.$root.$on("backToULOStep1",this.changeData);
          console.log(this.objSelect);
          //this.toStringTags();
@@ -70,6 +71,20 @@ Vue.component('ULO-step2', {
          this.$root.$off("backToULOStep1",this.changeData);
     },
         methods: {
+            showTags(){
+                 if (!this.objSelect.tags){
+                     let _this = this;
+                     var objTags = getObjectTags(this.objSelect.id);
+                        objTags.then(function(result){
+                            _this.tagsString = result.toString();
+                            _this.loading = false;
+                        })
+                 }
+                else{
+                    this.tagsString = this.objSelect.tags.toString();
+                    this.loading = false;
+                }
+                },
              getFormatDate(){
                     var myDate = new Date(this.objSelect.registro);
                     var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
@@ -97,6 +112,11 @@ Vue.component('ULO-step2', {
                 },
            
         },
+        watch:{
+            loading : function(val){
+                console.log("valor de loading",val);
+            }
+        },
         template:`
 
 
@@ -107,7 +127,15 @@ Vue.component('ULO-step2', {
         <!--Inicio datos-->
         
     <div  style="margin-top:2em;margin-left: 5.25%;margin-right: 5.25% ">
-        <div  style="width: 100%">
+
+    <div v-if="loading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:0">
+
+        <div  style="margin-top:50%;--md-theme-default-primary: white;">
+             <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+        </div>
+    </div>
+
+        <div v-if="!loading" style="width: 100%">
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
                 <md-card-header>
                  <md-card-header-text >
@@ -118,7 +146,7 @@ Vue.component('ULO-step2', {
                         <md-list-item style="margin-top:1.5em">
                             <md-field>
                                 <label :style="labelStyle">Tags :</label>
-                                 <md-textarea v-model="objSelect.tags" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                 <md-textarea v-model="tagsString" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item v-if="objSelect.img">
@@ -151,7 +179,7 @@ Vue.component('ULO-step2', {
               </md-card-header>
             </md-card>
 
-            <div class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center; margin-top:1.5em;">
+            <div v-if="!loading" class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center; margin-top:1.5em;">
             <md-list style="background: transparent;margin-bottom:1.5em">
                 <md-list-item  v-if="objSelect.updates > 0" >
                   <md-button :style="buttonStyle">Volver a buscar</md-button>

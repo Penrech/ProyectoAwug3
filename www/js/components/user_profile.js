@@ -67,7 +67,6 @@ const userProfileTemplate = {props: [],
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
         created: function(){
-            this.chargeData();
             document.body.style = this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "menu";
@@ -76,7 +75,12 @@ const userProfileTemplate = {props: [],
             toolBarData.paginaAnterior ="homeUser"
             toolBarData.toolBarTitle = "Mi perfil";
             this.$root.$on("backToProfile",this.backToProfileWithoutSave);
-            userRef.on("value",this.changeData);
+            this.userProfileData = user;
+            let _this = this;
+            firebase.database().ref("usuarios/user1").on("value",function(result){
+                _this.userProfileData = result.val();
+                user = _this.userProfileData;
+            });
             
         },
         destroyed: function(){
@@ -84,14 +88,6 @@ const userProfileTemplate = {props: [],
             userRef.off();
         },
         methods: {
-            chargeData(){
-                this.userProfileData = user;
-            },
-            changeData(snapshot){
-                console.log("entro a cambiar valor");
-                this.userProfileData = snapshot.val();
-                user = this.userProfileData;
-            },
             checkForm(){
 
                  this.erroresForm = JSON.parse(JSON.stringify(this.erroresFormInitial));

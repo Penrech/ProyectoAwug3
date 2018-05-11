@@ -4,8 +4,7 @@ Vue.component('found-object-details', {
         uploading: false,
         tagsString: null,
         registerDate :null,
-        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
-        loading:true,                      
+        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",                     
         heartStyle1:{
             fontSize: "22px!important",
             color:"#00c9fa",
@@ -59,9 +58,8 @@ Vue.component('found-object-details', {
         created: function(){
          window.scrollTo(0,0);
          document.body.style= this.bodyStyle;
-         this.getFormatDate();
          this.$root.$on("backToSoStep2",this.changeData);
-         console.log(this.objSelect);
+         this.getFormatDate();
          this.toStringTags();
     },
     destroyed: function(){
@@ -72,8 +70,13 @@ Vue.component('found-object-details', {
              toStringTags(){
                  if(this.objSelect == null)
                     this.tagsString = this.prevTags.toString();
-                 else
-                    this.tagsString = this.objSelect.tags.toString();
+                 else{
+                     let _this = this;
+                     var objTags = getObjectTags(this.objSelect.id);
+                        objTags.then(function(result){
+                            _this.tagsString = result.toString();
+                        })
+                 }   
                 },
            
            /* getList: function(){
@@ -102,7 +105,39 @@ Vue.component('found-object-details', {
                 this.$emit('backToStep2',emitObj);
                 },
                guardarObjeto(){
+                   this.uploading = true;
+                    if(this.objSelect){
+                       let _this = this;
+                       firebase.database().ref("usuarios/user1/objetos").once("value").then(function(snapshot){
+                           var objTempArray=[];
+                           if (snapshot.val() != null)
+                               objTempArray = snapshot.val();
 
+                             if(objTempArray.indexOf(_this.objSelect.name) == -1)
+                              objTempArray = objTempArray.concat(doc.val().filter(function(item){
+                                  return objTempArray.indexOf(item)<0;
+                              }));
+                            
+                               firebase.database().ref("usuarios/user1/objetos").set(objTempArray).then(function(snapshot2){
+                                   _this.changeData();
+                                   _this.uploading=false;
+                               })
+                           
+                       }) 
+                    }
+                        
+                   else{
+                       firebase.database().ref("busquedas").orderByKey().limitToLast(1).once("value").then(function(snapshot){
+                           if (snapshot.val() != null)
+                           snapshot.forEach(function(query){
+                               console.log(query.key);
+                           })
+                           
+                               
+                       })
+                       firebase.database().ref("busquedas")
+                       
+                   }
 
                }
            
@@ -188,9 +223,15 @@ Vue.component('found-object-details', {
         </md-card>
 
 
-            <div style="text-align: center;">
-              <md-button  v-on:click="guardarObjeto" :style="buttonStyle">Guardar busqueda</md-button>
+            <div v-if="!uploading" style="text-align: center;">
+              <md-button v-if="objSelect" v-on:click="guardarObjeto" :style="buttonStyle">Guardar objeto</md-button>
+              <md-button v-else v-on:click="guardarObjeto" :style="buttonStyle">Guardar busqueda</md-button>
             </div>
+        <div class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
+            <div v-if="uploading" style="--md-theme-default-primary: white;">
+                 <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+            </div>
+        </div>
           </div>        
     </div>
         <!--Fin datos-->

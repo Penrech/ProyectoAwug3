@@ -74,14 +74,132 @@ Promise.all(dbPromises)
       });
 });
 
-*/
+*//*
 ref.ref('/usuarios/'+'user1').once('value').then(function(snapshot){
    console.log(snapshot);
    UserType = snapshot.val().type;
    sideBarData.userType = UserType;
     mountApp();
-});
+});*/
 
+//array busquedas
+
+//busquedas/*
+/*
+function getUserSearch(userId){
+this.datosSearch = function(){
+    var deferred = $.Deferred();
+    var sQuery_promises = [];
+    var sQuery_result =[];
+    var sQuery_complete=[];
+    var sQuery = firebase.database().ref("/busquedas/").orderByChild("idUsuario").equalTo(userId).once("value")
+    .then(function(snapshot){
+        if (snapshot.val() == null){
+            deferred.resolve(null);
+        }
+        else{
+            var len = Object.keys(snapshot.val()).length;
+            snapshot.forEach(function(snapshot){
+                //cada busqueda
+                sQuery_result.push(snapshot.val());
+                sQuery_promises.push(
+                    firebase.database().ref("/tags-busqueda/").orderByChild("idBusqueda").equalTo(snapshot.val().idBusqueda).once("value")
+                )
+                len--;
+                if (len == 0){
+                    Promise.all(sQuery_promises)
+                        .then(function(data){
+                         data.forEach(function(data){
+                             var l = Object.keys(data.val()).length;
+                             data.forEach(function(item){
+                                 sQuery_complete.push(item.val().tag);
+                                 l--;
+                                 if (l == 0){
+                                     sQuery_result.find(x => x.idBusqueda === item.val().idBusqueda).tags = sQuery_complete;
+                                     sQuery_complete=[];
+                                     console.log(sQuery_result);
+                                     deferred.resolve(sQuery_result);
+
+                                 }
+                             })
+                         })
+                     
+                    })
+                }
+
+            })
+        }
+
+    })
+       return deferred.promise();
+    }
+}*/
+//*
+    /*
+var sQuery_promises = [];
+var sQuery_result =[];
+var sQuery_complete=[];
+var sQuery = firebase.database().ref("/busquedas/").orderByChild("idUsuario").equalTo("user1").once("value")
+.then(function(snapshot){
+    if (snapshot.val() == null)
+        sQuery_result = null;
+    else{
+        var len = Object.keys(snapshot.val()).length;
+        snapshot.forEach(function(snapshot){
+            //cada busqueda
+            sQuery_result.push(snapshot.val());
+            console.log(sQuery_result);
+            sQuery_promises.push(
+                firebase.database().ref("/tags-busqueda/").orderByChild("idBusqueda").equalTo(snapshot.val().idBusqueda).once("value")
+            )
+            len--;
+            if (len == 0){
+                Promise.all(sQuery_promises)
+                    .then(function(data){
+                     data.forEach(function(data){
+                         var l = Object.keys(data.val()).length;
+                         data.forEach(function(item){
+                             sQuery_complete.push(item.val().tag);
+                             l--;
+                             if (l == 0){
+                                 sQuery_result.find(x => x.idBusqueda === item.val().idBusqueda).tags = sQuery_complete;
+                                 sQuery_complete = [];
+                                 console.log(sQuery_result);
+                             }
+                         })
+                     })
+                })
+            }
+                
+        })
+    }
+});*//*
+var SPromise = getUserSearch("user1");
+SPromise.done(US_result());
+
+function US_result(){
+    console.log("resuelta");
+}*/
+
+/*var search = new getUserLosts("user1");
+search.then(function(result){
+    console.log("toodo hecho");
+})*/
+/*
+search.userSearch().then(function(datos){
+   console.log(datos); 
+});*/
+
+
+
+
+/*
+var oQuery = firebase.database().ref("obj-usuario").equalTo("user1")
+.then(oQfun);
+var oQuery_result = function oQfun(snapshot){
+
+}
+*/
 
 
 
@@ -109,9 +227,15 @@ db.collection("usuarios").where("email","==","johndoe@prueba.es")
         });
         
 });*/
+var userSearch= new getUserData("user1");
+userSearch.then(function(result){
+    UserType = result.type;
+   sideBarData.userType = UserType;
+    mountApp();
+});
 var user;
 var UserType;
-var userRef = firebase.database().ref('usuarios/user1');
+
 /*userRef.on('value', function(snapshot){
     user = snapshot.val();
     UserType = user.type;
