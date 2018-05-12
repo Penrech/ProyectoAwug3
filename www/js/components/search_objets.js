@@ -35,10 +35,17 @@ Vue.component('search-objects', {
 
     }),
         created: function(){
+         console.log("creo step2");
          window.scrollTo(0,0);
          //this.getList();
          document.body.style= this.bodyStyle;
-         this.compareTags();
+         let _this = this;
+         var sTags = new searchObjectsByTags(this.prevTags,userIdTest);
+         sTags.then(function(result){
+             console.log(result);
+             _this.objectsArray = result;
+             _this.loading = false;
+         })
          //this.getCurrentDate();
          /*toolBarData.paginaActual ="SO_step2";
          toolBarData.paginaSiguiente ="";
@@ -73,61 +80,6 @@ Vue.component('search-objects', {
                     toolBarData.paginaSiguiente = "SO_step3";
                 }
             
-            },
-            
-            compareTags(){
-                var dbPromises=[];
-                for (var i = 0; i < this.prevTags.length; i++) {
-                  dbPromises.push(
-                      ref.ref('/tags-obj/' + this.prevTags[i]).once('value')
-                  );
-                }
-                Promise.all(dbPromises).then(this.getDataRaw);
-            },
-            
-            getDataRaw(querySnapshot){
-                console.log(dbPromises);
-               this.qLen = querySnapshot.length;
-               querySnapshot.forEach(this.getDataObjRaw);
-            },
-            
-            getDataObjRaw(doc){
-                console.log(doc.val());
-                let _this = this;
-            if (doc.val() != null){
-              if(this.objIDTemp.indexOf(doc.val()) == -1)
-                  this.objIDTemp = this.objIDTemp.concat(doc.val().filter(function(item){
-                      return _this.objIDTemp.indexOf(item)<0;
-                  }));
-                }
-              this.qLen--;
-              if (this.qLen == 0){
-                    if (this.objIDTemp.length == 0)
-                        this.loading = false;
-                    var dbPromises2 = [];
-                    for (var i = 0; i < this.objIDTemp.length; i++) {
-                          dbPromises2.push(
-                              ref.ref('/objetos/' + this.objIDTemp[i]).once('value')
-                            )
-                    }
-
-                    Promise.all(dbPromises2)
-                  .then(this.getDataObjSpecific);
-              }
-             
-
-            },
-            getDataObjSpecific(newQuery){
-                        let _this = this;
-                        var len = newQuery.length;
-                        newQuery.forEach(function(doc2){
-                            _this.objectsArray.push(doc2.val());
-                            len--;
-                            if (len == 0 )
-                                console.log(_this.objectsArray);
-                                _this.loading = false;
-
-                        })
             },
             
                 changeData(){
@@ -189,11 +141,18 @@ Vue.component('search-objects', {
             </li>
 
             <li v-if="!loading" style="list-style:none;padding: 0 12px 24px 12px;"  v-for="(item,index) in objectsArray" :key="item.id" >
-        <md-card :id="'found-object-'+item.name" @click.native="selectObject(item.name,index)" :style="cardStyle1">
-          <md-card-media-cover style="    overflow: hidden;" >
+        <md-card :id="'found-object-'+item.id" @click.native="selectObject(item.id,index)" :style="cardStyle1">
+          <md-card-media-cover  style="overflow: hidden;background-color:rgba(0, 0, 0, 0.5);" >
             <md-card-media md-ratio="1:1">
               <img :src="item.img" alt="">
             </md-card-media>
+            <md-card-area v-if="item.objInUserList" style="background-color:rgba(0, 0, 0, 0.5);">
+                <md-card-header>
+
+                <span class="md-title" style="font-size:14px;font-weight:600;line-height: 1.4; text-align:center; color:white;margin-bottom:10px">Objeto ya en tu lista</span>
+              </md-card-header>
+
+            </md-card-area>
           </md-card-media-cover>
         </md-card>
             </li>

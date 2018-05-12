@@ -14,7 +14,7 @@ firebase.initializeApp(config);
 var db = firebase.firestore();
 var ref = firebase.database();
 
-var busquedas = ["galaxy","movil"];
+var busquedas = ["disco","duro","negro","toshiba"];
 var dbPromises = [];
 var cont = [];
 var results = [];
@@ -226,13 +226,37 @@ db.collection("usuarios").where("email","==","johndoe@prueba.es")
                 console.log(doc.val());
         });
         
-});*/
-var userSearch= new getUserData("user1");
+});*//*
+var userIdTest = "user2";
+var userSearch= new getUserData(userIdTest);
 userSearch.then(function(result){
     UserType = result.type;
    sideBarData.userType = UserType;
     mountApp();
-});
+});/**/
+var tQuery = new deleteUserSearch("Sea-LCK0WKHnzLvaUAvsWv-","user2");
+tQuery.then(function(result){
+    console.log(result);
+})
+/*
+var sQuery = new saveUserObject("obj1525949003","user2");
+sQuery.then(function(result){
+    console.log(result);
+})
+/*
+var tagS = new searchObjectsByTags(busquedas);
+tagS.then(function(result){
+    console.log(result);
+})//*/
+/*
+var dQuery = deleteUserObject("obj1525949003","user2");
+dQuery.then(function(result){
+    console.log(result);
+})*//*
+var tQuery = new saveUserSearch(busquedas,"user2");
+tQuery.then(function(result){
+    console.log(result);
+})*/
 var user;
 var UserType;
 

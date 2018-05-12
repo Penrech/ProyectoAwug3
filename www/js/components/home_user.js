@@ -17,7 +17,7 @@ const HomeUserTemplate = {props: [],
             toolBarData.toolBarTitle = "";
             var data = new getUserName("user1");
             let _this = this;
-            firebase.database().ref("/usuarios/user1/nomAp").on("value",function(result){
+            firebase.database().ref("/usuarios/"+userIdTest+"/nomAp").on("value",function(result){
                 _this.username = result.val();
             })
 

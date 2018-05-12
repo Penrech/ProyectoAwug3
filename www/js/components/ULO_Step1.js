@@ -46,7 +46,7 @@ Vue.component('ULO-step1', {props: ["subNavText"],
             toolBarData.toolBarTitle = "Mis objetos perdidos";
             this.initialQuery.push(this.userObjRef);
             this.initialQuery.push(this.userSearchRef);
-            var data = new getUserLosts("user1");
+            var data = new getUserLosts(userIdTest);
             let _this = this;
             data.then(function(result){
                 if (result == null)

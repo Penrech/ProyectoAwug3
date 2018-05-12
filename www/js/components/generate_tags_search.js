@@ -132,6 +132,7 @@ Vue.component('generate-tags-search', {
                    var sorted = this.tagsArray.map(function(value) {
                         return value.toLowerCase();
                     }).sort();
+                    console.log(sorted);
                    var emitObj = {
                        tags : sorted,
                        nextStep: 2

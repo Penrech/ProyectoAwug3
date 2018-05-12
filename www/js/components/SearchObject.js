@@ -78,10 +78,11 @@ const searchObjectTemplate = {props: [],
                     if (updateData.objArray){
                         this.objectSelect = updateData.objArray;
                     }
-                    this.changeStep(updateData.nextStep);
-                    if (updateData.tags){
+                     if (updateData.tags){
                         this.tags = updateData.tags;
                     }
+                    this.changeStep(updateData.nextStep);
+                    console.log(this.tags);
                 },
               goBackHome () {
                   this.$router.push('homeUser');

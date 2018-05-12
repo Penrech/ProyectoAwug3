@@ -2,6 +2,7 @@ Vue.component('found-object-details', {
         props: ["prevTags","objSelect"],
         data: () => ({
         uploading: false,
+        loading:true,
         tagsString: null,
         registerDate :null,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",                     
@@ -61,6 +62,10 @@ Vue.component('found-object-details', {
          this.$root.$on("backToSoStep2",this.changeData);
          this.getFormatDate();
          this.toStringTags();
+         if(this.objSelect && this.objSelect.objInUserList == false)
+            console.log(true);
+         else
+             console.log(false);
     },
     destroyed: function(){
          this.$root.$off("backToSoStep2",this.changeData);
@@ -68,24 +73,20 @@ Vue.component('found-object-details', {
     },
         methods: {
              toStringTags(){
-                 if(this.objSelect == null)
+                 if(this.objSelect == null){
                     this.tagsString = this.prevTags.toString();
+                    this.loading = false;
+                 }
                  else{
                      let _this = this;
                      var objTags = getObjectTags(this.objSelect.id);
                         objTags.then(function(result){
                             _this.tagsString = result.toString();
+                            _this.loading = false;
                         })
                  }   
                 },
-           
-           /* getList: function(){
-            this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/PruebasBuscarPorTags.json').then(function (response){
-                var tempObjectsArray;
-                tempObjectsArray = response.data.searchedObjects;
-                this.compareWithTags(tempObjectsArray);
-                
-            }); },*/
+
                 getFormatDate(){
                     if (this.objSelect){
                     var myDate = new Date(this.objSelect.registro);
@@ -105,6 +106,7 @@ Vue.component('found-object-details', {
                 this.$emit('backToStep2',emitObj);
                 },
                guardarObjeto(){
+                   console.log()
                    this.uploading = true;
                     if(this.objSelect){
                        let _this = this;
@@ -151,7 +153,7 @@ Vue.component('found-object-details', {
         
         <!--Inicio datos-->
         
-    <div  v-if="objSelect != null" style="margin-top:2em;margin-left: 5.25%;margin-right: 5.25% ">
+    <div  v-if="objSelect != null && loading != true" style="margin-top:2em;margin-left: 5.25%;margin-right: 5.25% ">
         <div  style="width: 100%">
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
                 <md-card-header>
@@ -163,7 +165,7 @@ Vue.component('found-object-details', {
                         <md-list-item style="margin-top:1.5em">
                             <md-field>
                                 <label :style="labelStyle">Tags :</label>
-                                 <md-textarea v-model="objSelect.tags" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                 <md-textarea v-model="tagsString" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
@@ -192,12 +194,12 @@ Vue.component('found-object-details', {
             </md-card>
 
             <div style="text-align: center;">
-              <md-button  v-on:click="guardarObjeto" :style="buttonStyle">Guardar objeto</md-button>
+              <md-button  :disabled="objSelect.objInUserList" v-on:click="guardarObjeto" :style="buttonStyle">Guardar objeto</md-button>
             </div>
           </div>        
     </div>
 
-    <div  v-else style="margin-top:2em;margin-left: 5.25%;margin-right: 5.25% ">
+    <div  v-if="objSelect == null && loading != true" style="margin-top:2em;margin-left: 5.25%;margin-right: 5.25% ">
         <div  style="width: 100%">
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
            <!-- <md-card-media-cover style="    overflow: hidden;" >
@@ -222,13 +224,17 @@ Vue.component('found-object-details', {
         <!-- </md-card-media-cover>-->
         </md-card>
 
-
-            <div v-if="!uploading" style="text-align: center;">
-              <md-button v-if="objSelect" v-on:click="guardarObjeto" :style="buttonStyle">Guardar objeto</md-button>
-              <md-button v-else v-on:click="guardarObjeto" :style="buttonStyle">Guardar busqueda</md-button>
+         <div v-if="loading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:0">
+            <div  style="margin-top:50%;--md-theme-default-primary: white;">
+                 <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
             </div>
-        <div class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
-            <div v-if="uploading" style="--md-theme-default-primary: white;">
+            </div>
+
+        <div v-if="!uploading" style="text-align: center;">
+          <md-button v-on:click="guardarObjeto" :style="buttonStyle">Guardar busqueda</md-button>
+        </div>
+        <div v-else class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
+            <div  style="--md-theme-default-primary: white;">
                  <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
             </div>
         </div>

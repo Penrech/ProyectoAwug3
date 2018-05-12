@@ -77,7 +77,7 @@ const userProfileTemplate = {props: [],
             this.$root.$on("backToProfile",this.backToProfileWithoutSave);
             this.userProfileData = user;
             let _this = this;
-            firebase.database().ref("usuarios/user1").on("value",function(result){
+            firebase.database().ref("usuarios/"+userIdTest).on("value",function(result){
                 _this.userProfileData = result.val();
                 user = _this.userProfileData;
             });
@@ -85,7 +85,6 @@ const userProfileTemplate = {props: [],
         },
         destroyed: function(){
             this.$root.$off("backToProfile",this.backToProfileWithoutSave);
-            userRef.off();
         },
         methods: {
             checkForm(){
