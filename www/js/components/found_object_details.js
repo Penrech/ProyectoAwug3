@@ -106,38 +106,27 @@ Vue.component('found-object-details', {
                 this.$emit('backToStep2',emitObj);
                 },
                guardarObjeto(){
-                   console.log()
                    this.uploading = true;
+                   let _this = this;
                     if(this.objSelect){
-                       let _this = this;
-                       firebase.database().ref("usuarios/user1/objetos").once("value").then(function(snapshot){
-                           var objTempArray=[];
-                           if (snapshot.val() != null)
-                               objTempArray = snapshot.val();
-
-                             if(objTempArray.indexOf(_this.objSelect.name) == -1)
-                              objTempArray = objTempArray.concat(doc.val().filter(function(item){
-                                  return objTempArray.indexOf(item)<0;
-                              }));
-                            
-                               firebase.database().ref("usuarios/user1/objetos").set(objTempArray).then(function(snapshot2){
-                                   _this.changeData();
-                                   _this.uploading=false;
-                               })
-                           
-                       }) 
+                      var sQuery = new saveUserObject(this.objSelect.id,userIdTest)
+                      .then(function(result){
+                          //ir a mis objetos
+                          if (result == true)
+                              _this.$router.push('userLostObjects');
+                          else
+                              alert("Error guardando objeto");
+                      })
                     }
-                        
                    else{
-                       firebase.database().ref("busquedas").orderByKey().limitToLast(1).once("value").then(function(snapshot){
-                           if (snapshot.val() != null)
-                           snapshot.forEach(function(query){
-                               console.log(query.key);
-                           })
-                           
-                               
+                       var sQuery = new saveUserSearch(this.prevTags,userIdTest)
+                       .then(function(result){
+                           //ir a mis objetos
+                           if (result == true)
+                              _this.$router.push('userLostObjects');
+                          else
+                              alert("Error guardando objeto");
                        })
-                       firebase.database().ref("busquedas")
                        
                    }
 

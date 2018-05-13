@@ -226,14 +226,14 @@ db.collection("usuarios").where("email","==","johndoe@prueba.es")
                 console.log(doc.val());
         });
         
-});*//*
+});*/
 var userIdTest = "user2";
 var userSearch= new getUserData(userIdTest);
 userSearch.then(function(result){
     UserType = result.type;
    sideBarData.userType = UserType;
     mountApp();
-});/**/
+});/**//*
 var tQuery = new deleteUserSearch("Sea-LCK0WKHnzLvaUAvsWv-","user2");
 tQuery.then(function(result){
     console.log(result);
@@ -257,6 +257,7 @@ var tQuery = new saveUserSearch(busquedas,"user2");
 tQuery.then(function(result){
     console.log(result);
 })*/
+
 var user;
 var UserType;
 

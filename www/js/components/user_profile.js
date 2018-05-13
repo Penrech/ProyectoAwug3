@@ -79,6 +79,7 @@ const userProfileTemplate = {props: [],
             let _this = this;
             firebase.database().ref("usuarios/"+userIdTest).on("value",function(result){
                 _this.userProfileData = result.val();
+                _this.formData = result.val();
                 user = _this.userProfileData;
             });
             
@@ -241,13 +242,12 @@ const userProfileTemplate = {props: [],
                 toolBarData.paginaActual = "edit_profile";
                 toolBarData.paginaAnterior ="userProfile"
                 this.editionMode = true;
-                this.formData = JSON.parse(JSON.stringify(this.userProfileData));
                 console.log(this.FormData);
                 console.log("entro aqui en go to edit mode");
             },
             submitForm(){
                 console.log(this.formData.pass);
-                firebase.database().ref('usuarios/user1').set(this.formData);
+                firebase.database().ref('usuarios/'+userIdTest).set(this.formData);
                 this.passEditMode = false;
                 this.editionMode = false; 
                 toolBarData.paginaActual= toolBarData.paginaAnterior;
@@ -311,7 +311,7 @@ const userProfileTemplate = {props: [],
                             <md-icon>phone</md-icon>
                         </md-list-item>
                         <md-list-item v-if="UserType == 2">
-                            <span class="md-list-item-text" style="font-size:16px;font-weight:500">Centro de atención</span>
+                            <span class="md-list-item-text" style="font-size:16px;font-weight:500">{{userProfileData.location}}</span>
                             <md-icon>location_on</md-icon>
                         </md-list-item>
                     </md-list>

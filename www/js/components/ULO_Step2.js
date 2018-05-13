@@ -102,13 +102,28 @@ Vue.component('ULO-step2', {
             
                 deleteObj(state){
                     var emitObj;
+                    let _this = this;
                     if(state == 1){
-                     this.$emit("borrarObjeto");
-                    }
-                    else if(state == 2){
-                        
-                    }
-                    
+                      if(this.objSelect.img){
+                          var dQuery = new deleteUserObject(this.objSelect.id,userIdTest)
+                          .then(function(result){
+                          if (result == true)
+                              _this.changeData();
+                          else
+                              alert("Error borrando objeto");
+                          })
+                      }
+                      else{
+                          var dQuery = new deleteUserSearch(this.objSelect.idBusqueda,userIdTest)
+                          .then(function(result){
+                           if (result == true)
+                              _this.changeData();
+                          else
+                              alert("Error borrando busqueda");   
+                          })
+                          
+                      }
+                    }      
                 },
            
         },

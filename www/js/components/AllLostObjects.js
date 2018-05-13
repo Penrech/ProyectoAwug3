@@ -8,6 +8,7 @@ const allLostObjectsTemplate = {props: [],
         qLen: 0,
         currentDateString: null,
         currentDateObject: null,
+        noData:false,
         heartStyle1:{
             fontSize: "22px!important",
             color:"#00c9fa",
@@ -47,7 +48,21 @@ const allLostObjectsTemplate = {props: [],
 
         },
         methods: {
-            
+            orderData(){
+                let _this = this;
+                var oQuery= new orderAllObjects(this.ordenSeleccion,this.visualizar);
+                oQuery.then(function(result){
+                    if (result != null){
+                        _this.objectsArray = result;
+                        _this.noData = false;}
+                    else{
+                        _this.objectsArray= [];
+                        _this.noData = true;
+                    }
+                    _this.loading = false;
+                })
+            }
+            /*
             chargeData(querySnapshot){
                 this.objectsArray=[];
                 this.qLen = querySnapshot.length;
@@ -188,6 +203,14 @@ const allLostObjectsTemplate = {props: [],
       </div>
     </md-toolbar>
 <!-- fin subnav-->
+
+<!--inicio subnav2-->
+  <md-toolbar v-if="noData" md-elevation="0" class="md-transparent" >
+        <div class="md-toolbar-row" style="justify-content: center;">
+        <span class="md-title" style="font-weight: 300;font-size: 16px; margin-left: 0;color: white;  white-space: normal; text-align:center">No hay objetos en el periodo seleccionado</span>
+      </div>
+    </md-toolbar>
+<!-- fin subnav2-->
         
         
         <!--Inicio de botones-->

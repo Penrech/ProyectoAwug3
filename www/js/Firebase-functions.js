@@ -327,3 +327,58 @@ function deleteUserObject(objectId,userId){
     })
     return deferred.promise();
 }
+
+function orderAllObjects(orderType,visualType){
+    var deferred = $.Deferred();
+    var deferred1 = $.Deferred();
+    var deferred2 = $.Deferred();
+    var restDate = new Date();
+    var objArray = [];
+    var objUsers = [];
+    var oPromises = [];
+    
+    if (visualType == "todos")
+        restDate = new Date(0);
+    else if(visualType == "semana")
+        restDate.setDate(restDate.getDate()-7);
+    else if(visualType == "mes")
+        restDate.setDate(restDate.getDate()-30);
+    else if(visualType == "year")
+        restDate.setDate(restDate.getDate() -365);
+    restDate = restDate.getTime();
+    
+    firebase.database().ref('/objetos').orderByChild("registro").startAt(restDate).once("value")
+    .then(function(data){
+       if(data.val() == null)
+             deferred.resolve(null);
+        data.forEach(function(item){
+            objArray.unshift(item.val());
+        })
+        deferred1.resolve();
+    })
+    firebase.database().ref("/obj-usuario/").orderByChild("idObjeto").once("value")
+    .then(function(data){
+        data.forEach(function(item){
+                if (objUsers.indexOf(item.val().idObjeto) == -1)
+                    objUsers.push(item.val().idObjeto);
+            })
+        deferred2.resolve();
+    })
+    
+    $.when(deferred1,deferred2).done(function(x,y){
+        objUsers.forEach(function(obj){
+            if(objArray.find(x => x.id === obj))
+            objArray.find(x => x.id === obj).reclamado = true;
+        })
+        if (orderType == "reclamado"){
+        objArray.sort(function(a, b) {
+                a = a.reclamado;
+                b = b.reclamado;
+                return a>b ? -1 : a<b ? 1 : 0;
+            }); }
+        deferred.resolve(objArray);
+    })
+
+   return deferred.promise();   
+    
+}
