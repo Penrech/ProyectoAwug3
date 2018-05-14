@@ -481,4 +481,88 @@ function deleteObject(objectId){
     return deferred.promise();
     
     
+} 
+
+function saveObject(dataObject,action){
+    var deferred = $.Deferred();
+    var createImg1 = $.Deferred();
+    var createImg2 = $.Deferred();
+    var uploadedImg1 = $.Deferred();
+    var uploadedImg2 = $.Deferred();
+    var img1Data;
+    var img2Data;
+    var uploadState1;
+    var uploadState2;
+    var uploadImg1;
+    var uploadImg2;
+    var Date = new Date();
+    var currentData = Date.getTime();
+    var updates = {};
+    
+    if (action == "upload"){
+        var newEntryKey = firebase.database().ref("/objetos/").push().key;
+        var bigImgName = "640P"+newEntryKey+".png";
+        var smallImgName = "320P"+newEntryKey+".png";
+        var objId = "obj"+newEntryKey;
+
+        var image1 = new Image();
+        var image2 = new Image();
+        image1.onload = function () {
+            var canvas = document.createElement('canvas');
+            canvas.width = 640; 
+            canvas.height = 640; 
+            canvas.getContext('2d').drawImage(this, 0, 0);
+            img1Data = canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, '');
+            createImg1.resolve();
+        };
+         image2.onload = function () {
+            var canvas = document.createElement('canvas');
+            canvas.width = 320; 
+            canvas.height = 320; 
+            canvas.getContext('2d').drawImage(this, 0, 0);
+            img2Data = canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, '');
+            createImg2.resolve();
+        };
+
+         image1.src = dataObject.img;
+         image2.src = dataObject.img;
+    
+    
+    $.when(createImg1,createImg2).done(function(x,y){
+        uploadState1 = "initiated";
+        uploadState2 = "initiated";
+        uploadImg1 = firebase.storage().ref("/640p/"+bigImgName);
+        uploadImg2=  firebase.storage().ref("/320p/"+smallImgName);
+        
+        uploadImg1.put(image1Data).then(function(snapshot){
+            uploadState1 = "uploadedSucces";
+            uploadedImg1.resolve();
+        }).catch(function(error){
+            uploadedState1 = "uploadFail":
+            uploadedImg1.resolve();
+        })
+        uploadImg2.put(image1Data).then(function(snapshot){
+            uploadState2 = "uploadedSucces";
+            uploadedImg2.resolve();
+        }).catch(function(error){
+            uploadedState2 = "uploadFail":
+            uploadedImg2.resolve();
+        })
+                
+    })
+        
+    $.when(uploadedImg1,uploadedImg2).done(function(x,y){
+        if (uploadImg1 == "uploadedSucces" && uploadImg2 == "uploadedSucces"){
+            
+        }
+    })
+        
+    }
+    if (action == "cancel"){
+        if(uploadState1 == "initiated")
+            uploadImg1.cancel();
+        else if(uploadState2 == "initiated")
+            uploadImg2.cancel();
+    }
+     
 }
