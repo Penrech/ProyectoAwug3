@@ -51,7 +51,12 @@ Vue.component('found-object-details', {
             fontSize:"16px",
             fontWeight:"200",
             marginTop:"12px"
-        }
+        },
+        snackBar:{
+            text: null,
+            active: false
+        },
+        duration:3000
 
                               
 
@@ -114,8 +119,13 @@ Vue.component('found-object-details', {
                           //ir a mis objetos
                           if (result == true)
                               _this.$router.push('userLostObjects');
-                          else
-                              alert("Error guardando objeto");
+                          else{
+                              var error={
+                                  text:"Error guardando objeto",
+                                  active: true
+                                    }
+                              _this.snackBar = error;
+                          }
                       })
                     }
                    else{
@@ -124,8 +134,13 @@ Vue.component('found-object-details', {
                            //ir a mis objetos
                            if (result == true)
                               _this.$router.push('userLostObjects');
-                          else
-                              alert("Error guardando objeto");
+                          else{
+                              var error={
+                                  text:"Error guardando busqueda",
+                                  active: true
+                                    }
+                              _this.snackBar = error;
+                          }
                        })
                        
                    }
@@ -231,6 +246,12 @@ Vue.component('found-object-details', {
     </div>
         <!--Fin datos-->
         
+         <!-- SnackBar errores -->
+    <!--snackBar errores-->
+    <md-snackbar md-position="center" :md-duration="duration" :md-active.sync="snackBar.active" md-persistent>
+      <span>{{snackBar.text}}</span>
+      <md-button class="md-primary" @click="snackBar.active = false">OK</md-button>
+    </md-snackbar>
         
         
        

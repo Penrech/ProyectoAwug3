@@ -174,7 +174,7 @@ var sQuery = firebase.database().ref("/busquedas/").orderByChild("idUsuario").eq
         })
     }
 });*//*
-var SPromise = getUserSearch("user1");
+var SPromise = getUserSearch("user");
 SPromise.done(US_result());
 
 function US_result(){
@@ -227,7 +227,7 @@ db.collection("usuarios").where("email","==","johndoe@prueba.es")
         });
         
 });*/
-var userIdTest = "user2";
+var userIdTest = "user1";
 var userSearch= new getUserData(userIdTest);
 userSearch.then(function(result){
     UserType = result.type;
@@ -257,6 +257,8 @@ var tQuery = new saveUserSearch(busquedas,"user2");
 tQuery.then(function(result){
     console.log(result);
 })*/
+//getObjectClaimUsers("obj1525949254");
+
 
 var user;
 var UserType;
@@ -376,6 +378,10 @@ function mountApp(){
                 this.$root.$emit ("backToSoStep2");
             else if (toolBarData.paginaActual == "ULO_step2")
                 this.$root.$emit ("backToULOStep1");
+            else if (toolBarData.paginaActual == "ALO_Step3")
+                this.$root.$emit ("backToALOStep2");
+            else if (toolBarData.paginaActual == "ALO_Step2")
+                this.$root.$emit ("backToALOStep1");
             else if (toolBarData.paginaAnterior == "homeUser")
                 this.$router.push("homeUser");
             else if (toolBarData.paginaActual == "homeUser"){

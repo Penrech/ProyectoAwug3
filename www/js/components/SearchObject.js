@@ -30,7 +30,7 @@ const searchObjectTemplate = {props: [],
     }),
         created: function () {
             //document.body.style = this.bodyStyle;
-            toolBarData.iconoPaginaAnterior = "clear";
+            toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "done";
             toolBarData.paginaActual = "SearchObject";
             toolBarData.paginaSiguiente = "SO_step2";
@@ -51,7 +51,7 @@ const searchObjectTemplate = {props: [],
                         toolBarData.paginaAnterior = "homeUser";
                         toolBarData.paginaActual = "SO_step1"
                         toolBarData.paginaSiguiente = "";
-                        toolBarData.iconoPaginaAnterior = "clear";
+                        toolBarData.iconoPaginaAnterior = "keyboard_backspace";
                         //this.tags = [];
                     }
                     else if (toStep == 2){

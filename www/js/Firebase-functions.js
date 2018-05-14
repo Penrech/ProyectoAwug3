@@ -56,15 +56,13 @@ this.userObject = function(){
             deferred2.resolve(null);
         }
         else{
-            var len = Object.keys(snapshot.val()).length;
             snapshot.forEach(function(snapshot){
                 //cada busqueda
                 oQuery_promises.push(
                     firebase.database().ref("/objetos/").orderByChild("id").equalTo(snapshot.val().idObjeto).once("value")
                 )
-                len--;
-                if (len == 0){
-                    Promise.all(oQuery_promises)
+            })
+             Promise.all(oQuery_promises)
                     .then(function(data){
                          data.forEach(function(data){
                              data.forEach(function(data){
@@ -73,9 +71,6 @@ this.userObject = function(){
                          })
                         deferred2.resolve(oQuery_result);
                     })
-                }
-
-            })
         }
 
     })
@@ -119,6 +114,66 @@ function getObjectTags(objectId){
                  })
                 deferred.resolve(tagObj);
             })
+    return deferred.promise();
+}
+
+function getUserObjectClaimDate(objectId,userId){
+    var deferred = $.Deferred();
+    var deferred1 = $.Deferred();
+    var userObj = [];
+    var claimDate;
+    firebase.database().ref("/obj-usuario/").orderByChild("idUsuario").equalTo(userId).once("value")
+    .then(function(data){
+        data.forEach(function(item){
+            userObj.push(item.val());
+            deferred1.resolve();
+        })
+    })
+    $.when(deferred1).done(function(x){
+        claimDate = userObj.find(x =>x.idObjeto === objectId).registro;
+        deferred.resolve(claimDate);
+        console.log(claimDate);
+    })
+    return deferred.promise();
+}
+
+function getObjectClaimUsers(objectId){
+    var deferred = $.Deferred();
+    var deferred1 = $.Deferred();
+    var usersId = [];
+    var users = [];
+    var promises = [];
+    firebase.database().ref("/obj-usuario/").orderByChild("idObjeto").equalTo(objectId).once("value")
+    .then(function(data){
+            data.forEach(function(item){
+                var temp = {
+                    idUsuario: item.val().idUsuario,
+                    registro: item.val().registro
+                }
+                promises.push(
+                    firebase.database().ref("/usuarios/"+item.val().idUsuario).once("value")
+                )
+                usersId.push(temp);
+            })
+        deferred1.resolve();
+    })
+    $.when(deferred1).done(function(x){
+        Promise.all(promises)
+        .then(function(data){
+            data.forEach(function(item){
+                var temp = item.val();
+                temp.id = item.key;
+                users.push(temp);
+                usersId.forEach(function(id){
+                    if (users.find(x => x.id === id.idUsuario))
+                    users.find(x => x.id === id.idUsuario).reclamado = id.registro;
+                })
+            })
+            deferred.resolve(users);
+        })
+        
+    })
+        
     return deferred.promise();
 }
 
@@ -213,11 +268,13 @@ function getUserName(userId){
 
 function saveUserObject(objectId,userId){
     var deferred = $.Deferred();
-    
+    var Data = new Date();
+    var currentData = Data.getTime();
     var newEntryKey = firebase.database().ref("/obj-usuario/").push().key;
     firebase.database().ref("/obj-usuario/"+newEntryKey).set({
         idObjeto: objectId,
-        idUsuario: userId
+        idUsuario: userId,
+        registro: currentData
     }).then(function(data){
         deferred.resolve(true);
     }).catch(function(e){
@@ -380,5 +437,48 @@ function orderAllObjects(orderType,visualType){
     })
 
    return deferred.promise();   
+    
+}
+
+function deleteObject(objectId){
+    var deferred = $.Deferred();
+    var deferred1 = $.Deferred();
+    var deferred2 = $.Deferred();
+    var updates = {};
+    var parentId = objectId.slice(3);
+    console.log(parentId);
+    updates["/objetos/"+parentId]= {};
+    
+    firebase.database().ref("/obj-usuario/").orderByChild("idObjeto").equalTo(objectId).once("value")
+    .then(function(data){
+        if (data.val() == null)
+            deferred1.resolve();
+        else{
+            data.forEach(function(item){
+                updates["/obj-usuario/"+item.key]= {};
+            })
+            deferred1.resolve();
+        }
+    });
+    
+    firebase.database().ref("/tags-obj/").orderByChild("idObjeto").equalTo(objectId).once("value")
+    .then(function(data){
+        data.forEach(function(item){
+            updates["/tags-obj/"+item.key]= {};
+        })
+        deferred2.resolve();
+    })
+    
+    $.when(deferred1,deferred2).done(function(x,y){
+            firebase.database().ref().update(updates)
+            .then(function(data){
+                  deferred.resolve(true);
+             }).catch(function(e){
+                 deferred.resolve(false);
+             })
+    })
+    
+    return deferred.promise();
+    
     
 }

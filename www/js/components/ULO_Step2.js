@@ -4,6 +4,8 @@ Vue.component('ULO-step2', {
         uploading: false,
         tagsString: null,
         loading:true,
+        registerDate: null,
+        claimDate:null,
         activeDeleteDialog: false,
         heartStyle1:{
             fontSize: "22px!important",
@@ -48,7 +50,12 @@ Vue.component('ULO-step2', {
             fontSize:"16px",
             fontWeight:"200",
             marginTop:"12px"
-        }
+        },
+        snackBar:{
+            text: null,
+            active: false
+        },
+        duration:3000
 
                               
 
@@ -61,7 +68,7 @@ Vue.component('ULO-step2', {
         toolBarData.paginaSiguiente = "";
         toolBarData.paginaAnterior = "ULO_step1";
         toolBarData.toolBarTitle = "Detalles del objeto";
-        this.getFormatDate();
+        this.registerDate = this.getFormatDate(this.objSelect.registro);
         this.showTags();
         this.$root.$on("backToULOStep1",this.changeData);
          console.log(this.objSelect);
@@ -74,10 +81,14 @@ Vue.component('ULO-step2', {
             showTags(){
                  if (!this.objSelect.tags){
                      let _this = this;
-                     var objTags = getObjectTags(this.objSelect.id);
-                        objTags.then(function(result){
+                     var objTags = new getObjectTags(this.objSelect.id);
+                     var objClaimDate = new getUserObjectClaimDate(this.objSelect.id,userIdTest);
+                     objTags.then(function(result){
                             _this.tagsString = result.toString();
-                            _this.loading = false;
+                            objClaimDate.then(function(result){
+                                _this.claimDate = _this.getFormatDate(result);
+                                _this.loading = false;
+                            })
                         })
                  }
                 else{
@@ -85,12 +96,12 @@ Vue.component('ULO-step2', {
                     this.loading = false;
                 }
                 },
-             getFormatDate(){
-                    var myDate = new Date(this.objSelect.registro);
+             getFormatDate(date){
+                    var myDate = new Date(date);
                     var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
                     var date = ('0' + myDate.getDate()).slice(-2);
                     var year = myDate.getFullYear();
-                    this.registerDate = date + '/' + month + '/' + year;
+                    return date + '/' + month + '/' + year;
                 },
   
                 changeData(){
@@ -110,7 +121,11 @@ Vue.component('ULO-step2', {
                           if (result == true)
                               _this.changeData();
                           else
-                              alert("Error borrando objeto");
+                              var error={
+                                  text:"Error borrando objeto",
+                                  active: true
+                                    }
+                              _this.snackBar = error;
                           })
                       }
                       else{
@@ -119,7 +134,11 @@ Vue.component('ULO-step2', {
                            if (result == true)
                               _this.changeData();
                           else
-                              alert("Error borrando busqueda");   
+                              var error={
+                                  text:"Error borrando busqueda",
+                                  active: true
+                                  } 
+                              _this.snackBar = error;
                           })
                           
                       }
@@ -183,6 +202,12 @@ Vue.component('ULO-step2', {
                                 <md-textarea v-model="this.registerDate" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
+                        <md-list-item  v-if="objSelect.img">
+                            <md-field>
+                                <label :style="labelStyle">Fecha de reclamo:</label>
+                                <md-textarea v-model="this.claimDate" md-autogrow :style="inputStyle" disabled></md-textarea>
+                            </md-field>
+                        </md-list-item>
                         <md-list-item v-if="objSelect.updates > 0">
                             <md-field>
                                 <label :style="labelStyle">Posibles coincidencias:</label>
@@ -218,6 +243,13 @@ Vue.component('ULO-step2', {
       md-cancel-text="Cancelar"
       @md-cancel="deleteObj(2)"
       @md-confirm="deleteObj(1)" />
+
+    <!-- SnackBar errores -->
+    <!--snackBar errores-->
+    <md-snackbar md-position="center" :md-duration="duration" :md-active.sync="snackBar.active" md-persistent>
+      <span>{{snackBar.text}}</span>
+      <md-button class="md-primary" @click="snackBar.active = false">OK</md-button>
+    </md-snackbar>
         
        
 
