@@ -1,5 +1,5 @@
 Vue.component('search-objects', {
-        props: ["prevTags"],
+        props: ["searched","prevTags"],
         data: () => ({
         objectsArray : [],
         qLen: 0,
@@ -35,9 +35,12 @@ Vue.component('search-objects', {
 
     }),
         created: function(){
-         console.log("creo step2");
          window.scrollTo(0,0);
-         //this.getList();
+        toolBarData.paginaActual = "SO_step2";
+        toolBarData.paginaAnterior = "SO_step1";
+        toolBarData.paginaSiguiente = "";
+        toolBarData.toolBarTitle = "Encontrar un objeto";
+        toolBarData.iconoPaginaAnterior = "clear";
          document.body.style= this.bodyStyle;
          let _this = this;
          var sTags = new searchObjectsByTags(this.prevTags,userIdTest);
@@ -46,10 +49,6 @@ Vue.component('search-objects', {
              _this.objectsArray = result;
              _this.loading = false;
          })
-         //this.getCurrentDate();
-         /*toolBarData.paginaActual ="SO_step2";
-         toolBarData.paginaSiguiente ="";
-         toolBarData.paginaAnterior = "SO_step1";*/
          this.$root.$on("detailsFoundObject",this.DetallesDeObjeto);
          this.$root.$on("backToSoStep1",this.changeData);
             
@@ -111,6 +110,16 @@ Vue.component('search-objects', {
         template:`
 
 <div >        
+
+
+        <!--inicio subnav2-->
+          <md-toolbar v-if="objectsArray == null && searched != null" md-elevation="0" class="md-transparent" >
+                <div class="md-toolbar-row" style="justify-content: center;">
+                <span class="md-title" style="font-weight: 300;font-size: 16px; margin-left: 0;color: white;  white-space: normal; text-align:center">Tu objeto no parece estar en nuestra base de datos, intentalo de nuevo más tarde</span>
+              </div>
+            </md-toolbar>
+        <!-- fin subnav2-->
+
         <!--Inicio de botones-->
         
     <ul class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:0">
@@ -119,7 +128,7 @@ Vue.component('search-objects', {
              <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
         </div>
 
-            <li v-if="!loading" style="list-style:none;padding: 0 12px 24px 12px;">
+            <li v-if="!loading && searched == null" style="list-style:none;padding: 0 12px 24px 12px;">
             <md-card  id="found-object-none" @click.native="selectObject('none',null)" style="border-radius: 10px;width: 150px;">
             <md-card-media-cover style="    overflow: hidden;" >
 
@@ -144,7 +153,7 @@ Vue.component('search-objects', {
         <md-card :id="'found-object-'+item.id" @click.native="selectObject(item.id,index)" :style="cardStyle1">
           <md-card-media-cover  style="overflow: hidden;background-color:rgba(0, 0, 0, 0.5);" >
             <md-card-media md-ratio="1:1">
-              <img :src="item.img" alt="">
+              <img :src="item.imgSmall" alt="">
             </md-card-media>
             <md-card-area v-if="item.objInUserList" style="background-color:rgba(0, 0, 0, 0.5);">
                 <md-card-header>

@@ -1,7 +1,7 @@
     Vue.use(VueMaterial.default);
     Vue.use(VueRouter);
    
-// Initialize Firebase
+ // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCy4oTUcWE3FkWeZMThJiZtPphDuLAowv8",
     authDomain: "lostandfound-201917.firebaseapp.com",
@@ -11,8 +11,11 @@
     messagingSenderId: "314216184364"
   };
 firebase.initializeApp(config);
-var db = firebase.firestore();
+//var db = firebase.firestore();
 var ref = firebase.database();
+console.log(firebase);
+var st= firebase.storage();
+
 
 var busquedas = ["disco","duro","negro","toshiba"];
 var dbPromises = [];
@@ -227,13 +230,7 @@ db.collection("usuarios").where("email","==","johndoe@prueba.es")
         });
         
 });*/
-var userIdTest = "user1";
-var userSearch= new getUserData(userIdTest);
-userSearch.then(function(result){
-    UserType = result.type;
-   sideBarData.userType = UserType;
-    mountApp();
-});/**//*
+/**//*
 var tQuery = new deleteUserSearch("Sea-LCK0WKHnzLvaUAvsWv-","user2");
 tQuery.then(function(result){
     console.log(result);
@@ -257,11 +254,30 @@ var tQuery = new saveUserSearch(busquedas,"user2");
 tQuery.then(function(result){
     console.log(result);
 })*/
-//getObjectClaimUsers("obj1525949254");
+//getObjectClaimUsers("obj1525949254");/*
+/*
+var image= document.createElement("image");
 
+var objData={
+    imgUrl: "img/bolso.png",
+    location: "Calle de prueba 6",
+    phone: 666111222,
+    tags:["bolso","copia","rosa","claro"]
+};
+var gQuery = new saveObject(objData,"upload");
+gQuery.then(function(result){
+    console.log(result);
+})*/
 
 var user;
 var UserType;
+var userIdTest;
+/*var userSearch= new getUserData(userIdTest);
+userSearch.then(function(result){
+    UserType = result.type;
+   sideBarData.userType = UserType;
+    mountApp();
+});*/
 
 /*userRef.on('value', function(snapshot){
     user = snapshot.val();
@@ -275,7 +291,38 @@ userRef.off();
 var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",paginaSiguiente:"",iconoPaginaSiguiente:"",toolBarTitle:""};
 var sideBarData = {showNavigation: false, userType: UserType};
 
-function init(){/*
+function init(){
+        var deferred = $.Deferred();
+        var deferred2 = $.Deferred();
+        userIdTest = "user2";
+        var userSearch= new getUserData(userIdTest);
+        userSearch.then(function(result){
+        UserType = result.type;
+        sideBarData.userType = UserType;
+        deferred.resolve();
+        console.log("Entro aqui");
+        });
+    
+        $.when(deferred).done(function(){
+            console.log("Entro aqui tambien");
+            firebase.database().ref("usuarios/"+userIdTest).on('value', function(snapshot){
+            user = snapshot.val();
+            console.log(deferred2.state());
+            if (deferred2.state() == "pending")
+                deferred2.resolve();
+            });
+        })
+    
+        $.when(deferred2).done(function(){
+            mountApp();
+        })
+    
+        
+
+        
+    /*
+        
+        
     
     const routes = [
                 //{path: '/inbox', name: 'inbox', component: MailListTemplate},
@@ -334,6 +381,8 @@ function init(){/*
     router.push({ name: 'homeUser'})*/
 }
 function mountApp(){
+    
+    
         
     const routes = [
                 //{path: '/inbox', name: 'inbox', component: MailListTemplate},
@@ -346,7 +395,7 @@ function mountApp(){
             {path: '/homeuser', name: 'homeUser',  component: HomeUserTemplate},
             {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
             {path: '/userprofile', name: 'userProfile',  component: userProfileTemplate},
-            {path: '/searchObject', name: 'searchObject',  component: searchObjectTemplate},
+            {path: '/searchObject', name: 'searchObject',  component: searchObjectTemplate,props:true},
             {path: '/allLostObjects', name: 'allLostObjects',  component: allLostObjectsTemplate}
             ];
 

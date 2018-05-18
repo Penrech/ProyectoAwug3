@@ -60,11 +60,7 @@ Vue.component('tool-bar', {
                         this.$root.$emit("goToPreviousState", prevObj);
                         break;
                     case "UO_step2":
-                         var prevObj = {
-                            imgUrl: "unChanged",
-                            nextStep: 2
-                        };
-                        this.$root.$emit("goToPreviousState", prevObj);
+                        this.$root.$emit("backToUoStep2");
                 }
             }
             else if (res == "SO"){
@@ -87,6 +83,25 @@ Vue.component('tool-bar', {
                      nextStep: 1
                  }
                  this.$root.$emit("goToPreviousState", prevObj);  }
+            }
+            else if (res == "AL"){
+                console.log("entro en atras");
+                var prevObj;
+                if(this.toolBarData.paginaAnterior == "ALO_step2"){
+                    console.log("entro en atras a 2");
+                    prevObj ={
+                        nextStep:2
+                    }
+                    this.$root.$emit("goToPreviousState", prevObj);
+                }
+                else if(this.toolBarData.paginaAnterior == "ALO_step1"){
+                     console.log("entro en atras a 1");
+                     prevObj ={
+                        nextStep:1
+                    }
+                    this.$root.$emit("goToPreviousState", prevObj);
+                
+                }
             }
             else if (this.toolBarData.paginaAnterior == "userProfile"){
                  this.$root.$emit("backToProfile");   

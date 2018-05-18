@@ -41,6 +41,17 @@ Vue.component('ULO-step2', {
             width: "14em",
             height: "3.2em"
         },
+         buttonStyle2:{ 
+            borderRadius:"28px",
+            border:"1px solid #03a9f4",
+            color:"#03a9f4",
+            fontSize:"16px",
+            fontWeight:"100",
+            textTransform: "none",
+            minWidth: "10em",
+            width: "10em",
+            height: "3.2em"
+        },
         labelStyle:{
              fontSize:"16px",
             fontWeight:"500",
@@ -51,6 +62,13 @@ Vue.component('ULO-step2', {
             fontWeight:"200",
             marginTop:"12px"
         },
+        inputStyle2:{
+            fontSize:"16px",
+            fontWeight:"200",
+            marginTop:"12px",
+            color:"#03a9f4",
+            webkitTextFillColor:"#03a9f4"
+        },
         snackBar:{
             text: null,
             active: false
@@ -60,6 +78,10 @@ Vue.component('ULO-step2', {
                               
 
     }),
+     beforeRouteLeave(to,from,next){
+       console.log (from.params);
+       console.log (to.params);
+     },
         created: function(){
          window.scrollTo(0,0);
         toolBarData.iconoPaginaAnterior = "keyboard_backspace";
@@ -114,18 +136,21 @@ Vue.component('ULO-step2', {
                 deleteObj(state){
                     var emitObj;
                     let _this = this;
+                    this.uploading = true;
                     if(state == 1){
-                      if(this.objSelect.img){
+                      if(this.objSelect.imgBig){
                           var dQuery = new deleteUserObject(this.objSelect.id,userIdTest)
                           .then(function(result){
                           if (result == true)
                               _this.changeData();
-                          else
+                          else{
+                              _this.uploading = false;
                               var error={
                                   text:"Error borrando objeto",
                                   active: true
                                     }
                               _this.snackBar = error;
+                          }
                           })
                       }
                       else{
@@ -133,17 +158,29 @@ Vue.component('ULO-step2', {
                           .then(function(result){
                            if (result == true)
                               _this.changeData();
-                          else
+                          else{
+                              _this.uploading = false;
                               var error={
                                   text:"Error borrando busqueda",
                                   active: true
                                   } 
                               _this.snackBar = error;
+                          }
                           })
                           
                       }
                     }      
                 },
+              callNumber(){
+                  window.location.href="tel:"+this.objSelect.phone;
+              },
+              openMaps(){
+                  console.log("entro aqui");
+                  window.location.href="geo:41.5622481,2.0195355";
+              },
+              searchAgain(){
+                  this.$router.push({name: 'searchObject', params: this.objSelect});
+              }
            
         },
         watch:{
@@ -174,8 +211,8 @@ Vue.component('ULO-step2', {
                 <md-card-header>
                  <md-card-header-text >
                     <md-list id="details_obj_list" style="font-size:14px;">
-                       <md-list-item v-if="objSelect.img" style="justify-content:center;">
-                      <img :src="objSelect.img" alt="" style="width:100%;border-radius:7px">
+                       <md-list-item v-if="objSelect.imgBig" style="justify-content:center;">
+                      <img :src="objSelect.imgBig" alt="" style="width:100%;border-radius:7px">
                         </md-list-item>
                         <md-list-item style="margin-top:1.5em">
                             <md-field>
@@ -183,26 +220,33 @@ Vue.component('ULO-step2', {
                                  <md-textarea v-model="tagsString" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
-                        <md-list-item v-if="objSelect.img">
-                            <md-field>
-                                <label :style="labelStyle">Localización:</label>
-                                <md-textarea v-model="objSelect.location" md-autogrow :style="inputStyle" disabled></md-textarea>
-                            </md-field>
+                        <md-list-item v-if="objSelect.imgBig">
+                            <md-list>
+                                <md-list-item>
+                                <md-field>
+                                    <label :style="labelStyle">Localización:</label>
+                                    <md-textarea v-model="objSelect.location" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                </md-field>
+                                </md-list-item>
+                                <md-list-item>
+                                    <md-button v-on:click="openMaps" :style="buttonStyle2">Abrir en Maps</md-button>
+                                </md-list-item>
+                            </md-list>
                         </md-list-item>
-                        <md-list-item v-if="objSelect.img">
-                            <md-field>
+                        <md-list-item v-if="objSelect.imgBig">
+                            <md-field @click.native="callNumber">
                                 <label :style="labelStyle">Número de ayuda:</label>
-                                <md-textarea v-model="objSelect.phone" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                <md-textarea   v-model="objSelect.phone" md-autogrow :style="inputStyle2" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
                             <md-field>
-                                <label v-if="objSelect.img" :style="labelStyle">Fecha de registro:</label>
+                                <label v-if="objSelect.imgBig" :style="labelStyle">Fecha de registro:</label>
                                 <label v-else :style="labelStyle">Fecha de busqueda:</label>
                                 <md-textarea v-model="this.registerDate" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
-                        <md-list-item  v-if="objSelect.img">
+                        <md-list-item  v-if="objSelect.imgBig">
                             <md-field>
                                 <label :style="labelStyle">Fecha de reclamo:</label>
                                 <md-textarea v-model="this.claimDate" md-autogrow :style="inputStyle" disabled></md-textarea>
@@ -219,16 +263,21 @@ Vue.component('ULO-step2', {
               </md-card-header>
             </md-card>
 
-            <div v-if="!loading" class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center; margin-top:1.5em;">
+            <div v-if="!loading && !uploading" class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center; margin-top:1.5em;">
             <md-list style="background: transparent;margin-bottom:1.5em">
-                <md-list-item  v-if="objSelect.updates > 0" >
-                  <md-button :style="buttonStyle">Volver a buscar</md-button>
+                <md-list-item  v-if="!objSelect.imgBig" >
+                  <md-button v-on:click="searchAgain" :style="buttonStyle">Volver a buscar</md-button>
                 </md-list-item>
                 <md-list-item>
                   <md-button v-on:click="activeDeleteDialog = true" :style="buttonStyle">Borrar de mi lista</md-button>
                 </md-list-item>
                 </md-list>
-            </div>       
+            </div>
+            <div v-if="uploading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
+                <div  style="--md-theme-default-primary: white;">
+                <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+                </div>
+            </div>
           </div>        
     </div>
 

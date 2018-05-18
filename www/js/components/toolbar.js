@@ -60,11 +60,7 @@ Vue.component('tool-bar', {
                         this.$root.$emit("goToPreviousState", prevObj);
                         break;
                     case "UO_step2":
-                         var prevObj = {
-                            imgUrl: "unChanged",
-                            nextStep: 2
-                        };
-                        this.$root.$emit("goToPreviousState", prevObj);
+                        this.$root.$emit("backToUoStep2");
                 }
             }
             else if (res == "SO"){

@@ -12,7 +12,15 @@ const userLostObjectsTemplate = {props: [],
             step2: {
                 step: 2,
                 text:""
-            }
+            },
+            step3:{
+                step: 3,
+                text:""
+            },
+            step4:{
+                step: 4,
+                text:""
+            },
         },
         actualStep:{
             step: "",

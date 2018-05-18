@@ -130,7 +130,14 @@ Vue.component('generate-tags-search', {
                passToNextStep(){
                 if(this.tagsArray.length > 2){
                    var sorted = this.tagsArray.map(function(value) {
-                        return value.toLowerCase();
+                       value = value.toLowerCase();
+                       value = value.replace(/\s/g, "");
+                       value = value.replace(/[àáâãäå]/g,"a");
+                       value = value.replace(/[èéêë]/g,"e");
+                       value = value.replace(/[ìíîï]/g,"i");
+                       value = value.replace(/[òóôõö]/g,"o");
+                       value = value.replace(/[ùúûü]/g,"u");
+                       return value;
                     }).sort();
                     console.log(sorted);
                    var emitObj = {
@@ -157,7 +164,7 @@ Vue.component('generate-tags-search', {
 
 
 
-         <div class="md-layout md-alignment-top-center" style="padding-left:0;text-align:center;margin-top:3%;margin-bottom:5%">
+         <div class="md-layout md-alignment-top-center" style="padding-left:0;text-align:center;margin-top:3%;margin-bottom:0;padding-bottom:2.5em">
             <div>
             <div  class="md-layout-item md-layout md-gutter" style="margin-left:7%;margin-right:7%;">
                 <div class="md-layout-item" v-for="(value, index) in tagsArray" >

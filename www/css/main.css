@@ -37,6 +37,13 @@ div#selectALO_Mostrar.md-field.md-theme-default:after{
 div.md-field.md-theme-default.md-disabled.md-has-value.md-has-textarea.md-autogrow:after{
     height: 0px;
 }
+.md-list-item >*:first-child >*:first-child >*:first-child >* >*:first-child >* {
+    padding: 0;
+}
+
+.md-list-item >*:first-child >*:first-child >*:first-child >li:last-child {
+  margin-bottom: 1.5em;
+}
 
 /*.md-toolbar.md-theme-default.md-transparent .md-icon {
     color: var(--md-theme-default-text-primary-on-background, rgba(255,255,255,1));

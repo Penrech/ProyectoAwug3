@@ -1,7 +1,9 @@
 Vue.component('search-objects', {
-        props: ["prevTags"],
+        props: ["searched","prevTags"],
         data: () => ({
         objectsArray : [],
+        qLen: 0,
+        objIDTemp:[],
         objectSelect: {
             id: null,
             index:null
@@ -34,14 +36,22 @@ Vue.component('search-objects', {
     }),
         created: function(){
          window.scrollTo(0,0);
-         this.getList();
+        toolBarData.paginaActual = "SO_step2";
+        toolBarData.paginaAnterior = "SO_step1";
+        toolBarData.paginaSiguiente = "";
+        toolBarData.toolBarTitle = "Encontrar un objeto";
+        toolBarData.iconoPaginaAnterior = "clear";
          document.body.style= this.bodyStyle;
-         this.getCurrentDate();
-         /*toolBarData.paginaActual ="SO_step2";
-         toolBarData.paginaSiguiente ="";
-         toolBarData.paginaAnterior = "SO_step1";*/
+         let _this = this;
+         var sTags = new searchObjectsByTags(this.prevTags,userIdTest);
+         sTags.then(function(result){
+             console.log(result);
+             _this.objectsArray = result;
+             _this.loading = false;
+         })
          this.$root.$on("detailsFoundObject",this.DetallesDeObjeto);
          this.$root.$on("backToSoStep1",this.changeData);
+            
     },
     destroyed: function(){
          this.$root.$off("detailsFoundObject",this.DetallesDeObjeto);
@@ -49,33 +59,11 @@ Vue.component('search-objects', {
 
     },
         methods: {
-            /*
-             
-                deleteTag(index,value,state){
-                    if(state == 0){
-                        this.toBeDeleted.index = index;
-                        this.toBeDeleted.name = value;
-                        this.dialogText ="Vas a borrar el tag <strong>"+this.toBeDeleted.name+"</strong>, ¿Continuar?"
-                        this.activeDeleteDialog = true;
-                        
-                    }
-                    else if(state == 1){
-                        this.tagsArray.splice(index, 1);
-                        this.dialogText = null;
-                        this.toBeDeleted.index = null;
-                        this.toBeDeleted.name = null;
-                    }
-                    else if(state == 2){
-                        this.dialogText = null;
-                        this.toBeDeleted.index = null;
-                        this.toBeDeleted.name = null;
-                    }
-                    
-                },
-            */
+
             selectObject(clave,indice){
                 console.log("Entro aqui");
                 clave = "found-object-"+clave;
+                console.log(clave);
                 if (this.objectSelect.id != null){
                     if (this.objectSelect != clave){
                         document.getElementById(this.objectSelect.id).style= this.cardStyle1;
@@ -92,56 +80,7 @@ Vue.component('search-objects', {
                 }
             
             },
-            getList: function(){
-            this.$http.get('https://raw.githubusercontent.com/Penrech/ProyectoAwug3/master/FakeData/PruebasBuscarPorTags.json').then(function (response){
-                var tempObjectsArray;
-                tempObjectsArray = response.data.searchedObjects;
-                this.compareWithTags(tempObjectsArray);
-                
-            }); },
-            /*    if (!this.tagsArray.includes(this.toBeAdded) && this.toBeAdded.length >= 2){
-                            this.tagsArray.push(this.toBeAdded);*/
-             compareWithTags(tempArray){
-                 var tempArrayCaseInsensitive = tempArray;
-                 for (i = 0; i < tempArray.length;i++){
-                      var cont = 0;
-                      for(j = 0; j < this.prevTags.length;j++){
-                           for(k=0; k< tempArrayCaseInsensitive[i].tags.length;k++){
-                             /* if(tempArray[i].tags.includes(this.prevTags[j])){
-                                  cont++;
-                              }*/
-                               if (tempArrayCaseInsensitive[i].tags[k].toUpperCase() == this.prevTags[j].toUpperCase()){
-                                   cont++;
-                               }
-                           }
-                      }
-                      if (cont >= 2){
-                          var array = tempArray[i];
-                          array.coincidencias = cont;
-                          if (this.objectsArray.length > 0){
-                              if (this.objectsArray[this.objectsArray.length-1].coincidencias > cont){
-                                  this.objectsArray.push(array);
-                              }
-                              else{
-                                  this.objectsArray.unshift(array);
-                              }
-                          }
-                          else{
-                              this.objectsArray.push(array);
-                          }
-                          
-                      }
-                 }
-                 console.log(this.objectsArray);
-                 this.loading = false;
-             },
-             getCurrentDate(){
-                    var myDate = new Date();
-                    var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
-                    var date = ('0' + myDate.getDate()).slice(-2);
-                    var year = myDate.getFullYear();
-                    this.registerDate = date + '/' + month + '/' + year;
-                },
+            
                 changeData(){
                      var emitObj = {
                        nextStep: 1
@@ -171,15 +110,25 @@ Vue.component('search-objects', {
         template:`
 
 <div >        
+
+
+        <!--inicio subnav2-->
+          <md-toolbar v-if="objectsArray == null && searched != null" md-elevation="0" class="md-transparent" >
+                <div class="md-toolbar-row" style="justify-content: center;">
+                <span class="md-title" style="font-weight: 300;font-size: 16px; margin-left: 0;color: white;  white-space: normal; text-align:center">Tu objeto no parece estar en nuestra base de datos, intentalo de nuevo más tarde</span>
+              </div>
+            </md-toolbar>
+        <!-- fin subnav2-->
+
         <!--Inicio de botones-->
         
-    <ul class="md-layout md-gutter md-alignment-top-center" style="padding-left:0;margin-top:0">
+    <ul class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:0">
 
         <div v-if="loading" style="margin-top:25%;--md-theme-default-primary: white;">
              <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
         </div>
 
-            <li v-if="!loading" style="list-style:none;padding: 0 12px 24px 12px;">
+            <li v-if="!loading && searched == null" style="list-style:none;padding: 0 12px 24px 12px;">
             <md-card  id="found-object-none" @click.native="selectObject('none',null)" style="border-radius: 10px;width: 150px;">
             <md-card-media-cover style="    overflow: hidden;" >
 
@@ -202,10 +151,17 @@ Vue.component('search-objects', {
 
             <li v-if="!loading" style="list-style:none;padding: 0 12px 24px 12px;"  v-for="(item,index) in objectsArray" :key="item.id" >
         <md-card :id="'found-object-'+item.id" @click.native="selectObject(item.id,index)" :style="cardStyle1">
-          <md-card-media-cover style="    overflow: hidden;" >
+          <md-card-media-cover  style="overflow: hidden;background-color:rgba(0, 0, 0, 0.5);" >
             <md-card-media md-ratio="1:1">
-              <img :src="item.img" alt="">
+              <img :src="item.imgSmall" alt="">
             </md-card-media>
+            <md-card-area v-if="item.objInUserList" style="background-color:rgba(0, 0, 0, 0.5);">
+                <md-card-header>
+
+                <span class="md-title" style="font-size:14px;font-weight:600;line-height: 1.4; text-align:center; color:white;margin-bottom:10px">Objeto ya en tu lista</span>
+              </md-card-header>
+
+            </md-card-area>
           </md-card-media-cover>
         </md-card>
             </li>

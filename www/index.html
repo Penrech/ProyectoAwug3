@@ -2,7 +2,9 @@
 <html>
   <head>
    
-    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data: content:;font-src 'self' 'unsafe-inline' https://fonts.gstatic.com; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.gstatic.com/firebasejs/4.13.0/firebase.js https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js  https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio.com; object-src 'self'; ">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data: content:;font-src 'self' 'unsafe-inline' https://fonts.gstatic.com; script-src 'self' 'unsafe-eval' 'unsafe-inline'
+    https://www.gstatic.com/firebasejs/5.0.2/firebase.js 
+ https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio.com; object-src 'self'; ">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta charset="utf-8">
@@ -16,7 +18,13 @@
     
       
       
-      <!--<script src="js/components/mail_list.js"></script>-->
+      <!--<script src="js/components/mail_list.js"></script>
+
+
+    https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js                                                 
+    https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js  https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js
+
+-->
     <!--<script src="js/components/mail_item.js"></script>-->
 
       
@@ -26,8 +34,19 @@
     <div  class="app-viewport" id="app">
        
 
-              
-      <!--EVA: esta clase main es la que hace funcionar al router, si quieres ir probando aqui los diseños la has de comentar -->
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
     <main class="main-content" > <!-- aqui el router inyecta las paginas-->
                <div>
                    <tool-bar ref="toolbar" style="margin-bottom: 1em"></tool-bar>
@@ -38,8 +57,7 @@
                         </div>
                       
         </main>
-        <!--EVA: una vez hallas acabado un diseño, lo copias y creas una constante, mira como ejemplo las dos que he hecho yo, user_lost_objects y home_user.
-        una vez la crees, has de importarla abajo con los demas .js sino, no funcionara-->
+  
         
         
     
@@ -47,15 +65,14 @@
 
     </div>
         
-        
-		<script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+       <!-- <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script>-->
+		<script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
 		<script src="libs/vue.js"></script>
 		<script src="js/vue-router.js"></script>
       <script src="js/vue-resource.min.js"></script>

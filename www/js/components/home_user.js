@@ -15,20 +15,15 @@ const HomeUserTemplate = {props: [],
             toolBarData.paginaSiguiente = "activarMenu";
             toolBarData.paginaAnterior = "";
             toolBarData.toolBarTitle = "";
-            var data = new getUserName("user1");
-            let _this = this;
+            this.username = user.nomAp;
+            /*let _this = this;
             firebase.database().ref("/usuarios/"+userIdTest+"/nomAp").on("value",function(result){
                 _this.username = result.val();
-            })
+            })*/
 
         },
         methods: {
-            toggleSideBar(){
-                console.log(this.$refs.sidebar);
-            },
-              completeProfile () {
-                
-              },
+
                 goToProfile(){
                     this.$router.push('userProfile');
                 },

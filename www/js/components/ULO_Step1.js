@@ -221,10 +221,10 @@ Vue.component('ULO-step1', {props: ["subNavText"],
     <md-card :id="'user-object-'+item.id" @click.native="selectObject(item.id,index)" style="border-radius: 10px;width: 150px;">
       <md-card-media-cover style="    overflow: hidden;" >
         <md-card-media md-ratio="1:1">
-          <img v-if="item.img" :src="item.img" alt="">
+          <img v-if="item.imgSmall" :src="item.imgSmall" alt="">
         </md-card-media>
 
-        <md-card-area v-if="!item.img" style="top:0;bottom:unset;">
+        <md-card-area v-if="!item.imgSmall" style="top:0;bottom:unset;">
             <md-card-header style="padding-top: 10px;">
             
         

@@ -1,6 +1,6 @@
 const HomeUserTemplate = {props: [], 
                           data: () => ({
-        username: "John Doe",
+        username: "",
         activeNavigation: false,
         showNavigation:false,
         UserType,
@@ -15,15 +15,15 @@ const HomeUserTemplate = {props: [],
             toolBarData.paginaSiguiente = "activarMenu";
             toolBarData.paginaAnterior = "";
             toolBarData.toolBarTitle = "";
+            this.username = user.nomAp;
+            /*let _this = this;
+            firebase.database().ref("/usuarios/"+userIdTest+"/nomAp").on("value",function(result){
+                _this.username = result.val();
+            })*/
 
         },
         methods: {
-            toggleSideBar(){
-                console.log(this.$refs.sidebar);
-            },
-              completeProfile () {
-                
-              },
+
                 goToProfile(){
                     this.$router.push('userProfile');
                 },

@@ -3,12 +3,9 @@ const uploadObjectTemplate = {props: [],
 
         showNavigation:false,
         imageData: null,
-        userTestData:{
-            location: "C/ Guadalajara Nº 1-3 08006,Barcelona",
-            phone: "+34 628 826 123"
-        },
         stepperLen:3,
         tags: [],
+        hideStepperVal: false,
         stepLibrary:{
             step1: {
                 step: "1",
@@ -70,6 +67,7 @@ const uploadObjectTemplate = {props: [],
                         this.actualStep = this.stepLibrary.step3;
                         toolBarData.paginaActual = "UO_step3"
                         toolBarData.paginaAnterior = "UO_step2"; 
+                        toolBarData.paginaSiguiente = "";
                     }
                 },
                 UpdateState(updateData){
@@ -85,7 +83,12 @@ const uploadObjectTemplate = {props: [],
               goBackHome () {
                   this.$router.push('homeUser');
               },
-             
+               hideStepper(data){
+                   if(data == true)
+                       this.hideStepperVal = true;
+                   else
+                       this.hideStepperVal = false;
+               }
            
         },
         template:`
@@ -94,14 +97,14 @@ const uploadObjectTemplate = {props: [],
 
 
         <!--inicio subnav-->
-          <stepper-tool :step="actualStep.step" :length="stepperLen" :text="actualStep.text"></stepper-tool>
+          <stepper-tool v-if="hideStepperVal == false" :step="actualStep.step" :length="stepperLen" :text="actualStep.text"></stepper-tool>
         <!-- fin toolbar de la app-->
         
         
         <!--Inicio de body-->
         <capture-img v-if="actualStep.step == 1" v-on:reciveDataStep1="UpdateState($event)"></capture-img>
         <generate-tags v-if="actualStep.step == 2" :imgSrc="imageData" :prevTags="tags" v-on:backtoStep1="UpdateState($event)" v-on:reciveDataStep2="UpdateState($event)"></generate-tags>
-        <save-object v-if="actualStep.step == 3" :imgSrc="imageData" :prevTags="tags" :location="userTestData.location" :phone="userTestData.phone" v-on:backtoStep2="UpdateState($event)"></save-object>
+        <save-object v-if="actualStep.step == 3" v-on:hideStepper="hideStepper($event)" :imgSrc="imageData" :prevTags="tags" v-on:backtoStep2="UpdateState($event)"></save-object>
         <!--Fin de body-->
 
         

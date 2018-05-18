@@ -101,7 +101,14 @@ Vue.component('generate-tags', {
     },
     
     methods: {
-                
+                errorHandler(state){
+                    if (state == 1){
+                        this.getDataUri(this.imgSrc,this.sendFileToCloudVision);
+                    }
+                    else{
+                        this.changePhoto();
+                    }
+                },
                 deleteTag(index,value,state){
                     if(state == 0){
                         this.toBeDeleted.index = index;
@@ -146,9 +153,12 @@ Vue.component('generate-tags', {
                 },
                passToNextStep(){
                 if(this.tagsArray.length > 2){
+                    var sorted = this.tagsArray.map(function(value) {
+                        return value.toLowerCase();
+                    }).sort();;
                    var emitObj = {
                        imgUrl: this.imgSrc,
-                       tags : this.tagsArray,
+                       tags : sorted,
                        nextStep: 3
                    }
                 this.$emit('reciveDataStep2',emitObj);
@@ -163,16 +173,14 @@ Vue.component('generate-tags', {
 
                 image.onload = function () {
                     var canvas = document.createElement('canvas');
-                    canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
-                    canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+                    canvas.width = this.naturalWidth; 
+                    canvas.height = this.naturalHeight; 
 
-                    canvas.getContext('2d').drawImage(this, 0, 0);
+                    canvas.getContext('2d').drawImage(this, 0, 0,this.naturalWidth,this.naturalHeight);
 
-                    // Get raw image data
-                    callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
 
-                    // ... or get as Data URI
-                    //callback(canvas.toDataURL('image/png'));
+                 callback(canvas.toDataURL('image/jpeg').replace(/^data:image\/(png|jpeg);base64,/, ''));
+
                 };
 
                  image.src = url;
@@ -210,15 +218,41 @@ Vue.component('generate-tags', {
                      console.log(data);
                      var tempArray=[];
                      var tempObj =  data.responses[0].labelAnnotations;
+                     console.log(tempObj);
+                     console.log(tempObj.length);
                      for(i= 0; i<tempObj.length;i++){
-                        if(tempObj[i].description.length <15 && !tempArray.includes(tempObj[i].description))
-                            tempArray.push(tempObj[i].description);
+                        if(tempObj[i].description.length <15){
+                            var split = tempObj[i].description.split(" ");
+                            if (split.length > 1){
+                                split.forEach(function(tag){
+                                    if(!tempArray.includes(tag))
+                                    tempArray.push(tag);
+                                })
+                            }
+                            else{
+                            if(!tempArray.includes(tempObj[i].description))
+                                tempArray.push(tempObj[i].description);
+                            }
+                        }
+                            
                      }
                      if(data.responses[0].logoAnnotations){
                          tempObj =  data.responses[0].logoAnnotations;
                          for(i= 0; i<tempObj.length;i++){
-                            if(tempObj[i].description.length <15 && !tempArray.includes(tempObj[i].description))
-                                tempArray.push(tempObj[i].description);
+                             console.log(tempObj[i].description);
+                            if(tempObj[i].description.length <15 && !tempArray.includes(tempObj[i].description)){
+                            var split = tempObj[i].description.split(" ");
+                            var temp = tempObj[i].description;
+                            var checkTwoWordsTag = split.length;
+                            if (checkTwoWordsTag > 1){
+                                var T = temp.replace(/\s/g, "");
+                                 tempArray.push(T);
+                            }
+                            else{
+                                 tempArray.push(tempObj[i].description);
+                            }
+
+                        }
                      }}
                      this.SendTextToTranslation(tempArray);
                      /*this.tagsArray = tempArray;
@@ -241,8 +275,17 @@ Vue.component('generate-tags', {
                                 var tempObj = StringRes.split(",");
                                 console.log(tempObj);
                                 for(i= 0; i<tempObj.length;i++){
-                                        if(tempObj[i].length <15)
-                                            tempArray.push(tempObj[i]);
+                                        if(tempObj[i].length <15){
+                                             var temp = tempObj[i];
+                                            temp = temp.replace(/\s/g, "");
+                                            temp = temp.replace(/[àáâãäå]/g,"a");
+                                            temp = temp.replace(/[èéêë]/g,"e");
+                                            temp = temp.replace(/[ìíîï]/g,"i");
+                                            temp = temp.replace(/[òóôõö]/g,"o");
+                                            temp = temp.replace(/[ùúûü]/g,"u");
+                                            tempArray.push(temp);
+                                        }
+                                            
                                  }
                                 this.tagsArray = tempArray;
                                 this.loading = false;
@@ -284,7 +327,7 @@ Vue.component('generate-tags', {
 
 </div>
 
-         <div class="md-layout md-alignment-top-center" style="padding-left:0;text-align:center;margin-top:3%;margin-bottom:5%">
+         <div class="md-layout md-alignment-top-center" style="padding-left:0;text-align:center;margin-top:3%;padding-bottom:2.5em">
             <div v-if="loading" >
             <div  class="md-layout-item  md-size-100" style="margin-top:15%;margin-bottom:7%;--md-theme-default-primary: #03a9f4;">
                   <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
@@ -342,6 +385,14 @@ Vue.component('generate-tags', {
       md-title="Pocos tags!"
       md-content="Debe de haber un mínimo de 3 tags prueba a añadir más con el botón <strong>+</strong>" />
     <!-- Fin dialogo pocos tags-->
+
+    <md-dialog-alert
+      :md-active.sync="openErrorDialog"
+      md-content="Errro analizando la imagen"
+      md-confirm-text="Reintentar"
+      md-cancel-text="Volve atrás"
+      @md-confirm="errorHandler(1)"
+      @md-cancel="errorHandler(2)" />
 
 
   </div> 

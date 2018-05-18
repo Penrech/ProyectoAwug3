@@ -76,12 +76,13 @@ const userProfileTemplate = {props: [],
             toolBarData.toolBarTitle = "Mi perfil";
             this.$root.$on("backToProfile",this.backToProfileWithoutSave);
             this.userProfileData = user;
-            let _this = this;
+            this.formData = user;
+            /*let _this = this;
             firebase.database().ref("usuarios/"+userIdTest).on("value",function(result){
                 _this.userProfileData = result.val();
                 _this.formData = result.val();
                 user = _this.userProfileData;
-            });
+            });*/
             
         },
         destroyed: function(){

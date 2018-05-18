@@ -2,9 +2,7 @@ Vue.component('side-bar', {
      data: () => (sideBarData),
     created: function(){
         console.log("Valor de shownavigation solo cargar : "+this.showNavigation);
-    },
-    created: function(){
-
+         console.log(UserType);
     },
     methods:{
             blockScroll: function(){

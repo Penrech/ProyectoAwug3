@@ -1,8 +1,10 @@
 Vue.component('save-object', {
-    props: ["imgSrc","prevTags","location","phone"], 
+    props: ["imgSrc","prevTags"], 
     data: () => ({
      uploading: false,
      tagsString: "",
+     user,
+     openDialog:false,
      registerDate: null,
      buttonStyle:{ 
             borderRadius:"28px",
@@ -14,8 +16,7 @@ Vue.component('save-object', {
             minWidth: "8em",
             width: "14em",
             height: "3.2em",
-            marginTop: "1.5em",
-            marginBottom:"2.5em"
+            marginTop: "1.5em"
         },
         labelStyle:{
              fontSize:"16px",
@@ -27,31 +28,32 @@ Vue.component('save-object', {
             fontWeight:"200",
             marginTop:"12px"
         },
-        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
+        heartStyle2:{
+            fontSize: "22px!important",
+            color:"#00c9fa",
+            marginRight: "auto",
+            marginBottom: "30px"
+        },
+        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
+        responseObject:{
+            response: false,
+            uploadedSuccess: null,
+            message:null
+        }
  }),
     created: function(){
         window.scrollTo(0,0);
          document.body.style= this.bodyStyle;
          this.getCurrentDate();
          this.toStringTags();
-        this.$root.$on("saveObject",this.passToNextStep);
         this.$root.$on("backToUoStep2",this.changeData);
     },
     destroyed: function(){
-         this.$root.$off("saveObject",this.passToNextStep);
          this.$root.$off("backToUoStep2",this.changeData);
 
     },
     methods: {
                 toStringTags(){
-                   /* for(i=0; i < this.prevTags.length;i++ ){
-                        if (i == (this.prevTags.length-1)){
-                             this.tagsString += this.prevTags[i];
-                        }
-                        else{
-                            this.tagsString += this.prevTags[i] + ", ";
-                        }
-                    }*/
                     this.tagsString = this.prevTags.toString();
                 },
                 getCurrentDate(){
@@ -62,16 +64,68 @@ Vue.component('save-object', {
                     this.registerDate = date + '/' + month + '/' + year;
                 },
                 changeData(){
-                    console.log("Entro en changeData");
-                     var emitObj = {
-                       imgUrl : "unChanged",
-                       nextStep: 2
-                   }
-                this.$emit('backtoStep2',emitObj);
+                    console.log("el objeto en si "+this.responseObject.response);
+                    if (this.uploading == false){
+                        console.log(this.responseObject.uploadedSuccess);
+                        if(this.responseObject.uploadedSuccess == true){
+                            this.$router.push("allLostObjects");
+                        }
+                        else if(this.responseObject.uploadedSuccess == false){
+                             this.responseObject = {
+                                response: false,
+                                uploadedSuccess: null,
+                                message: "null"
+                            }
+                            this.hideStepper(false);
+                        }
+                        else{
+                            console.log("Entro en changeData");
+                            var emitObj = {
+                            imgUrl : "unChanged",
+                            nextStep: 2
+                            }
+                            this.$emit('backtoStep2',emitObj);
+                        }
+                    }
+                    else{
+                        this.openDialog = true;
+                    }
                 },
                uploadObject(){
-
-               }
+                    this.uploading = true;
+                    this.hideStepper(true);
+                    let _this = this;
+                    var object ={
+                        imgUrl: this.imgSrc,
+                        location: this.user.location,
+                        phone: this.user.phone,
+                        tags:this.prevTags
+                    }
+                    var sQuery = new saveObject(object);
+                    sQuery.then(function(result){
+                        if (result.uploadedSucces == true){
+                            _this.responseObject = {
+                                response: true,
+                                uploadedSuccess: true,
+                                message: "Objeto guardado correctamente en la base de datos"
+                            }
+                            console.log("Despues del succes ",_this.responseObject);
+                        }
+                        else{
+                            _this.responseObject={
+                                response:true,
+                                uploadedSuccess:false,
+                                message: result.error1
+                            }
+                        }
+                        _this.uploading = false;
+                        console.log("al final de la query ",_this.responseObject);
+                    })
+               },
+              hideStepper(value){
+                  this.$emit("hideStepper",value);
+              }
+                
  },
     
     template:`
@@ -82,10 +136,51 @@ Vue.component('save-object', {
         <!--Inicio de body-->
 <div>
 
+<!--inicio subnav2-->
+  <md-toolbar v-if="uploading" md-elevation="0" class="md-transparent" >
+        <div class="md-toolbar-row" style="justify-content: center;margin-top:25%;--md-theme-default-primary: white;">
+             <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+        </div>
+        <div class="md-toolbar-row" style="justify-content: center;">
+        <span class="md-title" style="font-weight: 300;font-size: 16px; margin-left: 0;color: white;  white-space: normal; text-align:center">El objeto se está subiendo a la nube</span>
+      </div>
+    </md-toolbar>
+<!-- fin subnav2-->
+
     <!--Inicio datos-->
+
+    <div  v-if="responseObject.response == true" style="margin-top:2em;margin-left: 5.25%;margin-right: 5.25% ">
+        <div  style="width: 100%; padding-bottom: 2.5em;">
+            <md-card class="md-elevation-0" style=" border-radius: 10px;">
+
+            <md-card-area>
+                <md-card-header style=" display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                flex-direction: column;padding: 15%">
+
+                <img v-if="responseObject.uploadSuccess == false" class="md-icon md-size-3x" :style="heartStyle2" src="icon/heartBreak.svg"></img>
+                <md-icon v-else class="md-size-3x" :style="heartStyle2" >done</md-icon>
+
+                <span v-if="responseObject.uploadSuccess == false" class="md-title" style="font-size:16px;font-weight:600;line-height: 1.4; text-align:center; color:black;margin-bottom:10px">Lo sentimos</span>
+                <span class="md-title" style="font-size:14px;font-weight:400;line-height: 1.4; text-align:center; color:black;">{{responseObject.message}}</span>
+              </md-card-header>
+
+            </md-card-area>
+        </md-card>
+            <div v-if="uploading == false" style="text-align: center;">
+              <md-button v-if="responseObject.uploadedSuccess == false" v-on:click="uploadObject()" :style="buttonStyle">Volver a intentar</md-button>
+              <md-button v-else v-on:click="changeData()" :style="buttonStyle">Ir a la lista de objetos</md-button>
+            </div>
+        </div>
+</div>
+
+
+
+<!------------------------------------------------------------------->
         
-    <div  style="margin-left: 5.25%;margin-right: 5.25% ">
-        <div  style="width: 100%">
+    <div  v-if="uploading == false && responseObject.response == false" style="margin-left: 5.25%;margin-right: 5.25% ">
+        <div  style="width: 100% ;padding-bottom: 2.5em;">
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
                 <md-card-header>
                  <md-card-header-text >
@@ -102,13 +197,13 @@ Vue.component('save-object', {
                         <md-list-item>
                             <md-field>
                                 <label :style="labelStyle">Localización:</label>
-                                <md-textarea v-model="location" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                <md-textarea v-model="user.location" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
                             <md-field>
                                 <label :style="labelStyle">Número de ayuda:</label>
-                                <md-textarea v-model="phone" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                <md-textarea v-model="user.phone" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
@@ -121,13 +216,19 @@ Vue.component('save-object', {
                 </md-card-header-text>
               </md-card-header>
             </md-card>
-            <div style="text-align: center;">
+            <div v-if="uploading == false && responseObject.response == false" style="text-align: center;">
               <md-button v-on:click="uploadObject()" :style="buttonStyle">Registrar Objeto</md-button>
             </div>
           </div>        
     </div>
         <!--Fin datos-->
-
+   
+<!--dialogos-->
+    <md-dialog-alert
+      :md-active.sync="openDialog"
+      md-title= "El objeto se está subiendo"
+      md-content="Espera a que el objeto se guarde en la base de datos"
+      md-confirm-text="OK" />
 
 
   </div> 
