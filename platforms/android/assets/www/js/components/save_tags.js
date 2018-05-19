@@ -197,7 +197,7 @@ Vue.component('save-object', {
                         <md-list-item>
                             <md-field>
                                 <label :style="labelStyle">Localización:</label>
-                                <md-textarea v-model="user.location" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                <md-textarea v-model="user.location.name" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item>

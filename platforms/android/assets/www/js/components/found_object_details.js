@@ -190,8 +190,7 @@ Vue.component('found-object-details', {
                   window.location.href="tel:"+this.objSelect.phone;
               }, 
             openMaps(){
-                  console.log("entro aqui");
-                  window.location.href="geo:41.5622481,2.0195355";
+                window.location.href="geo:"+this.objSelect.location.lat+","+this.objSelect.location.lon+"?q="+this.objSelect.location.lat+","+this.objSelect.location.lon+"("+this.objSelect.location.name+")";
               }
            
         },
@@ -224,7 +223,7 @@ Vue.component('found-object-details', {
                                 <md-list-item>
                                 <md-field>
                                     <label :style="labelStyle">Localización:</label>
-                                    <md-textarea v-model="objSelect.location" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                    <md-textarea v-model="objSelect.location.name" md-autogrow :style="inputStyle" disabled></md-textarea>
                                 </md-field>
                                 </md-list-item>
                                 <md-list-item>
@@ -252,7 +251,7 @@ Vue.component('found-object-details', {
             </md-card>
 
         <div v-if="!uploading && !objSelect.objInUserList" style="text-align: center;">
-          <md-button v-on:click="guardarObjeto" :style="buttonStyle">Guardar busqueda</md-button>
+          <md-button v-on:click="guardarObjeto" :style="buttonStyle">Guardar objeto</md-button>
         </div>
         <div v-if="uploading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
             <div  style="--md-theme-default-primary: white;">

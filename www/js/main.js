@@ -7,7 +7,7 @@
     authDomain: "lostandfound-201917.firebaseapp.com",
     databaseURL: "https://lostandfound-201917.firebaseio.com",
     projectId: "lostandfound-201917",
-    storageBucket: "lostandfound-201917.appspot.com",
+    storageBucket: "lostandfound-201917",
     messagingSenderId: "314216184364"
   };
 firebase.initializeApp(config);
@@ -294,7 +294,7 @@ var sideBarData = {showNavigation: false, userType: UserType};
 function init(){
         var deferred = $.Deferred();
         var deferred2 = $.Deferred();
-        userIdTest = "user2";
+        userIdTest = "user1";
         var userSearch= new getUserData(userIdTest);
         userSearch.then(function(result){
         UserType = result.type;

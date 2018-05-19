@@ -176,7 +176,7 @@ Vue.component('ULO-step2', {
               },
               openMaps(){
                   console.log("entro aqui");
-                  window.location.href="geo:41.5622481,2.0195355";
+                  window.location.href="geo:"+this.objSelect.location.lat+","+this.objSelect.location.lon+"?q="+this.objSelect.location.lat+","+this.objSelect.location.lon+"("+this.objSelect.location.name+")";
               },
               searchAgain(){
                   this.$router.push({name: 'searchObject', params: this.objSelect});
@@ -206,7 +206,7 @@ Vue.component('ULO-step2', {
         </div>
     </div>
 
-        <div v-if="!loading" style="width: 100%">
+        <div v-if="!loading" style="width: 100%;padding-bottom:2.5em">
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
                 <md-card-header>
                  <md-card-header-text >
@@ -225,7 +225,7 @@ Vue.component('ULO-step2', {
                                 <md-list-item>
                                 <md-field>
                                     <label :style="labelStyle">Localización:</label>
-                                    <md-textarea v-model="objSelect.location" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                    <md-textarea v-model="objSelect.location.name" md-autogrow :style="inputStyle" disabled></md-textarea>
                                 </md-field>
                                 </md-list-item>
                                 <md-list-item>
@@ -264,13 +264,13 @@ Vue.component('ULO-step2', {
             </md-card>
 
             <div v-if="!loading && !uploading" class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center; margin-top:1.5em;">
-            <md-list style="background: transparent;margin-bottom:1.5em">
-                <md-list-item  v-if="!objSelect.imgBig" >
-                  <md-button v-on:click="searchAgain" :style="buttonStyle">Volver a buscar</md-button>
-                </md-list-item>
-                <md-list-item>
-                  <md-button v-on:click="activeDeleteDialog = true" :style="buttonStyle">Borrar de mi lista</md-button>
-                </md-list-item>
+                <md-list style="background: transparent;">
+                    <md-list-item  v-if="!objSelect.imgBig" >
+                      <md-button v-on:click="searchAgain" :style="buttonStyle">Volver a buscar</md-button>
+                    </md-list-item>
+                    <md-list-item>
+                      <md-button v-on:click="activeDeleteDialog = true" :style="buttonStyle">Borrar de mi lista</md-button>
+                    </md-list-item>
                 </md-list>
             </div>
             <div v-if="uploading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">

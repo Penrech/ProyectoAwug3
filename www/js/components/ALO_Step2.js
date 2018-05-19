@@ -7,15 +7,15 @@ Vue.component('ALO-step2', {
         activeDeleteDialog: false,
         reclamado: null,
         buttonStyle:{ 
-        borderRadius:"28px",
-        border:"1px solid white",
-        color:"#ffffff",
-        fontSize:"16px",
-        fontWeight:"100",
-        textTransform: "none",
-        minWidth: "8em",
-        width: "14em",
-        height: "3.2em"
+            borderRadius:"28px",
+            border:"1px solid white",
+            color:"#ffffff",
+            fontSize:"16px",
+            fontWeight:"100",
+            textTransform: "none",
+            minWidth: "8em",
+            width: "14em",
+            height: "3.2em"
         },
         labelStyle:{
              fontSize:"16px",
@@ -140,7 +140,7 @@ Vue.component('ALO-step2', {
                         <md-list-item>
                             <md-field>
                                 <label :style="labelStyle">Localización:</label>
-                                <md-textarea v-model="objSelect.location" md-autogrow :style="inputStyle" disabled></md-textarea>
+                                <md-textarea v-model="objSelect.location.name" md-autogrow :style="inputStyle" disabled></md-textarea>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
