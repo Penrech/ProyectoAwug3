@@ -2,6 +2,12 @@ const userProfileTemplate = {props: [],
                           data: () => ({
         userProfileData:"",
         formData: null,
+        locationsObj: [],
+        locationsShowed:[],
+        locationSelectedObj: {},
+        locationSelectedString: null,
+        loadingSelect: true,
+        localizacionEscrita:null,
         erroresForm:{
             email:{
                 emailNoValido: false,
@@ -77,12 +83,14 @@ const userProfileTemplate = {props: [],
             this.$root.$on("backToProfile",this.backToProfileWithoutSave);
             this.userProfileData = user;
             this.formData = user;
-            /*let _this = this;
-            firebase.database().ref("usuarios/"+userIdTest).on("value",function(result){
-                _this.userProfileData = result.val();
-                _this.formData = result.val();
-                user = _this.userProfileData;
-            });*/
+            this.locationSelectedObj = user.location;
+            this.locationSelectedString = user.location.name;
+            let _this = this;
+            var lQuery = new getLocationList();
+            lQuery.then(function(result){
+                _this.locationsObj = result;
+                _this.loadingSelect = false;
+            })
             
         },
         destroyed: function(){
@@ -128,6 +136,7 @@ const userProfileTemplate = {props: [],
                 }
 
                 if (emailOk && nameOk.NoError && passOK.NoError && phoneOk){
+                    this.formData.location = this.locationSelectedObj;
                     this.submitForm();
                 }
                  console.log(this.erroresForm.email.emailNoValido);
@@ -264,9 +273,32 @@ const userProfileTemplate = {props: [],
                 toolBarData.paginaAnterior = "homeUser";
                 this.erroresForm = JSON.parse(JSON.stringify(this.erroresFormInitial));
             },
+            getLocations(searchTerm){
+            this.locationsShowed = new Promise(resolve => {
+                window.setTimeout(() => {
+                if (!searchTerm) {
+                resolve(this.locationsObj)
+                } else {
+                const term = searchTerm.toLowerCase()
+
+                resolve(this.locationsObj.filter(({ name }) => name.toLowerCase().includes(term)))
+                }
+                }, 500)
+                })
+            },
              goBackHome () {
                   this.$router.push('homeUser');
               }
+        },
+        watch:{
+            locationSelectedString : function(val){
+                console.log(val);
+            if (val.idPoint){
+                console.log("es un objeto");
+                this.locationSelectedObj = val;
+                this.locationSelectedString = val.name;
+            }
+        }
         },
         template:`
 
@@ -312,7 +344,8 @@ const userProfileTemplate = {props: [],
                             <md-icon>phone</md-icon>
                         </md-list-item>
                         <md-list-item v-if="UserType == 2">
-                            <span class="md-list-item-text" style="font-size:16px;font-weight:500">{{userProfileData.location.name}}</span>
+                            <span class="md-list-item-text" style="font-size:16px;font-weight:500;text-overflow: ellipsis;
+                            white-space: initial;">{{userProfileData.location.name}}</span>
                             <md-icon>location_on</md-icon>
                         </md-list-item>
                     </md-list>
@@ -348,13 +381,14 @@ const userProfileTemplate = {props: [],
                             </md-field>
                         </md-list-item>
                         <md-list-item v-if="UserType ==2">
-                            <md-field>
-                                <label>Centro de Atención</label>
-                                <md-input id="profile_atention_office" v-model="formData.location.name"></md-input>
-                                <md-icon>location_on</md-icon>
-                                <span class="md-error">Este teléfono no es válido</span>
-                                <span class="md-error">Se requiere un teléfono</span>
-                            </md-field>
+                            <md-progress-bar v-if="loadingSelect"  md-mode="query" style="width:100%"></md-progress-bar>
+                            <div v-else style="width:100%">
+                                <md-autocomplete v-model="locationSelectedString" :md-options="locationsShowed" @md-changed="getLocations" @md-opened="getLocations">
+                                    <label>Centro de Atención</label>
+                                    <template slot="md-autocomplete-item" slot-scope="{ item }">{{ item.name }}</template>
+                                </md-autocomplete>
+                                
+                            </div>
                         </md-list-item>
                         <md-list-item>
                             <md-field v-bind:class="{ 'md-invalid': erroresForm.contrasena.errorContrasena }">

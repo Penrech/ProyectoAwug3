@@ -268,10 +268,79 @@ var gQuery = new saveObject(objData,"upload");
 gQuery.then(function(result){
     console.log(result);
 })*/
+/*
+var dataJsonCorrected={};
+var dataKeys=[];
+var object = [];
+var dataJsonDef;
+console.log("Esto va o que");
+dataLocations.Punt.forEach(function(item,index){
+   var key = "point"+index;
+   dataKeys.push(key);
+      var temp = item.Tooltip;
+    var name = temp.split("-");
+    console.log(key);
+    var nameA = name[0].toLowerCase();
+    var nameB = name[1].toLowerCase();
+    nameB = nameB.slice(1);
+    var nameDef = nameA + nameB;
+    var point= {
+        idPoint: index,
+        name: nameDef,
+        lat: item.Coord.Latitud,
+        lon: item.Coord.Longitud
+    }
+  dataJsonCorrected[key] = point;
+  object.push(point);
 
+})
+/*
+dataJsonCorrected.forEach(function(item,index){
+   dataKeys.find(x => x === "point"+index).push(item);
+  
+})*//*
+object.locations = dataJsonCorrected;*//*
+console.log(object);
+(function(console){
+
+    console.save = function(data, filename){
+
+        if(!data) {
+            console.error('Console.save: No data')
+            return;
+        }
+
+        if(!filename) filename = 'console.json'
+
+        if(typeof data === "object"){
+            data = JSON.stringify(data, undefined, 4)
+        }
+
+        var blob = new Blob([data], {type: 'text/json'}),
+            e    = document.createEvent('MouseEvents'),
+            a    = document.createElement('a')
+
+        a.download = filename
+        a.href = window.URL.createObjectURL(blob)
+        a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
+        e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+        a.dispatchEvent(e)
+    }
+})(console)
+
+
+*/
 var user;
 var UserType;
-var userIdTest;
+var userIdTest;/*
+var query = new getLocationList();
+query.then(function(result){
+    console.log(result);
+    x = "point202";
+    var seleccionar = Object.values(result[x]);
+    console.log(seleccionar);
+    console.log("olaa");
+})
 /*var userSearch= new getUserData(userIdTest);
 userSearch.then(function(result){
     UserType = result.type;
@@ -294,7 +363,7 @@ var sideBarData = {showNavigation: false, userType: UserType};
 function init(){
         var deferred = $.Deferred();
         var deferred2 = $.Deferred();
-        userIdTest = "user1";
+        userIdTest = "user2";
         var userSearch= new getUserData(userIdTest);
         userSearch.then(function(result){
         UserType = result.type;
