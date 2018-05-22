@@ -778,3 +778,15 @@ function saveObject(dataObject){
     return deferred.promise();
      
 }
+
+function getLocationList(){
+    var deferred = $.Deferred();
+    var locations;
+    
+    firebase.database().ref("locations").orderByChild("name").once("value")
+    .then(function(item){
+        locations = item.val();
+        deferred.resolve(locations);
+    })
+   return deferred.promise();
+}

@@ -268,10 +268,149 @@ var gQuery = new saveObject(objData,"upload");
 gQuery.then(function(result){
     console.log(result);
 })*/
+/*
+var dataJsonCorrected={};
+var dataKeys=[];
+var object = [];
+var dataJsonDef;
+console.log("Esto va o que");
+dataLocations.Punt.forEach(function(item,index){
+   var key = "point"+index;
+   dataKeys.push(key);
+      var temp = item.Tooltip;
+    var name = temp.split("-");
+    console.log(key);
+    var nameA = name[0].toLowerCase();
+    var nameB = name[1].toLowerCase();
+    nameB = nameB.slice(1);
+    var nameDef = nameA + nameB;
+    var point= {
+        idPoint: index,
+        name: nameDef,
+        lat: item.Coord.Latitud,
+        lon: item.Coord.Longitud
+    }
+  dataJsonCorrected[key] = point;
+  object.push(point);
 
+})
+/*
+dataJsonCorrected.forEach(function(item,index){
+   dataKeys.find(x => x === "point"+index).push(item);
+  
+})*//*
+object.locations = dataJsonCorrected;*//*
+console.log(object);
+(function(console){
+
+    console.save = function(data, filename){
+
+        if(!data) {
+            console.error('Console.save: No data')
+            return;
+        }
+
+        if(!filename) filename = 'console.json'
+
+        if(typeof data === "object"){
+            data = JSON.stringify(data, undefined, 4)
+        }
+
+        var blob = new Blob([data], {type: 'text/json'}),
+            e    = document.createEvent('MouseEvents'),
+            a    = document.createElement('a')
+
+        a.download = filename
+        a.href = window.URL.createObjectURL(blob)
+        a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
+        e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+        a.dispatchEvent(e)
+    }
+})(console)
+
+
+*/
+var lastUser;
 var user;
 var UserType;
-var userIdTest;
+var userIdTest = null;
+function startListeners(){
+lastUser = firebase.auth().currentUser;
+  if (lastUser) {
+    console.log("habia usuario y era "+lastUser.uid);
+    // User is signed in.
+    var deferred = $.Deferred();
+    var deferred2 = $.Deferred();
+    userIdTest = lastUser.uid;
+    firebase.database().ref("usuarios/"+userIdTest).on('value', function(snapshot){
+            user = snapshot.val();
+            if (deferred2.state() == "pending")
+                deferred2.resolve(user.type);
+            if (deferred.state() == "pending")
+                deferred.resolve();
+            });
+    $.when(deferred).done(function(){
+        this.$router.push("homeUser");
+    })
+    $.when(deferred2).done(function(x){
+        UserType = x;
+        sideBarData.userType = UserType;
+    })
+    
+  } else {
+    // No user is signed in.
+    user = null;
+    UserType= null;
+    userIdTest= null;
+    if(toolBarData.paginaActual != "login")
+        this.$router.push("login");
+  }
+    
+    
+    
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    console.log("¿Tambien entro aqui?");
+    var deferred = $.Deferred();
+    userIdTest = user.uid;
+    firebase.database().ref("usuarios/"+userIdTest).on('value', function(snapshot){
+                user = snapshot.val();
+            if (deferred2.state() == "pending")
+                deferred2.resolve(user.type);
+            if (deferred.state() == "pending")
+                deferred.resolve();
+            });
+    $.when(deferred).done(function(){
+        this.$router.push("homeUser");
+    })
+    $.when(deferred2).done(function(x){
+        UserType = x;
+        sideBarData.userType = UserType;
+    })
+    
+  } else {
+    // No user is signed in.
+    user = null;
+    UserType= null;
+    userIdTest= null;
+    if(toolBarData.paginaActual != "login")
+        this.$router.push("login");
+  }
+});
+}
+
+
+
+/*
+var query = new getLocationList();
+query.then(function(result){
+    console.log(result);
+    x = "point202";
+    var seleccionar = Object.values(result[x]);
+    console.log(seleccionar);
+    console.log("olaa");
+})
 /*var userSearch= new getUserData(userIdTest);
 userSearch.then(function(result){
     UserType = result.type;
@@ -291,10 +430,10 @@ userRef.off();
 var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",paginaSiguiente:"",iconoPaginaSiguiente:"",toolBarTitle:""};
 var sideBarData = {showNavigation: false, userType: UserType};
 
-function init(){
+function init(){/*
         var deferred = $.Deferred();
         var deferred2 = $.Deferred();
-        userIdTest = "user1";
+        userIdTest = "user2";
         var userSearch= new getUserData(userIdTest);
         userSearch.then(function(result){
         UserType = result.type;
@@ -315,7 +454,8 @@ function init(){
     
         $.when(deferred2).done(function(){
             mountApp();
-        })
+        })*/
+    mountApp();
     
         
 
@@ -408,10 +548,14 @@ function mountApp(){
         router,
         data: { showNavigation: false,
                 showSidepanel: false,
+                userIdTest,
                 bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
               message: 'Hola!'},
         created: function(){
             document.addEventListener("backbutton",this.HandlerBackButton,false);
+        },
+        mounted:function(){
+            startListeners();
         },
         methods: {
            HandlerBackButton(){
@@ -445,7 +589,7 @@ function mountApp(){
       }).$mount('#app');
     
     //router.push('settings');
-    router.push({ name: 'homeUser'})
+    router.push({ name: 'login'})
 }
 
         

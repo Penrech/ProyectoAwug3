@@ -7,6 +7,9 @@ const userProfileTemplate = {props: [],
         locationSelectedObj: {},
         locationSelectedString: null,
         loadingSelect: true,
+        snackBar:false,
+        duration:3000,
+        uploading:false,
         localizacionEscrita:null,
         erroresForm:{
             email:{
@@ -67,8 +70,7 @@ const userProfileTemplate = {props: [],
             minWidth: "8em",
             width: "14em",
             height: "3.2em",
-            marginTop: "1.5em",
-            marginBottom:"2.5em"
+            marginTop: "1.5em"
         },
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
@@ -82,7 +84,7 @@ const userProfileTemplate = {props: [],
             toolBarData.toolBarTitle = "Mi perfil";
             this.$root.$on("backToProfile",this.backToProfileWithoutSave);
             this.userProfileData = user;
-            this.formData = user;
+            this.formData = JSON.parse(JSON.stringify(user));
             this.locationSelectedObj = user.location;
             this.locationSelectedString = user.location.name;
             let _this = this;
@@ -98,7 +100,7 @@ const userProfileTemplate = {props: [],
         },
         methods: {
             checkForm(){
-
+                 let _this = this;
                  this.erroresForm = JSON.parse(JSON.stringify(this.erroresFormInitial));
                  var emailOk = this.emailValidation();
                  var nameOk = this.nameValidation();
@@ -106,7 +108,7 @@ const userProfileTemplate = {props: [],
                  console.log(nameOk);
                  var phoneOk = this.phoneValidation();
                  var passOK = this.passValidation();
-                 if (!emailOk){
+                 if (!emailOk.NoError){
                      this.erroresForm.email.emailNoValido = true;
                  }
                  else if (!nameOk.NoError){
@@ -135,9 +137,37 @@ const userProfileTemplate = {props: [],
                     }
                 }
 
-                if (emailOk && nameOk.NoError && passOK.NoError && phoneOk){
+                if (emailOk.NoError && nameOk.NoError && passOK.NoError && phoneOk){
+                    var emailDef = $.Deferred();
+                    var passDef = $.Deferred();
                     this.formData.location = this.locationSelectedObj;
-                    this.submitForm();
+                    var Cuser = firebase.auth().currentUser;
+                    this.uploading = true;
+                    if (emailOk.NoChange){
+                        emailDef.resolve();
+                    }
+                    else{
+                    Cuser.updateEmail(this.formData.email).then(function() {
+                      emailDef.resolve();
+                    }).catch(function(error) {
+                      console.log(error);
+                      _this.snackBar = true;
+                    });
+                    }
+                    if(passOK.NullPass){
+                        passDef.resolve();
+                    }
+                    else{
+                        Cuser.updatePassword(this.formData.pass).then(function() {
+                          passDef.resolve();
+                        }).catch(function(error) {
+                          _this.snackBar = true;
+                        });
+                    }
+                    $.when(emailDef,passDef).done(function(){
+                        _this.submitForm();
+                    })
+                    
                 }
                  console.log(this.erroresForm.email.emailNoValido);
                 
@@ -153,16 +183,32 @@ const userProfileTemplate = {props: [],
                 }
             },
             emailValidation(){
+                var errors = {
+                    "NoError":false,
+                    "NoChange":false
+                }
+                if(this.formData.email == this.userProfileData.email){
+                    errors.NoError = true;
+                    errors.NoChange = true;
+                    return errors;
+                }
+                else{
                  if (this.formData.email != ""){
                         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.formData.email))
-                            { 
-                            return true;
+                            {
+                            errors.NoError = true;
+                            return errors;
                             }
-                        else
-                            return false;
+                        else{
+                            errors.NoError = false;
+                            return errors;
+                        }
                   }
-                 else
-                     return true;
+                 else{
+                     errors.NoError = true;
+                     return errors;
+                 }
+                }
             },
             nameValidation(){
                 var errors ={
@@ -211,6 +257,7 @@ const userProfileTemplate = {props: [],
             passValidation(){
                 var errors ={
                     "NoError":false,
+                    "NullPass":false,
                     "wrongPass":false,
                     "passNotEqual":false,
                     "passTooShort":false
@@ -245,19 +292,22 @@ const userProfileTemplate = {props: [],
                 }
                 else{
                     errors.NoError = true;
+                    errors.NullPass = true;
                     return errors;
                 }
             },
             goToEditMode(){
                 toolBarData.paginaActual = "edit_profile";
                 toolBarData.paginaAnterior ="userProfile"
+                this.formData = JSON.parse(JSON.stringify(user));
                 this.editionMode = true;
-                console.log(this.FormData);
                 console.log("entro aqui en go to edit mode");
             },
             submitForm(){
-                console.log(this.formData.pass);
+                console.log(this.formData);
                 firebase.database().ref('usuarios/'+userIdTest).set(this.formData);
+                this.userProfileData = user;
+                this.uploading = false;
                 this.passEditMode = false;
                 this.editionMode = false; 
                 toolBarData.paginaActual= toolBarData.paginaAnterior;
@@ -269,6 +319,7 @@ const userProfileTemplate = {props: [],
             backToProfileWithoutSave(){
                 this.passEditMode = false;
                 this.editionMode = false;
+                this.uploading = false;
                 toolBarData.paginaActual= toolBarData.paginaAnterior;
                 toolBarData.paginaAnterior = "homeUser";
                 this.erroresForm = JSON.parse(JSON.stringify(this.erroresFormInitial));
@@ -292,11 +343,13 @@ const userProfileTemplate = {props: [],
         },
         watch:{
             locationSelectedString : function(val){
+            if(this.UserType != 1){
                 console.log(val);
-            if (val.idPoint){
-                console.log("es un objeto");
-                this.locationSelectedObj = val;
-                this.locationSelectedString = val.name;
+                if (val.idPoint){
+                    console.log("es un objeto");
+                    this.locationSelectedObj = val;
+                    this.locationSelectedString = val.name;
+                }
             }
         }
         },
@@ -325,7 +378,7 @@ const userProfileTemplate = {props: [],
         <!--Inicio datos-->
         
     <div  style="margin-top:2em;margin-left: 10.25%;margin-right: 10.25% ">
-        <div  style="width: 100%">
+        <div  style="width: 100%;padding-bottom:2.5em">
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
               <md-card-header >
 
@@ -336,7 +389,7 @@ const userProfileTemplate = {props: [],
                             <md-icon>email</md-icon>
                         </md-list-item>
                         <md-list-item>
-                            <span class="md-list-item-text" style="font-size:16px;font-weight:500">{{userProfileData.nomAp}}</span>
+                            <span class="md-list-item-text" style="font-size:16px;font-weight:500">{{userProfileData.nom}} {{userProfileData.apellido}}</span>
                             <md-icon>person</md-icon>
                         </md-list-item>
                         <md-list-item>
@@ -365,8 +418,17 @@ const userProfileTemplate = {props: [],
                         </md-list-item>
                         <md-list-item>
                             <md-field v-bind:class="{ 'md-invalid': erroresForm.nombre.errorNombre }">
-                                <label>Nombre y Apellidos</label>
-                                <md-input id="profile_name"  v-model="formData.nomAp" ></md-input>
+                                <label>Nombre</label>
+                                <md-input id="profile_name"  v-model="formData.nom" ></md-input>
+                                <md-icon>person</md-icon>
+                                <span v-if="erroresForm.nombre.nombreNoValido" class="md-error">Nombre demasiado corto</span>
+                                <span v-else-if="erroresForm.nombre.faltaApellido" class="md-error">Es necesario también un apellido</span>
+                            </md-field>
+                        </md-list-item>
+                        <md-list-item>
+                            <md-field v-bind:class="{ 'md-invalid': erroresForm.nombre.errorNombre }">
+                                <label>Apellido</label>
+                                <md-input id="profile_name"  v-model="formData.apellido" ></md-input>
                                 <md-icon>person</md-icon>
                                 <span v-if="erroresForm.nombre.nombreNoValido" class="md-error">Nombre demasiado corto</span>
                                 <span v-else-if="erroresForm.nombre.faltaApellido" class="md-error">Es necesario también un apellido</span>
@@ -422,7 +484,12 @@ const userProfileTemplate = {props: [],
 </form>
 
             </md-card>
-            <div style="text-align: center;">
+            <div v-if="uploading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
+                <div  style="--md-theme-default-primary: white;">
+                <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+                </div>
+            </div>
+            <div v-else style="text-align: center;">
               <md-button v-if="editionMode == false" v-on:click="goToEditMode()" :style="buttonStyle">Editar perfil</md-button>
               <md-button v-if="editionMode == true" v-on:click="checkForm" :style="buttonStyle">Guardar cambios</md-button>
             </div>
@@ -430,6 +497,12 @@ const userProfileTemplate = {props: [],
     </div>
         <!--Fin datos-->
         
+ <!-- SnackBar errores -->
+    <!--snackBar errores-->
+    <md-snackbar md-position="center" :md-duration="duration" :md-active.sync="snackBar" md-persistent>
+      <span>Error actualizando perfil</span>
+      <md-button class="md-primary" @click="snackBar = false">OK</md-button>
+    </md-snackbar>
         
         
        

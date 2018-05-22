@@ -50,7 +50,7 @@
     <main class="main-content" > <!-- aqui el router inyecta las paginas-->
                <div>
                    <tool-bar ref="toolbar" style="margin-bottom: 1em"></tool-bar>
-                    <side-bar style="position:fixed"></side-bar>
+                    <side-bar v-if="userIdTest != null" style="position:fixed"></side-bar>
                           <router-view>
               
                           </router-view>
@@ -73,6 +73,7 @@
         <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script>-->
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script src="libs/transportesBCN.js"></script>
 		<script src="libs/vue.js"></script>
 		<script src="js/vue-router.js"></script>
       <script src="js/vue-resource.min.js"></script>
@@ -106,6 +107,7 @@
       <script src="js/components/ALO_Step1.js"></script>
       <script src="js/components/ALO_Step2.js"></script>
       <script src="js/components/ALO_Step3.js"></script>
+      
 
       
 		

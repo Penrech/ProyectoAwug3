@@ -2,6 +2,15 @@ const loginTemplate = {props: [],
                           data: () => ({
         activeNavigation: false,
         showNavigation:false,
+        email:null,
+        pass:null,
+        errores:{
+            errorEmail: false,
+            errorEmail2:false,
+            errorEmail3:false,
+            errorPassword: false,
+            errorPassword2:false
+        },
          bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 390px; background-color: white;",
         buttonStyle:{ 
             borderRadius:"28px",
@@ -19,61 +28,52 @@ const loginTemplate = {props: [],
     }),
         created:function(){
             document.body.style= this.bodyStyle;
-            toolBarData.iconoPaginaAnterior = "keyboard_backspace";
+            toolBarData.iconoPaginaAnterior = "";
             toolBarData.iconoPaginaSiguiente = "";
             toolBarData.paginaActual = "login";
             toolBarData.paginaSiguiente = "";
-            toolBarData.paginaAnterior ="inicio"
+            toolBarData.paginaAnterior =""
             toolBarData.toolBarTitle = "";
         },
         
         methods: {
-            checkForm: function(e){
-                 for (var key in this.errors){
-                     this.errors[key] = false;
-                 }
-                
-                  if(!this.form.email) this.errors.emptyEmail = true;
-                    else if(!this.validEmail(this.form.email)) {
-                    this.errors.invalidEmail = true;           
-                  }
-                    
-                if(!this.form.name) this.errors.emptyName = true;
-                else if(!this.form.name.length < 3) this.errors.tooShortName = true;
-                
-                if(!this.form.phone) this.errors.emptyPhone = true;
-                else if(!this.form.phone.length == 9) this.errors.invalidPhone = true;
-                
-                
-                
-                  if(!this.errors.length) return true;
-                  e.preventDefault();
-                },
-                validEmail:function(email) {
-                  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                  return re.test(email);
-                },
-            passFocusManager(focus){
-                if (focus == true){
-                    this.passEditMode = true;
-                }
-                else{
-                    
-                    this.passEditMode = false;
-                }
-            },
-            passValidation(){
-                
-            },
-            submitForm(){
-                document.getElementById("userForm").submit;
-                this.passEditMode = false;
-                this.editionMode = false;  
-            },
+            
              goBackHome () {
                 document.body.style = "";
                   this.$router.push('homeUser');
               },
+            logIn(){
+                this.errores = {
+                    errorEmail: false,
+                    errorEmail2:false,
+                    errorPassword: false
+                };
+                if (this.email == null){
+                 this.errores.errorEmail = true;
+                 this.errores.errorEmail3 = true;
+                }
+                else if(this.pass == null){
+                this.errores.errorPassword = true;
+                this.errores.errorPassword2 = true;
+                }
+                let _this = this;
+                firebase.auth().signInWithEmailAndPassword(this.email, this.pass)
+                .catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    if (errorCode === 'auth/wrong-password') {
+                        _this.errores.errorPassword = true;
+                    }
+                    if (errorCode === 'auth/invalid-email') {
+                        _this.errores.errorEmail = true;
+                    }
+                    if (errorCode === 'auth/user-not-found') {
+                        _this.errores.errorEmail = true;
+                        _this.errores.errorEmail2 = true;
+                    }
+                });
+            },
             goToRegistrationType(){
                 this.$router.push('registrationType');
             }
@@ -101,24 +101,25 @@ const loginTemplate = {props: [],
     <div  style="margin-top:2em;margin-left: 10.25%;margin-right: 10.25% ">
             <md-card class="md-elevation-0" style=" border-radius: 10px;box-shadow: 0px 5px 35px -15px rgba(51,51,51,0.5);">
               
-        <form id="userForm" @submit="checkForm">
+        <form @submit="logIn">
                  <md-card-header-text>
                     <md-list style="font-size:14px; margin: 10px;">
                         <md-list-item>
-                            <md-field>
-                                <label>Correo electrónico</label>
-                                <md-input id="login_email" placeholder="Email" type="email"></md-input>
+                            <md-field v-bind:class="{ 'md-invalid': errores.errorEmail }">
+                                <label >Correo electrónico</label>
+                                <md-input id="login_email" v-model="email" placeholder="Email" type="email"></md-input>
                                 <md-icon>email</md-icon>
-                                <span class="md-error">Se requiere un email</span>
-                                <span class="md-error">Este email no es correcto</span>
+                                <span v-if="!errores.errorEmail2 && !errores.errorEmail3" class="md-error">Este email no es correcto</span>
+                                <span v-if="errores.errorEmail2" class="md-error">Este email no está registrado</span>
+                                <span v-if="errores.errorEmail3" class="md-error">No has introducido datos</span>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
-                            <md-field>
+                            <md-field v-bind:class="{ 'md-invalid': errores.errorPassword }">
                                 <label>Contraseña</label>
-                                <md-input id="login_pass" placeholder="Contraseña" type="password"></md-input>
-                                <span class="md-error">Contraseña incorrecta</span>
-                                <span class="md-error">Contraseña incorrecta</span>
+                                <md-input id="login_pass" v-model="pass" placeholder="Contraseña" type="password"></md-input>
+                                <span v-if="errores.errorPassword2" class="md-error">No has introducido datos</span>
+                                <span v-else class="md-error">Contraseña incorrecta</span>
                             </md-field>
                         </md-list-item>
                     </md-list>
@@ -130,7 +131,7 @@ const loginTemplate = {props: [],
             <div class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center">
             <md-list style="background: transparent;">
                 <md-list-item>
-                  <md-button :style="buttonStyle">Entrar</md-button>
+                  <md-button v-on:click="logIn" :style="buttonStyle">Entrar</md-button>
                 </md-list-item>
                 <md-list-item style="margin-left: auto;
                     margin-right: auto;">

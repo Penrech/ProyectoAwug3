@@ -37,6 +37,7 @@ Vue.component('tool-bar', {
                 }
             }
             if (this.toolBarData.paginaSiguiente == "activarMenu"){
+                console.log("entro en activar menu");
                 this.sideBarData.showNavigation = true;
                 
             }
@@ -107,7 +108,7 @@ Vue.component('tool-bar', {
                  this.$root.$emit("backToProfile");   
             }
             else{
-                if (this.toolBarData.paginaAnterior != "" && this.toolBarData.paginaAnterior != "inicio" ){
+                if (this.toolBarData.paginaAnterior != "" ){
                     this.$router.push(this.toolBarData.paginaAnterior);
                 }
             }

@@ -330,9 +330,55 @@ console.log(object);
 
 
 */
+
 var user;
 var UserType;
-var userIdTest;/*
+var userIdTest = null;
+
+function startListeners(thisV){
+firebase.auth().onAuthStateChanged(function(usuario) {
+var deferred = $.Deferred();
+var deferred2 = $.Deferred();
+var deferred3 = $.Deferred();
+console.log(usuario);
+  if (usuario) {
+    // User is signed in.
+    userIdTest = usuario.uid;
+    firebase.database().ref("usuarios/"+userIdTest).on('value', function(snapshot){
+                user = snapshot.val();
+                console.log("usuario",user);
+            if (deferred.state() == "pending")
+                deferred.resolve(user);
+            });  
+  } else {
+    // No user is signed in.
+    user = null;
+    UserType= null;
+    userIdTest= null;
+    if(toolBarData.paginaActual != "login")
+        deferred3.resolve();
+  }
+    
+   $.when(deferred).done(function(x){
+        UserType = x.type;
+        console.log(userIdTest);
+        sideBarData.userType = UserType;
+       console.log(sideBarData);
+        thisV.showSidepanel = true;
+        thisV.$router.push("homeUser");
+    })
+    $.when(deferred3).done(function(){
+        thisV.showSidepanel = false;
+        sideBarData.showNavigation = false;
+        thisV.$router.push("login");
+    })
+});
+   
+}
+
+
+
+/*
 var query = new getLocationList();
 query.then(function(result){
     console.log(result);
@@ -360,7 +406,7 @@ userRef.off();
 var toolBarData = {paginaActual: "",paginaAnterior:"",iconoPaginaAnterior:"",paginaSiguiente:"",iconoPaginaSiguiente:"",toolBarTitle:""};
 var sideBarData = {showNavigation: false, userType: UserType};
 
-function init(){
+function init(){/*
         var deferred = $.Deferred();
         var deferred2 = $.Deferred();
         userIdTest = "user2";
@@ -384,7 +430,8 @@ function init(){
     
         $.when(deferred2).done(function(){
             mountApp();
-        })
+        })*/
+    mountApp();
     
         
 
@@ -465,7 +512,8 @@ function mountApp(){
             {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
             {path: '/userprofile', name: 'userProfile',  component: userProfileTemplate},
             {path: '/searchObject', name: 'searchObject',  component: searchObjectTemplate,props:true},
-            {path: '/allLostObjects', name: 'allLostObjects',  component: allLostObjectsTemplate}
+            {path: '/allLostObjects', name: 'allLostObjects',  component: allLostObjectsTemplate},
+            {path: '/inicio', name: 'inicio',  component: inicioTemplate}
             ];
 
         const router = new VueRouter({
@@ -481,6 +529,15 @@ function mountApp(){
               message: 'Hola!'},
         created: function(){
             document.addEventListener("backbutton",this.HandlerBackButton,false);
+        },
+        mounted:function(){
+          /*  firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}).catch(function(error) {
+  // An error happened.
+});*/
+            let _this = this;
+            startListeners(_this);
         },
         methods: {
            HandlerBackButton(){
@@ -514,7 +571,7 @@ function mountApp(){
       }).$mount('#app');
     
     //router.push('settings');
-    router.push({ name: 'homeUser'})
+    router.push({ name: 'inicio'})
 }
 
         

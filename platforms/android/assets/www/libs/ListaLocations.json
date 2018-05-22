@@ -1,0 +1,3368 @@
+[
+    {
+        "idPoint": 0,
+        "name": "fgc gornal",
+        "lat": "41.35536",
+        "lon": "2.117531"
+    },
+    {
+        "idPoint": 1,
+        "name": "fgc can ros",
+        "lat": "41.398991",
+        "lon": "2.00528"
+    },
+    {
+        "idPoint": 2,
+        "name": "fgc colònia güell",
+        "lat": "41.363609",
+        "lon": "2.031499"
+    },
+    {
+        "idPoint": 3,
+        "name": "fgc (l6,l7) provença (c. del rossellò)",
+        "lat": "41.393362",
+        "lon": "2.157649"
+    },
+    {
+        "idPoint": 4,
+        "name": "fgc (l6) les tres torres",
+        "lat": "41.398154",
+        "lon": "2.130075"
+    },
+    {
+        "idPoint": 5,
+        "name": "fgc (l6) sarrià",
+        "lat": "41.39935",
+        "lon": "2.124523"
+    },
+    {
+        "idPoint": 6,
+        "name": "fgc (l7) avinguda del tibidabo",
+        "lat": "41.410227",
+        "lon": "2.137173"
+    },
+    {
+        "idPoint": 7,
+        "name": "fgc (l6,l7) catalunya (c. de pelai)",
+        "lat": "41.385842",
+        "lon": "2.169598"
+    },
+    {
+        "idPoint": 8,
+        "name": "fgc (l7) plaça molina",
+        "lat": "41.401403",
+        "lon": "2.147573"
+    },
+    {
+        "idPoint": 9,
+        "name": "metro (l3) vallcarca (jardins manuel blancafort)",
+        "lat": "41.411461",
+        "lon": "2.144863"
+    },
+    {
+        "idPoint": 10,
+        "name": "metro (l2) gorg",
+        "lat": "41.440639",
+        "lon": "2.23404"
+    },
+    {
+        "idPoint": 11,
+        "name": "metro (l4) hospital de sant pau",
+        "lat": "41.416378",
+        "lon": "2.174437"
+    },
+    {
+        "idPoint": 12,
+        "name": "metro (l4) llucmajor",
+        "lat": "41.437215",
+        "lon": "2.173484"
+    },
+    {
+        "idPoint": 13,
+        "name": "metro (l3, l5) vall d'hebron (c. de les basses d'horta)",
+        "lat": "41.424923",
+        "lon": "2.142987"
+    },
+    {
+        "idPoint": 14,
+        "name": "metro (l3, l5) vall d'hebron (pg. de la vall d'hebron)",
+        "lat": "41.4251",
+        "lon": "2.142012"
+    },
+    {
+        "idPoint": 15,
+        "name": "fgc (l6,l7) catalunya (c. de balmes)",
+        "lat": "41.385919",
+        "lon": "2.167015"
+    },
+    {
+        "idPoint": 16,
+        "name": "fgc (l6,l7) catalunya (c. de bergara)",
+        "lat": "41.386095",
+        "lon": "2.167646"
+    },
+    {
+        "idPoint": 17,
+        "name": "metro (l3) vall d'hebron",
+        "lat": "41.425262",
+        "lon": "2.142547"
+    },
+    {
+        "idPoint": 18,
+        "name": "metro (l3) vallcarca (av. de l'hospital militar)",
+        "lat": "41.411753",
+        "lon": "2.144798"
+    },
+    {
+        "idPoint": 19,
+        "name": "fgc padua",
+        "lat": "41.403596",
+        "lon": "2.142617"
+    },
+    {
+        "idPoint": 20,
+        "name": "fgc catalunya (c. de pelai)",
+        "lat": "41.385842",
+        "lon": "2.169598"
+    },
+    {
+        "idPoint": 21,
+        "name": "fgc almeda",
+        "lat": "41.353011",
+        "lon": "2.086746"
+    },
+    {
+        "idPoint": 22,
+        "name": "fgc gràcia (pl. de gal·la placídia)",
+        "lat": "41.400039",
+        "lon": "2.152429"
+    },
+    {
+        "idPoint": 23,
+        "name": "fgc muntaner",
+        "lat": "41.398976",
+        "lon": "2.142852"
+    },
+    {
+        "idPoint": 24,
+        "name": "fgc (l6) reina elisenda (sortida j. v. foix)",
+        "lat": "41.398423",
+        "lon": "2.118699"
+    },
+    {
+        "idPoint": 25,
+        "name": "fgc reina elisenda (sortida duquesa d'orleans)",
+        "lat": "41.399203",
+        "lon": "2.11937"
+    },
+    {
+        "idPoint": 26,
+        "name": "fgc reina elisenda (sortida j. v. foix)",
+        "lat": "41.398423",
+        "lon": "2.118699"
+    },
+    {
+        "idPoint": 27,
+        "name": "metro (l4) bogatell (c. de pujades)",
+        "lat": "41.395438",
+        "lon": "2.192791"
+    },
+    {
+        "idPoint": 28,
+        "name": "metro (l4) bogatell",
+        "lat": "41.395301",
+        "lon": "2.191499"
+    },
+    {
+        "idPoint": 29,
+        "name": "metro (l9) santa rosa",
+        "lat": "41.446684",
+        "lon": "2.215908"
+    },
+    {
+        "idPoint": 30,
+        "name": "metro (l2) sant antoni (c. comte d'urgell)",
+        "lat": "41.37916",
+        "lon": "2.162901"
+    },
+    {
+        "idPoint": 31,
+        "name": "fgc provença (c. de provença)",
+        "lat": "41.392331",
+        "lon": "2.158326"
+    },
+    {
+        "idPoint": 32,
+        "name": "fgc el putxet",
+        "lat": "41.406043",
+        "lon": "2.139256"
+    },
+    {
+        "idPoint": 33,
+        "name": "fgc gràcia",
+        "lat": "41.399554",
+        "lon": "2.152507"
+    },
+    {
+        "idPoint": 34,
+        "name": "fgc ildefons cerdà",
+        "lat": "41.360962",
+        "lon": "2.13168"
+    },
+    {
+        "idPoint": 35,
+        "name": "fgc avinguda del tibidabo",
+        "lat": "41.410227",
+        "lon": "2.137173"
+    },
+    {
+        "idPoint": 36,
+        "name": "metro (l2) badalona ",
+        "lat": "41.449132",
+        "lon": "2.244209"
+    },
+    {
+        "idPoint": 37,
+        "name": "fgc (l6) reina elisenda (sortida duquesa d'orleans)",
+        "lat": "41.399203",
+        "lon": "2.11937"
+    },
+    {
+        "idPoint": 38,
+        "name": "metro (l2) clot (c. de sibelius)",
+        "lat": "41.410117",
+        "lon": "2.186173"
+    },
+    {
+        "idPoint": 39,
+        "name": "metro (l2) tetuan (pl. de tetuan)",
+        "lat": "41.394285",
+        "lon": "2.175485"
+    },
+    {
+        "idPoint": 40,
+        "name": "fgc (l6) la bonanova",
+        "lat": "41.397791",
+        "lon": "2.135427"
+    },
+    {
+        "idPoint": 41,
+        "name": "fgc (l6) muntaner",
+        "lat": "41.398631",
+        "lon": "2.142754"
+    },
+    {
+        "idPoint": 42,
+        "name": "metro (l11) torre baró ",
+        "lat": "41.459624",
+        "lon": "2.17912"
+    },
+    {
+        "idPoint": 43,
+        "name": "metro (l11) torre baró ",
+        "lat": "41.459194",
+        "lon": "2.18058"
+    },
+    {
+        "idPoint": 44,
+        "name": "metro (l11) casa de l'aigua (c. vila",
+        "lat": "41.451492",
+        "lon": "2.185391"
+    },
+    {
+        "idPoint": 45,
+        "name": "metro (l11) ciutat meridiana (c. pedraforca)",
+        "lat": "41.460889",
+        "lon": "2.174473"
+    },
+    {
+        "idPoint": 46,
+        "name": "metro (l11) torre baró ",
+        "lat": "41.459409",
+        "lon": "2.17985"
+    },
+    {
+        "idPoint": 47,
+        "name": "metro (l11) can cuiàs",
+        "lat": "41.462738",
+        "lon": "2.171578"
+    },
+    {
+        "idPoint": 48,
+        "name": "fgc (l6) la bonanova",
+        "lat": "41.397895",
+        "lon": "2.135114"
+    },
+    {
+        "idPoint": 49,
+        "name": "metro (l1) catalunya (rda. universitat)",
+        "lat": "41.3872",
+        "lon": "2.168588"
+    },
+    {
+        "idPoint": 50,
+        "name": "metro (l1) catalunya",
+        "lat": "41.387625",
+        "lon": "2.169507"
+    },
+    {
+        "idPoint": 51,
+        "name": "metro (l11) can cuiàs (c. circumval·lació ",
+        "lat": "41.462556",
+        "lon": "2.171017"
+    },
+    {
+        "idPoint": 52,
+        "name": "metro (l1) catalunya (rambla de catalunya)",
+        "lat": "41.387706",
+        "lon": "2.168507"
+    },
+    {
+        "idPoint": 53,
+        "name": "metro (l1) can serra",
+        "lat": "41.368289",
+        "lon": "2.103659"
+    },
+    {
+        "idPoint": 54,
+        "name": "metro (l1) can serra",
+        "lat": "41.367647",
+        "lon": "2.103234"
+    },
+    {
+        "idPoint": 55,
+        "name": "metro (l1) catalunya (rda. de sant pere)",
+        "lat": "41.387914",
+        "lon": "2.170687"
+    },
+    {
+        "idPoint": 56,
+        "name": "fgc (l6,l7) provença (c. de provença)",
+        "lat": "41.392331",
+        "lon": "2.158326"
+    },
+    {
+        "idPoint": 57,
+        "name": "fgc (l6) reina elisenda",
+        "lat": "41.398967",
+        "lon": "2.118998"
+    },
+    {
+        "idPoint": 58,
+        "name": "fgc (l7) padua",
+        "lat": "41.40344",
+        "lon": "2.142961"
+    },
+    {
+        "idPoint": 59,
+        "name": "metro (l1) urgell (gv. corts catalanes)",
+        "lat": "41.382955",
+        "lon": "2.159449"
+    },
+    {
+        "idPoint": 60,
+        "name": "metro (l1) santa eulàlia",
+        "lat": "41.369557",
+        "lon": "2.129976"
+    },
+    {
+        "idPoint": 61,
+        "name": "metro (l5) maragall (av. de borbó)",
+        "lat": "41.425638",
+        "lon": "2.176558"
+    },
+    {
+        "idPoint": 62,
+        "name": "metro (l3) passeig de gràcia (pg. de gràcia)",
+        "lat": "41.392581",
+        "lon": "2.164871"
+    },
+    {
+        "idPoint": 63,
+        "name": "metro (l2) sant antoni",
+        "lat": "41.379953",
+        "lon": "2.163015"
+    },
+    {
+        "idPoint": 64,
+        "name": "metro (l3) diagonal (pg. de gràcia)",
+        "lat": "41.395745",
+        "lon": "2.160904"
+    },
+    {
+        "idPoint": 65,
+        "name": "metro (l3) diagonal (pl. joan carles i)",
+        "lat": "41.39611",
+        "lon": "2.159713"
+    },
+    {
+        "idPoint": 66,
+        "name": "metro (l3) catalunya (c. fontanella)",
+        "lat": "41.38604",
+        "lon": "2.170725"
+    },
+    {
+        "idPoint": 67,
+        "name": "metro (l1) universitat (c. de pelai)",
+        "lat": "41.385814",
+        "lon": "2.164719"
+    },
+    {
+        "idPoint": 68,
+        "name": "metro (l2) sant martí (rambla guipúscoa)",
+        "lat": "41.418604",
+        "lon": "2.200095"
+    },
+    {
+        "idPoint": 69,
+        "name": "metro (l2) clot",
+        "lat": "41.4101",
+        "lon": "2.186554"
+    },
+    {
+        "idPoint": 70,
+        "name": "metro (l5) maragall",
+        "lat": "41.425869",
+        "lon": "2.176475"
+    },
+    {
+        "idPoint": 71,
+        "name": "metro (l5) sant ildefons",
+        "lat": "41.362753",
+        "lon": "2.083994"
+    },
+    {
+        "idPoint": 72,
+        "name": "metro (l5) sants estació (pg. de sant antoni)",
+        "lat": "41.379602",
+        "lon": "2.139739"
+    },
+    {
+        "idPoint": 73,
+        "name": "metro (l5) la sagrera (av. meridiana)",
+        "lat": "41.422021",
+        "lon": "2.186579"
+    },
+    {
+        "idPoint": 74,
+        "name": "metro (l5,l9,l10) la sagrera (c. felipe ii)",
+        "lat": "41.420554",
+        "lon": "2.186497"
+    },
+    {
+        "idPoint": 75,
+        "name": "metro (l5) gavarra",
+        "lat": "41.357389",
+        "lon": "2.078917"
+    },
+    {
+        "idPoint": 76,
+        "name": "metro (l5) vilapicina (c. de canfranc)",
+        "lat": "41.430601",
+        "lon": "2.166992"
+    },
+    {
+        "idPoint": 77,
+        "name": "metro (l3) vallcarca",
+        "lat": "41.411401",
+        "lon": "2.145084"
+    },
+    {
+        "idPoint": 78,
+        "name": "metro (l3) drassanes (c. de montserrat)",
+        "lat": "41.376673",
+        "lon": "2.175556"
+    },
+    {
+        "idPoint": 79,
+        "name": "metro (l1) urgell (c. de villarroel)",
+        "lat": "41.382668",
+        "lon": "2.159849"
+    },
+    {
+        "idPoint": 80,
+        "name": "metro (l5) vilapicina",
+        "lat": "41.430824",
+        "lon": "2.16776"
+    },
+    {
+        "idPoint": 81,
+        "name": "metro (l5) hospital clínic (c. de villarroel)",
+        "lat": "41.388946",
+        "lon": "2.15177"
+    },
+    {
+        "idPoint": 82,
+        "name": "metro (l3) diagonal",
+        "lat": "41.395755",
+        "lon": "2.160473"
+    },
+    {
+        "idPoint": 83,
+        "name": "metro (l3) mundet",
+        "lat": "41.435235",
+        "lon": "2.147496"
+    },
+    {
+        "idPoint": 84,
+        "name": "metro (l3) palau reial",
+        "lat": "41.385906",
+        "lon": "2.117872"
+    },
+    {
+        "idPoint": 85,
+        "name": "metro (l3) drassanes",
+        "lat": "41.376817",
+        "lon": "2.176285"
+    },
+    {
+        "idPoint": 86,
+        "name": "metro (l3) drassanes (c. del portal de santa madrona)",
+        "lat": "41.377112",
+        "lon": "2.175987"
+    },
+    {
+        "idPoint": 87,
+        "name": "metro (l3) drassanes (la rambla)",
+        "lat": "41.3772",
+        "lon": "2.176443"
+    },
+    {
+        "idPoint": 88,
+        "name": "metro (l2) universitat (c. d'aribau)",
+        "lat": "41.385021",
+        "lon": "2.163699"
+    },
+    {
+        "idPoint": 89,
+        "name": "metro (l3) catalunya",
+        "lat": "41.386286",
+        "lon": "2.170344"
+    },
+    {
+        "idPoint": 90,
+        "name": "metro (l3) lesseps (rda. gral. mitre)",
+        "lat": "41.40611",
+        "lon": "2.149572"
+    },
+    {
+        "idPoint": 91,
+        "name": "metro (l2) tetuan (pl. de tetuan)",
+        "lat": "41.394956",
+        "lon": "2.174676"
+    },
+    {
+        "idPoint": 92,
+        "name": "metro (l2) sagrada família (pl. de gaudí)",
+        "lat": "41.403847",
+        "lon": "2.175562"
+    },
+    {
+        "idPoint": 93,
+        "name": "metro (l1) fabra i puig (av. meridiana)",
+        "lat": "41.430861",
+        "lon": "2.183562"
+    },
+    {
+        "idPoint": 94,
+        "name": "metro (l1) rambla just oliveras",
+        "lat": "41.362977",
+        "lon": "2.100302"
+    },
+    {
+        "idPoint": 95,
+        "name": "metro (l3) sants estació (c. d'enric bargés)",
+        "lat": "41.381979",
+        "lon": "2.139887"
+    },
+    {
+        "idPoint": 96,
+        "name": "metro (l3) sants estació (jardins de màlaga)",
+        "lat": "41.382298",
+        "lon": "2.140542"
+    },
+    {
+        "idPoint": 97,
+        "name": "metro (l11) can cuiàs (c. tapissers ",
+        "lat": "41.46292",
+        "lon": "2.17214"
+    },
+    {
+        "idPoint": 98,
+        "name": "metro (l1) bellvitge",
+        "lat": "41.351991",
+        "lon": "2.110976"
+    },
+    {
+        "idPoint": 99,
+        "name": "metro (l1) arc de triomf (c. de nàpols)",
+        "lat": "41.393228",
+        "lon": "2.182218"
+    },
+    {
+        "idPoint": 100,
+        "name": "metro (l1) avinguda carrilet",
+        "lat": "41.358779",
+        "lon": "2.103029"
+    },
+    {
+        "idPoint": 101,
+        "name": "metro (l1) plaça de sants (c. de sants)",
+        "lat": "41.37525",
+        "lon": "2.137493"
+    },
+    {
+        "idPoint": 102,
+        "name": "metro (l1) marina (c. dels almogàvers)",
+        "lat": "41.395422",
+        "lon": "2.187072"
+    },
+    {
+        "idPoint": 103,
+        "name": "metro (l1) rocafort (c. de rocafort)",
+        "lat": "41.37907",
+        "lon": "2.153966"
+    },
+    {
+        "idPoint": 104,
+        "name": "metro (l1) florida",
+        "lat": "41.368376",
+        "lon": "2.110875"
+    },
+    {
+        "idPoint": 105,
+        "name": "metro (l1) florida",
+        "lat": "41.368521",
+        "lon": "2.110681"
+    },
+    {
+        "idPoint": 106,
+        "name": "metro (l1) fondo",
+        "lat": "41.451596",
+        "lon": "2.21861"
+    },
+    {
+        "idPoint": 107,
+        "name": "metro (l5) maragall (pg.de maragall)",
+        "lat": "41.425733",
+        "lon": "2.1759"
+    },
+    {
+        "idPoint": 108,
+        "name": "metro (l2) passeig de gràcia (pg. de gràcia)",
+        "lat": "41.389295",
+        "lon": "2.168735"
+    },
+    {
+        "idPoint": 109,
+        "name": "metro (l2) universitat (rda. de sant antoni)",
+        "lat": "41.384844",
+        "lon": "2.16414"
+    },
+    {
+        "idPoint": 110,
+        "name": "metro (l3) diagonal (av. diagonal)",
+        "lat": "41.396315",
+        "lon": "2.160122"
+    },
+    {
+        "idPoint": 111,
+        "name": "metro (l3) canyelles",
+        "lat": "41.442024",
+        "lon": "2.166078"
+    },
+    {
+        "idPoint": 112,
+        "name": "metro (l3) catalunya (c. de pelai)",
+        "lat": "41.385366",
+        "lon": "2.169571"
+    },
+    {
+        "idPoint": 113,
+        "name": "metro (l1) urgell (gv. corts catalanes)",
+        "lat": "41.382056",
+        "lon": "2.158237"
+    },
+    {
+        "idPoint": 114,
+        "name": "metro (l1) sant andreu",
+        "lat": "41.437324",
+        "lon": "2.190747"
+    },
+    {
+        "idPoint": 115,
+        "name": "renfe la sagrera ",
+        "lat": "41.423935",
+        "lon": "2.186507"
+    },
+    {
+        "idPoint": 116,
+        "name": "metro (l3) les corts (travessera de les corts)",
+        "lat": "41.384233",
+        "lon": "2.130678"
+    },
+    {
+        "idPoint": 117,
+        "name": "metro (l1) plaça de sants",
+        "lat": "41.375542",
+        "lon": "2.138493"
+    },
+    {
+        "idPoint": 118,
+        "name": "metro (l2) monumental (c. de la marina)",
+        "lat": "41.40018",
+        "lon": "2.179581"
+    },
+    {
+        "idPoint": 119,
+        "name": "metro (l3) les corts",
+        "lat": "41.384545",
+        "lon": "2.131389"
+    },
+    {
+        "idPoint": 120,
+        "name": "metro (l1) sant andreu (c. de joan torres)",
+        "lat": "41.437806",
+        "lon": "2.191104"
+    },
+    {
+        "idPoint": 121,
+        "name": "metro (l1) fabra i puig (pg. de fabra i puig)",
+        "lat": "41.430467",
+        "lon": "2.183628"
+    },
+    {
+        "idPoint": 122,
+        "name": "metro (l1) universitat (pl. de la universitat)",
+        "lat": "41.385403",
+        "lon": "2.163474"
+    },
+    {
+        "idPoint": 123,
+        "name": "metro (l1) universitat",
+        "lat": "41.385551",
+        "lon": "2.164163"
+    },
+    {
+        "idPoint": 124,
+        "name": "metro (l1) navas (c. de palència)",
+        "lat": "41.415812",
+        "lon": "2.187229"
+    },
+    {
+        "idPoint": 125,
+        "name": "metro (l1) navas",
+        "lat": "41.416156",
+        "lon": "2.187086"
+    },
+    {
+        "idPoint": 126,
+        "name": "metro (l4,l11) trinitat nova (aiguablava)",
+        "lat": "41.44867",
+        "lon": "2.181619"
+    },
+    {
+        "idPoint": 127,
+        "name": "metro (l5) plaça de sants (c. de sants)",
+        "lat": "41.375429",
+        "lon": "2.135849"
+    },
+    {
+        "idPoint": 128,
+        "name": "metro (l5) horta (bda. de la plana)",
+        "lat": "41.429811",
+        "lon": "2.158742"
+    },
+    {
+        "idPoint": 129,
+        "name": "metro (l5) horta (c. del tajo)",
+        "lat": "41.42973",
+        "lon": "2.160483"
+    },
+    {
+        "idPoint": 130,
+        "name": "metro (l5) horta (pl. d'eivissa)",
+        "lat": "41.430042",
+        "lon": "2.161228"
+    },
+    {
+        "idPoint": 131,
+        "name": "metro (l5) virrei amat (c. de felip ii)",
+        "lat": "41.429214",
+        "lon": "2.175568"
+    },
+    {
+        "idPoint": 132,
+        "name": "metro (l5) virrei amat",
+        "lat": "41.429732",
+        "lon": "2.174875"
+    },
+    {
+        "idPoint": 133,
+        "name": "metro (l5) sagrada família (c. de sardenya)",
+        "lat": "41.403762",
+        "lon": "2.173076"
+    },
+    {
+        "idPoint": 134,
+        "name": "metro (l5) gavarra",
+        "lat": "41.35807",
+        "lon": "2.079"
+    },
+    {
+        "idPoint": 135,
+        "name": "metro (l2) verneda",
+        "lat": "41.429935",
+        "lon": "2.21027"
+    },
+    {
+        "idPoint": 136,
+        "name": "metro (l5) sants estació",
+        "lat": "41.379699",
+        "lon": "2.139294"
+    },
+    {
+        "idPoint": 137,
+        "name": "metro (l5) diagonal",
+        "lat": "41.394887",
+        "lon": "2.15916"
+    },
+    {
+        "idPoint": 138,
+        "name": "metro (l5) sant pau",
+        "lat": "41.411214",
+        "lon": "2.176264"
+    },
+    {
+        "idPoint": 139,
+        "name": "metro (l5) sant pau",
+        "lat": "41.411021",
+        "lon": "2.176324"
+    },
+    {
+        "idPoint": 140,
+        "name": "metro (l5) virrei amat (c. del doctor pi i molist)",
+        "lat": "41.430476",
+        "lon": "2.174603"
+    },
+    {
+        "idPoint": 141,
+        "name": "metro (l5) virrei amat (pg. fabra i puig)",
+        "lat": "41.430266",
+        "lon": "2.174133"
+    },
+    {
+        "idPoint": 142,
+        "name": "metro (l1) plaça de sants (c. de sants)",
+        "lat": "41.375468",
+        "lon": "2.138845"
+    },
+    {
+        "idPoint": 143,
+        "name": "metro (l1) rambla just oliveras",
+        "lat": "41.364232",
+        "lon": "2.100304"
+    },
+    {
+        "idPoint": 144,
+        "name": "metro (l3) fontana (c. gran de gràcia)",
+        "lat": "41.402597",
+        "lon": "2.152798"
+    },
+    {
+        "idPoint": 145,
+        "name": "metro (l3) fontana",
+        "lat": "41.402297",
+        "lon": "2.152815"
+    },
+    {
+        "idPoint": 146,
+        "name": "metro (l3) palau reial (av. diagonal)",
+        "lat": "41.386116",
+        "lon": "2.117869"
+    },
+    {
+        "idPoint": 147,
+        "name": "metro (l2) paral·lel",
+        "lat": "41.375091",
+        "lon": "2.167579"
+    },
+    {
+        "idPoint": 148,
+        "name": "metro (l2) passeig de gràcia (gv. corts catalanes)",
+        "lat": "41.389284",
+        "lon": "2.167762"
+    },
+    {
+        "idPoint": 149,
+        "name": "metro (l1) rambla just oliveras",
+        "lat": "41.36366",
+        "lon": "2.099718"
+    },
+    {
+        "idPoint": 150,
+        "name": "tramvia (t1,t2,t3) ca n'oliveres",
+        "lat": "41.376486",
+        "lon": "2.098896"
+    },
+    {
+        "idPoint": 151,
+        "name": "tramvia (t4) diagonal mar",
+        "lat": "41.41033",
+        "lon": "2.214952"
+    },
+    {
+        "idPoint": 152,
+        "name": "tramvia (t2) sant martí de l'erm (baixador)",
+        "lat": "41.371003",
+        "lon": "2.07622"
+    },
+    {
+        "idPoint": 153,
+        "name": "fgc (l6,l7) gràcia (pl. de gal·la placídia)",
+        "lat": "41.400039",
+        "lon": "2.152429"
+    },
+    {
+        "idPoint": 154,
+        "name": "fgc (l6,l7) gràcia",
+        "lat": "41.399554",
+        "lon": "2.152507"
+    },
+    {
+        "idPoint": 155,
+        "name": "fgc (l6) la bonanova",
+        "lat": "41.397638",
+        "lon": "2.135502"
+    },
+    {
+        "idPoint": 156,
+        "name": "metro (l3) catalunya (pl. catalunya)",
+        "lat": "41.385946",
+        "lon": "2.169714"
+    },
+    {
+        "idPoint": 157,
+        "name": "metro (l3) palau reial (av. diagonal)",
+        "lat": "41.385808",
+        "lon": "2.118013"
+    },
+    {
+        "idPoint": 158,
+        "name": "metro (l3) canyelles (parc de josep maria serra martí)",
+        "lat": "41.441845",
+        "lon": "2.166353"
+    },
+    {
+        "idPoint": 159,
+        "name": "metro (l4) llucmajor (pg. del verdum)",
+        "lat": "41.43758",
+        "lon": "2.173684"
+    },
+    {
+        "idPoint": 160,
+        "name": "metro (l3) mundet (can marcet)",
+        "lat": "41.434855",
+        "lon": "2.147798"
+    },
+    {
+        "idPoint": 161,
+        "name": "metro (l3) mundet (can marcet)",
+        "lat": "41.435325",
+        "lon": "2.148557"
+    },
+    {
+        "idPoint": 162,
+        "name": "metro (l9) can zam",
+        "lat": "41.457253",
+        "lon": "2.19855"
+    },
+    {
+        "idPoint": 163,
+        "name": "metro (l9) singuerlín",
+        "lat": "41.459366",
+        "lon": "2.20578"
+    },
+    {
+        "idPoint": 164,
+        "name": "metro (l9) església major",
+        "lat": "41.454503",
+        "lon": "2.212413"
+    },
+    {
+        "idPoint": 165,
+        "name": "metro (l9) can peixauet",
+        "lat": "41.444246",
+        "lon": "2.210131"
+    },
+    {
+        "idPoint": 166,
+        "name": "metro (l4) selva de mar (c. de provençals)",
+        "lat": "41.407903",
+        "lon": "2.208411"
+    },
+    {
+        "idPoint": 167,
+        "name": "metro (l4) el maresme",
+        "lat": "41.412265",
+        "lon": "2.217331"
+    },
+    {
+        "idPoint": 168,
+        "name": "metro (l4) el maresme",
+        "lat": "41.411963",
+        "lon": "2.216969"
+    },
+    {
+        "idPoint": 169,
+        "name": "metro (l1) catalunya (pg. de gràcia)",
+        "lat": "41.388111",
+        "lon": "2.169597"
+    },
+    {
+        "idPoint": 170,
+        "name": "metro (l5) sagrada família (c. de la marina)",
+        "lat": "41.404606",
+        "lon": "2.174231"
+    },
+    {
+        "idPoint": 171,
+        "name": "metro (l5) sagrada família",
+        "lat": "41.404117",
+        "lon": "2.173877"
+    },
+    {
+        "idPoint": 172,
+        "name": "metro (l4) el maresme",
+        "lat": "41.41174",
+        "lon": "2.215909"
+    },
+    {
+        "idPoint": 173,
+        "name": "metro (l5) vilapicina (pg. de fabra i puig)",
+        "lat": "41.430572",
+        "lon": "2.168457"
+    },
+    {
+        "idPoint": 174,
+        "name": "metro (l5) vilapicina (pg. de fabra i puig)",
+        "lat": "41.430319",
+        "lon": "2.16701"
+    },
+    {
+        "idPoint": 175,
+        "name": "metro (l2) sant martí",
+        "lat": "41.419306",
+        "lon": "2.200601"
+    },
+    {
+        "idPoint": 176,
+        "name": "metro (l1) rocafort (gv. corts catalanes)",
+        "lat": "41.379461",
+        "lon": "2.15517"
+    },
+    {
+        "idPoint": 177,
+        "name": "metro (l1) santa coloma",
+        "lat": "41.451058",
+        "lon": "2.207416"
+    },
+    {
+        "idPoint": 178,
+        "name": "metro (l1) plaça de sants (c. de sants)",
+        "lat": "41.375217",
+        "lon": "2.138801"
+    },
+    {
+        "idPoint": 179,
+        "name": "metro (l1) mercat nou (c. d'antoni de capmany)",
+        "lat": "41.373293",
+        "lon": "2.13319"
+    },
+    {
+        "idPoint": 180,
+        "name": "metro (l5) horta",
+        "lat": "41.429762",
+        "lon": "2.161178"
+    },
+    {
+        "idPoint": 181,
+        "name": "metro (l3) tarragona",
+        "lat": "41.378565",
+        "lon": "2.145478"
+    },
+    {
+        "idPoint": 182,
+        "name": "metro (l3) espanya (av. de la reina maria cristina)",
+        "lat": "41.374513",
+        "lon": "2.149829"
+    },
+    {
+        "idPoint": 183,
+        "name": "metro (l3) espanya (av. del paral.lel)",
+        "lat": "41.374826",
+        "lon": "2.150171"
+    },
+    {
+        "idPoint": 184,
+        "name": "metro (l4) ciutadella ",
+        "lat": "41.388147",
+        "lon": "2.192713"
+    },
+    {
+        "idPoint": 185,
+        "name": "fgc (l6) sant gervasi",
+        "lat": "41.401372",
+        "lon": "2.147016"
+    },
+    {
+        "idPoint": 186,
+        "name": "fgc (l6) sarrià",
+        "lat": "41.39896",
+        "lon": "2.125112"
+    },
+    {
+        "idPoint": 187,
+        "name": "metro (l1) catalunya (pl. de catalunya)",
+        "lat": "41.38757",
+        "lon": "2.169492"
+    },
+    {
+        "idPoint": 188,
+        "name": "fgc (l6) les tres torres",
+        "lat": "41.397781",
+        "lon": "2.130828"
+    },
+    {
+        "idPoint": 189,
+        "name": "funicular vallvidrera inferior",
+        "lat": "41.409124",
+        "lon": "2.111267"
+    },
+    {
+        "idPoint": 190,
+        "name": "estació marítima c",
+        "lat": "41.360585",
+        "lon": "2.179532"
+    },
+    {
+        "idPoint": 191,
+        "name": "terminal marítima maremàgnum",
+        "lat": "41.374828",
+        "lon": "2.183611"
+    },
+    {
+        "idPoint": 192,
+        "name": "estació marítima drassanes",
+        "lat": "41.37385",
+        "lon": "2.178681"
+    },
+    {
+        "idPoint": 193,
+        "name": "estació marítimab",
+        "lat": "41.359077",
+        "lon": "2.178562"
+    },
+    {
+        "idPoint": 194,
+        "name": "terminalgénova",
+        "lat": "41.367586",
+        "lon": "2.176803"
+    },
+    {
+        "idPoint": 195,
+        "name": "estació marítimaa",
+        "lat": "41.363071",
+        "lon": "2.181059"
+    },
+    {
+        "idPoint": 196,
+        "name": "estació marítimainternacional",
+        "lat": "41.370929",
+        "lon": "2.182868"
+    },
+    {
+        "idPoint": 197,
+        "name": "estació marítimatrasmediterránea",
+        "lat": "41.371857",
+        "lon": "2.177294"
+    },
+    {
+        "idPoint": 198,
+        "name": "estació marítimabuquebús",
+        "lat": "41.372889",
+        "lon": "2.180769"
+    },
+    {
+        "idPoint": 199,
+        "name": "tren aeroport passeig de gràcia",
+        "lat": "41.39187",
+        "lon": "2.165256"
+    },
+    {
+        "idPoint": 200,
+        "name": "tren aeroport sants estació",
+        "lat": "41.379074",
+        "lon": "2.140341"
+    },
+    {
+        "idPoint": 201,
+        "name": "tren aeroport bellvitge",
+        "lat": "41.354367",
+        "lon": "2.115466"
+    },
+    {
+        "idPoint": 202,
+        "name": "tren aeroport prat de llobregat",
+        "lat": "41.331201",
+        "lon": "2.09108"
+    },
+    {
+        "idPoint": 203,
+        "name": "tren aeroportaeroport",
+        "lat": "41.304419",
+        "lon": "2.073913"
+    },
+    {
+        "idPoint": 204,
+        "name": "renfe montcada i reixac",
+        "lat": "41.484611",
+        "lon": "2.188413"
+    },
+    {
+        "idPoint": 205,
+        "name": "renfe montcada",
+        "lat": "41.496321",
+        "lon": "2.181768"
+    },
+    {
+        "idPoint": 206,
+        "name": "renfe cornellà",
+        "lat": "41.357914",
+        "lon": "2.06998"
+    },
+    {
+        "idPoint": 207,
+        "name": "renfe st. joan despí",
+        "lat": "41.368661",
+        "lon": "2.060314"
+    },
+    {
+        "idPoint": 208,
+        "name": "renfe st. feliu de llobregat",
+        "lat": "41.383079",
+        "lon": "2.048073"
+    },
+    {
+        "idPoint": 209,
+        "name": "renfe molins de rei",
+        "lat": "41.410017",
+        "lon": "2.021024"
+    },
+    {
+        "idPoint": 210,
+        "name": "renfe l'hospitalet de llobregat",
+        "lat": "41.364252",
+        "lon": "2.100702"
+    },
+    {
+        "idPoint": 211,
+        "name": "renfe sant adrià del besòs",
+        "lat": "41.424408",
+        "lon": "2.230523"
+    },
+    {
+        "idPoint": 212,
+        "name": "renfe badalona",
+        "lat": "41.445856",
+        "lon": "2.249093"
+    },
+    {
+        "idPoint": 213,
+        "name": "renfe clot",
+        "lat": "41.409832",
+        "lon": "2.187908"
+    },
+    {
+        "idPoint": 214,
+        "name": "renfe torre baró",
+        "lat": "41.46161",
+        "lon": "2.180357"
+    },
+    {
+        "idPoint": 215,
+        "name": "renfe clot",
+        "lat": "41.410259",
+        "lon": "2.189397"
+    },
+    {
+        "idPoint": 216,
+        "name": "renfe catalunya",
+        "lat": "41.388029",
+        "lon": "2.169552"
+    },
+    {
+        "idPoint": 217,
+        "name": "renfe passeig de gràcia",
+        "lat": "41.39187",
+        "lon": "2.165256"
+    },
+    {
+        "idPoint": 218,
+        "name": "renfe arc de triomf",
+        "lat": "41.391817",
+        "lon": "2.18004"
+    },
+    {
+        "idPoint": 219,
+        "name": "renfe catalunya",
+        "lat": "41.388108",
+        "lon": "2.170436"
+    },
+    {
+        "idPoint": 220,
+        "name": "renfe catalunya",
+        "lat": "41.387546",
+        "lon": "2.169312"
+    },
+    {
+        "idPoint": 221,
+        "name": "renfe clot",
+        "lat": "41.409995",
+        "lon": "2.188597"
+    },
+    {
+        "idPoint": 222,
+        "name": "renfe arc de triomf",
+        "lat": "41.391875",
+        "lon": "2.180575"
+    },
+    {
+        "idPoint": 223,
+        "name": "renfe montcada i reixac",
+        "lat": "41.484284",
+        "lon": "2.185163"
+    },
+    {
+        "idPoint": 224,
+        "name": "renfe montcada i reixac",
+        "lat": "41.481319",
+        "lon": "2.167379"
+    },
+    {
+        "idPoint": 225,
+        "name": "renfe bellvitge",
+        "lat": "41.354367",
+        "lon": "2.115466"
+    },
+    {
+        "idPoint": 226,
+        "name": "renfe el prat de llobregat",
+        "lat": "41.331201",
+        "lon": "2.09108"
+    },
+    {
+        "idPoint": 227,
+        "name": "renfe aeroport",
+        "lat": "41.304419",
+        "lon": "2.073913"
+    },
+    {
+        "idPoint": 228,
+        "name": "metro (l5) hospital clínic",
+        "lat": "41.389033",
+        "lon": "2.150984"
+    },
+    {
+        "idPoint": 229,
+        "name": "metro (l5) badal (c. de sants)",
+        "lat": "41.375637",
+        "lon": "2.128135"
+    },
+    {
+        "idPoint": 230,
+        "name": "metro (l5) badal",
+        "lat": "41.375605",
+        "lon": "2.127313"
+    },
+    {
+        "idPoint": 231,
+        "name": "metro (l5) pubilla cases",
+        "lat": "41.37329",
+        "lon": "2.107033"
+    },
+    {
+        "idPoint": 232,
+        "name": "metro (l5) camp de l'arpa (c. de la indústria)",
+        "lat": "41.415335",
+        "lon": "2.181742"
+    },
+    {
+        "idPoint": 233,
+        "name": "metro (l4) passeig de gràcia",
+        "lat": "41.389615",
+        "lon": "2.167682"
+    },
+    {
+        "idPoint": 234,
+        "name": "metro (l3,l4,l11) trinitat nova (pedrosa)",
+        "lat": "41.449264",
+        "lon": "2.18295"
+    },
+    {
+        "idPoint": 235,
+        "name": "metro (l4) poblenou (c. de pujades)",
+        "lat": "41.403481",
+        "lon": "2.202855"
+    },
+    {
+        "idPoint": 236,
+        "name": "metro (l4) ciutadella ",
+        "lat": "41.38821",
+        "lon": "2.193191"
+    },
+    {
+        "idPoint": 237,
+        "name": "metro (l4) poblenou",
+        "lat": "41.40344",
+        "lon": "2.203212"
+    },
+    {
+        "idPoint": 238,
+        "name": "metro (l5) hospital clínic (c. del comte d'urgell)",
+        "lat": "41.388476",
+        "lon": "2.150676"
+    },
+    {
+        "idPoint": 239,
+        "name": "metro (l4) joanic (c. de l'escorial)",
+        "lat": "41.406051",
+        "lon": "2.162763"
+    },
+    {
+        "idPoint": 240,
+        "name": "metro (l3) mundet (llars mundet ",
+        "lat": "41.435432",
+        "lon": "2.147015"
+    },
+    {
+        "idPoint": 241,
+        "name": "metro (l3) sants estació",
+        "lat": "41.381522",
+        "lon": "2.141512"
+    },
+    {
+        "idPoint": 242,
+        "name": "metro (l3) catalunya (la rambla)",
+        "lat": "41.385531",
+        "lon": "2.170075"
+    },
+    {
+        "idPoint": 243,
+        "name": "metro (l5) camp de l'arpa (pg. de maragall)",
+        "lat": "41.414798",
+        "lon": "2.181114"
+    },
+    {
+        "idPoint": 244,
+        "name": "metro (l2,l4) la pau (l2 i l4) (rambla de guipúscoa)",
+        "lat": "41.423471",
+        "lon": "2.205987"
+    },
+    {
+        "idPoint": 245,
+        "name": "metro (l5) entença (c. de rocafort)",
+        "lat": "41.384981",
+        "lon": "2.146075"
+    },
+    {
+        "idPoint": 246,
+        "name": "metro (l4) hospital de sant pau",
+        "lat": "41.416004",
+        "lon": "2.174241"
+    },
+    {
+        "idPoint": 247,
+        "name": "metro (l5) collblanc",
+        "lat": "41.375998",
+        "lon": "2.120049"
+    },
+    {
+        "idPoint": 248,
+        "name": "metro (l5) collblanc",
+        "lat": "41.375948",
+        "lon": "2.120678"
+    },
+    {
+        "idPoint": 249,
+        "name": "metro (l5) congrés (c. de garcilaso)",
+        "lat": "41.423505",
+        "lon": "2.180781"
+    },
+    {
+        "idPoint": 250,
+        "name": "metro (l4) joanic",
+        "lat": "41.406523",
+        "lon": "2.163315"
+    },
+    {
+        "idPoint": 251,
+        "name": "metro (l3) espanya (pl. d'espanya)",
+        "lat": "41.374291",
+        "lon": "2.14909"
+    },
+    {
+        "idPoint": 252,
+        "name": "metro (l3) passeig de gràcia (c. d'aragó)",
+        "lat": "41.392217",
+        "lon": "2.165242"
+    },
+    {
+        "idPoint": 253,
+        "name": "renfe arc de triomf",
+        "lat": "41.393385",
+        "lon": "2.181952"
+    },
+    {
+        "idPoint": 254,
+        "name": "renfe catalunya",
+        "lat": "41.387019",
+        "lon": "2.16875"
+    },
+    {
+        "idPoint": 255,
+        "name": "renfe de frança",
+        "lat": "41.384232",
+        "lon": "2.185449"
+    },
+    {
+        "idPoint": 256,
+        "name": "metro (l4) besòs mar (c. d'alfons el magnànim)",
+        "lat": "41.415468",
+        "lon": "2.215632"
+    },
+    {
+        "idPoint": 257,
+        "name": "metro (l4) besòs mar",
+        "lat": "41.415007",
+        "lon": "2.215688"
+    },
+    {
+        "idPoint": 258,
+        "name": "metro (l2) pep ventura",
+        "lat": "41.444538",
+        "lon": "2.238942"
+    },
+    {
+        "idPoint": 259,
+        "name": "fgc (l8) europa / fira",
+        "lat": "41.357005",
+        "lon": "2.125369"
+    },
+    {
+        "idPoint": 260,
+        "name": "metro (l3) roquetes",
+        "lat": "41.447394",
+        "lon": "2.176252"
+    },
+    {
+        "idPoint": 261,
+        "name": "metro (l3) roquetes (pla de fornells)",
+        "lat": "41.446933",
+        "lon": "2.17602"
+    },
+    {
+        "idPoint": 262,
+        "name": "renfe sant andreu arenal",
+        "lat": "41.430862",
+        "lon": "2.183101"
+    },
+    {
+        "idPoint": 263,
+        "name": "renfe sants estació",
+        "lat": "41.379074",
+        "lon": "2.140341"
+    },
+    {
+        "idPoint": 264,
+        "name": "renfe sant andreu comtal",
+        "lat": "41.435959",
+        "lon": "2.193312"
+    },
+    {
+        "idPoint": 265,
+        "name": "metro (l3) roquetes (vidal i guasch)",
+        "lat": "41.446909",
+        "lon": "2.175017"
+    },
+    {
+        "idPoint": 266,
+        "name": "metro (l3) liceu",
+        "lat": "41.380666",
+        "lon": "2.17353"
+    },
+    {
+        "idPoint": 267,
+        "name": "metro (l3) maria cristina (av. diagonal)",
+        "lat": "41.388261",
+        "lon": "2.126135"
+    },
+    {
+        "idPoint": 268,
+        "name": "metro (l3) roquetes (pla dels cirerers)",
+        "lat": "41.44795",
+        "lon": "2.177118"
+    },
+    {
+        "idPoint": 269,
+        "name": "metro (l3) trinitat nova (chafarinas)",
+        "lat": "41.449312",
+        "lon": "2.184187"
+    },
+    {
+        "idPoint": 270,
+        "name": "metro (l3) trinitat nova (parc)",
+        "lat": "41.4493",
+        "lon": "2.18472"
+    },
+    {
+        "idPoint": 271,
+        "name": "metro (l3) trinitat nova (parc/tamariu)",
+        "lat": "41.449665",
+        "lon": "2.184457"
+    },
+    {
+        "idPoint": 272,
+        "name": "metro (l3) trinitat nova",
+        "lat": "41.449514",
+        "lon": "2.184161"
+    },
+    {
+        "idPoint": 273,
+        "name": "metro (l3) zona universitària (av. diagonal)",
+        "lat": "41.384639",
+        "lon": "2.111621"
+    },
+    {
+        "idPoint": 274,
+        "name": "metro (l3) zona universitària",
+        "lat": "41.384138",
+        "lon": "2.1104"
+    },
+    {
+        "idPoint": 275,
+        "name": "metro (l4) llacuna",
+        "lat": "41.399257",
+        "lon": "2.197247"
+    },
+    {
+        "idPoint": 276,
+        "name": "metro (l2) pep ventura",
+        "lat": "41.44515",
+        "lon": "2.238365"
+    },
+    {
+        "idPoint": 277,
+        "name": "metro (l2) pep ventura",
+        "lat": "41.444591",
+        "lon": "2.23821"
+    },
+    {
+        "idPoint": 278,
+        "name": "metro (l2) gorg",
+        "lat": "41.441113",
+        "lon": "2.234255"
+    },
+    {
+        "idPoint": 279,
+        "name": "metro (l4) via júlia (via júlia ",
+        "lat": "41.443382",
+        "lon": "2.178458"
+    },
+    {
+        "idPoint": 280,
+        "name": "metro (l5) hospital clínic (c. del comte d'urgell)",
+        "lat": "41.388226",
+        "lon": "2.15029"
+    },
+    {
+        "idPoint": 281,
+        "name": "metro (l3) tarragona (c. de tarragona)",
+        "lat": "41.378805",
+        "lon": "2.145225"
+    },
+    {
+        "idPoint": 282,
+        "name": "metro (l3) tarragona (c. del elisi)",
+        "lat": "41.378852",
+        "lon": "2.144456"
+    },
+    {
+        "idPoint": 283,
+        "name": "metro (l4) barceloneta",
+        "lat": "41.382674",
+        "lon": "2.18566"
+    },
+    {
+        "idPoint": 284,
+        "name": "metro (l4) la pau",
+        "lat": "41.423961",
+        "lon": "2.206472"
+    },
+    {
+        "idPoint": 285,
+        "name": "metro (l4) llacuna (c. de la ciutat de granada)",
+        "lat": "41.399026",
+        "lon": "2.19746"
+    },
+    {
+        "idPoint": 286,
+        "name": "metro (l4) via júlia (via júlia ",
+        "lat": "41.444145",
+        "lon": "2.178826"
+    },
+    {
+        "idPoint": 287,
+        "name": "metro (l4) via júlia",
+        "lat": "41.443928",
+        "lon": "2.178906"
+    },
+    {
+        "idPoint": 288,
+        "name": "metro (l4) maragall (rda. del guinardó)",
+        "lat": "41.422701",
+        "lon": "2.177349"
+    },
+    {
+        "idPoint": 289,
+        "name": "metro (l4) maragall",
+        "lat": "41.424269",
+        "lon": "2.177694"
+    },
+    {
+        "idPoint": 290,
+        "name": "metro (l3) sants estació (c. de numància)",
+        "lat": "41.380858",
+        "lon": "2.141603"
+    },
+    {
+        "idPoint": 291,
+        "name": "metro (l4) girona (c. consell de cent)",
+        "lat": "41.394823",
+        "lon": "2.170859"
+    },
+    {
+        "idPoint": 292,
+        "name": "metro (l4) girona (c. de girona)",
+        "lat": "41.394796",
+        "lon": "2.171334"
+    },
+    {
+        "idPoint": 293,
+        "name": "metro (l4) llucmajor (pg. del verdum)",
+        "lat": "41.436715",
+        "lon": "2.172883"
+    },
+    {
+        "idPoint": 294,
+        "name": "metro (l4) girona",
+        "lat": "41.39526",
+        "lon": "2.171406"
+    },
+    {
+        "idPoint": 295,
+        "name": "metro (l4) alfons x",
+        "lat": "41.411775",
+        "lon": "2.166162"
+    },
+    {
+        "idPoint": 296,
+        "name": "metro (l4) barceloneta (pl. de pau vila)",
+        "lat": "41.382237",
+        "lon": "2.185811"
+    },
+    {
+        "idPoint": 297,
+        "name": "metro (l2) universitat",
+        "lat": "41.385015",
+        "lon": "2.163252"
+    },
+    {
+        "idPoint": 298,
+        "name": "metro (l3) canyelles (federico garcía lorca)",
+        "lat": "41.441671",
+        "lon": "2.165196"
+    },
+    {
+        "idPoint": 299,
+        "name": "tramvia (t1,t2,t3) can clota",
+        "lat": "41.376929",
+        "lon": "2.09287"
+    },
+    {
+        "idPoint": 300,
+        "name": "tramvia (t1,t2,t3) pont d'esplugues",
+        "lat": "41.376495",
+        "lon": "2.087563"
+    },
+    {
+        "idPoint": 301,
+        "name": "tramvia (t1,t2,t3) montesa",
+        "lat": "41.369445",
+        "lon": "2.080799"
+    },
+    {
+        "idPoint": 302,
+        "name": "tramvia (t1,t2) el pedrò",
+        "lat": "41.365513",
+        "lon": "2.076889"
+    },
+    {
+        "idPoint": 303,
+        "name": "tramvia (t1,t2) ignasi iglésias",
+        "lat": "41.360796",
+        "lon": "2.072171"
+    },
+    {
+        "idPoint": 304,
+        "name": "tramvia (t1,t2) cornellà centre",
+        "lat": "41.356785",
+        "lon": "2.068805"
+    },
+    {
+        "idPoint": 305,
+        "name": "tramvia (t1,t2) les aigües",
+        "lat": "41.356699",
+        "lon": "2.066109"
+    },
+    {
+        "idPoint": 306,
+        "name": "tramvia (t1,t2,t3) francesc macià",
+        "lat": "41.392183",
+        "lon": "2.142997"
+    },
+    {
+        "idPoint": 307,
+        "name": "tramvia (t1,t2,t3) l'illa",
+        "lat": "41.390505",
+        "lon": "2.136412"
+    },
+    {
+        "idPoint": 308,
+        "name": "tramvia (t1,t2,t3) mª cristina",
+        "lat": "41.388002",
+        "lon": "2.126641"
+    },
+    {
+        "idPoint": 309,
+        "name": "tramvia (t1,t2,t3) palau reial",
+        "lat": "41.385874",
+        "lon": "2.118294"
+    },
+    {
+        "idPoint": 310,
+        "name": "tramvia (t1,t2,t3) zona universitària",
+        "lat": "41.384459",
+        "lon": "2.114498"
+    },
+    {
+        "idPoint": 311,
+        "name": "tramvia (t3) sant feliu/consell comarcal",
+        "lat": "41.379349",
+        "lon": "2.05321"
+    },
+    {
+        "idPoint": 312,
+        "name": "tramvia (t4) wellington",
+        "lat": "41.390398",
+        "lon": "2.188338"
+    },
+    {
+        "idPoint": 313,
+        "name": "tramvia blau av. tibidabo (dr. ribas perdigó",
+        "lat": "41.415114",
+        "lon": "2.133644"
+    },
+    {
+        "idPoint": 314,
+        "name": "tramvia blau av. tibidabo (parc municipal font racó ",
+        "lat": "41.415431",
+        "lon": "2.129309"
+    },
+    {
+        "idPoint": 315,
+        "name": "tramvia (t3) walden",
+        "lat": "41.379733",
+        "lon": "2.067057"
+    },
+    {
+        "idPoint": 316,
+        "name": "tramvia (línia t3) torreblanca",
+        "lat": "41.379784",
+        "lon": "2.0607"
+    },
+    {
+        "idPoint": 317,
+        "name": "tramvia (t5, t6) espronceda",
+        "lat": "41.411242",
+        "lon": "2.197653"
+    },
+    {
+        "idPoint": 318,
+        "name": "tramvia (t5, t6) sant martí de provençals",
+        "lat": "41.416358",
+        "lon": "2.204513"
+    },
+    {
+        "idPoint": 319,
+        "name": "tramvia (t5, t6) la farinera",
+        "lat": "41.404209",
+        "lon": "2.188532"
+    },
+    {
+        "idPoint": 320,
+        "name": "tramvia (t1,t2,t3) avinguda de xile",
+        "lat": "41.38048",
+        "lon": "2.115012"
+    },
+    {
+        "idPoint": 321,
+        "name": "tramvia (t1,t2,t3) sant ramon",
+        "lat": "41.376647",
+        "lon": "2.112031"
+    },
+    {
+        "idPoint": 322,
+        "name": "tramvia (t1,t2,t3) can rigal",
+        "lat": "41.376071",
+        "lon": "2.106023"
+    },
+    {
+        "idPoint": 323,
+        "name": "tramvia (t5) encants de sant adrià",
+        "lat": "41.430456",
+        "lon": "2.222916"
+    },
+    {
+        "idPoint": 324,
+        "name": "tramvia (t5) sant roc",
+        "lat": "41.434948",
+        "lon": "2.227764"
+    },
+    {
+        "idPoint": 325,
+        "name": "tramvia (t4) fluvià",
+        "lat": "41.40744",
+        "lon": "2.203312"
+    },
+    {
+        "idPoint": 326,
+        "name": "tramvia (t4) selva de mar",
+        "lat": "41.409066",
+        "lon": "2.209864"
+    },
+    {
+        "idPoint": 327,
+        "name": "tramvia (t4) fòrum",
+        "lat": "41.411777",
+        "lon": "2.219829"
+    },
+    {
+        "idPoint": 328,
+        "name": "tramvia (t4) can llima",
+        "lat": "41.415244",
+        "lon": "2.222906"
+    },
+    {
+        "idPoint": 329,
+        "name": "tramvia (t4, t6) estació de sant adrià",
+        "lat": "41.423854",
+        "lon": "2.230412"
+    },
+    {
+        "idPoint": 330,
+        "name": "tramvia (t4, t5, t6) glòries",
+        "lat": "41.401681",
+        "lon": "2.186836"
+    },
+    {
+        "idPoint": 331,
+        "name": "tramvia (t4) ca l'aranyó",
+        "lat": "41.40443",
+        "lon": "2.19139"
+    },
+    {
+        "idPoint": 332,
+        "name": "tramvia (t1,t2) fontsanta",
+        "lat": "41.360383",
+        "lon": "2.062227"
+    },
+    {
+        "idPoint": 333,
+        "name": "transbordador del port sant sebastià",
+        "lat": "41.373235",
+        "lon": "2.187919"
+    },
+    {
+        "idPoint": 334,
+        "name": "transbordador del port jaume i",
+        "lat": "41.372103",
+        "lon": "2.180119"
+    },
+    {
+        "idPoint": 335,
+        "name": "transbordador del port miramar",
+        "lat": "41.371019",
+        "lon": "2.1725"
+    },
+    {
+        "idPoint": 336,
+        "name": "telefèric de montjuïc parc de montjuïc",
+        "lat": "41.368756",
+        "lon": "2.163454"
+    },
+    {
+        "idPoint": 337,
+        "name": "telefèric de montjuïc castell",
+        "lat": "41.364048",
+        "lon": "2.166135"
+    },
+    {
+        "idPoint": 338,
+        "name": "funicular tibidabo inferior",
+        "lat": "41.41616",
+        "lon": "2.13157"
+    },
+    {
+        "idPoint": 339,
+        "name": "funicular vallvidrera superior",
+        "lat": "41.41398",
+        "lon": "2.105697"
+    },
+    {
+        "idPoint": 340,
+        "name": "funicular montjuïc superior",
+        "lat": "41.368721",
+        "lon": "2.163334"
+    },
+    {
+        "idPoint": 341,
+        "name": "funicular montjuïc inferior",
+        "lat": "41.374747",
+        "lon": "2.168493"
+    },
+    {
+        "idPoint": 342,
+        "name": "funicular tibidabo superior",
+        "lat": "41.42128",
+        "lon": "2.119395"
+    },
+    {
+        "idPoint": 343,
+        "name": "metro (l3) maria cristina (pl. de la reina maria cristina)",
+        "lat": "41.388357",
+        "lon": "2.127857"
+    },
+    {
+        "idPoint": 344,
+        "name": "metro (l4) joanic (c. de pi i margall)",
+        "lat": "41.406001",
+        "lon": "2.163163"
+    },
+    {
+        "idPoint": 345,
+        "name": "metro (l5) entença",
+        "lat": "41.384454",
+        "lon": "2.145606"
+    },
+    {
+        "idPoint": 346,
+        "name": "metro (l2) artigues",
+        "lat": "41.433816",
+        "lon": "2.217241"
+    },
+    {
+        "idPoint": 347,
+        "name": "metro (l2) universitat (rda. de sant antoni)",
+        "lat": "41.384514",
+        "lon": "2.163681"
+    },
+    {
+        "idPoint": 348,
+        "name": "metro (l1) espanya",
+        "lat": "41.37538",
+        "lon": "2.148801"
+    },
+    {
+        "idPoint": 349,
+        "name": "metro (l1) arc de triomf (avda. de vilanova)",
+        "lat": "41.391664",
+        "lon": "2.180381"
+    },
+    {
+        "idPoint": 350,
+        "name": "estació marítima grimaldi lines",
+        "lat": "41.364315",
+        "lon": "2.173815"
+    },
+    {
+        "idPoint": 351,
+        "name": "metro (l3) penitents (av. de l'hospital militar)",
+        "lat": "41.417691",
+        "lon": "2.140978"
+    },
+    {
+        "idPoint": 352,
+        "name": "metro (l3) liceu (la rambla)",
+        "lat": "41.381722",
+        "lon": "2.172794"
+    },
+    {
+        "idPoint": 353,
+        "name": "metro (l3) liceu (pla de la boqueria)",
+        "lat": "41.380969",
+        "lon": "2.173507"
+    },
+    {
+        "idPoint": 354,
+        "name": "metro (l3) maria cristina (av. diagonal)",
+        "lat": "41.387932",
+        "lon": "2.126495"
+    },
+    {
+        "idPoint": 355,
+        "name": "metro (l3) paral·lel",
+        "lat": "41.375079",
+        "lon": "2.170718"
+    },
+    {
+        "idPoint": 356,
+        "name": "metro (l3) passeig de gràcia (c. d'aragó)",
+        "lat": "41.391905",
+        "lon": "2.164802"
+    },
+    {
+        "idPoint": 357,
+        "name": "metro (l3) passeig de gràcia (c. del consell de cent)",
+        "lat": "41.391351",
+        "lon": "2.165646"
+    },
+    {
+        "idPoint": 358,
+        "name": "metro (l3) passeig de gràcia (pg. de gràcia)",
+        "lat": "41.392328",
+        "lon": "2.164453"
+    },
+    {
+        "idPoint": 359,
+        "name": "metro (l2) artigues",
+        "lat": "41.433879",
+        "lon": "2.216803"
+    },
+    {
+        "idPoint": 360,
+        "name": "metro (l3) espanya (gv. corts catalanes)",
+        "lat": "41.375363",
+        "lon": "2.150029"
+    },
+    {
+        "idPoint": 361,
+        "name": "metro (l3) maria cristina",
+        "lat": "41.388204",
+        "lon": "2.126304"
+    },
+    {
+        "idPoint": 362,
+        "name": "metro (l3) passeig de gràcia",
+        "lat": "41.392896",
+        "lon": "2.16457"
+    },
+    {
+        "idPoint": 363,
+        "name": "metro (l3) poble sec (av. del paral.lel)",
+        "lat": "41.375204",
+        "lon": "2.16169"
+    },
+    {
+        "idPoint": 364,
+        "name": "metro (l4,l11) trinitat nova",
+        "lat": "41.449285",
+        "lon": "2.182475"
+    },
+    {
+        "idPoint": 365,
+        "name": "metro (l5) can boixeres",
+        "lat": "41.366148",
+        "lon": "2.091263"
+    },
+    {
+        "idPoint": 366,
+        "name": "metro (l5) can vidalet",
+        "lat": "41.371578",
+        "lon": "2.099888"
+    },
+    {
+        "idPoint": 367,
+        "name": "metro (l5) badal (c. carreras i candi)",
+        "lat": "41.375495",
+        "lon": "2.126019"
+    },
+    {
+        "idPoint": 368,
+        "name": "metro (l5) badal (c. d'arizala)",
+        "lat": "41.375701",
+        "lon": "2.125579"
+    },
+    {
+        "idPoint": 369,
+        "name": "metro (l4) llucmajor (pl. del jardins d'alfàbia)",
+        "lat": "41.437178",
+        "lon": "2.173953"
+    },
+    {
+        "idPoint": 370,
+        "name": "metro (l5) sagrada família (c. de provença)",
+        "lat": "41.403512",
+        "lon": "2.173357"
+    },
+    {
+        "idPoint": 371,
+        "name": "metro (l5) plaça de sants",
+        "lat": "41.375444",
+        "lon": "2.13548"
+    },
+    {
+        "idPoint": 372,
+        "name": "metro (l5) pubilla cases",
+        "lat": "41.373558",
+        "lon": "2.106775"
+    },
+    {
+        "idPoint": 373,
+        "name": "metro (l5) congrés",
+        "lat": "41.423528",
+        "lon": "2.181609"
+    },
+    {
+        "idPoint": 374,
+        "name": "metro (l5) pubilla cases",
+        "lat": "41.37406",
+        "lon": "2.108251"
+    },
+    {
+        "idPoint": 375,
+        "name": "metro (l5) virrei amat (pl. de virrei amat)",
+        "lat": "41.429404",
+        "lon": "2.174845"
+    },
+    {
+        "idPoint": 376,
+        "name": "metro (l4) urquinaona (pl. d'urquinaona)",
+        "lat": "41.388771",
+        "lon": "2.172613"
+    },
+    {
+        "idPoint": 377,
+        "name": "metro (l5) diagonal (rambla de catalunya)",
+        "lat": "41.394451",
+        "lon": "2.158487"
+    },
+    {
+        "idPoint": 378,
+        "name": "metro (l3) espanya",
+        "lat": "41.37516",
+        "lon": "2.150301"
+    },
+    {
+        "idPoint": 379,
+        "name": "metro (l4) alfons x (c. de lepant)",
+        "lat": "41.412047",
+        "lon": "2.166884"
+    },
+    {
+        "idPoint": 380,
+        "name": "metro (l5) congrés (pl. dels indians)",
+        "lat": "41.423447",
+        "lon": "2.182124"
+    },
+    {
+        "idPoint": 381,
+        "name": "metro (l2) pep ventura",
+        "lat": "41.445295",
+        "lon": "2.239146"
+    },
+    {
+        "idPoint": 382,
+        "name": "metro (l5) can boixeres",
+        "lat": "41.366055",
+        "lon": "2.090782"
+    },
+    {
+        "idPoint": 383,
+        "name": "metro (l4) urquinaona (via laietana)",
+        "lat": "41.387564",
+        "lon": "2.174157"
+    },
+    {
+        "idPoint": 384,
+        "name": "metro (l4) urquinaona",
+        "lat": "41.388481",
+        "lon": "2.173104"
+    },
+    {
+        "idPoint": 385,
+        "name": "metro (l4) verdaguer (pg. de sant joan)",
+        "lat": "41.39999",
+        "lon": "2.168669"
+    },
+    {
+        "idPoint": 386,
+        "name": "metro (l4) verdaguer",
+        "lat": "41.40017",
+        "lon": "2.168592"
+    },
+    {
+        "idPoint": 387,
+        "name": "metro (l2) verneda",
+        "lat": "41.430056",
+        "lon": "2.209904"
+    },
+    {
+        "idPoint": 388,
+        "name": "metro (l4) jaume i (pl. l'àngel)",
+        "lat": "41.384137",
+        "lon": "2.178343"
+    },
+    {
+        "idPoint": 389,
+        "name": "metro (l4) jaume i (via laietana)",
+        "lat": "41.383774",
+        "lon": "2.179204"
+    },
+    {
+        "idPoint": 390,
+        "name": "metro (l5) collblanc",
+        "lat": "41.375791",
+        "lon": "2.118297"
+    },
+    {
+        "idPoint": 391,
+        "name": "metro (l5) collblanc",
+        "lat": "41.37556",
+        "lon": "2.121098"
+    },
+    {
+        "idPoint": 392,
+        "name": "metro (l4) jaume i",
+        "lat": "41.383984",
+        "lon": "2.179125"
+    },
+    {
+        "idPoint": 393,
+        "name": "metro (l2) artigues",
+        "lat": "41.433504",
+        "lon": "2.217371"
+    },
+    {
+        "idPoint": 394,
+        "name": "metro (l4) hospital de sant pau",
+        "lat": "41.415996",
+        "lon": "2.174535"
+    },
+    {
+        "idPoint": 395,
+        "name": "metro (l1) avinguda carrilet",
+        "lat": "41.359299",
+        "lon": "2.102666"
+    },
+    {
+        "idPoint": 396,
+        "name": "metro (l1) fabra i puig (av. meridiana)",
+        "lat": "41.431138",
+        "lon": "2.183464"
+    },
+    {
+        "idPoint": 397,
+        "name": "metro (l1) hostafrancs (c. de la creu coberta)",
+        "lat": "41.375356",
+        "lon": "2.144523"
+    },
+    {
+        "idPoint": 398,
+        "name": "metro (l1) hostafrancs (c. del consell de cent)",
+        "lat": "41.375552",
+        "lon": "2.143445"
+    },
+    {
+        "idPoint": 399,
+        "name": "metro (l1) hostafrancs (c. del moianès)",
+        "lat": "41.375134",
+        "lon": "2.142362"
+    },
+    {
+        "idPoint": 400,
+        "name": "metro (l1) hostafrancs",
+        "lat": "41.375292",
+        "lon": "2.143991"
+    },
+    {
+        "idPoint": 401,
+        "name": "metro (l1) clot (aragó",
+        "lat": "41.408643",
+        "lon": "2.187344"
+    },
+    {
+        "idPoint": 402,
+        "name": "fgc (l6) muntaner",
+        "lat": "41.398976",
+        "lon": "2.142852"
+    },
+    {
+        "idPoint": 403,
+        "name": "fgc (l8) ildefons cerdà",
+        "lat": "41.361391",
+        "lon": "2.130463"
+    },
+    {
+        "idPoint": 404,
+        "name": "metro (l1) glòries (pl. de les glòries catalanes)",
+        "lat": "41.402882",
+        "lon": "2.187238"
+    },
+    {
+        "idPoint": 405,
+        "name": "metro (l2) verneda",
+        "lat": "41.430299",
+        "lon": "2.209632"
+    },
+    {
+        "idPoint": 406,
+        "name": "metro (l5) la sagrera",
+        "lat": "41.421556",
+        "lon": "2.186897"
+    },
+    {
+        "idPoint": 407,
+        "name": "metro (l2) bac de roda (rambla guipúscoa)",
+        "lat": "41.415594",
+        "lon": "2.196179"
+    },
+    {
+        "idPoint": 408,
+        "name": "metro (l5) pubilla cases",
+        "lat": "41.374015",
+        "lon": "2.107647"
+    },
+    {
+        "idPoint": 409,
+        "name": "metro (l5) el coll / la teixonera (pl. de sant crispí)",
+        "lat": "41.423133",
+        "lon": "2.148073"
+    },
+    {
+        "idPoint": 410,
+        "name": "metro (l5) el carmel (c. de llobregós ",
+        "lat": "41.423558",
+        "lon": "2.155013"
+    },
+    {
+        "idPoint": 411,
+        "name": "metro (l5) el carmel (pl. de pastrana)",
+        "lat": "41.425418",
+        "lon": "2.156073"
+    },
+    {
+        "idPoint": 412,
+        "name": "metro (l5) verdaguer (c. de bailèn)",
+        "lat": "41.399121",
+        "lon": "2.167494"
+    },
+    {
+        "idPoint": 413,
+        "name": "metro (l5) verdaguer (c. de girona)",
+        "lat": "41.398676",
+        "lon": "2.166277"
+    },
+    {
+        "idPoint": 414,
+        "name": "metro (l5) verdaguer",
+        "lat": "41.398769",
+        "lon": "2.166728"
+    },
+    {
+        "idPoint": 415,
+        "name": "metro (l5) plaça de sants (pl. de sants)",
+        "lat": "41.375491",
+        "lon": "2.135034"
+    },
+    {
+        "idPoint": 416,
+        "name": "metro (l5) sant pau",
+        "lat": "41.410166",
+        "lon": "2.175393"
+    },
+    {
+        "idPoint": 417,
+        "name": "metro (l5) sant ildefons",
+        "lat": "41.363278",
+        "lon": "2.084164"
+    },
+    {
+        "idPoint": 418,
+        "name": "metro (l5) sant ildefons",
+        "lat": "41.36329",
+        "lon": "2.084574"
+    },
+    {
+        "idPoint": 419,
+        "name": "metro (l5) gavarra",
+        "lat": "41.357707",
+        "lon": "2.078904"
+    },
+    {
+        "idPoint": 420,
+        "name": "metro (l5) cornellà centre",
+        "lat": "41.356107",
+        "lon": "2.072672"
+    },
+    {
+        "idPoint": 421,
+        "name": "metro (l5) cornellà centre",
+        "lat": "41.356151",
+        "lon": "2.072404"
+    },
+    {
+        "idPoint": 422,
+        "name": "metro (l5) diagonal (c. del rosselló)",
+        "lat": "41.394536",
+        "lon": "2.159106"
+    },
+    {
+        "idPoint": 423,
+        "name": "metro (l4) selva de mar",
+        "lat": "41.408155",
+        "lon": "2.209959"
+    },
+    {
+        "idPoint": 424,
+        "name": "fgc (l8) almeda",
+        "lat": "41.353011",
+        "lon": "2.086746"
+    },
+    {
+        "idPoint": 425,
+        "name": "fgc (l8) molí nou",
+        "lat": "41.357711",
+        "lon": "2.034689"
+    },
+    {
+        "idPoint": 426,
+        "name": "metro (l5) entença (c. d'entença)",
+        "lat": "41.384126",
+        "lon": "2.144952"
+    },
+    {
+        "idPoint": 427,
+        "name": "metro (l5) camp de l'arpa",
+        "lat": "41.414999",
+        "lon": "2.180938"
+    },
+    {
+        "idPoint": 428,
+        "name": "metro (l5) can vidalet",
+        "lat": "41.371318",
+        "lon": "2.099238"
+    },
+    {
+        "idPoint": 429,
+        "name": "metro (l5) el coll / la teixonera (c. del beat almató)",
+        "lat": "41.419877",
+        "lon": "2.149504"
+    },
+    {
+        "idPoint": 430,
+        "name": "metro (l5) el coll / la teixonera (c. de batet)",
+        "lat": "41.420977",
+        "lon": "2.150142"
+    },
+    {
+        "idPoint": 431,
+        "name": "metro (l2) sant antoni (rda. sant antoni)",
+        "lat": "41.37899",
+        "lon": "2.163409"
+    },
+    {
+        "idPoint": 432,
+        "name": "fgc (l8) sant boi",
+        "lat": "41.348145",
+        "lon": "2.043259"
+    },
+    {
+        "idPoint": 433,
+        "name": "fgc (l8) sant josep",
+        "lat": "41.361271",
+        "lon": "2.11168"
+    },
+    {
+        "idPoint": 434,
+        "name": "fgc (l7) el putxet",
+        "lat": "41.405731",
+        "lon": "2.139248"
+    },
+    {
+        "idPoint": 435,
+        "name": "fgc (l7) el putxet",
+        "lat": "41.406043",
+        "lon": "2.139256"
+    },
+    {
+        "idPoint": 436,
+        "name": "fgc (l7) el putxet",
+        "lat": "41.405442",
+        "lon": "2.139529"
+    },
+    {
+        "idPoint": 437,
+        "name": "fgc (l6,l7) catalunya",
+        "lat": "41.385707",
+        "lon": "2.169503"
+    },
+    {
+        "idPoint": 438,
+        "name": "fgc (l6) sarrià",
+        "lat": "41.398544",
+        "lon": "2.125789"
+    },
+    {
+        "idPoint": 439,
+        "name": "metro (l1) florida",
+        "lat": "41.367873",
+        "lon": "2.110396"
+    },
+    {
+        "idPoint": 440,
+        "name": "metro (l1) arc de triomf",
+        "lat": "41.392387",
+        "lon": "2.180061"
+    },
+    {
+        "idPoint": 441,
+        "name": "metro (l1) bellvitge",
+        "lat": "41.350397",
+        "lon": "2.110588"
+    },
+    {
+        "idPoint": 442,
+        "name": "metro (l1) can serra",
+        "lat": "41.368184",
+        "lon": "2.103931"
+    },
+    {
+        "idPoint": 443,
+        "name": "metro (l1) baró de viver",
+        "lat": "41.449896",
+        "lon": "2.199663"
+    },
+    {
+        "idPoint": 444,
+        "name": "metro (l1) baró de viver",
+        "lat": "41.450043",
+        "lon": "2.200227"
+    },
+    {
+        "idPoint": 445,
+        "name": "metro (l2) gorg",
+        "lat": "41.44129",
+        "lon": "2.233988"
+    },
+    {
+        "idPoint": 446,
+        "name": "fgc (l8) l'hospitalet:av. carrilet",
+        "lat": "41.357794",
+        "lon": "2.103422"
+    },
+    {
+        "idPoint": 447,
+        "name": "metro (l3) poble sec (av. del paral.lel)",
+        "lat": "41.37487",
+        "lon": "2.158936"
+    },
+    {
+        "idPoint": 448,
+        "name": "metro (l3) poble sec (av. del paral.lel)",
+        "lat": "41.375204",
+        "lon": "2.161109"
+    },
+    {
+        "idPoint": 449,
+        "name": "metro (l3) paral·lel (av. de paral.lel)",
+        "lat": "41.374728",
+        "lon": "2.170083"
+    },
+    {
+        "idPoint": 450,
+        "name": "metro (l3) plaça del centre",
+        "lat": "41.382673",
+        "lon": "2.136549"
+    },
+    {
+        "idPoint": 451,
+        "name": "metro (l3) paral·lel (c. nou de la rambla)",
+        "lat": "41.375177",
+        "lon": "2.170433"
+    },
+    {
+        "idPoint": 452,
+        "name": "metro (l4) besòs",
+        "lat": "41.420291",
+        "lon": "2.210317"
+    },
+    {
+        "idPoint": 453,
+        "name": "metro (l4) bogatell (c. de pere iv)",
+        "lat": "41.394936",
+        "lon": "2.191575"
+    },
+    {
+        "idPoint": 454,
+        "name": "metro (l3) montbau (jardins de pedro muñoz seca)",
+        "lat": "41.430627",
+        "lon": "2.144554"
+    },
+    {
+        "idPoint": 455,
+        "name": "metro (l1) urquinaona (c. jonqueres)",
+        "lat": "41.389109",
+        "lon": "2.174004"
+    },
+    {
+        "idPoint": 456,
+        "name": "metro (l1) urquinaona (pl. d'urquinaona)",
+        "lat": "41.389401",
+        "lon": "2.173372"
+    },
+    {
+        "idPoint": 457,
+        "name": "metro (l1) urquinaona",
+        "lat": "41.38952",
+        "lon": "2.17309"
+    },
+    {
+        "idPoint": 458,
+        "name": "metro (l2) bac de roda (rambla guipúscoa)",
+        "lat": "41.414799",
+        "lon": "2.195092"
+    },
+    {
+        "idPoint": 459,
+        "name": "metro (l2) bac de roda",
+        "lat": "41.415283",
+        "lon": "2.195013"
+    },
+    {
+        "idPoint": 460,
+        "name": "metro (l2) sagrada família",
+        "lat": "41.404257",
+        "lon": "2.176315"
+    },
+    {
+        "idPoint": 461,
+        "name": "metro (l4) alfons x (parc de les aigües)",
+        "lat": "41.412431",
+        "lon": "2.16623"
+    },
+    {
+        "idPoint": 462,
+        "name": "metro (l4) alfons x (pl. d'alfons el savi)",
+        "lat": "41.412123",
+        "lon": "2.165088"
+    },
+    {
+        "idPoint": 463,
+        "name": "metro (l3) diagonal (pg. de gràcia)",
+        "lat": "41.395422",
+        "lon": "2.160499"
+    },
+    {
+        "idPoint": 464,
+        "name": "metro (l2) paral·lel (c. d'en fontrodona)",
+        "lat": "41.374796",
+        "lon": "2.167765"
+    },
+    {
+        "idPoint": 465,
+        "name": "metro (l3) les corts (c. de joan güell)",
+        "lat": "41.38397",
+        "lon": "2.130847"
+    },
+    {
+        "idPoint": 466,
+        "name": "metro (l10) gorg",
+        "lat": "41.440358",
+        "lon": "2.234241"
+    },
+    {
+        "idPoint": 467,
+        "name": "metro (l10) la salut",
+        "lat": "41.442346",
+        "lon": "2.224024"
+    },
+    {
+        "idPoint": 468,
+        "name": "metro (l10) llefià",
+        "lat": "41.441476",
+        "lon": "2.217243"
+    },
+    {
+        "idPoint": 469,
+        "name": "metro (l9, l10) bon pastor",
+        "lat": "41.436173",
+        "lon": "2.205212"
+    },
+    {
+        "idPoint": 470,
+        "name": "metro (l9, l10) bon pastor",
+        "lat": "41.436065",
+        "lon": "2.204794"
+    },
+    {
+        "idPoint": 471,
+        "name": "metro (l9, l10) onze de setembre",
+        "lat": "41.429748",
+        "lon": "2.193133"
+    },
+    {
+        "idPoint": 472,
+        "name": "metro (l9, l10) la sagrera",
+        "lat": "41.42096",
+        "lon": "2.186242"
+    },
+    {
+        "idPoint": 473,
+        "name": "metro (l5) el carmel",
+        "lat": "41.424597",
+        "lon": "2.155126"
+    },
+    {
+        "idPoint": 474,
+        "name": "metro (l5) el coll / la teixonera",
+        "lat": "41.421974",
+        "lon": "2.148521"
+    },
+    {
+        "idPoint": 475,
+        "name": "metro (l5) vall d'hebrón",
+        "lat": "41.425067",
+        "lon": "2.141445"
+    },
+    {
+        "idPoint": 476,
+        "name": "metro (l1) torrassa",
+        "lat": "41.368742",
+        "lon": "2.11649"
+    },
+    {
+        "idPoint": 477,
+        "name": "metro (l1) torrassa",
+        "lat": "41.368154",
+        "lon": "2.11727"
+    },
+    {
+        "idPoint": 478,
+        "name": "fgc (l8) magòria",
+        "lat": "41.368228",
+        "lon": "2.139358"
+    },
+    {
+        "idPoint": 479,
+        "name": "fgc (l7) padua",
+        "lat": "41.403596",
+        "lon": "2.142617"
+    },
+    {
+        "idPoint": 480,
+        "name": "fgc (l7) padua",
+        "lat": "41.403133",
+        "lon": "2.143265"
+    },
+    {
+        "idPoint": 481,
+        "name": "fgc (l6) muntaner",
+        "lat": "41.398645",
+        "lon": "2.143251"
+    },
+    {
+        "idPoint": 482,
+        "name": "metro (l2) sant martí (rambla guipúscoa)",
+        "lat": "41.419459",
+        "lon": "2.201262"
+    },
+    {
+        "idPoint": 483,
+        "name": "metro (l3) lesseps",
+        "lat": "41.406599",
+        "lon": "2.150391"
+    },
+    {
+        "idPoint": 484,
+        "name": "metro (l2) paral·lel (av. de paral.lel)",
+        "lat": "41.375231",
+        "lon": "2.168228"
+    },
+    {
+        "idPoint": 485,
+        "name": "metro (l2) passeig de gràcia",
+        "lat": "41.389533",
+        "lon": "2.16833"
+    },
+    {
+        "idPoint": 486,
+        "name": "metro (l2) tetuan",
+        "lat": "41.394624",
+        "lon": "2.174591"
+    },
+    {
+        "idPoint": 487,
+        "name": "metro (l2) monumental",
+        "lat": "41.400087",
+        "lon": "2.180037"
+    },
+    {
+        "idPoint": 488,
+        "name": "metro (l2) encants (c. de valència)",
+        "lat": "41.407068",
+        "lon": "2.182802"
+    },
+    {
+        "idPoint": 489,
+        "name": "metro (l2) encants (c. del dos de maig)",
+        "lat": "41.407271",
+        "lon": "2.182167"
+    },
+    {
+        "idPoint": 490,
+        "name": "metro (l2) encants",
+        "lat": "41.407338",
+        "lon": "2.182557"
+    },
+    {
+        "idPoint": 491,
+        "name": "metro (l2) la pau",
+        "lat": "41.423827",
+        "lon": "2.206689"
+    },
+    {
+        "idPoint": 492,
+        "name": "metro (l2) monumental (c. de la diputació)",
+        "lat": "41.400331",
+        "lon": "2.180022"
+    },
+    {
+        "idPoint": 493,
+        "name": "metro (l1) trinitat vella (parc de la trinitat)",
+        "lat": "41.448967",
+        "lon": "2.194356"
+    },
+    {
+        "idPoint": 494,
+        "name": "metro (l2) sant antoni (c. de villarroel)",
+        "lat": "41.380689",
+        "lon": "2.163172"
+    },
+    {
+        "idPoint": 495,
+        "name": "metro (l1) torras i bages (pg. de torras i bages)",
+        "lat": "41.444154",
+        "lon": "2.190338"
+    },
+    {
+        "idPoint": 496,
+        "name": "metro (l1) torras i bages (pg. de torras i bages)",
+        "lat": "41.444183",
+        "lon": "2.190709"
+    },
+    {
+        "idPoint": 497,
+        "name": "metro (l1) torras i bages",
+        "lat": "41.443807",
+        "lon": "2.190665"
+    },
+    {
+        "idPoint": 498,
+        "name": "metro (l1) torrassa",
+        "lat": "41.368594",
+        "lon": "2.117108"
+    },
+    {
+        "idPoint": 499,
+        "name": "metro (l1) bellvitge",
+        "lat": "41.350916",
+        "lon": "2.111765"
+    },
+    {
+        "idPoint": 500,
+        "name": "metro (l1) bellvitge",
+        "lat": "41.351527",
+        "lon": "2.109898"
+    },
+    {
+        "idPoint": 501,
+        "name": "fgc (l6,l7) gràcia (c. de marià cubí)",
+        "lat": "41.399679",
+        "lon": "2.151636"
+    },
+    {
+        "idPoint": 502,
+        "name": "fgc (l8) cornellà:riera",
+        "lat": "41.351845",
+        "lon": "2.068427"
+    },
+    {
+        "idPoint": 503,
+        "name": "fgc (l8) espanya",
+        "lat": "41.374547",
+        "lon": "2.148628"
+    },
+    {
+        "idPoint": 504,
+        "name": "metro (l1) urquinaona (c. bruc)",
+        "lat": "41.390021",
+        "lon": "2.175019"
+    },
+    {
+        "idPoint": 505,
+        "name": "metro (l3) montbau (ronda de dalt)",
+        "lat": "41.43056",
+        "lon": "2.145257"
+    },
+    {
+        "idPoint": 506,
+        "name": "metro (l3) montbau",
+        "lat": "41.430847",
+        "lon": "2.145191"
+    },
+    {
+        "idPoint": 507,
+        "name": "metro (l3) penitents (c. d'anna piferrer)",
+        "lat": "41.417205",
+        "lon": "2.140979"
+    },
+    {
+        "idPoint": 508,
+        "name": "metro (l3) penitents",
+        "lat": "41.417963",
+        "lon": "2.140751"
+    },
+    {
+        "idPoint": 509,
+        "name": "metro (l3) plaça del centre (pl. del centre)",
+        "lat": "41.382176",
+        "lon": "2.13621"
+    },
+    {
+        "idPoint": 510,
+        "name": "metro (l3) valldaura",
+        "lat": "41.438128",
+        "lon": "2.157006"
+    },
+    {
+        "idPoint": 511,
+        "name": "metro (l3) valldaura",
+        "lat": "41.437571",
+        "lon": "2.156392"
+    },
+    {
+        "idPoint": 512,
+        "name": "metro (l3) zona universitària (av. diagonal)",
+        "lat": "41.384208",
+        "lon": "2.111704"
+    },
+    {
+        "idPoint": 513,
+        "name": "metro (l3) sants estació (av. de josep tarradellas)",
+        "lat": "41.381157",
+        "lon": "2.142019"
+    },
+    {
+        "idPoint": 514,
+        "name": "fgc sant josep",
+        "lat": "41.361271",
+        "lon": "2.11168"
+    },
+    {
+        "idPoint": 515,
+        "name": "fgc europa / fira",
+        "lat": "41.357005",
+        "lon": "2.125369"
+    },
+    {
+        "idPoint": 516,
+        "name": "fgc padua",
+        "lat": "41.403133",
+        "lon": "2.143265"
+    },
+    {
+        "idPoint": 517,
+        "name": "fgc sant boi",
+        "lat": "41.348145",
+        "lon": "2.043259"
+    },
+    {
+        "idPoint": 518,
+        "name": "fgc bonanova",
+        "lat": "41.397791",
+        "lon": "2.135427"
+    },
+    {
+        "idPoint": 519,
+        "name": "fgc cornellà",
+        "lat": "41.351845",
+        "lon": "2.068427"
+    },
+    {
+        "idPoint": 520,
+        "name": "fgc padua",
+        "lat": "41.40344",
+        "lon": "2.142961"
+    },
+    {
+        "idPoint": 521,
+        "name": "fgc el putxet",
+        "lat": "41.405731",
+        "lon": "2.139248"
+    },
+    {
+        "idPoint": 522,
+        "name": "fgc l'hospitalet",
+        "lat": "41.357794",
+        "lon": "2.103422"
+    },
+    {
+        "idPoint": 523,
+        "name": "fgc muntaner",
+        "lat": "41.398645",
+        "lon": "2.143251"
+    },
+    {
+        "idPoint": 524,
+        "name": "fgc sant vicenç dels horts",
+        "lat": "41.388104",
+        "lon": "2.012394"
+    },
+    {
+        "idPoint": 525,
+        "name": "fgc catalunya (c. de bergara)",
+        "lat": "41.386095",
+        "lon": "2.167646"
+    },
+    {
+        "idPoint": 526,
+        "name": "fgc bonanova",
+        "lat": "41.397638",
+        "lon": "2.135502"
+    },
+    {
+        "idPoint": 527,
+        "name": "fgc provença (c. del rossellò)",
+        "lat": "41.393362",
+        "lon": "2.157649"
+    },
+    {
+        "idPoint": 528,
+        "name": "fgc santa coloma de cervelló",
+        "lat": "41.369224",
+        "lon": "2.025086"
+    },
+    {
+        "idPoint": 529,
+        "name": "fgc molí nou",
+        "lat": "41.357711",
+        "lon": "2.034689"
+    },
+    {
+        "idPoint": 530,
+        "name": "fgc muntaner",
+        "lat": "41.398631",
+        "lon": "2.142754"
+    },
+    {
+        "idPoint": 531,
+        "name": "fgc bonanova",
+        "lat": "41.397895",
+        "lon": "2.135114"
+    },
+    {
+        "idPoint": 532,
+        "name": "fgc magòria",
+        "lat": "41.368228",
+        "lon": "2.139358"
+    },
+    {
+        "idPoint": 533,
+        "name": "fgc (l6,l7) provença",
+        "lat": "41.392909",
+        "lon": "2.157956"
+    },
+    {
+        "idPoint": 534,
+        "name": "fgc (l8) ildefons cerdà",
+        "lat": "41.360962",
+        "lon": "2.13168"
+    },
+    {
+        "idPoint": 535,
+        "name": "metro (l1) sant andreu (pl. d'orfila)",
+        "lat": "41.436433",
+        "lon": "2.19105"
+    },
+    {
+        "idPoint": 536,
+        "name": "metro (l1) clot (c. de valència)",
+        "lat": "41.410828",
+        "lon": "2.187202"
+    },
+    {
+        "idPoint": 537,
+        "name": "metro (l1) universitat (rda. de la universitat)",
+        "lat": "41.386145",
+        "lon": "2.164571"
+    },
+    {
+        "idPoint": 538,
+        "name": "metro (l1) rocafort (c. de rocafort)",
+        "lat": "41.378685",
+        "lon": "2.154406"
+    },
+    {
+        "idPoint": 539,
+        "name": "metro (l1) torras i bages (c. de palomar)",
+        "lat": "41.442298",
+        "lon": "2.190501"
+    },
+    {
+        "idPoint": 540,
+        "name": "metro (l1) torras i bages (c. de palomar)",
+        "lat": "41.442305",
+        "lon": "2.19087"
+    },
+    {
+        "idPoint": 541,
+        "name": "metro (l1) fondo",
+        "lat": "41.451728",
+        "lon": "2.217787"
+    },
+    {
+        "idPoint": 542,
+        "name": "metro (l1) fondo",
+        "lat": "41.451761",
+        "lon": "2.217064"
+    },
+    {
+        "idPoint": 543,
+        "name": "metro (l1) glòries (av. meridiana)",
+        "lat": "41.402063",
+        "lon": "2.187098"
+    },
+    {
+        "idPoint": 544,
+        "name": "metro (l1) clot (c. aragó)",
+        "lat": "41.409242",
+        "lon": "2.187148"
+    },
+    {
+        "idPoint": 545,
+        "name": "metro (l1) mercat nou (c. de la riera de tena)",
+        "lat": "41.372953",
+        "lon": "2.133647"
+    },
+    {
+        "idPoint": 546,
+        "name": "metro (l1) bellvitge",
+        "lat": "41.351236",
+        "lon": "2.110686"
+    },
+    {
+        "idPoint": 547,
+        "name": "metro (l1) rocafort (gv. corts catalanes)",
+        "lat": "41.379656",
+        "lon": "2.154913"
+    },
+    {
+        "idPoint": 548,
+        "name": "metro (l1) rocafort",
+        "lat": "41.379149",
+        "lon": "2.154456"
+    },
+    {
+        "idPoint": 549,
+        "name": "metro (l1) avinguda carrilet",
+        "lat": "41.357404",
+        "lon": "2.102669"
+    },
+    {
+        "idPoint": 550,
+        "name": "metro (l1) glòries (c. d'àlaba)",
+        "lat": "41.402984",
+        "lon": "2.18834"
+    },
+    {
+        "idPoint": 551,
+        "name": "metro (l1) rambla just oliveras",
+        "lat": "41.363695",
+        "lon": "2.100569"
+    },
+    {
+        "idPoint": 552,
+        "name": "metro (l1) mercat nou (c. dels jocs florals)",
+        "lat": "41.374172",
+        "lon": "2.134546"
+    },
+    {
+        "idPoint": 553,
+        "name": "metro (l1) espanya (c. de tarragona)",
+        "lat": "41.375546",
+        "lon": "2.149455"
+    },
+    {
+        "idPoint": 554,
+        "name": "metro (l1) espanya (c. de la creu coberta)",
+        "lat": "41.375344",
+        "lon": "2.148309"
+    },
+    {
+        "idPoint": 555,
+        "name": "fgc la floresta",
+        "lat": "41.444795",
+        "lon": "2.073187"
+    },
+    {
+        "idPoint": 556,
+        "name": "fgc espanya",
+        "lat": "41.374547",
+        "lon": "2.148628"
+    },
+    {
+        "idPoint": 557,
+        "name": "fgc les planes",
+        "lat": "41.427474",
+        "lon": "2.091563"
+    },
+    {
+        "idPoint": 558,
+        "name": "fgc provença",
+        "lat": "41.392909",
+        "lon": "2.157956"
+    },
+    {
+        "idPoint": 559,
+        "name": "fgc gràcia (c. de marià cubí)",
+        "lat": "41.399679",
+        "lon": "2.151636"
+    },
+    {
+        "idPoint": 560,
+        "name": "fgc les tres torres",
+        "lat": "41.398154",
+        "lon": "2.130075"
+    }
+]
