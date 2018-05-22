@@ -7,7 +7,7 @@ const HomeUserTemplate = {props: [],
        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 250px; background-color: white;",
     }),
         created: function(){
-            
+            window.scrollTo(0,0);
             document.body.style = this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "";
             toolBarData.iconoPaginaSiguiente = "menu";

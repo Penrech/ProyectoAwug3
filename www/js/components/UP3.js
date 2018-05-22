@@ -1,4 +1,4 @@
-Vue.component('Up-step2', {props: [], 
+Vue.component('Up-step3', {props: [], 
                           data: () => ({
 
         formData: null,
@@ -7,6 +7,7 @@ Vue.component('Up-step2', {props: [],
           newPassWritten:null,
           newPassRepited:null
         },
+        validationErrors:false,
         snackBar:false,
         duration:3000,
         uploading:false,
@@ -54,46 +55,70 @@ Vue.component('Up-step2', {props: [],
             toolBarData.paginaAnterior ="userProfile"
             toolBarData.toolBarTitle = "Mi perfil";
             this.formData = JSON.parse(JSON.stringify(user));
-            
+            this.$root.$on("backToUserProfile",this.goBackToProfile);
         },
         destroyed: function(){
-            
+            this.$root.$off("backToUserProfile",this.goBackToProfile);
         },
         methods: {
             checkForm(){
                 let _this = this;
+                this.validationErrors = false;
                 var deferred1 = $.Deferred();
                 var deferred2 = $.Deferred();
                 var deferred3 = $.Deferred();
-                this.erroresForm = JSON.parse(JSON.stringify(this.erroresFrominitial));
+                this.erroresForm = JSON.parse(JSON.stringify(this.erroresFormInitial));
                 this.uploading= true;
-                if(this.credentialsData.actualPassWritten.length < 6){
-                    this.erroresForm.contrasena.errorContrasena = true;
+                if (this.credentialsData.actualPassWritten == null){
+                    console.log("actual pass nulo");
                     this.erroresForm.contrasena.passActualNoValido = true;
+                    this.validationErrors = true;
                     this.uploading = false;
                 }
-                else if(this.credentialsData.newPassWritten.length <6 || (this.credentialsData.newPassWritten != this.credentialsData.newPassRepited)){
-                    if (this.credentialsData.newPassWritten.length <6){
-                        this.erroresForm.contrasena.passMuyCorta = true;
-                    }else{
-                        this.erroresForm.contrasena.passNoIguales = true;
+                if(this.credentialsData.actualPassWritten != null){
+                    console.log("actual pass no nulo");
+                    if(this.credentialsData.actualPassWritten.length < 6){
+                        console.log("actual pass demasiado corto");
+                        this.erroresForm.contrasena.passActualNoValido = true;
+                        this.validationErrors = true;
+                        this.uploading = false;
                     }
-                    this.erroresForm.contrasena.errorContrasena = true;
-                    this.uploading = false;
                 }
-                else if(this.formData.email == "" || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.formData.email)){
+
+                if(this.credentialsData.newPassWritten != null){
+                    if(this.credentialsData.newPassWritten.length <6){
+                        this.erroresForm.contrasena.passMuyCorta = true;
+                        this.erroresForm.contrasena.errorContrasena = true;
+                        this.validationErrors = true;
+                        this.uploading = false;
+                    }
+                    if(this.credentialsData.newPassWritten != this.credentialsData.newPassRepited){
+                        this.erroresForm.contrasena.passNoIguales = true;
+                        this.erroresForm.contrasena.errorContrasena = true;
+                        this.validationErrors = true;
+                        this.uploading = false;
+                    }
+                    
+                }  
+            
+               if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.formData.email))){
+                    console.log("el emial no es valido");
                     this.erroresForm.email.emailNoValido = true;
+                    this.validationErrors = true;
                     this.uploading = false;
                 }
-                else{
+                console.log(this.validationErrors);
+                if(this.validationErrors == false){
+                console.log("entro a enviar al servidor");
                 var user = firebase.auth().currentUser;
                 var credentials = firebase.auth.EmailAuthProvider.credential(
                 user.email,
                 this.credentialsData.actualPassWritten
                 ); 
                     
-                user.reauthenticateWithCredential(credentials)
+                user.reauthenticateAndRetrieveDataWithCredential(credentials)
                 .then(function(){
+                    console.log("funciona");
                     deferred1.resolve(true);
                 }).catch(function(error){
                     deferred1.resolve(error);
@@ -101,31 +126,47 @@ Vue.component('Up-step2', {props: [],
                     
                 $.when(deferred1).done(function(data){
                     if (data == true){
-                        user.updateEmail(this.formData.email).then(function() {
+                        user.updateEmail(_this.formData.email).then(function() {
+                            console.log("funciona2");
                             deferred2.resolve(true);
                         }).catch(function(error) {
                             deferred2.resolve(error);
                         });
-                        user.updatePassword(newPassword).then(function() {
+                        if (_this.credentialsData.newPassWritten != null){
+                        user.updatePassword(_this.credentialsData.newPassWritten).then(function() {
                             deferred3.resolve(true);
                         }).catch(function(error) {
                             deferred3.resolve(error);
                         });
+                        }
+                        else{
+                            console.log("entro aqui en este else");
+                            deferred3.resolve(true);
+                        }
+                       
                     }
                     else{
-                        _this.snackBar = true;
+                        if(data.code == "auth/wrong-password"){
+                            _this.erroresForm.contrasena.passActualNoValido = true;
+                        }
+                        else{
+                            _this.snackBar = true;
+                        }
                         console.log(data);
                         _this.uploading = false;
                     }
                 });
                 
                 $.when(deferred2,deferred3).done(function(data1,data2){
+                    console.log("que pasa aqui, no entro");
                     if (data1 == true && data2 == true){
-                         firebase.database().ref("usuarios/"+userIdTest).set(this.formData);
+                        console.log("entro en los dos true");
+                         firebase.database().ref("usuarios/"+userIdTest).set(_this.formData)
                            .then(function(result){
+                                _this.$root.$emit("backBeforeCharge");
                                 _this.goBackToProfile();
                             }).catch(function(error){
-                                this.uploading = false;
+                                _this.uploading = false;
                                 console.log(error);
                                 _this.snackBar = true;
                             })
@@ -144,6 +185,7 @@ Vue.component('Up-step2', {props: [],
                
                 } 
             },
+            
            goBackToProfile () {
               var emitObj={
                   nextStep:1
@@ -180,15 +222,13 @@ Vue.component('Up-step2', {props: [],
         <div  style="width: 100%;padding-bottom:2.5em">
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
               <md-card-header >
-            
-            <form ref="credentialsForm" >
                  <md-card-header-text>
                     <md-list style="font-size:14px;">
                         <md-list-item>
-                            <md-field v-bind:class="{ 'md-invalid': erroresForm.contrasena.errorContrasena }">
+                            <md-field v-bind:class="{ 'md-invalid': erroresForm.contrasena.passActualNoValido }">
                                 <label>Contraseña actual</label>
                                 <md-input v-model="credentialsData.actualPassWritten" type="password"></md-input>
-                                <span class="md-error" v-if="erroresForm.contrasena.passActualNoValido">Contraseña incorrecta</span>
+                                <span class="md-error">Contraseña incorrecta</span>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
@@ -203,7 +243,6 @@ Vue.component('Up-step2', {props: [],
                             <md-field v-bind:class="{ 'md-invalid': erroresForm.contrasena.errorContrasena }">
                                 <label>Nueva Contraseña</label>
                                 <md-input v-model="credentialsData.newPassWritten" type="password"></md-input>
-                                <span class="md-error" v-if="erroresForm.contrasena.passNoIguales">La contraseña no coinciden</span>
                                 <span class="md-error" v-if="erroresForm.contrasena.passMuyCorta">Mínimo 6 caracteres</span>
                             </md-field>
                         </md-list-item>
@@ -211,14 +250,13 @@ Vue.component('Up-step2', {props: [],
                             <md-field v-bind:class="{ 'md-invalid': erroresForm.contrasena.errorContrasena }">
                                 <label>Repite la contraseña</label>
                                 <md-input v-model="credentialsData.newPassRepited" type="password"></md-input>
-                                <span class="md-error" v-if="erroresForm.contrasena.passNoIguales">La contraseña no coinciden</span>
-                                <span class="md-error" v-if="erroresForm.contrasena.passMuyCorta">Mínimo 6 caracteres</span>
+                                <span class="md-error" v-if="erroresForm.contrasena.passNoIguales">La contraseñas no coinciden</span>
                             </md-field>
                         </md-list-item>
                     </md-list>
                 </md-card-header-text>
               </md-card-header>
-</form>
+
 
             </md-card>
             <div v-if="uploading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
@@ -227,7 +265,7 @@ Vue.component('Up-step2', {props: [],
                 </div>
             </div>
             <div v-else style="text-align: center;">
-              <md-button v-if="editionMode == true" v-on:click="checkForm" :style="buttonStyle">Guardar cambios</md-button>
+              <md-button v-on:click="checkForm" :style="buttonStyle">Guardar cambios</md-button>
             </div>
           </div>        
     </div>
@@ -246,4 +284,4 @@ Vue.component('Up-step2', {props: [],
 </div>
 
 
-                      ` };
+                      ` });

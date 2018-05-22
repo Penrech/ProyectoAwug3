@@ -10,7 +10,7 @@ const registrationTypeTemplate = {props: [],
             toolBarData.iconoPaginaSiguiente = "";
             toolBarData.paginaActual = "registrationType";
             toolBarData.paginaSiguiente = "";
-            toolBarData.paginaAnterior = "inicio";
+            toolBarData.paginaAnterior = "login";
             toolBarData.toolBarTitle = "";
         },                     
         methods: {

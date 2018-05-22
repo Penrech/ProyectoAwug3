@@ -1,7 +1,7 @@
 Vue.component('Up-step1', {props: [], 
                           data: () => ({
-
         UserType,
+        userProfileData:null,
         buttonStyle:{ 
             borderRadius:"28px",
             border:"1px solid white",
@@ -11,8 +11,7 @@ Vue.component('Up-step1', {props: [],
             textTransform: "none",
             minWidth: "8em",
             width: "14em",
-            height: "3.2em",
-            marginTop: "1.5em"
+            height: "3.2em"
         },
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
@@ -26,20 +25,35 @@ Vue.component('Up-step1', {props: [],
             toolBarData.paginaAnterior ="homeUser"
             toolBarData.toolBarTitle = "Mi perfil";
             this.userProfileData = user;
+            this.$root.$on("backFromProfileToHome",this.GoBackHome);
+            this.$root.$on("backBeforeCharge",this.updateData);
             
         },
         destroyed: function(){
+            this.$root.$off("backFromProfileToHome",this.GoBackHome);
+            this.$root.$off("backBeforeCharge",this.updateData);
         },
         methods: {
+            updateData(){
+            console.log("entro aqui");
+             console.log(user);
+              this.userProfileData = user;  
+            console.log(this.userProfileData);
+            },
             GoToEditProfile(){
                 var emitObj={
-                    nextStep:1
+                    nextStep:2
                 }
+                this.$emit("goToStep",emitObj);
             },
             GoToEditCredentials(){
                 var emitObj={
-                    nexStep:2
+                    nextStep:3
                 }
+                this.$emit("goToStep",emitObj);
+            },
+            GoBackHome(){
+                this.$router.push("homeUser");
             }
         },
         template:`
@@ -71,7 +85,7 @@ Vue.component('Up-step1', {props: [],
             <md-card class="md-elevation-0" style=" border-radius: 10px;">
               <md-card-header >
 
-                <md-card-header-text v-if="editionMode == false">
+                <md-card-header-text>
                     <md-list style="font-size:14px;">
                         <md-list-item>
                             <span class="md-list-item-text" style="font-size:16px;font-weight:500">{{userProfileData.email}}</span>
@@ -96,7 +110,7 @@ Vue.component('Up-step1', {props: [],
             
             </md-card>
             
-            <div class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center; margin-top:1.5em;">
+            <div class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center;">
             <md-list style="background: transparent;">
                 <md-list-item >
                   <md-button v-on:click="GoToEditProfile" :style="buttonStyle">Editar perfil</md-button>
@@ -117,4 +131,4 @@ Vue.component('Up-step1', {props: [],
 </div>
 
 
-                      ` };
+                      ` });

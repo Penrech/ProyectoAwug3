@@ -329,14 +329,22 @@ console.log(object);
 })(console)
 
 
-*/
+*//*
+var query = new checkProfessionalCode("Pau");
+query.then(function(result){
+    console.log(result);
+})*/
+
 
 var user;
 var UserType;
+var AuthType="normal";
 var userIdTest = null;
 
 function startListeners(thisV){
+
 firebase.auth().onAuthStateChanged(function(usuario) {
+if(AuthType == "normal"){
 var deferred = $.Deferred();
 var deferred2 = $.Deferred();
 var deferred3 = $.Deferred();
@@ -372,9 +380,11 @@ console.log(usuario);
         sideBarData.showNavigation = false;
         thisV.$router.push("login");
     })
-});
-   
 }
+});
+}
+
+
 
 
 
@@ -545,8 +555,12 @@ function mountApp(){
                 this.$root.$emit("backToUoStep1");
             else if (toolBarData.paginaActual == "UO_step3")
                 this.$root.$emit("backToUoStep2");
-            else if (toolBarData.paginaActual == "edit_profile")
-                this.$root.$emit ("backToProfile");
+            else if (toolBarData.paginaActual == "userProfile")
+                this.$root.$emit ("backFromProfileToHome");
+            else if (toolBarData.paginaActual == "editProfile")
+                this.$root.$emit ("backToUserProfile");
+            else if (toolBarData.paginaActual == "editCredentials")
+                this.$root.$emit ("backToUserProfile");
             else if (toolBarData.paginaActual == "SO_step2")
                 this.$root.$emit ("backToSoStep1");
             else if (toolBarData.paginaActual == "SO_step3")
@@ -562,6 +576,7 @@ function mountApp(){
             else if (toolBarData.paginaActual == "homeUser"){
                 
             }
+            else if(toolBarData.paginaActual == "login"){}
             else
                 window.history.back();
     

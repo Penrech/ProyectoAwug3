@@ -2,6 +2,30 @@ const registerTemplate = {props: ["registerType"],
                           data: () => ({
         activeNavigation: false,
         showNavigation:false,
+        locationsObj: [],
+        locationsShowed:[],
+        locationSelectedObj: {},
+        locationSelectedString: null,
+        snackBar:false,
+        duration:3000,
+        uploading:false,
+        validationErrors:false,
+        formData:{
+          nom:"",
+          apellido:"",
+          email:"",
+          location:"",
+          phone:"",
+          type:""
+        },
+        professionalCode:{
+            name:"",
+            id:""
+        },
+        credentialsData:{
+          newPassWritten:"",
+          newPassRepited:""
+        },
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 50%; background-color: white;",
         buttonStyle:{ 
             borderRadius:"28px",
@@ -16,7 +40,67 @@ const registerTemplate = {props: ["registerType"],
             height: "3.2em",
             marginTop: "1.5em"
         },
-        expandPassInput: false
+        erroresForm:{
+            nombre:{
+                errorNombre:false,
+                NoNombre:false,
+                NombreNoValido:false
+            },
+            apellido:{
+                errorApellido:false,
+                NoApellido:false,
+                ApellidoNoValido:false
+            },
+            email:{
+                emailNoValido:false
+            },
+            telefono:{
+                telefonoNoValido:false
+            },
+            location:{
+                locationVacia:false
+            },
+            codigoProfesional:{
+                codigoNoValido:false
+            },
+            contrasena:{
+                errorContrasena:false,
+                NoContrasena:false,
+                contrasenaMuyCorta:false,
+                contrasenaNoCoincide:false
+            }
+        },
+          erroresFormInitial:{
+            nombre:{
+                errorNombre:false,
+                NoNombre:false,
+                NombreNoValido:false
+            },
+            apellido:{
+                errorApellido:false,
+                NoApellido:false,
+                ApellidoNoValido:false
+            },
+            email:{
+                emailNoValido:false
+            },
+            telefono:{
+                telefonoNoValido:false
+            },
+            location:{
+                locationVacia:false
+            },
+            codigoProfesional:{
+                codigoNoValido:false
+            },
+            contrasena:{
+                errorContrasena:false,
+                NoContrasena:false,
+                contrasenaMuyCorta:false,
+                contrasenaNoCoincide:false
+            }
+        }
+                              
     }),
         created: function(){
             console.log("tipo de registro : "+this.registerType);
@@ -27,57 +111,160 @@ const registerTemplate = {props: ["registerType"],
             toolBarData.paginaSiguiente = "";
             toolBarData.paginaAnterior ="registrationType"
             toolBarData.toolBarTitle = "";  
+            if (this.registerType == 2){
+                let _this = this;
+                var lQuery = new getLocationList();
+                lQuery.then(function(result){
+                    _this.locationsObj = result;
+                })
+            }
         },
         methods: {
-            checkForm: function(e){
-                 for (var key in this.errors){
-                     this.errors[key] = false;
-                 }
+            checkForm(){
+               var deferred = $.Deferred();
+               let _this = this;
+               this.validationErrors = false;
+               this.erroresForm = JSON.parse(JSON.stringify(this.erroresFormInitial));
+               this.uploading= true;
+               if((typeof this.formData.nom) != "string" || this.formData.nom.length <2 || this.formData.nom.length > 15 || this.formData.nom.length == 0)
+                   {
+                       console.log("nameFail");
+                     if(typeof this.formData.nom != "string"){
+                         this.erroresForm.nombre.NombreNoValido = true;
+                     }
+                     else{
+                        if(this.formData.nom.length == 0)
+                            this.erroresForm.nombre.NoNombre = true;
+                        else
+                            this.erroresForm.nombre.NombreNoValido = true;
+                     }
+                     this.erroresForm.nombre.errorNombre = true;
+                      this.validationErrors = true;
+                     this.uploading= false;
+                   };
+               if((typeof this.formData.apellido) != "string" || this.formData.apellido.length <2 || this.formData.apellido.length > 15 || this.formData.apellido.length == 0)
+                   {
+                       console.log("nameFail");
+                     if(typeof this.formData.apellido != "string"){
+                         this.erroresForm.apellido.ApellidoNoValido = true;
+                     }
+                     else{
+                        if(this.formData.apellido.length == 0)
+                            this.erroresForm.apellido.NoApellido = true;
+                        else
+                            this.erroresForm.apellido.ApellidoNoValido = true;
+                     }
+                     this.erroresForm.apellido.errorApellido = true;
+                     this.uploading= false;
+                    this.validationErrors = true;
+                   };
+               
+               if(this.formData.phone.toString().length != 9){
+                    this.erroresForm.telefono.telefonoNoValido = true;
+                    this.validationErrors = true;
+                    this.uploading = false;
+               };
+
+                 if(this.credentialsData.newPassWritten.length <6){
+                      if(this.credentialsData.newPassWritten.length == 0){
+                          this.erroresForm.contrasena.NoContrasena = true;
+                      }
+                     else{
+                         this.erroresForm.contrasena.contrasenaMuyCorta = true;
+                     }
+                        this.erroresForm.contrasena.errorContrasena = true;
+                        this.validationErrors = true;
+                        this.uploading = false;
+                    }
                 
-                  if(!this.form.email) this.errors.emptyEmail = true;
-                    else if(!this.validEmail(this.form.email)) {
-                    this.errors.invalidEmail = true;           
+                 if(this.credentialsData.newPassWritten != this.credentialsData.newPassRepited){
+                        this.erroresForm.contrasena.contrasenaNoCoincide = true;
+                        this.erroresForm.contrasena.errorContrasena = true;
+                        this.validationErrors = true;
+                        this.uploading = false;
+                    }
+            
+               if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.formData.email))){
+                    console.log("el emial no es valido");
+                    this.erroresForm.email.emailNoValido = true;
+                    this.validationErrors = true;
+                    this.uploading = false;
+                }
+               if(this.registerType == 1){
+                   deferred.resolve();
+               }
+               if(this.registerType == 2){
+                   if (!this.locationSelectedObj.idPoint){
+                       this.erroresForm.location.locationVacia = true;
+                       this.validationErrors = true;
+                       this.uploading = false;
+                   }
+                   var cQuery= new checkProfessionalCode(this.professionalCode.name);
+                   cQuery.then(function(result){
+                       if (result == false){
+                           _this.erroresForm.codigoProfesional.codigoNoValido = true;
+                           _this.validationErrors = true;
+                           _this.uploading = false;
+                       }
+                       else{
+                           _this.professionalCode.id = result;
+                           console.log(result);
+                           deferred.resolve();
+                       }
+                   })
+                   
+               }
+              $.when(deferred).done(function(){
+                  console.log("entro aqui en deferred antes de validation");
+                  console.log(_this.validationErrors);
+                  if (!_this.validationsErrors){
+                      console.log(_this.registerType);
+                      if (_this.registerType == 2){
+                          _this.formData.location = _this.locationSelectedObj;
+                          _this.formData.type = 2;
+                      }
+                      else{
+                          _this.formData.type = 1;
+                      }
+                      console.log(_this.formData);
+                      var uQuery = new registerUser(_this.formData,_this.credentialsData.newPassWritten,_this.professionalCode.id);
+                      uQuery.then(function(result){
+                          console.log(result);
+                          _this.snackBar = true;
+                          _this.uploading = false;
+                      })
+                      
                   }
-                    
-                if(!this.form.name) this.errors.emptyName = true;
-                else if(!this.form.name.length < 3) this.errors.tooShortName = true;
-                
-                if(!this.form.phone) this.errors.emptyPhone = true;
-                else if(!this.form.phone.length == 9) this.errors.invalidPhone = true;
-                
-                
-                
-                  if(!this.errors.length) return true;
-                  e.preventDefault();
-                },
-                validEmail:function(email) {
-                  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                  return re.test(email);
-                },
-            passFocusManager(focus){
-                if (focus == true){
-                    this.passEditMode = true;
+              })
+            },
+             getLocations(searchTerm){
+            this.locationsShowed = new Promise(resolve => {
+                window.setTimeout(() => {
+                if (!searchTerm) {
+                resolve(this.locationsObj)
+                } else {
+                const term = searchTerm.toLowerCase()
+
+                resolve(this.locationsObj.filter(({ name }) => name.toLowerCase().includes(term)))
                 }
-                else{
-                    
-                    this.passEditMode = false;
-                }
+                }, 500)
+                })
             },
-            passValidation(){
-                
-            },
-            submitForm(){
-                document.getElementById("userForm").submit;
-                this.passEditMode = false;
-                this.editionMode = false;  
-            },
-             goBackHome () {
-                document.body.style = "";
-                  this.$router.push('homeUser');
-              },
             goToLogin(){
                 this.$router.push('login');
             }
+        },
+         watch:{
+            locationSelectedString : function(val){
+            if(this.registerType != 1){
+                console.log(val);
+                if (val.idPoint){
+                    console.log("es un objeto");
+                    this.locationSelectedObj = val;
+                    this.locationSelectedString = val.name;
+                }
+            }
+        }
         },
         template:`
 
@@ -98,74 +285,77 @@ const registerTemplate = {props: ["registerType"],
         
         <!--Inicio datos-->
         
-    <div  style="margin-top:2em;margin-left: 10.25%;margin-right: 10.25% ">
+    <div  style="margin-top:2em;margin-left: 10.25%;margin-right: 10.25%;padding-bottom:3em">
             <md-card class="md-elevation-0" style=" border-radius: 10px;box-shadow: 0px 5px 35px -15px rgba(51,51,51,0.5);">
               
-        <form id="userForm" @submit="checkForm">
+        <form id="userForm">
                  <md-card-header-text>
                     <md-list style="font-size:14px; margin: 10px;">
                         <md-list-item>
-                            <md-field>
+                            <md-field v-bind:class="{ 'md-invalid': erroresForm.email.emailNoValido }">
                                 <label>Correo electrónico</label>
-                                <md-input id="register_email" placeholder="Email" type="email"></md-input>
+                                <md-input id="register_email" v-model="formData.email" placeholder="Email" type="email"></md-input>
                                 <md-icon>email</md-icon>
-                                <span class="md-error">Se requiere un email</span>
-                                <span class="md-error">Este email no es correcto</span>
+                                <span class="md-error">Email no es válido</span>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
-                            <md-field>
-                                <label>Nombre y Apellidos</label>
-                                <md-input id="register_name" placeholder="Nombre y Apellidos"></md-input>
+                            <md-field v-bind:class="{ 'md-invalid': erroresForm.nombre.errorNombre }">
+                                <label>Nombre</label>
+                                <md-input id="profile_name"  v-model="formData.nom" ></md-input>
                                 <md-icon>person</md-icon>
-                                <span class="md-error">Se requiere un nombre</span>
-                                <span class="md-error">Este nombre no es correcto</span>
+                                <span v-if="erroresForm.nombre.NoNombre" class="md-error">Rellena el nombre</span>
+                                <span v-if="erroresForm.nombre.NombreNoValido" class="md-error">Nombre no valido</span>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
-                            <md-field>
-                                <label  v-if="registerType == 2">Teléfono de ayuda</label>
-                                <md-input id="register_phone" placeholder="Teléfono de ayuda"  v-if="registerType == 2"></md-input>
-                                <label  v-if="registerType == 1">Teléfono</label>
-                                <md-input  v-if="registerType == 1"id="register_phone" placeholder="Teléfono"></md-input>
+                            <md-field v-bind:class="{ 'md-invalid': erroresForm.apellido.errorApellido }">
+                                <label>Apellido</label>
+                                <md-input id="profile_name"  v-model="formData.apellido" ></md-input>
+                                <md-icon>person</md-icon>
+                                <span v-if="erroresForm.apellido.NoApellido" class="md-error">Rellena el apellido</span>
+                                <span v-if="erroresForm.apellido.ApellidoNoValido" class="md-error">Apellido no válido</span>
+                            </md-field>
+                        </md-list-item>
+                        <md-list-item>
+                            <md-field  v-bind:class="{ 'md-invalid': erroresForm.telefono.telefonoNoValido }">
+                                <label>Teléfono</label>
+                                <md-input id="register_phone" v-model="formData.phone" placeholder="Teléfono"></md-input>
                                 <md-icon>phone</md-icon>
-                                <span class="md-error">Se requiere un número de teléfono</span>
-                                <span class="md-error">Este número no es correcto</span>
+                                <span class="md-error">Este número no es válido</span>
                             </md-field>
                         </md-list-item>
                          <md-list-item v-if="registerType == 2">
-                            <md-field>
-                                <label>Centro de atención</label>
-                                <md-input id="register_atention_office" placeholder="Centro de atención"></md-input>
-                                <md-icon>location_on</md-icon>
-                                <span class="md-error">Contraseña incorrecta</span>
-                                <span class="md-error">Contraseña incorrecta</span>
-                            </md-field>
+                            <div style="width:100%">
+                                <md-autocomplete  v-bind:class="{ 'md-invalid': erroresForm.location.locationVacia }" v-model="locationSelectedString" :md-options="locationsShowed" @md-changed="getLocations" @md-opened="getLocations">
+                                    <label>Centro de Atención</label>
+                                    <template slot="md-autocomplete-item" slot-scope="{ item }">{{ item.name }}</template>
+                                    <span class="md-error">Selecciona una localización</span>
+                                </md-autocomplete>
+                            </div>
                         </md-list-item>
                         <md-list-item v-if="registerType == 2">
-                            <md-field>
+                            <md-field  v-bind:class="{ 'md-invalid': erroresForm.codigoProfesional.codigoNoValido }">
                                 <label>Código Profesional</label>
-                                <md-input id="register_check_Pcode" placeholder="Código profesional"></md-input>
+                                <md-input id="register_check_Pcode" v-model="professionalCode.name" placeholder="Código profesional"></md-input>
                                 <md-icon>verified_user</md-icon>
-                                <span class="md-error">Contraseña incorrecta</span>
-                                <span class="md-error">Contraseña incorrecta</span>
+                                <span class="md-error">Este código no es válido</span>
                             </md-field>
                         </md-list-item>
                         
                         <md-list-item>
-                            <md-field>
+                            <md-field v-bind:class="{ 'md-invalid': erroresForm.contrasena.errorContrasena }">
                                 <label>Contraseña</label>
-                                <md-input id="register_pass" placeholder="Contraseña" type="password"></md-input>
-                                <span class="md-error">Contraseña incorrecta</span>
-                                <span class="md-error">Contraseña incorrecta</span>
+                                <md-input id="register_pass" v-model="credentialsData.newPassWritten" placeholder="Contraseña" type="password"></md-input>
+                                <span v-if="erroresForm.contrasena.NoContrasena" class="md-error">Rellena la contraseña</span>
+                                <span v-if="erroresForm.contrasena.contrasenaMuyCorta" class="md-error">Mínimo 6 caracteres</span>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
-                            <md-field>
+                            <md-field v-bind:class="{ 'md-invalid': erroresForm.contrasena.contrasenaNoCoincide }">
                                 <label>Repite la contraseña</label>
-                                <md-input id="register_pass_repeat" placeholder="Repite la contraseña" type="password"></md-input>
-                                <span class="md-error">Contraseña incorrecta</span>
-                                <span class="md-error">Contraseña incorrecta</span>
+                                <md-input id="register_pass_repeat" v-model="credentialsData.newPassRepited"  placeholder="Repite la contraseña" type="password"></md-input>
+                                <span class="md-error">Las contraseñas no coinciden</span>
                             </md-field>
                         </md-list-item>
                     </md-list>
@@ -174,16 +364,21 @@ const registerTemplate = {props: ["registerType"],
 </form>
 
             </md-card>
-            <div class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center">
+            <div v-if="uploading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
+                <div  style="--md-theme-default-primary: #03a9f4;">
+                <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+                </div>
+            </div>
+            <div v-else class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center">
             <md-list>
                 <md-list-item>
-                  <md-button :style="buttonStyle">Registrarse</md-button>
+                  <md-button v-on:click="checkForm" :style="buttonStyle">Registrarse</md-button>
                 </md-list-item>
                 <md-list-item style="margin-left: auto;
                     margin-right: auto;">
-              <span  v-on:click="goToLogin" style=" color:grey;margin-bottom:3em;font-size:14px;font-weight: 500;">Ya tengo una cuenta</span>
-            </md-list-item>
-                </md-list>
+              <span  v-on:click="goToLogin" style=" color:grey;font-size:14px;font-weight: 500;">Ya tengo una cuenta</span>
+                </md-list-item>
+            </md-list>
             </div>        
     </div>
         <!--Fin datos-->

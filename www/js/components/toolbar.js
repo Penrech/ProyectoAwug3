@@ -105,7 +105,11 @@ Vue.component('tool-bar', {
                 }
             }
             else if (this.toolBarData.paginaAnterior == "userProfile"){
-                 this.$root.$emit("backToProfile");   
+                console.log("entro aqui");
+                 this.$root.$emit("backToUserProfile");   
+            }
+            else if (this.toolBarData.paginaAnterior == "homeUser" && this.toolBarData.paginaActual == "userProfile"){
+                this.$root.$emit("backFromProfileToHome");
             }
             else{
                 if (this.toolBarData.paginaAnterior != "" ){

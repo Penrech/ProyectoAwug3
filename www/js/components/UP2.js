@@ -29,11 +29,15 @@ Vue.component('Up-step2', {props: [],
         erroresFormInitial:{
             nombre:{
                 errorNombre:false,
-                nombreNoValido: false,
+                nombreMuyCorto: false,
+                nombreMuyLargo: false,
+                nombreNumerico:false
             },
             apellido:{
                 errorApellido:false,
-                apellidoNoValido:false,
+                apellidoMuyCorto: false,
+                apellidoMuyLargo: false,
+                apellidoNumerico:false
             },
             telefono:{
                 telefonoNoValido: false,
@@ -72,21 +76,20 @@ Vue.component('Up-step2', {props: [],
                     _this.loadingSelect = false;
                 })
             }
-            
+            this.$root.$on("backToUserProfile",this.goBackToProfile);
         },
         destroyed: function(){
+            this.$root.$off("backToUserProfile",this.goBackToProfile);
         },
         methods: {
            checkForm(){
                let _this = this;
-                this.erroresForm = JSON.parse(JSON.stringify(this.erroresFrominitial));
+                this.erroresForm = JSON.parse(JSON.stringify(this.erroresFormInitial));
                this.uploading= true;
-               if (this.UserType == 2){
-                   this.formData.location = this.locationSelectedObj;
-               }
-               else if(!this.formData.nom.isString() || this.formData.nom.length <2 || this.formData.nom.length > 15)
+               if((typeof this.formData.nom) != "string" || this.formData.nom.length <2 || this.formData.nom.length > 15)
                    {
-                     if(!this.formData.nom.isString()){
+                       console.log("nameFail");
+                     if(typeof this.formData.nom != "string"){
                          this.erroresForm.nombre.nombreNumerico = true;
                      }
                      else{
@@ -100,9 +103,12 @@ Vue.component('Up-step2', {props: [],
                      this.erroresForm.nombre.errorNombre = true;
                      this.uploading= false;
                    }
-               else if(!this.formData.apellido.isString() || this.formData.apellido.length <2 || this.formData.apellido.length > 15)
+               else if((typeof this.formData.apellido) != "string" || this.formData.apellido.length <2 || this.formData.apellido.length > 15)
                    {
-                     if(!this.formData.apellido.isString()){
+                       console.log("apellidoFail");
+                       console.log(typeof this.formData.apellido);
+                       console.log(this.formData.apellido.length);
+                     if(typeof this.formData.apellido != "string"){
                          this.erroresForm.apellido.apellidoNumerico = true;
                      }
                      else{
@@ -116,13 +122,20 @@ Vue.component('Up-step2', {props: [],
                      this.erroresForm.apellido.errorApellido = true;
                      this.uploading= false;
                    }
-               else if(!this.formData.phone.isNumber() || this.formData.phone.length != 9){
+               
+               else if(this.formData.phone.toString().length != 9){
                     this.erroresForm.telefono.telefonoNoValido = true;
                     this.uploading = false;
                }
                else{
-                firebase.database().ref("usuarios/"+userIdTest).set(this.formData);
+                if (this.UserType == 2){
+                    this.formData.location = this.locationSelectedObj;
+                }
+                console.log("no hay errores");
+                firebase.database().ref("usuarios/"+userIdTest).set(this.formData)
                .then(function(result){
+                    console.log("saldre de aqui a profile");
+                    _this.$root.$emit("backBeforeCharge");
                     _this.goBackToProfile();
                 }).catch(function(error){
                     _this.snackBar = true;
@@ -146,6 +159,7 @@ Vue.component('Up-step2', {props: [],
                 })
             },
              goBackToProfile () {
+                 console.log("entro aqui");
                   var emitObj={
                       nextStep:1
                   }
@@ -191,7 +205,6 @@ Vue.component('Up-step2', {props: [],
         <div  style="width: 100%;padding-bottom:2.5em">
         <md-card class="md-elevation-0" style=" border-radius: 10px;">
               <md-card-header >
-            <form ref="profileForm" >
                  <md-card-header-text>
                     <md-list style="font-size:14px;">
                         <md-list-item>
@@ -205,37 +218,35 @@ Vue.component('Up-step2', {props: [],
                             </md-field>
                         </md-list-item>
                         <md-list-item>
-                            <md-field v-bind:class="{ 'md-invalid': erroresForm.nombre.errorApellido }">
+                            <md-field v-bind:class="{ 'md-invalid': erroresForm.apellido.errorApellido }">
                                 <label>Apellido</label>
                                 <md-input id="profile_name"  v-model="formData.apellido" ></md-input>
                                 <md-icon>person</md-icon>
-                                <span v-if="erroresForm.nombre.apellidoMuyCorto" class="md-error">Apellido demasiado corto</span>
-                                <span v-if="erroresForm.nombre.apellidoMuyLargo" class="md-error">Máximo 15 caracteres</span>
-                                <span v-if="erroresForm.nombre.apellidoNumerico" class="md-error">El apellido no debe de ser numérico</span>
+                                <span v-if="erroresForm.apellido.apellidoMuyCorto" class="md-error">Apellido demasiado corto</span>
+                                <span v-if="erroresForm.apellido.apellidoMuyLargo" class="md-error">Máximo 15 caracteres</span>
+                                <span v-if="erroresForm.apellido.apellidoNumerico" class="md-error">El apellido no debe de ser numérico</span>
                             </md-field>
                         </md-list-item>
                         <md-list-item>
                             <md-field v-bind:class="{ 'md-invalid': erroresForm.telefono.telefonoNoValido }">
                                 <label>Teléfono</label>
-                                <md-input id="profile_phone" v-model="formData.phone"></md-input>
+                                <md-input id="profile_phone" v-model="formData.phone" type="number"></md-input>
                                 <md-icon>phone</md-icon>
                                 <span class="md-error">Este teléfono no es válido</span>
                             </md-field>
                         </md-list-item>
                         <md-list-item v-if="UserType ==2">
-                            <md-progress-bar v-if="loadingSelect"  md-mode="query" style="width:100%"></md-progress-bar>
-                            <div v-else style="width:100%">
+                            <div style="width:100%">
                                 <md-autocomplete v-model="locationSelectedString" :md-options="locationsShowed" @md-changed="getLocations" @md-opened="getLocations">
                                     <label>Centro de Atención</label>
                                     <template slot="md-autocomplete-item" slot-scope="{ item }">{{ item.name }}</template>
                                 </md-autocomplete>
-                                
                             </div>
                         </md-list-item>
                     </md-list>
                 </md-card-header-text>
               </md-card-header>
-</form>
+            
 
             </md-card>
             <div v-if="uploading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
@@ -263,4 +274,4 @@ Vue.component('Up-step2', {props: [],
 </div>
 
 
-                      ` };
+                      ` });
