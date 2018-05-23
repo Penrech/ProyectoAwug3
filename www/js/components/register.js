@@ -118,6 +118,10 @@ const registerTemplate = {props: ["registerType"],
                     _this.locationsObj = result;
                 })
             }
+            this.$root.$on("backToRegisterType",this.goToRegistrationType);
+        },
+        destroyed: function(){
+            this.$root.$off("backToRegisterType",this.goToRegistrationType);
         },
         methods: {
             checkForm(){
@@ -251,7 +255,14 @@ const registerTemplate = {props: ["registerType"],
                 })
             },
             goToLogin(){
-                this.$router.push('login');
+                if(this.uploading == false)
+                    this.$router.push('login');
+            },
+            goToRegistrationType(){
+               if(this.uploading == false){
+                    console.log("no deberia entrar aqui");
+                    this.$router.push('registrationType'); 
+               }
             }
         },
          watch:{
@@ -320,7 +331,7 @@ const registerTemplate = {props: ["registerType"],
                         <md-list-item>
                             <md-field  v-bind:class="{ 'md-invalid': erroresForm.telefono.telefonoNoValido }">
                                 <label>Teléfono</label>
-                                <md-input id="register_phone" v-model="formData.phone" placeholder="Teléfono"></md-input>
+                                <md-input id="register_phone" v-model="formData.phone" placeholder="Teléfono" type="number"></md-input>
                                 <md-icon>phone</md-icon>
                                 <span class="md-error">Este número no es válido</span>
                             </md-field>

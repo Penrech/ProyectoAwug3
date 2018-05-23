@@ -2,6 +2,7 @@ const loginTemplate = {props: [],
                           data: () => ({
         activeNavigation: false,
         showNavigation:false,
+        uploading:false,
         email:null,
         pass:null,
         errores:{
@@ -38,41 +39,45 @@ const loginTemplate = {props: [],
         
         methods: {
             
-             goBackHome () {
-                document.body.style = "";
-                  this.$router.push('homeUser');
-              },
             logIn(){
+                this.uploading = true;
                 this.errores = {
                     errorEmail: false,
                     errorEmail2:false,
-                    errorPassword: false
+                    errorEmail3:false,
+                    errorPassword: false,
+                    errorPassword2:false
                 };
                 if (this.email == null){
                  this.errores.errorEmail = true;
                  this.errores.errorEmail3 = true;
+                 this.uploading = false;
                 }
-                else if(this.pass == null){
+                if(this.pass == null){
                 this.errores.errorPassword = true;
                 this.errores.errorPassword2 = true;
+                this.uploading = false;
                 }
                 let _this = this;
-                firebase.auth().signInWithEmailAndPassword(this.email, this.pass)
-                .catch(function(error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    if (errorCode === 'auth/wrong-password') {
-                        _this.errores.errorPassword = true;
-                    }
-                    if (errorCode === 'auth/invalid-email') {
-                        _this.errores.errorEmail = true;
-                    }
-                    if (errorCode === 'auth/user-not-found') {
-                        _this.errores.errorEmail = true;
-                        _this.errores.errorEmail2 = true;
-                    }
-                });
+                if (this.email != null && this.pass != null){
+                    firebase.auth().signInWithEmailAndPassword(this.email, this.pass)
+                    .catch(function(error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        if (errorCode === 'auth/wrong-password') {
+                            _this.errores.errorPassword = true;
+                        }
+                        if (errorCode === 'auth/invalid-email') {
+                            _this.errores.errorEmail = true;
+                        }
+                        if (errorCode === 'auth/user-not-found') {
+                            _this.errores.errorEmail = true;
+                            _this.errores.errorEmail2 = true;
+                        }
+                        _this.uploading = false;  
+                    });
+            }
             },
             goToRegistrationType(){
                 this.$router.push('registrationType');
@@ -128,7 +133,12 @@ const loginTemplate = {props: [],
 </form>
 
             </md-card>
-            <div class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center">
+            <div v-if="uploading" class="md-layout md-alignment-top-center" style="padding-left:0;margin-top:1.5em">
+                <div  style="--md-theme-default-primary: #03a9f4;">
+                <md-progress-spinner md-mode="indeterminate"></md-progress-spinner>
+                </div>
+            </div>
+            <div v-else class="md-layout md-gutter md-alignment-center-center" style="padding-left:0; text-align:center">
             <md-list style="background: transparent;">
                 <md-list-item>
                   <md-button v-on:click="logIn" :style="buttonStyle">Entrar</md-button>

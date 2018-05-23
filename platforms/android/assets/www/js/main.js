@@ -329,76 +329,62 @@ console.log(object);
 })(console)
 
 
-*/
-var lastUser;
+*//*
+var query = new checkProfessionalCode("Pau");
+query.then(function(result){
+    console.log(result);
+})*/
+
+
 var user;
 var UserType;
+var AuthType="normal";
 var userIdTest = null;
-function startListeners(){
-lastUser = firebase.auth().currentUser;
-  if (lastUser) {
-    console.log("habia usuario y era "+lastUser.uid);
+
+function startListeners(thisV){
+
+firebase.auth().onAuthStateChanged(function(usuario) {
+if(AuthType == "normal"){
+var deferred = $.Deferred();
+var deferred2 = $.Deferred();
+var deferred3 = $.Deferred();
+console.log(usuario);
+  if (usuario) {
     // User is signed in.
-    var deferred = $.Deferred();
-    var deferred2 = $.Deferred();
-    userIdTest = lastUser.uid;
-    firebase.database().ref("usuarios/"+userIdTest).on('value', function(snapshot){
-            user = snapshot.val();
-            if (deferred2.state() == "pending")
-                deferred2.resolve(user.type);
-            if (deferred.state() == "pending")
-                deferred.resolve();
-            });
-    $.when(deferred).done(function(){
-        this.$router.push("homeUser");
-    })
-    $.when(deferred2).done(function(x){
-        UserType = x;
-        sideBarData.userType = UserType;
-    })
-    
-  } else {
-    // No user is signed in.
-    user = null;
-    UserType= null;
-    userIdTest= null;
-    if(toolBarData.paginaActual != "login")
-        this.$router.push("login");
-  }
-    
-    
-    
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    console.log("¿Tambien entro aqui?");
-    var deferred = $.Deferred();
-    userIdTest = user.uid;
+    userIdTest = usuario.uid;
     firebase.database().ref("usuarios/"+userIdTest).on('value', function(snapshot){
                 user = snapshot.val();
-            if (deferred2.state() == "pending")
-                deferred2.resolve(user.type);
+                console.log("usuario",user);
             if (deferred.state() == "pending")
-                deferred.resolve();
-            });
-    $.when(deferred).done(function(){
-        this.$router.push("homeUser");
-    })
-    $.when(deferred2).done(function(x){
-        UserType = x;
-        sideBarData.userType = UserType;
-    })
-    
+                deferred.resolve(user);
+            });  
   } else {
     // No user is signed in.
     user = null;
     UserType= null;
     userIdTest= null;
     if(toolBarData.paginaActual != "login")
-        this.$router.push("login");
+        deferred3.resolve();
   }
+    
+   $.when(deferred).done(function(x){
+        UserType = x.type;
+        console.log(userIdTest);
+        sideBarData.userType = UserType;
+       console.log(sideBarData);
+        thisV.showSidepanel = true;
+        thisV.$router.push("homeUser");
+    })
+    $.when(deferred3).done(function(){
+        thisV.showSidepanel = false;
+        sideBarData.showNavigation = false;
+        thisV.$router.push("login");
+    })
+}
 });
 }
+
+
 
 
 
@@ -536,7 +522,8 @@ function mountApp(){
             {path: '/userlostobjects', name: 'userLostObjects',  component: userLostObjectsTemplate},
             {path: '/userprofile', name: 'userProfile',  component: userProfileTemplate},
             {path: '/searchObject', name: 'searchObject',  component: searchObjectTemplate,props:true},
-            {path: '/allLostObjects', name: 'allLostObjects',  component: allLostObjectsTemplate}
+            {path: '/allLostObjects', name: 'allLostObjects',  component: allLostObjectsTemplate},
+            {path: '/inicio', name: 'inicio',  component: inicioTemplate}
             ];
 
         const router = new VueRouter({
@@ -548,14 +535,19 @@ function mountApp(){
         router,
         data: { showNavigation: false,
                 showSidepanel: false,
-                userIdTest,
                 bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
               message: 'Hola!'},
         created: function(){
             document.addEventListener("backbutton",this.HandlerBackButton,false);
         },
         mounted:function(){
-            startListeners();
+          /*  firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}).catch(function(error) {
+  // An error happened.
+});*/
+            let _this = this;
+            startListeners(_this);
         },
         methods: {
            HandlerBackButton(){
@@ -563,8 +555,12 @@ function mountApp(){
                 this.$root.$emit("backToUoStep1");
             else if (toolBarData.paginaActual == "UO_step3")
                 this.$root.$emit("backToUoStep2");
-            else if (toolBarData.paginaActual == "edit_profile")
-                this.$root.$emit ("backToProfile");
+            else if (toolBarData.paginaActual == "userProfile")
+                this.$root.$emit ("backFromProfileToHome");
+            else if (toolBarData.paginaActual == "editProfile")
+                this.$root.$emit ("backToUserProfile");
+            else if (toolBarData.paginaActual == "editCredentials")
+                this.$root.$emit ("backToUserProfile");
             else if (toolBarData.paginaActual == "SO_step2")
                 this.$root.$emit ("backToSoStep1");
             else if (toolBarData.paginaActual == "SO_step3")
@@ -580,6 +576,13 @@ function mountApp(){
             else if (toolBarData.paginaActual == "homeUser"){
                 
             }
+            else if(toolBarData.paginaActual == "login"){}
+            else if(toolBarData.paginaActual == "register"){
+                this.$root.$emit ("backToRegisterType");
+            }
+            else if(toolBarData.paginaActual == "registrationType"){
+                this.$root.$emit ("backToLogin");
+            }
             else
                 window.history.back();
     
@@ -589,7 +592,7 @@ function mountApp(){
       }).$mount('#app');
     
     //router.push('settings');
-    router.push({ name: 'login'})
+    router.push({ name: 'inicio'})
 }
 
         

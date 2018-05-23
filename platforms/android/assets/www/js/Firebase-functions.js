@@ -790,3 +790,98 @@ function getLocationList(){
     })
    return deferred.promise();
 }
+
+function checkProfessionalCode(code){
+    var deferred = $.Deferred();
+    console.log(code);
+    firebase.database().ref("ProfCodes").orderByChild("name").equalTo(code).once("value")
+    .then(function(result){
+        if(result.val() != null){
+            if(result.val()[Object.keys(result.val())[0]].user != "free"){
+                deferred.resolve(false);
+            }
+            else{
+            var temp = Object.keys(result.val())[0];
+            deferred.resolve(temp);
+            }
+        }
+        else
+            deferred.resolve(false);
+    })
+    
+    return deferred.promise();
+}
+
+function setProfessionalCode(codeId,userId){
+    var deferred = $.Deferred();
+    
+    firebase.database().ref("ProfCodes/"+codeId+"/user").set(userId)
+    .then(function(){
+        deferred.resolve(true);
+    }).catch(function(e){
+        deferred.resolve(e);
+    })
+    
+    return deferred.promise();
+}
+
+function registerUser(userData,pass,codeId){
+    console.log(codeId);
+    var deferred = $.Deferred();
+    var deferred2= $.Deferred();
+    var deferred3 = $.Deferred();
+    console.log("entro en la funcion");
+    AuthType = "register";
+    firebase.auth().createUserWithEmailAndPassword(userData.email,pass)
+        .then(function(userRegistered) {
+            console.log(userRegistered.user.uid);
+            firebase.database().ref("usuarios/"+userRegistered.user.uid).set(userData).then(function() {
+                deferred2.resolve(userRegistered.user.uid);
+            }, function(error) {
+                console.log(error); 
+                deferred.resolve(error.code);
+            });
+        })
+        .catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            deferred.resolve(error);
+            console.log(error);
+        });
+    
+    $.when(deferred2).done(function(id){
+        if(userData.type == 2){
+            var sQuery= new setProfessionalCode(codeId,id);
+            sQuery.then(function(result){
+                if(true){
+                    firebase.auth().signOut().then(function() {
+                      deferred3.resolve();
+                    }).catch(function(error) {
+                      deferred.resolve(error.code);
+                    });
+                   
+                }
+                else{
+                    deferred.resolve(e.code);
+                }
+            })
+        }
+        else{
+             firebase.auth().signOut().then(function() {
+              deferred3.resolve();
+            }).catch(function(error) {
+              deferred.resolve(error.code);
+            });
+        }
+    })
+    
+    $.when(deferred3).done(function(x){
+        AuthType = "normal";
+        firebase.auth().signInWithEmailAndPassword(userData.email, pass)
+        .catch(function(error){
+            deferred.resolve(error);
+        })
+    })
+    
+    return deferred.promise();
+}

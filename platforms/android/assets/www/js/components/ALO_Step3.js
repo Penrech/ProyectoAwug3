@@ -132,7 +132,13 @@ Vue.component('ALO-step3', {
                                 <md-list-item>
                                 <md-field>
                                 <label :style="labelStyle">Nombre :</label>
-                                 <md-textarea md-autogrow v-model="usersClaim[index].nomAp" :style="inputStyle" disabled></md-textarea>
+                                 <md-textarea md-autogrow v-model="usersClaim[index].nom" :style="inputStyle" disabled></md-textarea>
+                                </md-field>
+                                </md-list-item>
+                                <md-list-item>
+                                <md-field>
+                                <label :style="labelStyle">Apellido :</label>
+                                 <md-textarea md-autogrow v-model="usersClaim[index].apellido" :style="inputStyle" disabled></md-textarea>
                                 </md-field>
                                 </md-list-item>
                                 <md-list-item>

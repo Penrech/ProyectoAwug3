@@ -37,6 +37,7 @@ Vue.component('tool-bar', {
                 }
             }
             if (this.toolBarData.paginaSiguiente == "activarMenu"){
+                console.log("entro en activar menu");
                 this.sideBarData.showNavigation = true;
                 
             }
@@ -104,13 +105,30 @@ Vue.component('tool-bar', {
                 }
             }
             else if (this.toolBarData.paginaAnterior == "userProfile"){
-                 this.$root.$emit("backToProfile");   
+                console.log("entro aqui");
+                 this.$root.$emit("backToUserProfile");   
             }
+            else if(this.toolBarData.paginaAnterior == "registrationType"){
+                console.log("Entro aqui, pero solo deberia aqui");
+                this.$root.$emit("backToRegisterType");
+            }
+            else if(this.toolBarData.paginaAnterior == "login"){
+                this.$root.$emit("backToLogin");
+            }
+            else if (this.toolBarData.paginaAnterior == "homeUser" && this.toolBarData.paginaActual == "userProfile"){
+                console.log("entro aqui en cambio de perfil a home");
+                this.$root.$emit("backFromProfileToHome");
+            }
+            else if(this.toolBarData.paginaAnterior == "homeUser"){
+                console.log("ahora entro aqui");
+                this.$router.push("homeUser");
+            }/*
             else{
-                if (this.toolBarData.paginaAnterior != "" && this.toolBarData.paginaAnterior != "inicio" ){
+                if (this.toolBarData.paginaAnterior != "" ){
+                    console.log("Entro aqui, como si el campo pagina anterior estuviera vacio");
                     this.$router.push(this.toolBarData.paginaAnterior);
                 }
-            }
+            }*/
                 
      
         },

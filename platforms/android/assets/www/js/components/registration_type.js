@@ -10,9 +10,13 @@ const registrationTypeTemplate = {props: [],
             toolBarData.iconoPaginaSiguiente = "";
             toolBarData.paginaActual = "registrationType";
             toolBarData.paginaSiguiente = "";
-            toolBarData.paginaAnterior = "inicio";
+            toolBarData.paginaAnterior = "login";
             toolBarData.toolBarTitle = "";
-        },                     
+            this.$root.$on("backToLogin",this.goToLogin);
+        },
+        destroyed:function(){
+            this.$root.$off("backToLogin",this.goToLogin);
+        },
         methods: {
             registerAs(type){
                 if (type == "admin"){
@@ -21,6 +25,9 @@ const registrationTypeTemplate = {props: [],
                 else{
                      this.$router.push({name: 'register', params: {registerType:1}});
                 }
+            },
+             goToLogin(){
+                this.$router.push('login');
             }
         },
         template:`

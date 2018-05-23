@@ -577,6 +577,12 @@ function mountApp(){
                 
             }
             else if(toolBarData.paginaActual == "login"){}
+            else if(toolBarData.paginaActual == "register"){
+                this.$root.$emit ("backToRegisterType");
+            }
+            else if(toolBarData.paginaActual == "registrationType"){
+                this.$root.$emit ("backToLogin");
+            }
             else
                 window.history.back();
     

@@ -36,7 +36,13 @@ Vue.component('side-bar', {
             goToUserProfile: function(){
                     this.showNavigation = false;
                     this.$router.push('userProfile');
-                }
+                },
+            logOut(){
+            firebase.auth().signOut().then(function() {
+            }).catch(function(error) {
+            alert("Error cerrando sesión");
+            });
+            }
     },
     
     template: `
@@ -96,7 +102,7 @@ has de hacer swipe hacia la izquierda y alli esta, los botones que van ahora son
                 </md-list-item>
              <md-divider></md-divider>
             
-            <md-list-item style="padding: 15px 0 15px 0">
+            <md-list-item  @click="logOut()" style="padding: 15px 0 15px 0">
                   <md-icon style="color: #0aabf4">exit_to_app</md-icon>
                   <span class="md-list-item-text" style="color: #0aabf4;font-weight: 600;font-size: 16px">Salir de la sesión</span>
                 </md-list-item>

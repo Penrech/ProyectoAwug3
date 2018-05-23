@@ -793,12 +793,12 @@ function getLocationList(){
 
 function checkProfessionalCode(code){
     var deferred = $.Deferred();
-    
+    console.log(code);
     firebase.database().ref("ProfCodes").orderByChild("name").equalTo(code).once("value")
     .then(function(result){
         if(result.val() != null){
-            if(result.val().user != "free"){
-                deferred.resolve(false);   
+            if(result.val()[Object.keys(result.val())[0]].user != "free"){
+                deferred.resolve(false);
             }
             else{
             var temp = Object.keys(result.val())[0];
