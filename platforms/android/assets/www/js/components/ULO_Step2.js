@@ -78,10 +78,6 @@ Vue.component('ULO-step2', {
                               
 
     }),
-     beforeRouteLeave(to,from,next){
-       console.log (from.params);
-       console.log (to.params);
-     },
         created: function(){
          window.scrollTo(0,0);
         toolBarData.iconoPaginaAnterior = "keyboard_backspace";
@@ -93,8 +89,8 @@ Vue.component('ULO-step2', {
         this.registerDate = this.getFormatDate(this.objSelect.registro);
         this.showTags();
         this.$root.$on("backToULOStep1",this.changeData);
-         console.log(this.objSelect);
-         //this.toStringTags();
+
+
     },
     destroyed: function(){
          this.$root.$off("backToULOStep1",this.changeData);
@@ -175,18 +171,12 @@ Vue.component('ULO-step2', {
                   window.location.href="tel:"+this.objSelect.phone;
               },
               openMaps(){
-                  console.log("entro aqui");
                   window.location.href="geo:"+this.objSelect.location.lat+","+this.objSelect.location.lon+"?q="+this.objSelect.location.lat+","+this.objSelect.location.lon+"("+this.objSelect.location.name+")";
               },
               searchAgain(){
                   this.$router.push({name: 'searchObject', params: this.objSelect});
               }
            
-        },
-        watch:{
-            loading : function(val){
-                console.log("valor de loading",val);
-            }
         },
         template:`
 

@@ -65,7 +65,6 @@ Vue.component('ALO-step3', {
              getFormatDate(){
                     let _this = this;
                     this.usersClaim.forEach(function(date){
-                    console.log(date);
                     var myDate = new Date(date.reclamado);
                     var month = ('0' + (myDate.getMonth() + 1)).slice(-2);
                     var date = ('0' + myDate.getDate()).slice(-2);
@@ -96,7 +95,7 @@ Vue.component('ALO-step3', {
             mailTo(indice){
                 var email = this.usersClaim[indice].email;
                 var subject="Objeto Perdido";
-                var body ="Le recordamos que su objeto perdido hallado el "+this.objectDate+" en "+this.objSelect.location.name+" se encuentra en nuestros almacenes. LLame al "+this.objSelect.phone+" para obtener información de cuando y como recogerlo";
+                var body ="Le recordamos que su objeto perdido hallado el "+this.objectDate+" en "+this.objSelect.location.name+" se encuentra en nuestros almacenes. LLame al "+this.objSelect.phone+" para obtener información de cuando y como recogerlo.";
                 subject = subject.replace(/\s/g, "%20");
                 body = body.replace(/\s/g, "%20");
                 window.location.href="mailto:"+email+"?subject="+subject+"&body="+body;

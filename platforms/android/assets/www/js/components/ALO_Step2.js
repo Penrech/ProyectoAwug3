@@ -44,7 +44,6 @@ Vue.component('ALO-step2', {
         this.getFormatDate();
         this.showTags();
         this.$root.$on("backToALOStep1",this.changeData);
-         console.log(this.objSelect);
     },
     destroyed: function(){
          this.$root.$off("backToALOStep1",this.changeData);
@@ -99,11 +98,6 @@ Vue.component('ALO-step2', {
                     }      
                 },
            
-        },
-        watch:{
-            loading : function(val){
-                console.log("valor de loading",val);
-            }
         },
         template:`
 

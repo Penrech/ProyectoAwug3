@@ -101,6 +101,7 @@ const registerTemplate = {props: ["registerType"],
                               
     }),
         created: function(){
+            window.scrollTo(0,0);
             document.body.style = this.bodyStyle;
            toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "";

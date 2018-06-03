@@ -3,6 +3,7 @@ const registrationTypeTemplate = {props: [],
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
         created: function(){
+            window.scrollTo(0,0);
            document.body.style = this.bodyStyle; 
             toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "";

@@ -2,7 +2,6 @@ const userLostObjectsTemplate = {props: [],
                           data: () => ({
         objectsID : [],
         searchID : [],
-        showNavigation:false,
         objectSelect: [],
           stepLibrary:{
             step1: {
@@ -44,7 +43,6 @@ const userLostObjectsTemplate = {props: [],
                                  
         methods: {
             chargeArray(update){
-                console.log(update.objArray);
                 this.objectsID = update.objArray;
                 this.searchID= update.searchArray;
             },

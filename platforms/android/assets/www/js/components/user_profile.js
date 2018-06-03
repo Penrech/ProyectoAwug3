@@ -12,8 +12,6 @@ const userProfileTemplate = {props: [],
         },
         methods: {
          UpdateStep(update){
-             console.log("entro aqui");
-             console.log("proximo")
             this.ActualStep = update.nextStep;
          }
            

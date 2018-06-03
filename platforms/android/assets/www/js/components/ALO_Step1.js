@@ -37,10 +37,7 @@ Vue.component('ALO-step1', {props: [],
             },
 
                 selectObject(clave,indice){
-                console.log("Entro aqui");
                 var emitObj;
-                /*this.objectSelect.id = clave;
-                this.objectSelect.index = indice;*/
                 emitObj = {
                         indice: indice,
                         objArray : this.objectsArray[indice],

@@ -64,9 +64,7 @@ Vue.component('save-object', {
                     this.registerDate = date + '/' + month + '/' + year;
                 },
                 changeData(){
-                    console.log("el objeto en si "+this.responseObject.response);
                     if (this.uploading == false){
-                        console.log(this.responseObject.uploadedSuccess);
                         if(this.responseObject.uploadedSuccess == true){
                             this.$router.push("allLostObjects");
                         }
@@ -79,7 +77,6 @@ Vue.component('save-object', {
                             this.hideStepper(false);
                         }
                         else{
-                            console.log("Entro en changeData");
                             var emitObj = {
                             imgUrl : "unChanged",
                             nextStep: 2
@@ -109,7 +106,6 @@ Vue.component('save-object', {
                                 uploadedSuccess: true,
                                 message: "Objeto guardado correctamente en la base de datos"
                             }
-                            console.log("Despues del succes ",_this.responseObject);
                         }
                         else{
                             _this.responseObject={
@@ -119,7 +115,6 @@ Vue.component('save-object', {
                             }
                         }
                         _this.uploading = false;
-                        console.log("al final de la query ",_this.responseObject);
                     })
                },
               hideStepper(value){

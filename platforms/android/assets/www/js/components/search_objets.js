@@ -45,7 +45,6 @@ Vue.component('search-objects', {
          let _this = this;
          var sTags = new searchObjectsByTags(this.prevTags,userIdTest);
          sTags.then(function(result){
-             console.log(result);
              _this.objectsArray = result;
              _this.loading = false;
          })
@@ -61,9 +60,7 @@ Vue.component('search-objects', {
         methods: {
 
             selectObject(clave,indice){
-                console.log("Entro aqui");
                 clave = "found-object-"+clave;
-                console.log(clave);
                 if (this.objectSelect.id != null){
                     if (this.objectSelect != clave){
                         document.getElementById(this.objectSelect.id).style= this.cardStyle1;
@@ -88,7 +85,6 @@ Vue.component('search-objects', {
                 this.$emit('backToStep1',emitObj);
                 },
                DetallesDeObjeto(){
-                   console.log("Entro aqui tambien");
                    var emitObj;
                    if (this.objectSelect.id == "found-object-none"){
                        emitObj = {
@@ -101,7 +97,6 @@ Vue.component('search-objects', {
                            objArray : this.objectsArray[this.objectSelect.index]
                        }
                    }
-                   console.log(emitObj);
                    this.$emit('reciveDataStep2',emitObj);
 
                }

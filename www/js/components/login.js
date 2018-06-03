@@ -26,6 +26,7 @@ const loginTemplate = {props: [],
         }
     }),
         created:function(){
+            window.scrollTo(0,0);
             document.body.style= this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "";
             toolBarData.iconoPaginaSiguiente = "";

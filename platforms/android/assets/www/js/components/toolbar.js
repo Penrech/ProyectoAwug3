@@ -15,12 +15,9 @@ Vue.component('tool-bar', {
         rightBtnAction(){
             var str = this.toolBarData.paginaSiguiente;
             var res = str.slice(0, 2);
-            console.log("Resultado slice: "+res);
             if (res == "UO"){
-                console.log("Entro en UO");
                  switch(this.toolBarData.paginaSiguiente){
                     case "UO_step2":
-                         console.log("Entro en UO2");
                         this.$root.$emit("generateTags","prueba");
                         break;
                     case "UO_step3":
@@ -28,7 +25,6 @@ Vue.component('tool-bar', {
                 }
             }
             if (res == "SO"){
-                console.log(this.toolBarData.paginaSiguiente);
                 if (this.toolBarData.paginaSiguiente == "SO_step2"){
                     this.$root.$emit("searchTags");
                 }
@@ -37,7 +33,6 @@ Vue.component('tool-bar', {
                 }
             }
             if (this.toolBarData.paginaSiguiente == "activarMenu"){
-                console.log("entro en activar menu");
                 this.sideBarData.showNavigation = true;
                 
             }
@@ -50,10 +45,8 @@ Vue.component('tool-bar', {
             var str = this.toolBarData.paginaAnterior;
             var res = str.slice(0, 2);
             if (res == "UO"){
-                console.log("Entro en Uo atrás");
                 switch(this.toolBarData.paginaAnterior){
                     case "UO_step1":
-                        console.log("Entro en step1 atras");
                         var prevObj = {
                             imgUrl: null,
                             nextStep: 1
@@ -86,17 +79,14 @@ Vue.component('tool-bar', {
                  this.$root.$emit("goToPreviousState", prevObj);  }
             }
             else if (res == "AL"){
-                console.log("entro en atras");
                 var prevObj;
                 if(this.toolBarData.paginaAnterior == "ALO_step2"){
-                    console.log("entro en atras a 2");
                     prevObj ={
                         nextStep:2
                     }
                     this.$root.$emit("goToPreviousState", prevObj);
                 }
                 else if(this.toolBarData.paginaAnterior == "ALO_step1"){
-                     console.log("entro en atras a 1");
                      prevObj ={
                         nextStep:1
                     }
@@ -105,36 +95,25 @@ Vue.component('tool-bar', {
                 }
             }
             else if (this.toolBarData.paginaAnterior == "userProfile"){
-                console.log("entro aqui");
                  this.$root.$emit("backToUserProfile");   
             }
             else if(this.toolBarData.paginaAnterior == "registrationType"){
-                console.log("Entro aqui, pero solo deberia aqui");
                 this.$root.$emit("backToRegisterType");
             }
             else if(this.toolBarData.paginaAnterior == "login"){
                 this.$root.$emit("backToLogin");
             }
             else if (this.toolBarData.paginaAnterior == "homeUser" && this.toolBarData.paginaActual == "userProfile"){
-                console.log("entro aqui en cambio de perfil a home");
                 this.$root.$emit("backFromProfileToHome");
             }
             else if(this.toolBarData.paginaAnterior == "homeUser"){
-                console.log("ahora entro aqui");
                 this.$router.push("homeUser");
-            }/*
-            else{
-                if (this.toolBarData.paginaAnterior != "" ){
-                    console.log("Entro aqui, como si el campo pagina anterior estuviera vacio");
-                    this.$router.push(this.toolBarData.paginaAnterior);
-                }
-            }*/
+            }
                 
      
         },
         
         handleScroll(){
-            console.log("Detecto Scroll");
             if(window.pageYOffset == 0){
                 this.activeShadow = false;
             }

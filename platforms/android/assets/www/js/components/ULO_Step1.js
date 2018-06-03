@@ -36,8 +36,6 @@ Vue.component('ULO-step1', {props: ["subNavText"],
     }),
         created: function () {
             window.scrollTo(0,0);
-            /*this.userObjRef=  firebase.database().ref('/usuarios/user1/objetos').once("value");
-            this.userSearchRef=  firebase.database().ref('/usuarios/user1/busquedas').once("value");*/
             toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "menu";
             toolBarData.paginaActual = "ULO_step1";
@@ -56,117 +54,14 @@ Vue.component('ULO-step1', {props: ["subNavText"],
                 _this.loading = false;
             })
 
-            /*console.log(this.initialQuery);
-            Promise.all(this.initialQuery)
-            .then(this.getInitialDataRaw); */
+           
             
         
         },
         methods: {
             
-            /*getData(){
-                //array busquedas
-                var Queries=[];
-                //busquedas
-                var sQuery_promises;
-                var sQuery_result;
-                var sQuery = firebase.database().ref("busquedas").orderByChild("idUsuario").equalTo("user1")
-                .then(function sQfun(snapshot){
-                    if (snapshot.val() == null)
-                        sQuery_result= null;
-                    else{
-                        sQuery_result = snapshot.val();
-                        snapshot.forEach(function(snapshot){
-                            //cada busqueda
-                            sQuery_result.push(
-                                firebase.database().("tags-busqueda").orderByChild("idBusqueda").equalTo(snapshot.val().idBusqueda)
-                            )
-                        })
-                    }
-                })
-                //objetos
-                var oQuery = firebase.database().ref("obj-usuario").orderByChild("idUsuario").equalTo("user1")
-                .then(oQfun);
-                var oQuery_result = function oQfun(snapshot){
-                    
-                }
-                
-                Promise.all(sQuery_promises)
-                    .then(function(data){
-                     data.forEach(function(data){
-                         console.log(data);
-                     })
-                })
-                
-                
-            }
-           
-          /* getInitialDataRaw(querySnapshot) {
-            this.qLen = querySnapshot.length;
-            querySnapshot.forEach(this.getInitialDataSpecific); 
-           },
-            
-            getInitialDataSpecific(doc){
-                
-                if (doc.key == "busquedas"){
-                    if (doc.val()){
-                    empty = false;
-                    this.searchId = doc.val();
-                    for (var i = 0; i < this.searchId.length; i++) {
-                    this.nextQuerySearch.push(
-                    firebase.database().ref('/busquedas/' + this.searchId[i]).once('value')
-                );}
-                        Promise.all(this.nextQuerySearch)
-                        .then(this.getNextDataRaw);
-            
-                }
-                }
-                else if(doc.key == "objetos"){
-                    if (doc.val()){
-                    console.log("entro en objetos");
-                    empty = false;
-                    this.objectsId = doc.val();
-                    for (var i = 0; i < this.objectsId.length; i++) {
-                    this.nextQueryObj.push(
-                    firebase.database().ref('/objetos/' + this.objectsId[i]).once('value')
-                );}
-                     Promise.all(this.nextQueryObj)
-                    .then(this.getNextDataRaw);
-                } 
-                }
-                this.qLen--;
-                if (this.qLen == 0){
-                    if(this.nextQueryObj.length ==0 && this.nextQuerySearch.length==0)
-                        this.noData = true;
-                    this.loading = false;
-                }
-           
-            },
-            
-            getNextDataRaw(querySnapshot) {
-            console.log(this.nextQueryObj);
-            console.log(querySnapshot);
-            if (this.lastQueryLen == 0){this.lastQueryLen = querySnapshot.length;};
-            querySnapshot.forEach(this.getNextDataSpecific);
-            },
-            
-            getNextDataSpecific(doc){
-                var info = doc.val();
-                info.id = doc.key;
-                this.objectsArrayTemp.push(info);
-                this.lastQueryLen--;
-                if (this.lastQueryLen == 0){
-                    this.loading = false;
-                    var emitObj={
-                        searchArray: this.searchId,
-                        objArray: this.objectsId
-                    };
-                    this.$emit("PassArray",emitObj);
-                }
-            },*/
 
               selectObject(clave,indice){
-                console.log("Entro aqui");
                 clave = "user-object-"+clave;
                 var emitObj;
                 this.objectSelect.id = clave;

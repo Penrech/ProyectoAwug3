@@ -1,7 +1,5 @@
 const loginTemplate = {props: [], 
                           data: () => ({
-        activeNavigation: false,
-        showNavigation:false,
         uploading:false,
         email:null,
         pass:null,
@@ -28,6 +26,7 @@ const loginTemplate = {props: [],
         }
     }),
         created:function(){
+            window.scrollTo(0,0);
             document.body.style= this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "";
             toolBarData.iconoPaginaSiguiente = "";

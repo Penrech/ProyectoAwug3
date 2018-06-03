@@ -35,10 +35,7 @@ Vue.component('Up-step1', {props: [],
         },
         methods: {
             updateData(){
-            console.log("entro aqui");
-             console.log(user);
               this.userProfileData = user;  
-            console.log(this.userProfileData);
             },
             GoToEditProfile(){
                 var emitObj={

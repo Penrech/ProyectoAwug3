@@ -120,7 +120,6 @@ Vue.component('capture-img', {
                     this.loading = false;
                     this.btnChange = true;
                     toolBarData.paginaSiguiente = "UO_step2";
-                    console.log("Pagina siguiente: "+toolBarData.paginaSiguiente);
                     this.imageHandler = croppedPath;
                 },
                 croppedFail(error){

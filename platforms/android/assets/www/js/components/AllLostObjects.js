@@ -1,7 +1,6 @@
 const allLostObjectsTemplate = {props: [],
                           data: () => ({
         objectSelect: null,
-        showNavigation:false,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)",
         actualStep:1,
         
