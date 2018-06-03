@@ -1,12 +1,9 @@
 Vue.component('side-bar', {
      data: () => (sideBarData),
     created: function(){
-        console.log("Valor de shownavigation solo cargar : "+this.showNavigation);
-         console.log(UserType);
     },
     methods:{
             blockScroll: function(){
-                console.log("Entro aqui");
                 if (document.body.style.position == "fixed"){
                     document.body.style.position = "unset";
                 }

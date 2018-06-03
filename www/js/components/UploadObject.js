@@ -1,7 +1,6 @@
 const uploadObjectTemplate = {props: [],
                           data: () => ({
 
-        showNavigation:false,
         imageData: null,
         stepperLen:3,
         tags: [],
@@ -30,7 +29,6 @@ const uploadObjectTemplate = {props: [],
 
     }),
         created: function () {
-            //document.body.style = this.bodyStyle;
             toolBarData.iconoPaginaAnterior = "clear";
             toolBarData.iconoPaginaSiguiente = "done";
             toolBarData.paginaActual = "uploadObject";
@@ -77,8 +75,6 @@ const uploadObjectTemplate = {props: [],
                     if (updateData.tags){
                         this.tags = updateData.tags;
                     }
-                    console.log("path imagen: "+this.imageData);
-                    console.log("paso a step: "+updateData.nextStep);
                 },
               goBackHome () {
                   this.$router.push('homeUser');

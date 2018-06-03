@@ -120,7 +120,6 @@ Vue.component('generate-tags-search', {
 
                         }
                         this.toBeAdded = null;
-                        console.log(this.toBeAdded);
                     }
                     else{
                         this.toBeAdded = null;
@@ -139,7 +138,6 @@ Vue.component('generate-tags-search', {
                        value = value.replace(/[ùúûü]/g,"u");
                        return value;
                     }).sort();
-                    console.log(sorted);
                    var emitObj = {
                        tags : sorted,
                        nextStep: 2

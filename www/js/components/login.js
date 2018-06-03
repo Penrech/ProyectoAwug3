@@ -1,7 +1,5 @@
 const loginTemplate = {props: [], 
                           data: () => ({
-        activeNavigation: false,
-        showNavigation:false,
         uploading:false,
         email:null,
         pass:null,

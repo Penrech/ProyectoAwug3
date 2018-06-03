@@ -14,9 +14,7 @@ this.userSearch = function(){
         else{
             var len = Object.keys(snapshot.val()).length;
             snapshot.forEach(function(snapshot){
-                //cada busqueda
                 sQuery_result.push(snapshot.val());
-                console.log(sQuery_result);
                 sQuery_promises.push(
                     firebase.database().ref("/tags-busqueda/").orderByChild("idBusqueda").equalTo(snapshot.val().idBusqueda).once("value")
                 )
@@ -57,7 +55,6 @@ this.userObject = function(){
         }
         else{
             snapshot.forEach(function(snapshot){
-                //cada busqueda
                 oQuery_promises.push(
                     firebase.database().ref("/objetos/").orderByChild("id").equalTo(snapshot.val().idObjeto).once("value")
                 )
@@ -132,7 +129,6 @@ function getUserObjectClaimDate(objectId,userId){
     $.when(deferred1).done(function(x){
         claimDate = userObj.find(x =>x.idObjeto === objectId).registro;
         deferred.resolve(claimDate);
-        console.log(claimDate);
     })
     return deferred.promise();
 }
@@ -260,7 +256,6 @@ function getUserData(userId){
 function getUserName(userId){
     var deferred = $.Deferred();
     firebase.database().ref('usuarios/'+userId).once("value").then(function(snapshot){
-       console.log(snapshot.val().nomAp);
        deferred.resolve(snapshot.val().nomAp);
     })
     return deferred.promise();
@@ -430,7 +425,6 @@ function orderAllObjects(orderType,visualType){
             objArray.find(x => x.id === obj).reclamado = true;
         })
         if (orderType == "reclamado"){
-        console.log(objArray);
         objArray.sort(function(a, b) {
                 a = a.reclamado;
                 b = b.reclamado;
@@ -454,7 +448,6 @@ function deleteObject(objectId){
     var parentId = objectId.slice(3);
     var imgBigRef = firebase.storage().ref().child("640p/640P"+parentId+".jpg");
     var imgSmallRef = firebase.storage().ref().child("320p/320P"+parentId+".jpg");
-    console.log(parentId);
     updates["/objetos/"+parentId]= {};
     
     imgBigRef.delete().then(function(){
@@ -635,8 +628,6 @@ function saveObject(dataObject){
         
     $.when(uploadedImg1,uploadedImg2).done(function(x,y){
         console.log("se suben ambas imagenes");
-        console.log(uploadState1);
-        console.log(uploadState2);
         if (uploadState1 == "uploadedSucces" && uploadState2 == "uploadedSucces"){
             uploadImg1.getDownloadURL().then(function(url){
                 urlGetImg1.resolve(url);
@@ -793,7 +784,6 @@ function getLocationList(){
 
 function checkProfessionalCode(code){
     var deferred = $.Deferred();
-    console.log(code);
     firebase.database().ref("ProfCodes").orderByChild("name").equalTo(code).once("value")
     .then(function(result){
         if(result.val() != null){
@@ -826,7 +816,6 @@ function setProfessionalCode(codeId,userId){
 }
 
 function registerUser(userData,pass,codeId){
-    console.log(codeId);
     var deferred = $.Deferred();
     var deferred2= $.Deferred();
     var deferred3 = $.Deferred();
@@ -834,7 +823,6 @@ function registerUser(userData,pass,codeId){
     AuthType = "register";
     firebase.auth().createUserWithEmailAndPassword(userData.email,pass)
         .then(function(userRegistered) {
-            console.log(userRegistered.user.uid);
             firebase.database().ref("usuarios/"+userRegistered.user.uid).set(userData).then(function() {
                 deferred2.resolve(userRegistered.user.uid);
             }, function(error) {

@@ -1,7 +1,5 @@
 const registrationTypeTemplate = {props: [], 
                           data: () => ({
-        activeNavigation: false,
-        showNavigation:false,
         bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa)"
     }),
         created: function(){

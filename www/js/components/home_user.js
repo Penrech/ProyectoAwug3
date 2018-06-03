@@ -1,8 +1,6 @@
 const HomeUserTemplate = {props: [], 
                           data: () => ({
         username: "",
-        activeNavigation: false,
-        showNavigation:false,
         UserType,
        bodyStyle:"background: linear-gradient(to right, #03a9f4, #81d4fa); background-repeat: no-repeat; background-size: 100% 250px; background-color: white;",
     }),
@@ -16,10 +14,7 @@ const HomeUserTemplate = {props: [],
             toolBarData.paginaAnterior = "";
             toolBarData.toolBarTitle = "";
             this.username = user.nom + " " + user.apellido;
-            /*let _this = this;
-            firebase.database().ref("/usuarios/"+userIdTest+"/nomAp").on("value",function(result){
-                _this.username = result.val();
-            })*/
+
 
         },
         methods: {

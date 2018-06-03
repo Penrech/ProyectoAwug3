@@ -102,7 +102,7 @@ Vue.component('Up-step3', {props: [],
                 }  
             
                if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.formData.email))){
-                    console.log("el emial no es valido");
+                    console.log("el email no es valido");
                     this.erroresForm.email.emailNoValido = true;
                     this.validationErrors = true;
                     this.uploading = false;
@@ -118,7 +118,6 @@ Vue.component('Up-step3', {props: [],
                     
                 user.reauthenticateAndRetrieveDataWithCredential(credentials)
                 .then(function(){
-                    console.log("funciona");
                     deferred1.resolve(true);
                 }).catch(function(error){
                     deferred1.resolve(error);
@@ -127,7 +126,6 @@ Vue.component('Up-step3', {props: [],
                 $.when(deferred1).done(function(data){
                     if (data == true){
                         user.updateEmail(_this.formData.email).then(function() {
-                            console.log("funciona2");
                             deferred2.resolve(true);
                         }).catch(function(error) {
                             deferred2.resolve(error);
@@ -140,7 +138,6 @@ Vue.component('Up-step3', {props: [],
                         });
                         }
                         else{
-                            console.log("entro aqui en este else");
                             deferred3.resolve(true);
                         }
                        
@@ -152,15 +149,12 @@ Vue.component('Up-step3', {props: [],
                         else{
                             _this.snackBar = true;
                         }
-                        console.log(data);
                         _this.uploading = false;
                     }
                 });
                 
                 $.when(deferred2,deferred3).done(function(data1,data2){
-                    console.log("que pasa aqui, no entro");
                     if (data1 == true && data2 == true){
-                        console.log("entro en los dos true");
                          firebase.database().ref("usuarios/"+userIdTest).set(_this.formData)
                            .then(function(result){
                                 _this.$root.$emit("backBeforeCharge");

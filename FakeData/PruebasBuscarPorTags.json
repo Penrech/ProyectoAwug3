@@ -1,9 +1,0 @@
-{
-    "searchedObjects" : [
-            {"id": "1", "img": "http://www.eartesano.com/images/productos_tienda/Bolso_de_piel_tipo_chanel_11121_frontal_negro.jpg", "tags":["bolso","negro","chanel"],"location":"Calle prueba 1","phone":"666555444","registro":"22/04/2018","reclamado":true},
-            {"id": "2", "img": "https://cdn-static.trendtation.com/uploads/marketplace/16/4f/hwyd/435058ab13b50242a-cs-hi.jpg","tags":["bolso","rojo","bershka"],"location":"Calle prueba 2","phone":"666444555","registro":"28/04/2018","reclamado":false},
-            {"id": "3", "img": "https://fotosuraj.com/2832-large_default/samsung-galaxy-s8.jpg","tags":["movil","gris","plata","samsung","galaxy"],"location":"Calle prueba 3","phone":"666777888","registro":"12/02/2018","reclamado":true},
-            {"id": "4", "img": "http://www.ktec.es/wp-content/uploads/2016/04/HTC-One-M9-M9u-9_zpsfbbsovlh.jpg","tags":["movil","gris","plata","htc","one"],"location":"Calle prueba 4","phone":"666544554","registro":"10/03/2018","reclamado":false}
-
-]
-}

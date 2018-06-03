@@ -127,7 +127,6 @@ Vue.component('found-object-details', {
                guardarObjeto(){
                    var deferred = $.Deferred();
                    this.uploading = true;
-                   console.log(this.uploading);
                    let _this = this;
                     if(this.objSelect){
                       if(this.searched != null){
@@ -151,8 +150,6 @@ Vue.component('found-object-details', {
                             var sQuery = new saveUserObject(_this.objSelect.id,userIdTest)
                               .then(function(result){
                                   _this.uploading = false;
-                                   console.log(_this.uploading);
-                                  //ir a mis objetos
                                   if (result == true)
                                       _this.$router.push('userLostObjects');
                                   else{
@@ -171,7 +168,6 @@ Vue.component('found-object-details', {
                    else{
                        var sQuery = new saveUserSearch(this.prevTags,userIdTest)
                        .then(function(result){
-                           //ir a mis objetos
                            if (result == true)
                               _this.$router.push('userLostObjects');
                           else{

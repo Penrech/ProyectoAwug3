@@ -1,7 +1,5 @@
 const registerTemplate = {props: ["registerType"], 
                           data: () => ({
-        activeNavigation: false,
-        showNavigation:false,
         locationsObj: [],
         locationsShowed:[],
         locationSelectedObj: {},
@@ -103,7 +101,6 @@ const registerTemplate = {props: ["registerType"],
                               
     }),
         created: function(){
-            console.log("tipo de registro : "+this.registerType);
             document.body.style = this.bodyStyle;
            toolBarData.iconoPaginaAnterior = "keyboard_backspace";
             toolBarData.iconoPaginaSiguiente = "";
@@ -132,7 +129,6 @@ const registerTemplate = {props: ["registerType"],
                this.uploading= true;
                if((typeof this.formData.nom) != "string" || this.formData.nom.length <2 || this.formData.nom.length > 15 || this.formData.nom.length == 0)
                    {
-                       console.log("nameFail");
                      if(typeof this.formData.nom != "string"){
                          this.erroresForm.nombre.NombreNoValido = true;
                      }
@@ -148,7 +144,6 @@ const registerTemplate = {props: ["registerType"],
                    };
                if((typeof this.formData.apellido) != "string" || this.formData.apellido.length <2 || this.formData.apellido.length > 15 || this.formData.apellido.length == 0)
                    {
-                       console.log("nameFail");
                      if(typeof this.formData.apellido != "string"){
                          this.erroresForm.apellido.ApellidoNoValido = true;
                      }
@@ -189,7 +184,7 @@ const registerTemplate = {props: ["registerType"],
                     }
             
                if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.formData.email))){
-                    console.log("el emial no es valido");
+                    console.log("el email no es valido");
                     this.erroresForm.email.emailNoValido = true;
                     this.validationErrors = true;
                     this.uploading = false;
@@ -212,17 +207,13 @@ const registerTemplate = {props: ["registerType"],
                        }
                        else{
                            _this.professionalCode.id = result;
-                           console.log(result);
                            deferred.resolve();
                        }
                    })
                    
                }
               $.when(deferred).done(function(){
-                  console.log("entro aqui en deferred antes de validation");
-                  console.log(_this.validationErrors);
                   if (!_this.validationsErrors){
-                      console.log(_this.registerType);
                       if (_this.registerType == 2){
                           _this.formData.location = _this.locationSelectedObj;
                           _this.formData.type = 2;
@@ -230,10 +221,8 @@ const registerTemplate = {props: ["registerType"],
                       else{
                           _this.formData.type = 1;
                       }
-                      console.log(_this.formData);
                       var uQuery = new registerUser(_this.formData,_this.credentialsData.newPassWritten,_this.professionalCode.id);
                       uQuery.then(function(result){
-                          console.log(result);
                           _this.snackBar = true;
                           _this.uploading = false;
                       })
@@ -260,7 +249,6 @@ const registerTemplate = {props: ["registerType"],
             },
             goToRegistrationType(){
                if(this.uploading == false){
-                    console.log("no deberia entrar aqui");
                     this.$router.push('registrationType'); 
                }
             }
@@ -268,9 +256,7 @@ const registerTemplate = {props: ["registerType"],
          watch:{
             locationSelectedString : function(val){
             if(this.registerType != 1){
-                console.log(val);
                 if (val.idPoint){
-                    console.log("es un objeto");
                     this.locationSelectedObj = val;
                     this.locationSelectedString = val.name;
                 }

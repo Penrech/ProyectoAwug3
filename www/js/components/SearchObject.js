@@ -1,7 +1,6 @@
 const searchObjectTemplate = {props: [],
                           data: () => ({
 
-        showNavigation:false,
         stepperLen:2,
         searchFromUserList:null,
         tags: [],
@@ -64,7 +63,6 @@ const searchObjectTemplate = {props: [],
                         toolBarData.paginaSiguiente = "";
                         toolBarData.iconoPaginaAnterior = "keyboard_backspace";
                         }
-                        //this.tags = [];
                     }
                     else if (toStep == 2){
                        this.actualStep = this.stepLibrary.step2;
@@ -72,7 +70,6 @@ const searchObjectTemplate = {props: [],
                     }
                     else if (toStep == 3){
                         this.actualStep = this.stepLibrary.step3;
-                        console.log(this.actualStep);
                         toolBarData.paginaActual = "SO_step3";
                         toolBarData.paginaAnterior = "SO_step2";
                         toolBarData.paginaSiguiente = "";
@@ -89,7 +86,6 @@ const searchObjectTemplate = {props: [],
                         this.tags = updateData.tags;
                     }
                     this.changeStep(updateData.nextStep);
-                    console.log(this.tags);
                 },
               goBackHome () {
                   this.$router.push('homeUser');

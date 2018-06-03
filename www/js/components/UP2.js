@@ -88,7 +88,6 @@ Vue.component('Up-step2', {props: [],
                this.uploading= true;
                if((typeof this.formData.nom) != "string" || this.formData.nom.length <2 || this.formData.nom.length > 15)
                    {
-                       console.log("nameFail");
                      if(typeof this.formData.nom != "string"){
                          this.erroresForm.nombre.nombreNumerico = true;
                      }
@@ -105,9 +104,6 @@ Vue.component('Up-step2', {props: [],
                    }
                else if((typeof this.formData.apellido) != "string" || this.formData.apellido.length <2 || this.formData.apellido.length > 15)
                    {
-                       console.log("apellidoFail");
-                       console.log(typeof this.formData.apellido);
-                       console.log(this.formData.apellido.length);
                      if(typeof this.formData.apellido != "string"){
                          this.erroresForm.apellido.apellidoNumerico = true;
                      }
@@ -131,10 +127,8 @@ Vue.component('Up-step2', {props: [],
                 if (this.UserType == 2){
                     this.formData.location = this.locationSelectedObj;
                 }
-                console.log("no hay errores");
                 firebase.database().ref("usuarios/"+userIdTest).set(this.formData)
                .then(function(result){
-                    console.log("saldre de aqui a profile");
                     _this.$root.$emit("backBeforeCharge");
                     _this.goBackToProfile();
                 }).catch(function(error){
@@ -159,7 +153,6 @@ Vue.component('Up-step2', {props: [],
                 })
             },
              goBackToProfile () {
-                 console.log("entro aqui");
                   var emitObj={
                       nextStep:1
                   }
@@ -169,9 +162,7 @@ Vue.component('Up-step2', {props: [],
         watch:{
             locationSelectedString : function(val){
             if(this.UserType != 1){
-                console.log(val);
                 if (val.idPoint){
-                    console.log("es un objeto");
                     this.locationSelectedObj = val;
                     this.locationSelectedString = val.name;
                 }

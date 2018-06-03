@@ -137,7 +137,6 @@ Vue.component('generate-tags', {
 
                         }
                         this.toBeAdded = null;
-                        console.log(this.toBeAdded);
                     }
                     else{
                         this.toBeAdded = null;
@@ -215,11 +214,8 @@ Vue.component('generate-tags', {
                     },
                  processCloudVisionData(data){
                      this.loadingStatus = this.loadingStatusLibrary.second;
-                     console.log(data);
                      var tempArray=[];
                      var tempObj =  data.responses[0].labelAnnotations;
-                     console.log(tempObj);
-                     console.log(tempObj.length);
                      for(i= 0; i<tempObj.length;i++){
                         if(tempObj[i].description.length <15){
                             var split = tempObj[i].description.split(" ");
@@ -239,7 +235,6 @@ Vue.component('generate-tags', {
                      if(data.responses[0].logoAnnotations){
                          tempObj =  data.responses[0].logoAnnotations;
                          for(i= 0; i<tempObj.length;i++){
-                             console.log(tempObj[i].description);
                             if(tempObj[i].description.length <15 && !tempArray.includes(tempObj[i].description)){
                             var split = tempObj[i].description.split(" ");
                             var temp = tempObj[i].description;
@@ -255,9 +250,6 @@ Vue.component('generate-tags', {
                         }
                      }}
                      this.SendTextToTranslation(tempArray);
-                     /*this.tagsArray = tempArray;
-                     this.loading = false;
-                     toolBarData.paginaSiguiente = "UO_step3";*/
                  },
                 SendTextToTranslation(array){
                         var StringAr= array.toString();
@@ -268,12 +260,9 @@ Vue.component('generate-tags', {
                 },
                 translateTags(data){
                                 this.loadingStatus = this.loadingStatusLibrary.third;
-                                console.log("Entro en la respuesta bien");
-                                console.log(data.body.data.translations[0]);
                                 var tempArray = [];
                                 var StringRes = data.body.data.translations[0].translatedText;
                                 var tempObj = StringRes.split(",");
-                                console.log(tempObj);
                                 for(i= 0; i<tempObj.length;i++){
                                         if(tempObj[i].length <15){
                                              var temp = tempObj[i];
