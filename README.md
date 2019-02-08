@@ -46,3 +46,37 @@ The user can search by tags. A list of images related to this tags will be shown
   <a href='#img8'><img id='img8' width = '32%' src='UserLostObjects.jpg'/></a>
   <a href='#img9'><img id='img9' width = '32%' src='UserProfile.jpg'/></a>
 </p>
+
+<h1>Demo *</h1>
+<p style>*A higher quality and longer video opens on YouTube when clicked</p>
+<h3>Admin user</h3>
+<p align="center">
+  <a href='https://www.youtube.com/watch?v=p-PT4k0Dod8'><img width = '49%' src='LoFAdmin1.gif'/></a>
+  <a href='#imgE1'><img id='imgE1' width = '49%' src='Lof_1.png'/></a>
+</p>
+<br>
+<p align="center">
+  <a href='#imgE2'><img id='imgE2' width = '49%' src='Lof_3.png'/></a>
+  <a href='https://www.youtube.com/watch?v=z36q7i2hyYw'><img width = '49%' src='LofAdmin2.gif'/></a>
+</p>
+<br>
+<p align="center">
+  <a href='https://www.youtube.com/watch?v=2nXsC6YLYOc'><img width = '49%' src='LoFAdmin3.gif'/></a>
+  <a href='#imgE3'><img id='imgE3' width = '49%' src='Lof_5.png'/></a>
+</p>
+<br>
+<h3>User</h3>
+<p align="center">
+  <a href='https://www.youtube.com/watch?v=IbDaz2WXGoA'><img width = '49%' src='LofUser2.gif'/></a>
+  <a href='#imgE4'><img id='imgE4' width = '49%' src='Lof_1.png'/></a>
+</p>
+<br>
+<p align="center">
+  <a href='#imgE5'><img id='imgE5' width = '49%' src='Lof_4.png'/></a>
+  <a href='https://www.youtube.com/watch?v=DCsWmiY87cI'><img width = '49%' src='LofUser1.gif'/></a>
+</p>
+<br>
+<p align="center">
+  <a href='https://www.youtube.com/watch?v=9Oa9qxPkO4Y'><img width = '49%' src='LofUser3.gif'/></a>
+  <a href='#imgE3'><img id='imgE3' width = '49%' src='Lof_2.png'/></a>
+</p>
