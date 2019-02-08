@@ -30,3 +30,19 @@
 <p>In addition, the official can add relevant info of the object found as if they were Tag, similar to the hashtag in Instagram.
 The user can search by tags. A list of images related to this tags will be shown. Each of them will show additional information of where have been found and a contact telephone number.
 </p>
+<h1>Screenshots</h1>
+<p align = "center">
+  <a href='#img1'><img id='img1' width = '32%' src='LoginScreen.jpg'/></a>
+  <a href='#img2'><img id='img2' width = '32%' src='UserAdminHome.jpg'/></a>
+  <a href='#img3'><img id='img3' width = '32%' src='UserHome.jpg'/></a>
+</p>
+<p align = "center">
+  <a href='#img4'><img id='img4' width = '32%' src='AdminAllObjects.jpg'/></a>
+  <a href='#img5'><img id='img5' width = '32%' src='AdminCreateObject.jpg'/></a>
+  <a href='#img6'><img id='img6' width = '32%' src='AdminProfile.jpg'/></a>
+</p>
+<p align = "center">
+  <a href='#img7'><img id='img7' width = '32%' src='UserFindObject.jpg'/></a>
+  <a href='#img8'><img id='img8' width = '32%' src='UserLostObjects.jpg'/></a>
+  <a href='#img9'><img id='img9' width = '32%' src='UserProfile.jpg'/></a>
+</p>
